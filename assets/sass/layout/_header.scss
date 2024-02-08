@@ -10,15 +10,29 @@
 		h1 {
 			font-size: 3.25em;
 			margin: 0 0 (_size(element-margin) * 0.275) 0;
+			@include breakpoint('<=small') {
+				font-size: 2em; // Smaller font size for small devices
+				margin: 0 0 (_size(element-margin) * 0.4) 0; // Adjusted margin for small devices
+			}
+			@include breakpoint('<=xsmall') {
+			font-size: 1.5em; // Even smaller font size for extra small devices
+			}
 		}
 
 		p {
 			font-size: 1.35em;
 			line-height: 1.65em;
+			@include breakpoint('<=small') {
+				font-size: 1em; // Adjust font size for paragraph on small devices
+				line-height: 1.5em; // Adjust line height for readability
+			}
 		}
 
 		a {
-			color: inherit;
+			color: inherit; // Ensure links inherit the header's font color
+			&:hover {
+				text-decoration: none; // Optional: Removes underline on hover for cleaner look
+			}
 		}
 
 		@include breakpoint('<=small') {
