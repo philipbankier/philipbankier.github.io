@@ -840,11 +840,15 @@ button,
   -webkit-transition: opacity 0.5s ease-in-out;
   -ms-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
-  bottom: 4em;
-  color: rgba(255, 255, 255, 0.5);
-  left: 4em;
-  opacity: 0.5;
-  position: absolute; }
+  opacity: 1;
+  position: relative;
+  bottom: auto;
+  left: auto;
+  margin-top: 2em;
+  padding: 1em 0;
+  background: #333; /* To match existing color scheme */
+  color: #fff;
+  text-align: center; }
   #footer .icons {
     margin: 0 0 0.5em 0; }
   #footer .copyright {
@@ -896,6 +900,11 @@ button,
   margin: 0 auto;
 }
 
+/* Header Adjustment */
+#header {
+  margin-top: -4em; /* Adjust as needed depending on the cutoff */
+}
+
 /* Main Content */
 .content {
   max-width: 800px; /* Adjust as needed */
@@ -912,19 +921,6 @@ button,
 /* Projects and Teams List */
 .projects li, .teams li {
   margin-bottom: 0.5em;
-}
-
-/* Footer - ensure it's always at the bottom */
-#footer {
-  position: relative; /* Changed from absolute to relative */
-  bottom: auto;
-  left: auto;
-  margin-top: 2em;
-  padding: 1em 0;
-  background: #333; /* To match existing color scheme */
-  color: #fff;
-  text-align: center;
-  transition: none; /* Remove transition for consistent visibility */
 }
 
 /* Footer Icons */
@@ -945,14 +941,12 @@ button,
   }
   /* Ensure footer does not overlap content on small screens */
   #footer {
-      position: relative; 
-      bottom: auto;
-      left: auto;
       margin-top: 2em;
   }
 }
 
-/* Additional responsive adjustments */
-@media screen and (max-width: 736px) {
-  /* Adjust margins and paddings as necessary for smaller screens */
+@media screen and (max-height: 640px) {
+  #footer {
+    margin-top: 2em; /* Add a top margin to ensure it doesn't overlap content */
+  }
 }
