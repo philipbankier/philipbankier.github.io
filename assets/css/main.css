@@ -885,3 +885,74 @@ button,
       left: auto;
       margin: 1em 0 0 0;
       position: relative; } }
+
+
+/* Profile Image */
+.profile-image img {
+  max-width: 200px; /* Adjust as needed */
+  height: auto;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Main Content */
+.content {
+  max-width: 800px; /* Adjust as needed */
+  margin: 0 auto;
+  padding: 2em;
+}
+
+/* Override styles for the signup form */
+#signup-form input[type="email"], #signup-form input[type="submit"] {
+  width: calc(100% - 2em); /* Full width minus margin */
+  margin: 0.5em; /* Consistent margin for all inputs */
+}
+
+/* Projects and Teams List */
+.projects li, .teams li {
+  margin-bottom: 0.5em;
+}
+
+/* Footer - ensure it's always at the bottom */
+#footer {
+  position: relative; /* Changed from absolute to relative */
+  bottom: auto;
+  left: auto;
+  margin-top: 2em;
+  padding: 1em 0;
+  background: #333; /* To match existing color scheme */
+  color: #fff;
+  text-align: center;
+  transition: none; /* Remove transition for consistent visibility */
+}
+
+/* Footer Icons */
+#footer .icons a {
+  color: #fff; /* White icons to stand out against the dark footer */
+  margin: 0 0.5em; /* Spacing between icons */
+}
+
+/* Footer Hover */
+#footer:hover {
+  opacity: 1; /* Make footer fully visible on hover */
+}
+
+/* Media Queries */
+@media screen and (max-width: 480px) {
+  .content, #signup-form {
+      padding: 1em;
+  }
+  /* Ensure footer does not overlap content on small screens */
+  #footer {
+      position: relative; 
+      bottom: auto;
+      left: auto;
+      margin-top: 2em;
+  }
+}
+
+/* Additional responsive adjustments */
+@media screen and (max-width: 736px) {
+  /* Adjust margins and paddings as necessary for smaller screens */
+}
