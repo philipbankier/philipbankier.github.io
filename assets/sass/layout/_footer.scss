@@ -8,11 +8,14 @@
 
 	#footer {
 		@include vendor('transition', 'opacity 0.5s ease-in-out');
-		bottom: 4em;
-		color: _palette(fg-light);
-		left: 4em;
-		opacity: 0.5;
-		position: absolute;
+		opacity: 1; // Ensure footer is fully visible
+		position: relative; // Position relative to the flow of the document
+		margin-top: _size(element-margin); // Add margin-top based on your design requirements
+		padding: _size(element-margin) 0; // Add vertical padding inside the footer
+		background: _palette(bg); // Use the background color variable from your palette
+		color: _palette(fg-light); // Use the foreground color variable from your palette
+		text-align: center; // Center align the footer content
+  
 
 		.icons {
 			margin: 0 0 (_size(element-margin) * 0.25) 0;
