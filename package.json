@@ -1,0 +1,12 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": "hello world",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:build": "node-sass assets/sass/**/*.scss -o assets/css/"
+  },
+  "author": "",
+  "license": "ISC"
+}
