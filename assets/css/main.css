@@ -842,54 +842,22 @@ button,
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
   position: relative;
-  bottom: auto;
-  left: auto;
-  margin-top: 2em;
-  padding: 1em 0;
+  margin-top: 2em; /* Space above the footer */
+  padding: 1em 0; /* Padding inside the footer */
   background: #333; /* To match existing color scheme */
   color: #fff;
-  text-align: center; }
-  #footer .icons {
-    margin: 0 0 0.5em 0; }
-  #footer .copyright {
-    font-size: 0.8em;
-    list-style: none;
-    padding: 0; }
-    #footer .copyright li {
-      border-left: solid 1px rgba(255, 255, 255, 0.25);
-      display: inline-block;
-      line-height: 1em;
-      margin: 0 0 0 0.75em;
-      padding: 0 0 0 0.75em; }
-      #footer .copyright li:first-child {
-        border-left: 0;
-        margin-left: 0;
-        padding-left: 0; }
-    #footer .copyright a {
-      color: inherit; }
-  #footer:hover {
-    opacity: 1; }
-  #footer > :last-child {
-    margin-bottom: 0; }
-  @media screen and (max-width: 1680px) {
-    #footer {
-      bottom: 3.5em;
-      left: 3.5em; } }
-  @media screen and (max-width: 736px) {
-    #footer {
-      bottom: 2em;
-      left: 2em; } }
-  @media screen and (max-width: 360px) {
-    #footer {
-      bottom: 1.25em;
-      left: 1.25em; } }
-  @media screen and (max-height: 640px) {
-    #footer {
-      bottom: auto;
-      left: auto;
-      margin: 1em 0 0 0;
-      position: relative; } }
-
+  text-align: center; /* Center the text inside the footer */
+}
+#footer .icons {
+  margin: 0 0 0.5em 0; /* Margin above the icons */
+}
+#footer .icons a {
+  color: #fff; /* White icons to stand out against the dark footer */
+  margin: 0 0.5em; /* Spacing between icons */
+}
+#footer:hover {
+  opacity: 1; /* Make footer fully visible on hover */
+}
 
 /* Profile Image */
 .profile-image img {
@@ -921,17 +889,6 @@ button,
 /* Projects and Teams List */
 .projects li, .teams li {
   margin-bottom: 0.5em;
-}
-
-/* Footer Icons */
-#footer .icons a {
-  color: #fff; /* White icons to stand out against the dark footer */
-  margin: 0 0.5em; /* Spacing between icons */
-}
-
-/* Footer Hover */
-#footer:hover {
-  opacity: 1; /* Make footer fully visible on hover */
 }
 
 /* Media Queries */
