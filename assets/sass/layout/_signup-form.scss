@@ -9,6 +9,8 @@
 	#signup-form {
 		@include vendor('display', 'flex');
 		position: relative;
+		justify-content: center; // Center form elements
+		width: 100%;
 
 		input[type="text"],
 		input[type="password"],
