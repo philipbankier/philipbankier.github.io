@@ -18,8 +18,8 @@ export default function Home() {
     <div className="min-h-screen bg-[#FAFBFC]">
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      <VenturesSection />
+      {/* <AboutSection /> */}
+      {/* <VenturesSection /> */}
       <WritingSection />
       <GoodReadsSection />
       <ToolsSection />
