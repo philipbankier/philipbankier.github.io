@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 AI Agent Playbook — Field Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Newsreader:opsz,wght@6..72,300..700&family=IBM+Plex+Mono:wght@300;400;500;600&family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0c;
+    --bg-2: #15140f;
+    --bg-3: #1c1a14;
+    --paper: #f2ead3;
+    --paper-dim: #c9c0a6;
+    --paper-faint: #6b6660;
+    --rule: #2a261d;
+    --signal: #ff5722;
+    --signal-dim: #c54317;
+    --green: #5fed83;
+    --green-dim: #2c8a44;
+    --amber: #fbbf24;
+    --red: #e63946;
+    --blue: #6ea5ff;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Geist', ui-sans-serif, system-ui;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--paper);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: 'kern','liga','onum';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,87,34,0.08), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(95,237,131,0.04), transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    opacity: 0.035; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .page { max-width: 1320px; margin: 0 auto; padding: 48px 56px 80px; position: relative; }
+  @media (max-width: 900px) { .page { padding: 32px 22px 60px; } }
+
+  /* ============ HEADER ============ */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px; margin-bottom: 36px;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+  .topbar .left { display: flex; gap: 28px; }
+  .topbar .dot { color: var(--signal); }
+  .hero { margin-bottom: 80px; position: relative; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--signal);
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before, .eyebrow::after { content: ''; flex: 0 0 auto; height: 1px; background: var(--signal); }
+  .eyebrow::before { width: 36px; }
+  .eyebrow::after { flex: 1; opacity: 0.3; }
+  h1.title {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 144, 'SOFT' 30, 'wght' 350;
+    font-size: clamp(48px, 7.5vw, 108px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    color: var(--paper);
+    margin-bottom: 24px;
+  }
+  h1.title em {
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 80, 'wght' 300, 'WONK' 1;
+    color: var(--signal);
+  }
+  .dek {
+    font-family: var(--body);
+    font-size: clamp(18px, 1.6vw, 23px);
+    line-height: 1.45;
+    color: var(--paper-dim);
+    max-width: 880px;
+    font-weight: 300;
+  }
+  .dek strong { color: var(--paper); font-weight: 500; font-style: italic; }
+  .meta-row {
+    display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+    color: var(--paper-faint); text-transform: uppercase;
+  }
+  .meta-row span strong { color: var(--paper); font-weight: 500; }
+
+  /* ============ STAT STRIP ============ */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 60px 0 90px;
+  }
+  @media (max-width: 800px) { .stat-strip { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    background: var(--bg);
+    padding: 32px 24px 28px;
+    position: relative;
+  }
+  .stat .num {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 144, 'wght' 300;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .stat .num .unit {
+    font-size: 22px; color: var(--signal); margin-left: 4px;
+    font-variation-settings: 'opsz' 144, 'wght' 400;
+  }
+  .stat .lbl {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--paper-dim); line-height: 1.5;
+  }
+  .stat .sub { font-size: 13px; color: var(--paper-faint); margin-top: 6px; font-style: italic; }
+
+  /* ============ SECTION ============ */
+  section { margin-bottom: 96px; position: relative; }
+  .sec-head {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    margin-bottom: 36px;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .sec-head { grid-template-columns: 1fr; gap: 8px; } }
+  .sec-num {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    color: var(--signal); padding-top: 14px;
+    border-top: 2px solid var(--signal);
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 80, 'SOFT' 30, 'wght' 380;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+  }
+  h2 em {
+    font-style: italic; color: var(--signal);
+    font-variation-settings: 'opsz' 80, 'SOFT' 80, 'wght' 350;
+  }
+  .sec-lede {
+    font-size: 18px; line-height: 1.55; color: var(--paper-dim);
+    margin-top: 14px; max-width: 760px;
+  }
+
+  /* ============ THREE PARADIGMS ============ */
+  .paradigms {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .paradigms { grid-template-columns: 1fr; } }
+  .paradigm {
+    background: var(--bg-2); padding: 28px 26px 32px;
+    position: relative; min-height: 460px;
+    display: flex; flex-direction: column;
+  }
+  .paradigm.signal { border-top: 3px solid var(--signal); }
+  .paradigm.green { border-top: 3px solid var(--green); }
+  .paradigm.amber { border-top: 3px solid var(--amber); }
+  .paradigm .tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--paper-faint);
+    margin-bottom: 18px;
+  }
+  .paradigm h3 {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 60, 'SOFT' 50, 'wght' 400;
+    font-size: 28px; line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--paper); margin-bottom: 6px;
+  }
+  .paradigm h3 em { font-style: italic; }
+  .paradigm.signal h3 em { color: var(--signal); }
+  .paradigm.green h3 em { color: var(--green); }
+  .paradigm.amber h3 em { color: var(--amber); }
+  .paradigm .who {
+    font-family: var(--body); font-style: italic;
+    font-size: 14px; color: var(--paper-dim);
+    border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 18px;
+  }
+  .paradigm p { font-size: 15px; line-height: 1.55; color: var(--paper-dim); margin-bottom: 16px; }
+  .paradigm .examples {
+    margin-top: auto; padding-top: 20px;
+    border-top: 1px dashed var(--rule);
+    font-family: var(--mono); font-size: 11px; line-height: 1.7;
+    color: var(--paper);
+  }
+  .paradigm .examples .label {
+    color: var(--paper-faint); text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 9px; margin-bottom: 6px; display: block;
+  }
+  .paradigm .ex-pill {
+    display: inline-block; padding: 2px 8px; margin: 2px 4px 2px 0;
+    border: 1px solid var(--rule); border-radius: 2px;
+    background: var(--bg);
+    font-size: 10px;
+  }
+  .paradigm.signal .ex-pill.lead { color: var(--signal); border-color: var(--signal); }
+  .paradigm.green .ex-pill.lead { color: var(--green); border-color: var(--green); }
+  .paradigm.amber .ex-pill.lead { color: var(--amber); border-color: var(--amber); }
+
+  /* ============ ARCHITECTURE DIAGRAM ============ */
+  .arch-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
+  }
+  @media (max-width: 900px) { .arch-grid { grid-template-columns: 1fr; } }
+  .arch-svg-wrap { background: var(--bg-2); border: 1px solid var(--rule); padding: 24px; }
+  .arch-side h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--signal); margin-bottom: 14px;
+  }
+  .arch-side h4 + p { font-size: 16px; color: var(--paper-dim); margin-bottom: 22px; }
+  .arch-side .layer-list { list-style: none; }
+  .arch-side .layer-list li {
+    padding: 12px 0; border-bottom: 1px dashed var(--rule);
+    display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: baseline;
+  }
+  .arch-side .layer-list li:last-child { border-bottom: 0; }
+  .arch-side .layer-list .n {
+    font-family: var(--mono); font-size: 10px; color: var(--signal);
+    letter-spacing: 0.1em;
+  }
+  .arch-side .layer-list .name {
+    font-family: var(--display); font-variation-settings: 'opsz' 18, 'wght' 500;
+    font-size: 16px; color: var(--paper);
+    display: block; margin-bottom: 2px;
+  }
+  .arch-side .layer-list .desc { font-size: 13px; color: var(--paper-dim); line-height: 1.5; }
+  .arch-side .layer-list code {
+    font-family: var(--mono); font-size: 11px; color: var(--green);
+    background: rgba(95,237,131,0.08); padding: 1px 5px; border-radius: 2px;
+  }
+
+  /* ============ CONTEXT 4 OPS ============ */
+  .ops-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .ops-grid { grid-template-columns: repeat(2, 1fr); } }
+  .op { background: var(--bg-2); padding: 24px 22px; position: relative; min-height: 220px; }
+  .op .verb {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'wght' 350, 'WONK' 1;
+    font-size: 56px; line-height: 1; letter-spacing: -0.04em;
+    color: var(--signal); margin-bottom: 8px; font-style: italic;
+  }
+  .op h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--paper); margin-bottom: 10px;
+  }
+  .op p { font-size: 14px; line-height: 1.5; color: var(--paper-dim); }
+  .op .ex {
+    font-family: var(--mono); font-size: 11px; color: var(--green);
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* ============ TWO COLUMN ============ */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ============ MEMORY CHART ============ */
+  .memchart-wrap {
+    background: var(--bg-2); border: 1px solid var(--rule);
+    padding: 32px 28px 24px;
+  }
+  .memchart-wrap .chart-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--paper-dim);
+    margin-bottom: 4px;
+  }
+  .memchart-wrap .chart-sub {
+    font-family: var(--body); font-style: italic;
+    font-size: 13px; color: var(--paper-faint); margin-bottom: 26px;
+  }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 64px;
+    gap: 14px; align-items: center;
+    padding: 9px 0;
+    font-family: var(--mono); font-size: 12px;
+  }
+  .bar-row .lbl-name {
+    color: var(--paper); font-weight: 500;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .bar-row .lbl-name .sub {
+    display: block; color: var(--paper-faint); font-size: 10px;
+    margin-top: 2px; font-weight: 400;
+  }
+  .bar-track {
+    height: 22px; background: var(--bg-3); position: relative;
+    border: 1px solid var(--rule);
+  }
+  .bar-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: linear-gradient(90deg, var(--signal-dim), var(--signal));
+  }
+  .bar-fill.gold { background: linear-gradient(90deg, var(--amber), #fde68a); }
+  .bar-fill.green { background: linear-gradient(90deg, var(--green-dim), var(--green)); }
+  .bar-fill.dim { background: linear-gradient(90deg, #555048, var(--paper-faint)); }
+  .bar-row .score {
+    font-variant-numeric: tabular-nums; color: var(--paper);
+    font-size: 13px; text-align: right;
+  }
+  .bar-row .score.lead { color: var(--green); font-weight: 600; }
+  .bar-leg {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--paper-faint);
+  }
+  .bar-leg .swatch {
+    display: inline-block; width: 10px; height: 10px;
+    margin-right: 6px; vertical-align: middle;
+  }
+
+  /* ============ TRIFECTA ============ */
+  .trifecta-wrap {
+    background: var(--bg-2); border: 1px solid var(--red);
+    padding: 28px;
+    position: relative;
+  }
+  .trifecta-wrap::before {
+    content: 'CRITICAL'; position: absolute; top: -10px; left: 24px;
+    background: var(--red); color: #000;
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; padding: 3px 8px;
+  }
+  .trifecta-wrap h4 {
+    font-family: var(--display); font-style: italic;
+    font-variation-settings: 'opsz' 60, 'SOFT' 80, 'wght' 400;
+    font-size: 26px; color: var(--paper); margin-bottom: 6px;
+  }
+  .trifecta-wrap .att {
+    font-family: var(--mono); font-size: 11px; color: var(--paper-faint);
+    margin-bottom: 18px; letter-spacing: 0.06em;
+  }
+  .trifecta-wrap p { font-size: 14px; color: var(--paper-dim); margin-bottom: 14px; line-height: 1.55; }
+  .trifecta-wrap p strong { color: var(--paper); }
+  .trifecta-wrap .quote {
+    border-left: 2px solid var(--red); padding-left: 14px;
+    font-family: var(--display); font-style: italic;
+    font-variation-settings: 'opsz' 18, 'SOFT' 60, 'wght' 400;
+    font-size: 17px; color: var(--paper); margin: 16px 0;
+  }
+  .mitigations { margin-top: 18px; }
+  .mitigations h5 {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 10px;
+  }
+  .mitigations ul { list-style: none; }
+  .mitigations li {
+    padding: 8px 0 8px 22px; font-size: 13px; color: var(--paper-dim);
+    border-bottom: 1px dashed var(--rule); position: relative;
+  }
+  .mitigations li::before {
+    content: '✓'; color: var(--green); position: absolute; left: 0; top: 8px;
+    font-family: var(--mono); font-weight: 600;
+  }
+
+  /* ============ DECISION TREE ============ */
+  .decision-wrap {
+    background: var(--bg-2); border: 1px solid var(--rule); padding: 28px;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-wrap {
+    background: var(--bg-2); border: 1px solid var(--rule);
+    padding: 32px 24px;
+    overflow-x: auto;
+  }
+
+  /* ============ FRAMEWORK MATRIX ============ */
+  .matrix {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--mono); font-size: 12px;
+    background: var(--bg-2); border: 1px solid var(--rule);
+  }
+  .matrix th, .matrix td {
+    padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .matrix th {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper-faint); font-weight: 500;
+    background: var(--bg-3);
+    border-bottom: 2px solid var(--rule);
+  }
+  .matrix td.fw-name {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 18, 'wght' 500;
+    font-size: 16px; color: var(--paper);
+  }
+  .matrix td.fw-name .sub { font-family: var(--mono); font-size: 10px; color: var(--paper-faint); display: block; margin-top: 2px; font-weight: 400; }
+  .matrix td.win { color: var(--green); }
+  .matrix td.warn { color: var(--amber); }
+  .matrix td.bad { color: var(--paper-faint); }
+  .matrix .pill {
+    display: inline-block; padding: 2px 7px; border-radius: 2px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+  }
+  .matrix .pill.high { background: rgba(95,237,131,0.15); color: var(--green); border: 1px solid var(--green-dim); }
+  .matrix .pill.mid { background: rgba(251,191,36,0.12); color: var(--amber); border: 1px solid #92500a; }
+  .matrix .pill.low { background: rgba(255,87,34,0.1); color: var(--signal); border: 1px solid var(--signal-dim); }
+
+  /* ============ KEY INSIGHTS ============ */
+  .insights-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule); border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr; } }
+  .insight {
+    background: var(--bg-2); padding: 28px 24px;
+  }
+  .insight .pull {
+    font-family: var(--display);
+    font-variation-settings: 'opsz' 60, 'SOFT' 80, 'wght' 350;
+    font-size: 26px; line-height: 1.18;
+    letter-spacing: -0.015em;
+    color: var(--paper); margin-bottom: 14px;
+  }
+  .insight .pull em { font-style: italic; color: var(--signal); }
+  .insight p { font-size: 14px; color: var(--paper-dim); line-height: 1.55; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule); padding-top: 28px; margin-top: 60px;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 32px;
+  }
+  @media (max-width: 700px) { footer { grid-template-columns: 1fr; } }
+  footer h5 {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--signal); margin-bottom: 14px;
+  }
+  footer p, footer a {
+    font-family: var(--mono); font-size: 11px; line-height: 1.8;
+    color: var(--paper-dim); text-decoration: none;
+  }
+  footer a:hover { color: var(--signal); }
+  footer .src { display: block; }
+  footer .colophon { font-style: italic; font-family: var(--body); font-size: 12px; color: var(--paper-faint); }
+
+  /* ============ ASCII DIVIDERS ============ */
+  .divider {
+    font-family: var(--mono); font-size: 11px; color: var(--paper-faint);
+    letter-spacing: 0.4em; text-align: center;
+    margin: 60px 0; user-select: none;
+  }
+
+  /* small util */
+  .accent-orange { color: var(--signal); }
+  .accent-green { color: var(--green); }
+  .accent-amber { color: var(--amber); }
+  .accent-red { color: var(--red); }
+  .mono { font-family: var(--mono); }
+
+  /* SVG defs reusable */
+  svg text { font-family: var(--mono); }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="page">
+
+  <!-- ============ TOPBAR ============ -->
+  <div class="topbar">
+    <div class="left">
+      <span><span class="dot">●</span> Field Brief No. 04</span>
+      <span>Issued April 24, 2026</span>
+    </div>
+    <div class="right">
+      Internal // Research &amp; Planning
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="eyebrow">An actionable playbook on building good-citizen agents</div>
+    <h1 class="title">The 2026<br>AI Agent <em>Playbook.</em></h1>
+    <p class="dek">
+      Harnesses now matter more than models. The fastest-growing agent projects all ship
+      the same base capability — tool calling plus an LLM — and have moved entirely to
+      <strong>context engineering, persistent memory, skill systems, and the messaging surface.</strong>
+      Andrej Karpathy called it a magnitude-9 earthquake. This brief is the field guide.
+    </p>
+    <div class="meta-row">
+      <span><strong>Scope</strong> — OpenClaw · Hermes · elizaOS · Mastra</span>
+      <span><strong>Window</strong> — Jan 2025 → Apr 2026</span>
+      <span><strong>Reading time</strong> — 12 min</span>
+    </div>
+  </header>
+
+  <!-- ============ STAT STRIP ============ -->
+  <div class="stat-strip">
+    <div class="stat">
+      <span class="num">247<span class="unit">K★</span></span>
+      <div class="lbl">OpenClaw GitHub Stars</div>
+      <div class="sub">by Mar 2, 2026</div>
+    </div>
+    <div class="stat">
+      <span class="num">95.6<span class="unit">K★</span></span>
+      <div class="lbl">Hermes Agent · 7 weeks</div>
+      <div class="sub">Nous Research</div>
+    </div>
+    <div class="stat">
+      <span class="num">94.87<span class="unit">%</span></span>
+      <div class="lbl">Mastra Observational Memory</div>
+      <div class="sub">LongMemEval SOTA</div>
+    </div>
+    <div class="stat">
+      <span class="num">€15<span class="unit">M</span></span>
+      <div class="lbl">EU Article 50 max fine</div>
+      <div class="sub">live Aug 2, 2026</div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 01 — THREE PARADIGMS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 01 / Architecture</div>
+      <div>
+        <h2>The three paradigms have <em>bifurcated.</em></h2>
+        <p class="sec-lede">
+          The agent ecosystem split into three distinct deployment patterns, each with its own reference
+          implementation and audience. Mixing them produces the incoherent "ChatGPT wrapper with Redis"
+          products that defined 2024. Pick a lane.
+        </p>
+      </div>
+    </div>
+
+    <div class="paradigms">
+      <article class="paradigm signal">
+        <div class="tag">Pattern A · Daemon</div>
+        <h3>The <em>Personal-Agent</em></h3>
+        <p class="who">Your assistant lives in WhatsApp / Telegram and runs your digital life.</p>
+        <p>Locally-installed Node.js or Python daemon running 24/7 on a user's machine or $5 VPS.
+        Workspace directory holds the agent's identity as plain Markdown — <span class="mono accent-orange">SOUL.md</span>,
+        <span class="mono accent-orange">AGENTS.md</span>, <span class="mono accent-orange">MEMORY.md</span>,
+        <span class="mono accent-orange">HEARTBEAT.md</span> + a skills folder.</p>
+        <p>Multi-channel by default: WhatsApp, Telegram, Discord, Signal, iMessage. Heartbeat loops handle
+        proactive behavior. Files committed to git.</p>
+        <div class="examples">
+          <span class="label">Reference implementations</span>
+          <span class="ex-pill lead">OpenClaw</span>
+          <span class="ex-pill lead">Hermes Agent</span>
+          <span class="ex-pill">Clawd→Moltbot lineage</span>
+        </div>
+      </article>
+
+      <article class="paradigm green">
+        <div class="tag">Pattern B · Persona</div>
+        <h3>The <em>Social/Crypto</em></h3>
+        <p class="who">An autonomous bot with a character — risky, but ships in a weekend.</p>
+        <p>JSON character files with <span class="mono accent-green">bio · lore · style · adjectives ·
+        topics · messageExamples · postExamples</span>. Plugin registry connects to X, Discord, Telegram.
+        The Truth Terminal lineage.</p>
+        <p>Plugin's own README warns: scraper mode "violates consent of random users, burns rate limit, can get
+        your account banned." On a collision course with EU Article 50.</p>
+        <div class="examples">
+          <span class="label">Reference implementations</span>
+          <span class="ex-pill lead">elizaOS</span>
+          <span class="ex-pill">Truth Terminal</span>
+          <span class="ex-pill">aixbt</span>
+        </div>
+      </article>
+
+      <article class="paradigm amber">
+        <div class="tag">Pattern C · Embedded</div>
+        <h3>The <em>Developer/Enterprise</em></h3>
+        <p class="who">An agent inside your SaaS product — typed primitives, observability.</p>
+        <p>TypeScript-first frameworks providing <span class="mono accent-amber">Agent · Tool · Workflow ·
+        Memory</span> primitives, supervisor/sub-agent hierarchies, and unified routers across ~3,300
+        models / 94 providers.</p>
+        <p>Visual debug consoles (VoltOps), n8n-style workflow editors. Mastra hit 1.0 in Jan 2026 with
+        300K+ weekly npm downloads.</p>
+        <div class="examples">
+          <span class="label">Reference implementations</span>
+          <span class="ex-pill lead">Mastra</span>
+          <span class="ex-pill lead">VoltAgent</span>
+          <span class="ex-pill">LangGraph</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 02 — ARCHITECTURE ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 02 / Stack</div>
+      <div>
+        <h2>How a personal agent <em>actually</em> works.</h2>
+        <p class="sec-lede">
+          The "agent as process" model. A workspace of Markdown files becomes the agent's persona;
+          a heartbeat loop gives it temporal autonomy; skills are loaded by name and read on-demand.
+        </p>
+      </div>
+    </div>
+
+    <div class="arch-grid">
+
+      <div class="arch-svg-wrap">
+        <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+          <defs>
+            <linearGradient id="layerGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#1c1a14"/>
+              <stop offset="1" stop-color="#2a261d"/>
+            </linearGradient>
+            <linearGradient id="signalGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#ff5722"/>
+              <stop offset="1" stop-color="#c54317"/>
+            </linearGradient>
+          </defs>
+
+          <!-- title -->
+          <text x="20" y="22" fill="#6b6660" font-size="9" letter-spacing="2">PERSONAL-AGENT STACK</text>
+
+          <!-- workspace files (top) -->
+          <rect x="20" y="36" width="440" height="92" fill="url(#layerGrad)" stroke="#2a261d"/>
+          <text x="32" y="56" fill="#ff5722" font-size="9" letter-spacing="1.5">L4 · WORKSPACE / IDENTITY</text>
+
+          <g font-size="10" fill="#f2ead3">
+            <rect x="32" y="66" width="84" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="74" y="80" text-anchor="middle">SOUL.md</text>
+            <rect x="124" y="66" width="84" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="166" y="80" text-anchor="middle">AGENTS.md</text>
+            <rect x="216" y="66" width="84" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="258" y="80" text-anchor="middle">MEMORY.md</text>
+            <rect x="308" y="66" width="84" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="350" y="80" text-anchor="middle">USER.md</text>
+
+            <rect x="32" y="94" width="125" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="94" y="108" text-anchor="middle">HEARTBEAT.md</text>
+            <rect x="165" y="94" width="125" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="227" y="108" text-anchor="middle">skills/*.md  (13.7K)</text>
+            <rect x="298" y="94" width="94" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="345" y="108" text-anchor="middle">memory/YYYY-MM-DD</text>
+          </g>
+
+          <!-- arrow -->
+          <path d="M 240 132 L 240 148 M 234 142 L 240 152 L 246 142" stroke="#ff5722" stroke-width="1.5" fill="none"/>
+
+          <!-- context engineer -->
+          <rect x="20" y="158" width="440" height="60" fill="#15140f" stroke="#2a261d"/>
+          <text x="32" y="178" fill="#ff5722" font-size="9" letter-spacing="1.5">L3 · CONTEXT ENGINEERING</text>
+          <text x="32" y="196" fill="#f2ead3" font-size="11">System prompt + project files + recent messages + skill metadata</text>
+          <text x="32" y="210" fill="#6b6660" font-size="9" font-style="italic">Skills loaded by name only — full SKILL.md read on demand</text>
+
+          <!-- arrow -->
+          <path d="M 240 222 L 240 238 M 234 232 L 240 242 L 246 232" stroke="#ff5722" stroke-width="1.5" fill="none"/>
+
+          <!-- LLM -->
+          <rect x="20" y="248" width="440" height="58" fill="url(#signalGrad)" stroke="#ff5722"/>
+          <text x="32" y="268" fill="#0e0e0c" font-size="9" letter-spacing="1.5" font-weight="600">L2 · LLM CORE</text>
+          <text x="32" y="286" fill="#0e0e0c" font-size="13" font-weight="500">Claude Sonnet 4.7 · GPT-5-mini · Hermes-3</text>
+          <text x="32" y="300" fill="#15140f" font-size="9" font-style="italic">~70% of cost; the harness is what differentiates</text>
+
+          <!-- arrow -->
+          <path d="M 240 310 L 240 326 M 234 320 L 240 330 L 246 320" stroke="#ff5722" stroke-width="1.5" fill="none"/>
+
+          <!-- runtime -->
+          <rect x="20" y="336" width="440" height="64" fill="#15140f" stroke="#2a261d"/>
+          <text x="32" y="356" fill="#ff5722" font-size="9" letter-spacing="1.5">L1 · RUNTIME</text>
+          <g font-size="10" fill="#f2ead3">
+            <rect x="32" y="366" width="100" height="24" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="82" y="382" text-anchor="middle">Heartbeat loop</text>
+            <rect x="140" y="366" width="92" height="24" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="186" y="382" text-anchor="middle">Sub-agents</text>
+            <rect x="240" y="366" width="92" height="24" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="286" y="382" text-anchor="middle">Tool sandbox</text>
+            <rect x="340" y="366" width="108" height="24" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="394" y="382" text-anchor="middle">Memory FTS5/git</text>
+          </g>
+
+          <!-- arrow -->
+          <path d="M 240 404 L 240 420 M 234 414 L 240 424 L 246 414" stroke="#ff5722" stroke-width="1.5" fill="none"/>
+
+          <!-- gateways -->
+          <rect x="20" y="430" width="440" height="78" fill="url(#layerGrad)" stroke="#2a261d"/>
+          <text x="32" y="450" fill="#ff5722" font-size="9" letter-spacing="1.5">L0 · MESSAGING SURFACE</text>
+          <g font-size="10" fill="#f2ead3">
+            <rect x="32" y="460" width="68" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="66" y="474" text-anchor="middle" fill="#5fed83">WhatsApp</text>
+            <rect x="108" y="460" width="68" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="142" y="474" text-anchor="middle" fill="#5fed83">Telegram</text>
+            <rect x="184" y="460" width="68" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="218" y="474" text-anchor="middle" fill="#5fed83">Discord</text>
+            <rect x="260" y="460" width="68" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="294" y="474" text-anchor="middle" fill="#5fed83">Signal</text>
+            <rect x="336" y="460" width="68" height="22" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="370" y="474" text-anchor="middle" fill="#5fed83">iMessage</text>
+
+            <rect x="32" y="486" width="144" height="18" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="104" y="498" text-anchor="middle" fill="#fbbf24" font-size="9">Tier 1 — instant alerts</text>
+            <rect x="184" y="486" width="144" height="18" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="256" y="498" text-anchor="middle" fill="#fbbf24" font-size="9">Tier 2 — daily digest</text>
+            <rect x="336" y="486" width="120" height="18" fill="#0e0e0c" stroke="#3a352a"/>
+            <text x="396" y="498" text-anchor="middle" fill="#fbbf24" font-size="9">Tier 3 — weekly</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="arch-side">
+        <h4>Heartbeat — temporal autonomy</h4>
+        <p>A configurable cron-like loop (default 30 min) runs a full agent turn against
+        <code>HEARTBEAT.md</code>. Empty file → skip. Main queue busy → defer. Only
+        <code>HEARTBEAT_OK</code> → no ping.</p>
+
+        <ul class="layer-list">
+          <li>
+            <span class="n">01</span>
+            <div>
+              <span class="name">Rotating heartbeats</span>
+              <span class="desc">A state file tracks last-run timestamps per check. Each beat runs only the most overdue.</span>
+            </div>
+          </li>
+          <li>
+            <span class="n">02</span>
+            <div>
+              <span class="name">Isolated sessions</span>
+              <span class="desc"><code>isolatedSession: true</code> + <code>lightContext: true</code> drops cost from ~100K to <strong>2–5K tokens</strong> per beat.</span>
+            </div>
+          </li>
+          <li>
+            <span class="n">03</span>
+            <div>
+              <span class="name">Three-tier notification queue</span>
+              <span class="desc">Default to Tier 3 and promote with justification. Otherwise the agent becomes spam.</span>
+            </div>
+          </li>
+          <li>
+            <span class="n">04</span>
+            <div>
+              <span class="name">Production cost envelope</span>
+              <span class="desc">9+ concurrent tasks · 24/7 · ~<strong>$0.60/day</strong> in API spend.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 03 — CONTEXT ENGINEERING 4 OPS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 03 / Discipline</div>
+      <div>
+        <h2>The four verbs of <em>context engineering.</em></h2>
+        <p class="sec-lede">
+          Karpathy's June 2025 reframing — "the delicate art and science of filling the context window with
+          just the right information for the next step" — produced four operations now standard across
+          every serious framework.
+        </p>
+      </div>
+    </div>
+
+    <div class="ops-grid">
+      <div class="op">
+        <div class="verb">Write</div>
+        <h4>01 / Write</h4>
+        <p>Persist information outside the context window so it survives across turns.</p>
+        <div class="ex">→ Markdown files, scratchpads, logs</div>
+      </div>
+      <div class="op">
+        <div class="verb">Select</div>
+        <h4>02 / Select</h4>
+        <p>Pull only the right slice of memory into the next turn — skill metadata, then full file on demand.</p>
+        <div class="ex">→ FTS5 search, RAG, file lookup</div>
+      </div>
+      <div class="op">
+        <div class="verb">Compress</div>
+        <h4>03 / Compress</h4>
+        <p>Shrink long histories into dense observations before context-rot kicks in.</p>
+        <div class="ex">→ Observer/Reflector · 5–40× ratio</div>
+      </div>
+      <div class="op">
+        <div class="verb">Isolate</div>
+        <h4>04 / Isolate</h4>
+        <p>Sub-agents work in their own context window and return only structured summaries upward.</p>
+        <div class="ex">→ Search/debug stays sandboxed</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule);">
+      <div style="background: var(--bg-2); padding: 20px;">
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--red); margin-bottom: 8px;">FAILURE MODE 01</div>
+        <div style="font-family: var(--display); font-style: italic; font-size: 18px; color: var(--paper); margin-bottom: 6px;">Context Poisoning</div>
+        <p style="font-size: 13px; color: var(--paper-dim); line-height: 1.5;">A hallucination enters context and recurs. Once it's there, every downstream call inherits the lie.</p>
+      </div>
+      <div style="background: var(--bg-2); padding: 20px;">
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--red); margin-bottom: 8px;">FAILURE MODE 02</div>
+        <div style="font-family: var(--display); font-style: italic; font-size: 18px; color: var(--paper); margin-bottom: 6px;">Context Distraction</div>
+        <p style="font-size: 13px; color: var(--paper-dim); line-height: 1.5;">The context overwhelms the training. Long sessions degrade reasoning at O(n²) attention cost.</p>
+      </div>
+      <div style="background: var(--bg-2); padding: 20px;">
+        <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--red); margin-bottom: 8px;">FAILURE MODE 03</div>
+        <div style="font-family: var(--display); font-style: italic; font-size: 18px; color: var(--paper); margin-bottom: 6px;">Context Confusion</div>
+        <p style="font-size: 13px; color: var(--paper-dim); line-height: 1.5;">Superfluous context steers the model. Irrelevant tokens dilute signal — Drew Breunig, 2025.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 04 — MEMORY BENCHMARK ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 04 / Memory</div>
+      <div>
+        <h2>The memory layer is where they <em>actually differ.</em></h2>
+        <p class="sec-lede">
+          Every framework claims memory; what they ship varies by two orders of magnitude in quality.
+          LongMemEval (ICLR 2025) is the standard benchmark — 500 questions, ~57M tokens, ~50 sessions per question.
+        </p>
+      </div>
+    </div>
+
+    <div class="memchart-wrap">
+      <div class="chart-title">LongMemEval Leaderboard — April 2026</div>
+      <div class="chart-sub">Higher is better. Mastra Observational Memory (Feb 9, 2026 release) leads by 6+ points.</div>
+
+      <div class="bar-row">
+        <div class="lbl-name">Mastra Observational<span class="sub">GPT-5-mini · Observer+Reflector</span></div>
+        <div class="bar-track"><div class="bar-fill green" style="width: 94.87%;"></div></div>
+        <div class="score lead">94.87</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl-name">Ensue<span class="sub">Open-source · multi-stage retrieval</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 88.2%;"></div></div>
+        <div class="score">88.20</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl-name">Mastra Observational<span class="sub">GPT-4o · beats oracle baseline</span></div>
+        <div class="bar-track"><div class="bar-fill green" style="width: 84.23%;"></div></div>
+        <div class="score">84.23</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl-name">Letta / MemGPT<span class="sub">3-tier OS-inspired (core/recall/archival)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 83.2%;"></div></div>
+        <div class="score">83.20</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl-name">Zep / Graphiti<span class="sub">GPT-4o · temporal knowledge graph</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 71.2%;"></div></div>
+        <div class="score">71.20</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl-name">Mem0<span class="sub">GPT-4o · vector + hybrid store</span></div>
+        <div class="bar-track"><div class="bar-fill dim" style="width: 49.0%;"></div></div>
+        <div class="score">49.00</div>
+      </div>
+
+      <div class="bar-leg">
+        <span><span class="swatch" style="background:#5fed83;"></span>Observational compression</span>
+        <span><span class="swatch" style="background:#ff5722;"></span>Vector / graph / tiered</span>
+        <span><span class="swatch" style="background:#6b6660;"></span>Vanilla vector RAG</span>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top: 36px;">
+      <div>
+        <h4 style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--signal); margin-bottom: 14px;">The architectural insight</h4>
+        <p style="font-size: 16px; line-height: 1.6; color: var(--paper-dim);">
+          Mastra's <strong style="color: var(--paper);">Observational Memory</strong> is the most important
+          architectural development of the year. Two background agents — an <em style="color: var(--green);">Observer</em>
+          and a <em style="color: var(--green);">Reflector</em> — watch the main agent and maintain a dense,
+          emoji-prioritized, timestamped log that <strong style="color: var(--paper);">replaces</strong>
+          raw history once a 30K-token threshold hits.
+        </p>
+        <p style="font-size: 16px; line-height: 1.6; color: var(--paper-dim); margin-top: 14px;">
+          Compression: <strong style="color: var(--green);">3–6× on text</strong> · <strong style="color: var(--green);">5–40× on tool-heavy workloads</strong>
+          (Playwright snapshots, code-search). Append-only prefix stays prompt-cache compatible — yielding
+          <strong style="color: var(--green);">4–10× cost reductions</strong> vector RAG can't match.
+        </p>
+      </div>
+      <div style="background: var(--bg-3); border: 1px solid var(--rule); padding: 22px 20px; font-family: var(--mono); font-size: 12px; line-height: 1.7;">
+        <div style="color: var(--paper-faint); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;">// observation log — actual format</div>
+        <div style="color: var(--paper);">Date: <span style="color: var(--amber);">2026-01-15</span></div>
+        <div style="color: var(--paper-dim); margin-top: 6px;"><span class="accent-red">🔴</span> 12:10 User is building a Next.js app with Supabase auth, due Jan 22</div>
+        <div style="color: var(--paper-dim);"><span class="accent-red">🔴</span> 12:10 App uses server components with client-side hydration</div>
+        <div style="color: var(--paper-dim);"><span class="accent-amber">🟡</span> 12:12 User asked about middleware for protected routes</div>
+        <div style="color: var(--paper-dim);"><span class="accent-green">🟢</span> 12:18 Resolved auth callback bug (cookies needed sameSite=lax)</div>
+        <div style="color: var(--paper-faint); margin-top: 14px; font-style: italic; font-family: var(--body); font-size: 12px;">Red/yellow/green prioritization drives Reflector GC at 40K tokens.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 05 — LETHAL TRIFECTA ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 05 / Threat model</div>
+      <div>
+        <h2>The lethal trifecta is the <em>binding</em> constraint.</h2>
+        <p class="sec-lede">
+          Simon Willison's framework — coined June 16, 2025 — is now the standard threat model.
+          No guardrail product can close the gap; only structural mitigations work.
+        </p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <!-- Venn SVG -->
+      <div style="background: var(--bg-2); border: 1px solid var(--rule); padding: 24px;">
+        <svg viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+          <!-- title -->
+          <text x="240" y="22" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="2">DANGER ZONE = ALL THREE</text>
+
+          <!-- circles -->
+          <g opacity="0.85">
+            <circle cx="170" cy="200" r="120" fill="#ff5722" fill-opacity="0.18" stroke="#ff5722" stroke-width="1.5"/>
+            <circle cx="310" cy="200" r="120" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="1.5"/>
+            <circle cx="240" cy="320" r="120" fill="#6ea5ff" fill-opacity="0.18" stroke="#6ea5ff" stroke-width="1.5"/>
+          </g>
+
+          <!-- center skull/danger -->
+          <circle cx="240" cy="245" r="32" fill="#e63946" stroke="#e63946" stroke-width="2"/>
+          <text x="240" y="240" text-anchor="middle" fill="#0e0e0c" font-size="9" font-weight="700" letter-spacing="1">LETHAL</text>
+          <text x="240" y="255" text-anchor="middle" fill="#0e0e0c" font-size="9" font-weight="700" letter-spacing="1">TRIFECTA</text>
+
+          <!-- labels -->
+          <text x="100" y="160" fill="#ff5722" font-size="11" font-weight="500" letter-spacing="1">PRIVATE</text>
+          <text x="100" y="174" fill="#ff5722" font-size="11" font-weight="500" letter-spacing="1">DATA</text>
+          <text x="100" y="190" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">credentials,</text>
+          <text x="100" y="202" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">files, mailbox</text>
+
+          <text x="350" y="160" fill="#fbbf24" font-size="11" font-weight="500" letter-spacing="1">UNTRUSTED</text>
+          <text x="350" y="174" fill="#fbbf24" font-size="11" font-weight="500" letter-spacing="1">CONTENT</text>
+          <text x="350" y="190" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">web pages,</text>
+          <text x="350" y="202" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">DMs, issues</text>
+
+          <text x="240" y="400" text-anchor="middle" fill="#6ea5ff" font-size="11" font-weight="500" letter-spacing="1">EXFILTRATION</text>
+          <text x="240" y="414" text-anchor="middle" fill="#6ea5ff" font-size="11" font-weight="500" letter-spacing="1">VECTOR</text>
+          <text x="240" y="428" text-anchor="middle" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">HTTP, email, links</text>
+        </svg>
+
+        <div style="margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--rule); font-family: var(--mono); font-size: 10px; color: var(--paper-faint); line-height: 1.7;">
+          2025 PROOF: EchoLeak (CVE-2025-32711) · GitHub MCP exploit · GitLab Duo cross-project leak · ChatGPT Operator string-combination
+        </div>
+      </div>
+
+      <!-- mitigations -->
+      <div class="trifecta-wrap">
+        <h4>Three legs. Remove one.</h4>
+        <div class="att">— Simon Willison, June 2025</div>
+        <p>Any agent combining all three is <strong>structurally insecure</strong>. Classifier-based
+        defenses that catch "95% of attacks" are the security equivalent of a door lock that fails one
+        burglar in twenty.</p>
+
+        <div class="quote">"In application security, 99% is a failing grade."</div>
+
+        <div class="mitigations">
+          <h5>The only structural mitigations</h5>
+          <ul>
+            <li><strong style="color: var(--paper);">Remove one leg</strong> — throwaway VM, no creds, or block outbound network at the firewall</li>
+            <li><strong style="color: var(--paper);">Taint tracking</strong> — once attacker tokens enter context, gate exfil-capable actions behind human approval</li>
+            <li><strong style="color: var(--paper);">Sub-agent isolation</strong> — untrusted reads return only structured summaries to the trusted orchestrator</li>
+            <li><strong style="color: var(--paper);">CaMeL-style policy gates</strong> — dual-LLM with privileged planner + quarantined executor (Beurer-Kellner et al., 2025)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 06 — DECISION TREE ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 06 / Picking</div>
+      <div>
+        <h2>Which stack? <em>Who is it for.</em></h2>
+        <p class="sec-lede">
+          The decision should be driven by audience, not by which framework has the most stars this week.
+          Below: a flowchart that resolves in three questions.
+        </p>
+      </div>
+    </div>
+
+    <div class="decision-wrap">
+      <svg viewBox="0 0 1100 540" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <!-- ROOT -->
+        <rect x="430" y="20" width="240" height="60" fill="#0e0e0c" stroke="#ff5722" stroke-width="1.5"/>
+        <text x="550" y="48" text-anchor="middle" fill="#ff5722" font-size="10" letter-spacing="2">START</text>
+        <text x="550" y="66" text-anchor="middle" fill="#f2ead3" font-size="12" font-weight="500">Who is the agent for?</text>
+
+        <!-- branches from root -->
+        <path d="M 470 80 L 200 130" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <path d="M 550 80 L 550 130" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <path d="M 630 80 L 900 130" stroke="#2a261d" stroke-width="1" fill="none"/>
+
+        <!-- Q1 left: personal -->
+        <rect x="80" y="130" width="240" height="56" fill="#15140f" stroke="#ff5722"/>
+        <text x="200" y="152" text-anchor="middle" fill="#ff5722" font-size="9" letter-spacing="1.5">BRANCH A · PERSONAL</text>
+        <text x="200" y="170" text-anchor="middle" fill="#f2ead3" font-size="11">Lives in WhatsApp, runs my life</text>
+
+        <!-- Q1 mid: social -->
+        <rect x="430" y="130" width="240" height="56" fill="#15140f" stroke="#5fed83"/>
+        <text x="550" y="152" text-anchor="middle" fill="#5fed83" font-size="9" letter-spacing="1.5">BRANCH B · SOCIAL</text>
+        <text x="550" y="170" text-anchor="middle" fill="#f2ead3" font-size="11">Public bot with personality</text>
+
+        <!-- Q1 right: enterprise -->
+        <rect x="780" y="130" width="240" height="56" fill="#15140f" stroke="#fbbf24"/>
+        <text x="900" y="152" text-anchor="middle" fill="#fbbf24" font-size="9" letter-spacing="1.5">BRANCH C · EMBEDDED</text>
+        <text x="900" y="170" text-anchor="middle" fill="#f2ead3" font-size="11">Feature inside SaaS product</text>
+
+        <!-- Q2 left -->
+        <path d="M 200 186 L 200 220" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <text x="208" y="208" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">Self-improving + benchmarks?</text>
+        <path d="M 200 220 L 80 260" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <path d="M 200 220 L 320 260" stroke="#2a261d" stroke-width="1" fill="none"/>
+
+        <rect x="20" y="260" width="160" height="60" fill="#1c1a14" stroke="#ff5722" stroke-width="2"/>
+        <text x="100" y="286" text-anchor="middle" fill="#ff5722" font-size="14" font-weight="600">OPENCLAW</text>
+        <text x="100" y="304" text-anchor="middle" fill="#c9c0a6" font-size="10">13.7K skills · WhatsApp</text>
+
+        <rect x="240" y="260" width="160" height="60" fill="#1c1a14" stroke="#ff5722" stroke-width="2"/>
+        <text x="320" y="286" text-anchor="middle" fill="#ff5722" font-size="14" font-weight="600">HERMES</text>
+        <text x="320" y="304" text-anchor="middle" fill="#c9c0a6" font-size="10">FTS5 · self-improving</text>
+
+        <text x="100" y="338" text-anchor="middle" fill="#5fed83" font-size="9" font-family="Newsreader, serif" font-style="italic">→ no, daily driver</text>
+        <text x="320" y="338" text-anchor="middle" fill="#5fed83" font-size="9" font-family="Newsreader, serif" font-style="italic">→ yes, sharper tool</text>
+
+        <!-- Q2 mid -->
+        <path d="M 550 186 L 550 220" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <path d="M 550 220 L 550 260" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <text x="558" y="208" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">Crypto / X / Discord persona?</text>
+        <rect x="450" y="260" width="200" height="60" fill="#1c1a14" stroke="#5fed83" stroke-width="2"/>
+        <text x="550" y="286" text-anchor="middle" fill="#5fed83" font-size="14" font-weight="600">elizaOS</text>
+        <text x="550" y="304" text-anchor="middle" fill="#c9c0a6" font-size="10">character.json · plugins</text>
+        <text x="550" y="338" text-anchor="middle" fill="#fbbf24" font-size="9" font-family="Newsreader, serif" font-style="italic">⚠ EU Article 50 collision</text>
+
+        <!-- Q2 right -->
+        <path d="M 900 186 L 900 220" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <text x="908" y="208" fill="#6b6660" font-size="9" font-style="italic" font-family="Newsreader, serif">Memory perf vs visual debug?</text>
+        <path d="M 900 220 L 780 260" stroke="#2a261d" stroke-width="1" fill="none"/>
+        <path d="M 900 220 L 1020 260" stroke="#2a261d" stroke-width="1" fill="none"/>
+
+        <rect x="720" y="260" width="160" height="60" fill="#1c1a14" stroke="#fbbf24" stroke-width="2"/>
+        <text x="800" y="286" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="600">MASTRA</text>
+        <text x="800" y="304" text-anchor="middle" fill="#c9c0a6" font-size="10">obs memory · 1.0 Jan'26</text>
+
+        <rect x="940" y="260" width="160" height="60" fill="#1c1a14" stroke="#fbbf24" stroke-width="2"/>
+        <text x="1020" y="286" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="600">VOLTAGENT</text>
+        <text x="1020" y="304" text-anchor="middle" fill="#c9c0a6" font-size="10">VoltOps debug console</text>
+
+        <text x="800" y="338" text-anchor="middle" fill="#5fed83" font-size="9" font-family="Newsreader, serif" font-style="italic">→ memory wins</text>
+        <text x="1020" y="338" text-anchor="middle" fill="#5fed83" font-size="9" font-family="Newsreader, serif" font-style="italic">→ debug wins</text>
+
+        <!-- Memory advisory at bottom -->
+        <rect x="40" y="400" width="1020" height="120" fill="#0e0e0c" stroke="#2a261d"/>
+        <text x="60" y="426" fill="#ff5722" font-size="10" letter-spacing="2">MEMORY LAYER ADVISORY</text>
+
+        <text x="60" y="452" fill="#5fed83" font-size="11" font-weight="600">Mastra Obs.</text>
+        <text x="160" y="452" fill="#c9c0a6" font-size="10">— if on @mastra/pg, libsql, mongodb</text>
+
+        <text x="60" y="472" fill="#5fed83" font-size="11" font-weight="600">Zep / Graphiti</text>
+        <text x="160" y="472" fill="#c9c0a6" font-size="10">— if temporal reasoning over changing facts is critical</text>
+
+        <text x="60" y="492" fill="#5fed83" font-size="11" font-weight="600">Mem0</text>
+        <text x="160" y="492" fill="#c9c0a6" font-size="10">— fastest-to-prod managed service, 48K stars, $24M Series A</text>
+
+        <text x="560" y="452" fill="#5fed83" font-size="11" font-weight="600">Letta</text>
+        <text x="660" y="452" fill="#c9c0a6" font-size="10">— if the LLM should manage memory blocks itself</text>
+
+        <text x="560" y="472" fill="#5fed83" font-size="11" font-weight="600">Plain Markdown</text>
+        <text x="660" y="472" fill="#c9c0a6" font-size="10">— if transparency &amp; git backup beat benchmark scores</text>
+
+        <text x="560" y="492" fill="#fbbf24" font-size="11" font-weight="600">FTS5 (SQLite)</text>
+        <text x="660" y="492" fill="#c9c0a6" font-size="10">— if embedded, 10K+ skill docs, ~10ms latency</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 07 — REGULATORY TIMELINE ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 07 / Compliance</div>
+      <div>
+        <h2>August 2026 is the deadline that <em>matters.</em></h2>
+        <p class="sec-lede">
+          EU AI Act Article 50 enters application Aug 2, 2026. Bots posting to X, Reddit, LinkedIn, or
+          news channels in the EU need machine-readable provenance, visible labels, and an editorial-review
+          trail for public-interest topics.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-wrap">
+      <svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:900px; height:auto; display:block;">
+        <!-- timeline axis -->
+        <line x1="40" y1="160" x2="1160" y2="160" stroke="#2a261d" stroke-width="2"/>
+
+        <!-- ticks -->
+        <line x1="120" y1="155" x2="120" y2="165" stroke="#6b6660"/>
+        <line x1="320" y1="155" x2="320" y2="165" stroke="#6b6660"/>
+        <line x1="520" y1="155" x2="520" y2="165" stroke="#6b6660"/>
+        <line x1="720" y1="155" x2="720" y2="165" stroke="#ff5722" stroke-width="2"/>
+        <line x1="920" y1="155" x2="920" y2="165" stroke="#6b6660"/>
+        <line x1="1120" y1="155" x2="1120" y2="165" stroke="#6b6660"/>
+
+        <!-- date labels -->
+        <text x="120" y="186" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="1.2">JUN 2025</text>
+        <text x="320" y="186" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="1.2">DEC 2025</text>
+        <text x="520" y="186" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="1.2">JAN 2026</text>
+        <text x="720" y="186" text-anchor="middle" fill="#ff5722" font-size="11" letter-spacing="1.2" font-weight="600">AUG 2, 2026</text>
+        <text x="920" y="186" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="1.2">JUN 2026</text>
+        <text x="1120" y="186" text-anchor="middle" fill="#6b6660" font-size="9" letter-spacing="1.2">2027 →</text>
+
+        <!-- events above -->
+        <circle cx="120" cy="160" r="5" fill="#fbbf24"/>
+        <line x1="120" y1="80" x2="120" y2="155" stroke="#2a261d"/>
+        <text x="120" y="64" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="500">Lethal trifecta coined</text>
+        <text x="120" y="78" text-anchor="middle" fill="#6b6660" font-size="9" font-family="Newsreader, serif" font-style="italic">Willison · Jun 16</text>
+
+        <circle cx="320" cy="160" r="5" fill="#fbbf24"/>
+        <line x1="320" y1="100" x2="320" y2="155" stroke="#2a261d"/>
+        <text x="320" y="84" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="500">EU draft Code of Practice</text>
+        <text x="320" y="98" text-anchor="middle" fill="#6b6660" font-size="9" font-family="Newsreader, serif" font-style="italic">Dec 17 · transparency rules</text>
+
+        <!-- events below -->
+        <circle cx="520" cy="160" r="5" fill="#5fed83"/>
+        <line x1="520" y1="165" x2="520" y2="220" stroke="#2a261d"/>
+        <text x="520" y="236" text-anchor="middle" fill="#5fed83" font-size="10" font-weight="500">CA SB 942 enters force</text>
+        <text x="520" y="250" text-anchor="middle" fill="#6b6660" font-size="9" font-family="Newsreader, serif" font-style="italic">Jan 1 · 1M MAU threshold</text>
+
+        <!-- THE BIG EVENT -->
+        <circle cx="720" cy="160" r="9" fill="#ff5722" stroke="#0e0e0c" stroke-width="2"/>
+        <line x1="720" y1="50" x2="720" y2="151" stroke="#ff5722" stroke-width="1.5"/>
+        <rect x="600" y="20" width="240" height="38" fill="#0e0e0c" stroke="#ff5722"/>
+        <text x="720" y="38" text-anchor="middle" fill="#ff5722" font-size="11" font-weight="700" letter-spacing="1.5">EU AI ACT · ARTICLE 50</text>
+        <text x="720" y="52" text-anchor="middle" fill="#f2ead3" font-size="9" font-family="Newsreader, serif" font-style="italic">labeling + watermarking + €15M fines</text>
+
+        <circle cx="920" cy="160" r="5" fill="#fbbf24"/>
+        <line x1="920" y1="165" x2="920" y2="220" stroke="#2a261d"/>
+        <text x="920" y="236" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="500">Final Code of Practice</text>
+        <text x="920" y="250" text-anchor="middle" fill="#6b6660" font-size="9" font-family="Newsreader, serif" font-style="italic">expected Jun · enforcement guide</text>
+
+        <circle cx="1120" cy="160" r="5" fill="#6ea5ff"/>
+        <line x1="1120" y1="100" x2="1120" y2="155" stroke="#2a261d"/>
+        <text x="1120" y="84" text-anchor="middle" fill="#6ea5ff" font-size="10" font-weight="500">Full enforcement</text>
+        <text x="1120" y="98" text-anchor="middle" fill="#6b6660" font-size="9" font-family="Newsreader, serif" font-style="italic">national authorities active</text>
+
+        <!-- legend -->
+        <text x="40" y="270" fill="#6b6660" font-size="9" letter-spacing="1">REQUIREMENTS:</text>
+        <rect x="160" y="262" width="10" height="10" fill="#5fed83"/>
+        <text x="178" y="271" fill="#c9c0a6" font-size="9">C2PA watermarks</text>
+        <rect x="290" y="262" width="10" height="10" fill="#fbbf24"/>
+        <text x="308" y="271" fill="#c9c0a6" font-size="9">visible AI label (corner / continuous)</text>
+        <rect x="540" y="262" width="10" height="10" fill="#ff5722"/>
+        <text x="558" y="271" fill="#c9c0a6" font-size="9">deepfake disclosure</text>
+        <rect x="700" y="262" width="10" height="10" fill="#6ea5ff"/>
+        <text x="718" y="271" fill="#c9c0a6" font-size="9">editorial-review trail for public-interest text</text>
+      </svg>
+    </div>
+
+    <div style="margin-top: 28px; padding: 22px 24px; border: 1px solid var(--amber); background: rgba(251,191,36,0.04);">
+      <div style="font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--amber); margin-bottom: 8px;">⚠ PRACTICAL CONSEQUENCE</div>
+      <p style="font-size: 15px; line-height: 1.55; color: var(--paper);">
+        The elizaOS crypto-agent pattern — autonomous posting, no human in the loop — is on a
+        <em style="color: var(--amber);">direct collision course</em> with these rules. The Commission already issued a
+        formal data-retention order against X's Grok on Jan 8, 2026. The enforcement wave is real.
+      </p>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ SECTION 08 — FRAMEWORK MATRIX ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 08 / Verdict</div>
+      <div>
+        <h2>The framework <em>matrix.</em></h2>
+        <p class="sec-lede">A side-by-side scoring of the five tools that matter, on the dimensions that determine project outcomes.</p>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto;">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th>Framework</th>
+            <th>Pattern</th>
+            <th>Memory</th>
+            <th>Skills</th>
+            <th>Multi-channel</th>
+            <th>Compliance</th>
+            <th>Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fw-name">OpenClaw<span class="sub">247K★ · MIT</span></td>
+            <td>Personal daemon</td>
+            <td><span class="pill mid">Markdown + git</span></td>
+            <td class="win"><span class="pill high">13.7K skills</span></td>
+            <td class="win">WA · TG · Discord · Signal · iMessage</td>
+            <td class="warn">Self-hosted only</td>
+            <td>WhatsApp-native daily driver</td>
+          </tr>
+          <tr>
+            <td class="fw-name">Hermes Agent<span class="sub">95.6K★ · Nous Research</span></td>
+            <td>Personal daemon</td>
+            <td class="win"><span class="pill high">FTS5 · 3-layer</span></td>
+            <td><span class="pill mid">118 bundled</span></td>
+            <td class="win">Multi-platform gateway</td>
+            <td class="warn">Self-hosted only</td>
+            <td>Self-improving + memory benchmarks</td>
+          </tr>
+          <tr>
+            <td class="fw-name">elizaOS<span class="sub">ai16z lineage</span></td>
+            <td>Persona / social</td>
+            <td><span class="pill low">Vector store</span></td>
+            <td><span class="pill mid">Plugin registry</span></td>
+            <td class="win">X · Discord · TG · Farcaster</td>
+            <td class="bad"><span class="pill low">⚠ Article 50 risk</span></td>
+            <td>Crypto bots, character agents</td>
+          </tr>
+          <tr>
+            <td class="fw-name">Mastra<span class="sub">22K★ · 1.0 Jan'26</span></td>
+            <td>Embedded SaaS</td>
+            <td class="win"><span class="pill high">Obs Memory · 94.87</span></td>
+            <td><span class="pill mid">Workflow primitives</span></td>
+            <td><span class="pill mid">Via tool integrations</span></td>
+            <td class="win">Built-in audit trail</td>
+            <td>Production SaaS features</td>
+          </tr>
+          <tr>
+            <td class="fw-name">VoltAgent<span class="sub">TypeScript-first</span></td>
+            <td>Embedded SaaS</td>
+            <td><span class="pill mid">Pluggable</span></td>
+            <td><span class="pill mid">1K+ skills catalog</span></td>
+            <td><span class="pill mid">Via tool integrations</span></td>
+            <td class="win">VoltOps observability</td>
+            <td>Visual debug, n8n-style flows</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+
+  <!-- ============ KEY INSIGHTS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-num">§ 09 / Takeaways</div>
+      <div>
+        <h2>Three things to <em>remember.</em></h2>
+      </div>
+    </div>
+
+    <div class="insights-grid">
+      <div class="insight">
+        <div class="pull">The moat is in the <em>harness</em>, not the model.</div>
+        <p>A well-engineered Sonnet or GPT-5-mini deployment routinely beats a badly-engineered Opus one
+        at a fraction of the cost. The field has converged on a small set of primitives — Markdown skills,
+        file-based personas, heartbeat loops, three-tier queues, observer/reflector compression. None are
+        research breakthroughs; all are engineering patterns.</p>
+      </div>
+      <div class="insight">
+        <div class="pull">Observational memory is the <em>unlock.</em></div>
+        <p>40× compression on tool-heavy workloads makes browser and coding agents economically viable at
+        scale for the first time. Append-only prefix preserves prompt cache. Text + FTS5 + compression beats
+        vector embeddings for personal-agent and long-conversation cases.</p>
+      </div>
+      <div class="insight">
+        <div class="pull">Regulation will <em>reshape</em> the next 12 months.</div>
+        <p>August 2026's Article 50 forces every production social agent to implement watermarking and
+        labeling. The autonomous-bot crypto aesthetic dies under enforcement. Teams still building "ChatGPT
+        wrappers" with no structured context engineering are already a generation behind, and the gap is
+        widening weekly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER / SOURCES ============ -->
+  <footer>
+    <div>
+      <h5>Primary Sources</h5>
+      <a class="src" href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">→ github.com/openclaw/openclaw</a>
+      <a class="src" href="https://github.com/nousresearch/hermes-agent" target="_blank" rel="noopener">→ github.com/nousresearch/hermes-agent</a>
+      <a class="src" href="https://docs.openclaw.ai/gateway/heartbeat" target="_blank" rel="noopener">→ docs.openclaw.ai/gateway/heartbeat</a>
+      <a class="src" href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">→ hermes-agent.nousresearch.com</a>
+      <a class="src" href="https://github.com/elizaos-plugins/client-twitter" target="_blank" rel="noopener">→ github.com/elizaos-plugins/client-twitter</a>
+      <a class="src" href="https://github.com/mastra-ai/mastra" target="_blank" rel="noopener">→ github.com/mastra-ai/mastra</a>
+      <a class="src" href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" target="_blank" rel="noopener">→ simonwillison.net · the lethal trifecta</a>
+      <a class="src" href="https://x.com/karpathy/status/1937902205765607626" target="_blank" rel="noopener">→ Karpathy on context engineering</a>
+      <a class="src" href="https://blog.langchain.com/context-engineering-for-agents/" target="_blank" rel="noopener">→ blog.langchain.com · context engineering</a>
+      <a class="src" href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50" target="_blank" rel="noopener">→ EU AI Act · Article 50</a>
+    </div>
+    <div>
+      <h5>Colophon</h5>
+      <p class="colophon">
+        Synthesized April 24, 2026. Set in Fraunces (display) and Newsreader (body) with IBM Plex Mono.
+        Field Brief No. 04 in a continuing series. Internal use — research &amp; planning.
+      </p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

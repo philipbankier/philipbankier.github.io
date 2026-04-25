@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The April 2026 AI Agent Roundup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  body { font-family: 'Inter', sans-serif; background: #07090d; color: #c9d1d9; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow-indigo { text-shadow: 0 0 30px rgba(99, 102, 241, 0.6); }
+  .glow-orange { text-shadow: 0 0 30px rgba(249, 115, 22, 0.5); }
+  .card {
+    background: linear-gradient(135deg, rgba(22, 27, 34, 0.9), rgba(13, 17, 23, 0.9));
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    backdrop-filter: blur(10px);
+  }
+  .card:hover { border-color: rgba(99, 102, 241, 0.4); }
+  .card-warm { border-color: rgba(249, 115, 22, 0.2); }
+  .card-warm:hover { border-color: rgba(249, 115, 22, 0.5); }
+  .tab-active {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-weight: 700;
+  }
+  .tab { transition: all 0.2s; }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .bar { transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1); }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  details[open] summary .arrow { transform: rotate(90deg); }
+  .arrow { transition: transform 0.2s; display: inline-block; }
+  .blink { animation: blink 2s infinite; }
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.3; } }
+  .timeline-item {
+    position: relative;
+    padding-left: 36px;
+    padding-bottom: 28px;
+    border-left: 2px solid rgba(99, 102, 241, 0.3);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  }
+  .timeline-item.major::before { background: #f97316; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.3); }
+  .timeline-item.security::before { background: #ef4444; box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.3); }
+  .timeline-item.model::before { background: #10b981; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.3); }
+  .lobster { font-size: 28px; filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6)); }
+  .glow-bg {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- HERO -->
+<header class="grid-bg border-b border-indigo-500/20 relative overflow-hidden">
+  <div class="glow-bg" style="top:-100px;left:10%;width:400px;height:400px;background:#6366f1"></div>
+  <div class="glow-bg" style="bottom:-100px;right:10%;width:400px;height:400px;background:#f97316"></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-16 relative">
+    <div class="mono text-indigo-400 text-sm mb-4">&gt; deep_research --topic "ai-agents" --month april-2026 --depth comprehensive<span class="blink">_</span></div>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-none mb-4">
+      The <span class="text-indigo-400 glow-indigo">April 2026</span><br>AI Agent Roundup
+    </h1>
+    <p class="text-xl md:text-2xl text-slate-400 mb-8 max-w-4xl">A month so dense it broke the news cycle. Mythos. Cursor 3. Hermes 113K stars. GPT-5.5 in 6 weeks. The Claude Code leak. Salesforce Headless 360. And a side quest about a celebrity AI memory benchmark.</p>
+
+    <div class="flex flex-wrap gap-3 mb-10">
+      <span class="pill bg-orange-500/20 text-orange-300 mono">📅 RESEARCHED APR 25, 2026</span>
+      <span class="pill bg-emerald-500/20 text-emerald-300 mono">120+ SOURCES</span>
+      <span class="pill bg-indigo-500/20 text-indigo-300 mono">15 PROJECTS DEEP-DIVED</span>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+      <div class="card rounded-xl p-4">
+        <div class="text-3xl font-bold text-orange-400">GPT-5.5</div>
+        <div class="text-xs text-slate-400 mt-1">Apr 23 — 6 weeks after 5.4</div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-3xl font-bold text-rose-400">Mythos</div>
+        <div class="text-xs text-slate-400 mt-1">Apr 7 — gated cyber model</div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-3xl font-bold text-emerald-400">Opus 4.7</div>
+        <div class="text-xs text-slate-400 mt-1">Apr 16 — Claude flagship</div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="text-3xl font-bold text-indigo-400">113K ⭐</div>
+        <div class="text-xs text-slate-400 mt-1">Hermes — fastest growth ever</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV TABS -->
+<nav class="sticky top-0 z-50 bg-slate-950/95 backdrop-blur border-b border-indigo-500/20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex gap-1 overflow-x-auto py-3 text-sm mono">
+      <button data-tab="month" class="tab tab-active px-4 py-2 rounded-lg whitespace-nowrap">01 · The Month</button>
+      <button data-tab="frontier" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">02 · Frontier Models</button>
+      <button data-tab="terminal" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">03 · Terminal Agents</button>
+      <button data-tab="ides" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">04 · IDEs &amp; Editors</button>
+      <button data-tab="personal" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">05 · Personal Agents 🦞</button>
+      <button data-tab="memory" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">06 · Memory &amp; Knowledge</button>
+      <button data-tab="enterprise" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">07 · Enterprise</button>
+      <button data-tab="leak" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">08 · The Leak</button>
+      <button data-tab="security" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">09 · Security Reality</button>
+      <button data-tab="setup" class="tab px-4 py-2 rounded-lg whitespace-nowrap hover:bg-slate-800">10 · Setup Guide</button>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-6 py-12">
+
+<!-- ================= SECTION 01: THE MONTH ================= -->
+<section id="month" class="section active">
+  <h2 class="text-3xl font-bold text-white mb-2">April 2026, day by day</h2>
+  <p class="text-slate-400 mb-8">If March was "the leak," April was "the deluge." Frontier models, parallel agent platforms, cybersecurity earthquakes, and a celebrity memory benchmark — all in 25 days.</p>
+
+  <!-- TIMELINE -->
+  <div class="card rounded-2xl p-8 mb-10">
+    <div class="space-y-1">
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-orange-400">APRIL 2 · CURSOR</div>
+        <h3 class="text-lg font-bold text-white">Cursor 3.0 ships (codename "Glass")</h3>
+        <p class="text-slate-400 text-sm mt-1">Agents Window replaces Composer pane. Multi-workspace, parallel agents, cloud-to-local handoff. $2B+ ARR validated. The IDE became an agent orchestrator.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 3 · MICROSOFT</div>
+        <h3 class="text-lg font-bold text-white">Agent Framework 1.0 GA</h3>
+        <p class="text-slate-400 text-sm mt-1">.NET + Python, A2A + MCP support, DevUI for visualizing agent execution. Microsoft consolidates AutoGen + Semantic Kernel into one stack.</p>
+      </div>
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-orange-400">APRIL 3-4 · KARPATHY</div>
+        <h3 class="text-lg font-bold text-white">"LLM Wiki" gist drops <span class="text-amber-400">→ 5K stars in days</span></h3>
+        <p class="text-slate-400 text-sm mt-1">"Obsidian is the IDE, the LLM is the programmer, the wiki is the codebase." 16M views. Within 2 weeks, dozens of implementations appear.</p>
+      </div>
+
+      <div class="timeline-item security">
+        <div class="mono text-xs text-rose-400">APRIL 6 · MEMPALACE</div>
+        <h3 class="text-lg font-bold text-white">Milla Jovovich launches MemPalace</h3>
+        <p class="text-slate-400 text-sm mt-1">Method-of-loci AI memory. Goes from 5,400 to 26,900 GitHub stars in 72 hours. Benchmark controversy erupts within 24h. <span class="text-rose-400">"100% LongMemEval"</span> claim challenged.</p>
+      </div>
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-rose-400">APRIL 7-8 · ANTHROPIC</div>
+        <h3 class="text-lg font-bold text-white">Claude Mythos Preview <span class="text-rose-400">"watershed moment"</span></h3>
+        <p class="text-slate-400 text-sm mt-1">A new tier above Opus, codenamed Capybara. Found "thousands of high-severity vulns in every major OS and browser." Project Glasswing launches with Apple, Google, Microsoft, AWS, JPMorgan, NVIDIA. SWE-bench 93.9%, USAMO 97.6%.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 8 · NOUS RESEARCH</div>
+        <h3 class="text-lg font-bold text-white">Hermes Agent v0.8 — 209 PRs, 82 issues</h3>
+        <p class="text-slate-400 text-sm mt-1">"The intelligence release." Live model switching, native Google AI Studio, MCP OAuth 2.1, MiMo v2 Pro free on Nous Portal. Stars cross 57K.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-emerald-400">APRIL 9 · OPENCLAW</div>
+        <h3 class="text-lg font-bold text-white">v2026.4.9 — "Dreaming" feature</h3>
+        <p class="text-slate-400 text-sm mt-1">REM-style memory consolidation. SSRF hardening. Journal timeline UI. The lobster keeps shipping.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 10 · GARRY TAN</div>
+        <h3 class="text-lg font-bold text-white">GBrain launches — 2K stars in 6 days</h3>
+        <p class="text-slate-400 text-sm mt-1">YC president's opinionated knowledge brain. "MemPalace built natively for OpenClaw/Hermes." Followed by independent audit calling it "markdown instructions, not code."</p>
+      </div>
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-orange-400">APRIL 13 · HERMES</div>
+        <h3 class="text-lg font-bold text-white">Hermes v0.9 "everywhere" — Termux, iMessage, WeChat</h3>
+        <p class="text-slate-400 text-sm mt-1">487 commits. 269 PRs. Local web dashboard. Fast Mode for OpenAI/Anthropic. Mobile becomes real.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 14 · CURSOR</div>
+        <h3 class="text-lg font-bold text-white">Cursor CLI Debug Mode + /btw</h3>
+        <p class="text-slate-400 text-sm mt-1">/debug for hard-to-reproduce bugs. /btw for side questions without derailing the main task. The CLI gets serious.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 15 · DATABRICKS</div>
+        <h3 class="text-lg font-bold text-white">Unity AI Gateway</h3>
+        <p class="text-slate-400 text-sm mt-1">Agentic AI gets enterprise governance. Fine-grained MCP controls with OBO access. Unified API across Anthropic, OpenAI, Google, OSS.</p>
+      </div>
+
+      <div class="timeline-item model">
+        <div class="mono text-xs text-emerald-400">APRIL 16 · ANTHROPIC</div>
+        <h3 class="text-lg font-bold text-white">Claude Opus 4.7 GA — same price, more capability</h3>
+        <p class="text-slate-400 text-sm mt-1">$5/$25 per MTok pricing held flat. Better software engineering, vision, long-running coding. Bedrock self-serve in 27 regions.</p>
+      </div>
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-orange-400">APRIL 16 · NOUS / SALESFORCE</div>
+        <h3 class="text-lg font-bold text-white">Hermes v0.10 Tool Gateway · Salesforce Headless 360</h3>
+        <p class="text-slate-400 text-sm mt-1">Hermes hits 95.6K stars. Salesforce exposes its entire 27-year platform as MCP tools — Agentforce Vibes 2.0 IDE ships with 60+ new MCP tools.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 17 · ANTHROPIC LABS</div>
+        <h3 class="text-lg font-bold text-white">Claude Design — prompt-to-prototype</h3>
+        <p class="text-slate-400 text-sm mt-1">Conversational UI prototyping powered by Opus 4.7. Research preview on Pro/Max/Team/Enterprise.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 17 · NVIDIA</div>
+        <h3 class="text-lg font-bold text-white">NemoClaw on DGX Spark</h3>
+        <p class="text-slate-400 text-sm mt-1">Local-first agent stack. NVIDIA publishes a tutorial for always-on, secure agents using NemoClaw + OpenClaw without third-party cloud.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 20 · ANTHROPIC</div>
+        <h3 class="text-lg font-bold text-white">Claude Code v2.1.116 — model degradation reset</h3>
+        <p class="text-slate-400 text-sm mt-1">Anthropic publishes a postmortem on March quality complaints. Three issues fixed. Usage limits reset for all subscribers. The trust repair tour.</p>
+      </div>
+
+      <div class="timeline-item security">
+        <div class="mono text-xs text-rose-400">APRIL 22 · ANTHROPIC</div>
+        <h3 class="text-lg font-bold text-white">Mythos "unauthorized access" investigation</h3>
+        <p class="text-slate-400 text-sm mt-1">A group accessed Mythos through a third-party vendor portal. Anthropic confirms investigation. The supposedly safest model gets accessed by people Anthropic didn't approve.</p>
+      </div>
+
+      <div class="timeline-item major">
+        <div class="mono text-xs text-orange-400">APRIL 23 · OPENAI</div>
+        <h3 class="text-lg font-bold text-white">GPT-5.5 ships — 6 weeks after 5.4</h3>
+        <p class="text-slate-400 text-sm mt-1">"A new class of intelligence." First flagship positioned primarily as agent runtime, not chat model. Terminal-Bench 2.0 SOTA at 82.7%. Codex priced at $5/$30 per MTok. NVIDIA's 10K+ employees already using it.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="mono text-xs text-indigo-400">APRIL 24 · CURSOR</div>
+        <h3 class="text-lg font-bold text-white">Cursor 3.2 — Async subagents</h3>
+        <p class="text-slate-400 text-sm mt-1">Multitask, worktrees, multi-root workspaces for cross-repo changes. Same day as GPT-5.5 hits the Codex app via NVIDIA GB200.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE THEMES -->
+  <h3 class="text-xl font-bold text-white mb-4">The three themes that emerged</h3>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="card rounded-xl p-6 border-t-4 border-orange-500">
+      <div class="mono text-xs text-orange-400">THEME 01</div>
+      <h4 class="text-xl font-bold text-white mt-2">Models ship like product features now</h4>
+      <p class="text-slate-300 text-sm mt-3">Six weeks between GPT-5.4 and GPT-5.5. Eight days between Hermes v0.8 and v0.9. Claude Opus 4.6 → 4.7 in eight weeks. The labs are racing to lock down agent categories, not publish papers. Release cadence has compressed from quarters to weeks.</p>
+    </div>
+    <div class="card rounded-xl p-6 border-t-4 border-rose-500">
+      <div class="mono text-xs text-rose-400">THEME 02</div>
+      <h4 class="text-xl font-bold text-white mt-2">Agents are now infrastructure, not features</h4>
+      <p class="text-slate-300 text-sm mt-3">Salesforce exposed all of Salesforce as MCP tools. AWS sells pre-built Frontier Agents at $30-50/hr. Microsoft Agent Framework went 1.0. Databricks Unity AI Gateway. Google Cloud Next consolidated Vertex AI into "Gemini Enterprise Agent Platform." Plumbing has shipped.</p>
+    </div>
+    <div class="card rounded-xl p-6 border-t-4 border-emerald-500">
+      <div class="mono text-xs text-emerald-400">THEME 03</div>
+      <h4 class="text-xl font-bold text-white mt-2">Trust is the bottleneck, not capability</h4>
+      <p class="text-slate-300 text-sm mt-3">28,663 exposed OpenClaw instances. Mythos accessed through a third-party portal. MemPalace benchmark gaming. Anthropic's three-issue degradation postmortem. <span class="text-amber-400">84% of devs use AI daily, only 29% trust AI code in production.</span> The technology runs ahead of the social fabric to verify it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 02: FRONTIER MODELS ================= -->
+<section id="frontier" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">The frontier model wars</h2>
+  <p class="text-slate-400 mb-8">Four major models shipped in April. Each one explicitly framed as an "agent runtime," not a chat model. The chat model era ended quietly.</p>
+
+  <!-- BENCHMARK COMPARISON -->
+  <div class="card rounded-xl p-8 mb-10">
+    <h3 class="text-lg font-bold text-white mb-2">The April 2026 leaderboard</h3>
+    <p class="text-slate-400 text-sm mb-6">Terminal-Bench 2.0 — measures agentic computer-use, not just code generation. The new arena.</p>
+    <div class="space-y-4">
+      <div>
+        <div class="flex justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-orange-400 mono text-xs font-bold">GPT-5.5</span>
+            <span class="text-slate-300">OpenAI · Apr 23</span>
+          </div>
+          <span class="mono text-orange-400 font-bold">82.7%</span>
+        </div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded" style="width:82.7%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-rose-400 mono text-xs font-bold">CLAUDE MYTHOS</span>
+            <span class="text-slate-300">Anthropic · Apr 7 · gated</span>
+          </div>
+          <span class="mono text-rose-400 font-bold">93.9% SWE-bench</span>
+        </div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-gradient-to-r from-rose-500 to-pink-500 rounded" style="width:93.9%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400 mono text-xs font-bold">CLAUDE OPUS 4.7</span>
+            <span class="text-slate-300">Anthropic · Apr 16 · GA</span>
+          </div>
+          <span class="mono text-emerald-400 font-bold">~80% est.</span>
+        </div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded" style="width:80%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-sky-400 mono text-xs font-bold">GEMINI 3.1 PRO</span>
+            <span class="text-slate-300">Google · Mar/Apr</span>
+          </div>
+          <span class="mono text-sky-400 font-bold">~76%</span>
+        </div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-gradient-to-r from-sky-500 to-cyan-400 rounded" style="width:76%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-purple-400 mono text-xs font-bold">GROK 4.20 BETA 2</span>
+            <span class="text-slate-300">xAI · Mar 3</span>
+          </div>
+          <span class="mono text-purple-400 font-bold">~73%</span>
+        </div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-gradient-to-r from-purple-500 to-fuchsia-400 rounded" style="width:73%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6 mb-10">
+    <!-- GPT-5.5 -->
+    <details class="card rounded-xl p-6" open>
+      <summary class="cursor-pointer list-none">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="mono text-xs text-orange-400">OPENAI · APR 23</div>
+            <h3 class="text-2xl font-bold text-white mt-1">GPT-5.5 <span class="arrow text-orange-400">▸</span></h3>
+            <p class="text-slate-400 text-sm mt-1">"A new class of intelligence." Six weeks after 5.4.</p>
+          </div>
+          <div class="text-right">
+            <div class="mono text-xs text-slate-500">PRICING</div>
+            <div class="text-white font-bold">$5 / $30</div>
+            <div class="text-xs text-slate-500">per MTok</div>
+          </div>
+        </div>
+      </summary>
+      <div class="mt-6 pt-6 border-t border-slate-800 space-y-3 text-sm text-slate-300">
+        <div><span class="text-orange-400 mono text-xs">POSITIONING:</span> First OpenAI flagship sold primarily as an agent runtime, not chat. "Give it a messy multi-part task and trust it to plan, use tools, check its work, and keep going."</div>
+        <div><span class="text-orange-400 mono text-xs">PERFORMANCE:</span> Terminal-Bench 2.0 SOTA at 82.7%, GDPval at 84.9%, beats Gemini 3.1 Pro and Opus 4.5 across OpenAI's full benchmark suite.</div>
+        <div><span class="text-orange-400 mono text-xs">EFFICIENCY:</span> Higher pricing (2× GPT-5.4) but uses fewer tokens per equivalent task. Internal codename: <span class="mono text-amber-400">Spud</span>.</div>
+        <div><span class="text-orange-400 mono text-xs">INFRASTRUCTURE:</span> Runs on NVIDIA GB200 NVL72. 35× lower cost per million tokens than prior gen. 10,000+ NVIDIANs already using it.</div>
+        <div class="bg-orange-500/10 border border-orange-500/30 rounded p-3">
+          <div class="mono text-xs text-orange-300 font-bold">FORTUNE QUOTE</div>
+          <div class="mt-1">"Six weeks from GPT-5.4 to GPT-5.5 is product-launch cadence, not model release cadence. They're racing to lock down agents."</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- MYTHOS -->
+    <details class="card rounded-xl p-6">
+      <summary class="cursor-pointer list-none">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="mono text-xs text-rose-400">ANTHROPIC · APR 7</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Claude Mythos Preview <span class="arrow text-rose-400">▸</span></h3>
+            <p class="text-slate-400 text-sm mt-1">Codenamed Capybara. A new tier above Opus.</p>
+          </div>
+          <div class="text-right">
+            <div class="mono text-xs text-slate-500">ACCESS</div>
+            <div class="text-rose-400 font-bold text-sm">RESTRICTED</div>
+            <div class="text-xs text-slate-500">~40 orgs</div>
+          </div>
+        </div>
+      </summary>
+      <div class="mt-6 pt-6 border-t border-slate-800 space-y-3 text-sm text-slate-300">
+        <div><span class="text-rose-400 mono text-xs">CAPABILITY:</span> Found "thousands of high-severity vulnerabilities" in every major OS and browser. SWE-bench 93.9%, USAMO 97.6%.</div>
+        <div><span class="text-rose-400 mono text-xs">PROJECT GLASSWING:</span> Restricted partnership with Apple, Google, Microsoft, AWS, JPMorgan, NVIDIA, Cisco, and ~40 critical infrastructure operators. $100M in usage credits.</div>
+        <div><span class="text-rose-400 mono text-xs">PRICING:</span> 5× Opus 4.6 cost — explicitly designed to discourage casual use.</div>
+        <div><span class="text-rose-400 mono text-xs">UK AISI EVAL:</span> First model to complete the institute's full-network attack simulation. 73% on expert-level CTFs.</div>
+        <div class="bg-rose-500/10 border border-rose-500/30 rounded p-3">
+          <div class="mono text-xs text-rose-300 font-bold">⚠ APR 22</div>
+          <div class="mt-1">Anthropic confirms investigating "unauthorized access" through a third-party vendor portal. The safest model in the world got accessed by people they didn't approve.</div>
+        </div>
+      </div>
+    </details>
+
+    <!-- OPUS 4.7 -->
+    <details class="card rounded-xl p-6">
+      <summary class="cursor-pointer list-none">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="mono text-xs text-emerald-400">ANTHROPIC · APR 16</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Claude Opus 4.7 <span class="arrow text-emerald-400">▸</span></h3>
+            <p class="text-slate-400 text-sm mt-1">GA flagship for complex reasoning &amp; agentic coding.</p>
+          </div>
+          <div class="text-right">
+            <div class="mono text-xs text-slate-500">PRICING</div>
+            <div class="text-white font-bold">$5 / $25</div>
+            <div class="text-xs text-emerald-400">held flat</div>
+          </div>
+        </div>
+      </summary>
+      <div class="mt-6 pt-6 border-t border-slate-800 space-y-3 text-sm text-slate-300">
+        <div><span class="text-emerald-400 mono text-xs">UPGRADES:</span> Better software engineering, long-running coding tasks, higher-resolution vision.</div>
+        <div><span class="text-emerald-400 mono text-xs">NEW xhigh EFFORT:</span> Between high and max — accessible via /effort, --effort, or model picker.</div>
+        <div><span class="text-emerald-400 mono text-xs">DISTRIBUTION:</span> Bedrock self-serve in 27 AWS regions. Auto Mode for Max subscribers. Updated tokenizer (breaking changes vs 4.6).</div>
+        <div><span class="text-emerald-400 mono text-xs">DEPRECATION:</span> Opus 4 + Sonnet 4 retiring June 15. Opus 4 + 4.1 already auto-migrated to 4.6 in Claude Code.</div>
+      </div>
+    </details>
+
+    <!-- GEMINI 3.1 -->
+    <details class="card rounded-xl p-6">
+      <summary class="cursor-pointer list-none">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="mono text-xs text-sky-400">GOOGLE · MAR-APR</div>
+            <h3 class="text-2xl font-bold text-white mt-1">Gemini 3.1 Pro / Flash-Lite <span class="arrow text-sky-400">▸</span></h3>
+            <p class="text-slate-400 text-sm mt-1">Plus the Cloud Next platform consolidation.</p>
+          </div>
+          <div class="text-right">
+            <div class="mono text-xs text-slate-500">FLASH-LITE</div>
+            <div class="text-sky-400 font-bold">$0.25</div>
+            <div class="text-xs text-slate-500">per MTok in</div>
+          </div>
+        </div>
+      </summary>
+      <div class="mt-6 pt-6 border-t border-slate-800 space-y-3 text-sm text-slate-300">
+        <div><span class="text-sky-400 mono text-xs">3.1 FLASH-LITE:</span> 2.5× faster responses, 45% faster output gen than prior Gemini. Pricing collapse signal — $0.25/MTok aggressively undercuts everyone.</div>
+        <div><span class="text-sky-400 mono text-xs">CLOUD NEXT 2026:</span> Vertex AI rebranded to "Gemini Enterprise Agent Platform." Workspace Studio (no-code agent builder). 200+ models in Model Garden including Anthropic Claude.</div>
+        <div><span class="text-sky-400 mono text-xs">A2A v1.0:</span> Now in production at 150 organizations. Native support in LangGraph, CrewAI, LlamaIndex, Semantic Kernel, AutoGen.</div>
+        <div><span class="text-sky-400 mono text-xs">PROJECT MARINER:</span> Web-browsing agent shipped. ADK v1.0 stable across Python, Go, Java, TypeScript.</div>
+      </div>
+    </details>
+
+  </div>
+
+  <!-- OPEN MODELS -->
+  <h3 class="text-xl font-bold text-white mb-4">Open-weight models matter again</h3>
+  <div class="card rounded-xl p-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-emerald-400">APR 2</div>
+        <div class="text-white font-bold mt-1">Gemma 4</div>
+        <div class="text-xs text-slate-400 mt-1">Google's open models 2B-31B. Apache 2.0. Same research as Gemini 3.</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-emerald-400">APR 1</div>
+        <div class="text-white font-bold mt-1">Qwen3.6-Plus</div>
+        <div class="text-xs text-slate-400 mt-1">Alibaba's agentic flagship with 1M context.</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-emerald-400">FEB</div>
+        <div class="text-white font-bold mt-1">GLM-5</div>
+        <div class="text-xs text-slate-400 mt-1">744B params, MIT license. Trained on Huawei Ascend chips.</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-emerald-400">FEB</div>
+        <div class="text-white font-bold mt-1">Kimi K2.5</div>
+        <div class="text-xs text-slate-400 mt-1">1T total / 32B active MoE. Multimodal. Up to 100 parallel sub-agents.</div>
+      </div>
+    </div>
+    <p class="text-slate-400 text-sm mt-6">The pattern: every Western frontier model has an open-weight Chinese counterpart now. Gemma 4 was followed within days by uncensored variants on public repositories. The compute moat isn't holding.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 03: TERMINAL AGENTS ================= -->
+<section id="terminal" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">Terminal agent CLIs</h2>
+  <p class="text-slate-400 mb-8">Claude Code, Codex CLI, and Gemini CLI all hit major version milestones this month. The terminal is now the primary interface for serious agent work.</p>
+
+  <!-- VERSION COMPARISON -->
+  <div class="card rounded-xl p-6 mb-8 overflow-x-auto">
+    <h3 class="text-lg font-bold text-white mb-4">Where the terminal CLIs stand on April 25</h3>
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left border-b border-slate-700">
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">CLI</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">VERSION</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">MODEL DEFAULT</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">KILLER FEATURE THIS MONTH</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800">
+        <tr>
+          <td class="py-3 text-orange-400 font-semibold">Claude Code</td>
+          <td class="py-3 text-white mono">v2.1.118</td>
+          <td class="py-3 text-slate-300">Opus 4.7 (xhigh)</td>
+          <td class="py-3 text-slate-300">Ultraplan cloud planning · /buddy pet · Computer Use in CLI</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-emerald-400 font-semibold">Codex CLI</td>
+          <td class="py-3 text-white mono">v0.123.0</td>
+          <td class="py-3 text-slate-300">GPT-5.5 / 5.3-Codex</td>
+          <td class="py-3 text-slate-300">Plugin marketplace · Spark at 1000+ TPS · Browser control</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-sky-400 font-semibold">Gemini CLI</td>
+          <td class="py-3 text-white mono">v0.39.0</td>
+          <td class="py-3 text-slate-300">Gemini 3.1 Pro/Flash</td>
+          <td class="py-3 text-slate-300">Subagents · Chapters · Context Compression Service</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-purple-400 font-semibold">Qwen CLI</td>
+          <td class="py-3 text-white mono">v0.15.1</td>
+          <td class="py-3 text-slate-300">Qwen3.6-Plus</td>
+          <td class="py-3 text-slate-300">Free on OpenRouter · 1M context · OSS</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CLAUDE CODE WHATS NEW -->
+  <div class="card rounded-xl p-6 mb-6">
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <div class="mono text-xs text-orange-400">CLAUDE CODE · APRIL HIGHLIGHTS</div>
+        <h3 class="text-2xl font-bold text-white mt-1">What shipped after the leak</h3>
+      </div>
+      <div class="text-right text-xs">
+        <div class="text-slate-500 mono">REVENUE</div>
+        <div class="text-emerald-400 font-bold">$2.5B ARR</div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 text-sm">
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">WK 14</div><div><span class="text-white font-semibold">Computer Use in CLI (research preview)</span><br><span class="text-slate-400 text-xs">Claude opens native apps, clicks UI, verifies changes from terminal</span></div></div>
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">WK 15</div><div><span class="text-white font-semibold">Ultraplan early preview</span><br><span class="text-slate-400 text-xs">Draft plans in cloud, review in web editor, run remote or pull local</span></div></div>
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">WK 15</div><div><span class="text-white font-semibold">/loop, /team-onboarding, /autofix-pr</span><br><span class="text-slate-400 text-xs">Self-paced loops, replayable team setups, PR auto-fix from terminal</span></div></div>
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">APR 1</div><div><span class="text-white font-semibold">/buddy — your code-watching pet</span><br><span class="text-slate-400 text-xs">From the leak. 18 species. The April Fools that became reality.</span></div></div>
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">APR 16</div><div><span class="text-white font-semibold">Opus 4.7 + xhigh effort level</span><br><span class="text-slate-400 text-xs">Between high and max. Other models fall back to high.</span></div></div>
+      <div class="flex gap-3"><div class="text-orange-400 mono text-xs">APR 20</div><div><span class="text-white font-semibold">Quality regression postmortem</span><br><span class="text-slate-400 text-xs">3 March issues fixed. Limits reset for all subscribers. Trust repair.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CODEX -->
+  <div class="card rounded-xl p-6 mb-6">
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <div class="mono text-xs text-emerald-400">CODEX CLI · APRIL HIGHLIGHTS</div>
+        <h3 class="text-2xl font-bold text-white mt-1">OpenAI's quiet hardening</h3>
+      </div>
+      <div class="text-right text-xs">
+        <div class="text-slate-500 mono">USERS</div>
+        <div class="text-emerald-400 font-bold">4M active</div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 text-sm">
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">APR 3</div><div><span class="text-white font-semibold">Windows sandbox + ChatGPT device login</span><br><span class="text-slate-400 text-xs">OS-level networking. SSH, Docker, CI authentication that actually works.</span></div></div>
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">APR 3</div><div><span class="text-white font-semibold">GPT-5.3-Codex-Spark — 1000+ TPS</span><br><span class="text-slate-400 text-xs">Real-time inline editing. "Add error handling" is now near-instant.</span></div></div>
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">APR 15</div><div><span class="text-white font-semibold">v0.121 — Plugin marketplace + memory mgmt</span><br><span class="text-slate-400 text-xs">Install marketplaces from GitHub or local. Phase 2 memory model.</span></div></div>
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">APR 23</div><div><span class="text-white font-semibold">GPT-5.5 lands in Codex app</span><br><span class="text-slate-400 text-xs">Browser control for local dev servers. Automatic reviewer agents.</span></div></div>
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">PIPING</div><div><span class="text-white font-semibold">codex exec -p with stdin</span><br><span class="text-slate-400 text-xs">git diff | codex exec -p "Write a commit message" — finally.</span></div></div>
+      <div class="flex gap-3"><div class="text-emerald-400 mono text-xs">EFFICIENCY</div><div><span class="text-white font-semibold">Still ~4× more token-efficient than Claude Code</span><br><span class="text-slate-400 text-xs">Daily-driver advantage that survived the model wars.</span></div></div>
+    </div>
+  </div>
+
+  <!-- GEMINI CLI -->
+  <div class="card rounded-xl p-6 mb-6">
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <div class="mono text-xs text-sky-400">GEMINI CLI · APRIL HIGHLIGHTS</div>
+        <h3 class="text-2xl font-bold text-white mt-1">Subagents arrive · Chapters land</h3>
+      </div>
+      <div class="text-right text-xs">
+        <div class="text-slate-500 mono">LICENSE</div>
+        <div class="text-sky-400 font-bold">Apache 2.0</div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 text-sm">
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">v0.36</div><div><span class="text-white font-semibold">Multi-Registry subagent security</span><br><span class="text-slate-400 text-xs">Subagents become first-class with isolation guarantees.</span></div></div>
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">v0.37</div><div><span class="text-white font-semibold">/memory inbox command</span><br><span class="text-slate-400 text-xs">Review extracted skills before they're persisted.</span></div></div>
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">v0.38</div><div><span class="text-white font-semibold">Chapters — narrative flow</span><br><span class="text-slate-400 text-xs">Tool-based topic grouping. Long sessions get readable structure.</span></div></div>
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">v0.38</div><div><span class="text-white font-semibold">Context Compression Service</span><br><span class="text-slate-400 text-xs">Dedicated service distills history while preserving focus.</span></div></div>
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">v0.39</div><div><span class="text-white font-semibold">trajectoryId for evals</span><br><span class="text-slate-400 text-xs">First-class observability for agent reasoning paths.</span></div></div>
+      <div class="flex gap-3"><div class="text-sky-400 mono text-xs">FREE</div><div><span class="text-white font-semibold">Plan Mode confirmation</span><br><span class="text-slate-400 text-xs">Generous free tier preserved while adding safety gates.</span></div></div>
+    </div>
+  </div>
+
+  <!-- QUOTE BLOCK -->
+  <div class="card rounded-xl p-8 text-center" style="background:radial-gradient(ellipse at center, rgba(99,102,241,0.1), transparent);">
+    <div class="mono text-xs text-indigo-400 mb-3">DEVELOPER SURVEY · APRIL 2026</div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div>
+        <div class="text-5xl font-bold text-indigo-400">84%</div>
+        <div class="text-slate-300 mt-2">developers use AI coding tools daily</div>
+      </div>
+      <div>
+        <div class="text-5xl font-bold text-amber-400">29%</div>
+        <div class="text-slate-300 mt-2">trust AI-generated code without review</div>
+      </div>
+      <div>
+        <div class="text-5xl font-bold text-emerald-400">70%+</div>
+        <div class="text-slate-300 mt-2">market share for Cursor + Copilot + Claude Code</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 04: IDES & EDITORS ================= -->
+<section id="ides" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">IDEs and editors</h2>
+  <p class="text-slate-400 mb-8">Cursor 3 redefined what an IDE means. Microsoft turned its entire stack into agent infrastructure. The "AI code editor" category collapsed into something bigger.</p>
+
+  <!-- CURSOR HERO -->
+  <div class="card rounded-xl p-8 mb-8">
+    <div class="flex items-start justify-between flex-wrap gap-4 mb-6">
+      <div>
+        <div class="mono text-xs text-indigo-400">ANYSPHERE · CURSOR</div>
+        <h3 class="text-3xl font-bold text-white mt-1">Cursor 3.x — the agent platform</h3>
+        <p class="text-slate-400 text-sm mt-2">$2B+ ARR. Half the Fortune 500. Three releases this month.</p>
+      </div>
+      <div class="card rounded-xl p-4 min-w-[260px]">
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div><div class="text-slate-500 text-xs mono">v3.0</div><div class="text-white">Apr 2</div></div>
+          <div><div class="text-slate-500 text-xs mono">v3.1</div><div class="text-white">Apr 13</div></div>
+          <div><div class="text-slate-500 text-xs mono">v3.2</div><div class="text-white">Apr 24</div></div>
+          <div><div class="text-slate-500 text-xs mono">DAU</div><div class="text-emerald-400">1M+</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="text-lg font-bold text-white mb-3">Cursor 3 release timeline</h4>
+    <div class="space-y-3 mb-6">
+      <div class="flex gap-4 items-start bg-slate-900/60 rounded-lg p-3">
+        <span class="pill bg-indigo-500/20 text-indigo-300 mono">v3.0 · APR 2</span>
+        <p class="text-sm text-slate-300 flex-1"><span class="text-white font-semibold">"Glass" rebuild.</span> Agents Window replaces Composer pane. Multi-workspace tabs. Cloud-to-local handoff. Built-in Git diffs view. Up to 8 parallel agents.</p>
+      </div>
+      <div class="flex gap-4 items-start bg-slate-900/60 rounded-lg p-3">
+        <span class="pill bg-indigo-500/20 text-indigo-300 mono">v3.1 · APR 13</span>
+        <p class="text-sm text-slate-300 flex-1"><span class="text-white font-semibold">Tiled Layout + Voice.</span> Voice dictation in the Agents Window. CLI Debug Mode (/debug) for hard-to-reproduce bugs. Bugbot self-improvement and MCP support. Canvases — durable interactive artifacts.</p>
+      </div>
+      <div class="flex gap-4 items-start bg-slate-900/60 rounded-lg p-3">
+        <span class="pill bg-indigo-500/20 text-indigo-300 mono">v3.2 · APR 24</span>
+        <p class="text-sm text-slate-300 flex-1"><span class="text-white font-semibold">Multitask + multi-root workspaces.</span> Async subagents. New worktrees experience for cross-branch work. Multi-root workspaces for cross-repo changes spanning frontend, backend, shared libs.</p>
+      </div>
+    </div>
+
+    <h4 class="text-lg font-bold text-white mb-3">Composer 2 — Cursor's own model</h4>
+    <div class="grid md:grid-cols-3 gap-4 text-sm mb-4">
+      <div class="bg-slate-900/60 rounded-lg p-4 text-center">
+        <div class="text-3xl font-bold text-indigo-400">61.3</div>
+        <div class="text-xs text-slate-400 mt-1">CursorBench score (39% over 1.5)</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4 text-center">
+        <div class="text-3xl font-bold text-indigo-400">200+ TPS</div>
+        <div class="text-xs text-slate-400 mt-1">via custom CUDA MLA kernels</div>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4 text-center">
+        <div class="text-3xl font-bold text-indigo-400">$0.50/$2.50</div>
+        <div class="text-xs text-slate-400 mt-1">per MTok — radical pricing</div>
+      </div>
+    </div>
+    <p class="text-sm text-slate-400">Real-time RL: ships an improved Composer checkpoint every 5 hours by training on real user interactions. <span class="text-amber-400">Rumored $60B SpaceX acquisition still in negotiation as of Apr 22</span> — would unlock Grok variant in Auto mode.</p>
+  </div>
+
+  <!-- MICROSOFT AGENT FRAMEWORK -->
+  <div class="grid md:grid-cols-2 gap-5 mb-8">
+    <div class="card rounded-xl p-6">
+      <div class="mono text-xs text-blue-400">MICROSOFT · APR 3</div>
+      <h3 class="text-xl font-bold text-white mt-1">Agent Framework 1.0</h3>
+      <p class="text-sm text-slate-400 mt-3">"Stable APIs. Long-term support commitment." Consolidates Semantic Kernel + AutoGen into one open-source framework for .NET and Python.</p>
+      <ul class="space-y-1.5 text-xs text-slate-300 mt-4">
+        <li><span class="text-blue-400">▸</span> Multi-agent orchestration with graph-based workflows</li>
+        <li><span class="text-blue-400">▸</span> Native A2A + MCP protocol support</li>
+        <li><span class="text-blue-400">▸</span> DevUI browser tool for visualizing agent execution</li>
+        <li><span class="text-blue-400">▸</span> MIT license, runs against any provider including local Ollama</li>
+      </ul>
+    </div>
+    <div class="card rounded-xl p-6">
+      <div class="mono text-xs text-cyan-400">GOOGLE CLOUD NEXT · APR 22</div>
+      <h3 class="text-xl font-bold text-white mt-1">Gemini Enterprise Agent Platform</h3>
+      <p class="text-sm text-slate-400 mt-3">Vertex AI rebranded. Agentspace absorbed. The "full-stack bet against OpenAI and Anthropic."</p>
+      <ul class="space-y-1.5 text-xs text-slate-300 mt-4">
+        <li><span class="text-cyan-400">▸</span> Workspace Studio — no-code agent builder</li>
+        <li><span class="text-cyan-400">▸</span> 200+ models in Model Garden including Anthropic Claude</li>
+        <li><span class="text-cyan-400">▸</span> Project Mariner web-browsing agent</li>
+        <li><span class="text-cyan-400">▸</span> Managed MCP servers · Apigee as API-to-agent bridge</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OTHER NOTABLE -->
+  <h3 class="text-xl font-bold text-white mb-4">Other notable IDE/editor moves</h3>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-purple-400">SALESFORCE TDX · APR 16</div>
+      <h4 class="font-bold text-white mt-1">Headless 360</h4>
+      <p class="text-xs text-slate-400 mt-2">Salesforce's most ambitious 27-year shift. Every CRM/service/marketing/commerce capability now an MCP tool. Agentforce Vibes 2.0 IDE. 60+ new MCP tools shipped.</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-amber-400">VS CODE · v1.117</div>
+      <h4 class="font-bold text-white mt-1">BYOK for Copilot</h4>
+      <p class="text-xs text-slate-400 mt-2">Bring-your-own-model-key support for Business + Enterprise users. Chat, agent, terminal, TypeScript updates.</p>
+    </div>
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-pink-400">DATABRICKS · APR 15</div>
+      <h4 class="font-bold text-white mt-1">Unity AI Gateway</h4>
+      <p class="text-xs text-slate-400 mt-2">Extends Unity Catalog governance to agentic AI. OBO access for MCP, end-to-end LLM observability, unified API across providers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 05: PERSONAL AGENTS (LOBSTER) ================= -->
+<section id="personal" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">Personal AI agents <span class="lobster">🦞</span></h2>
+  <p class="text-slate-400 mb-8">OpenClaw and Hermes are now the two-pole standard for self-hosted personal AI. ~20% of the community runs them together.</p>
+
+  <!-- HEAD-TO-HEAD -->
+  <div class="grid md:grid-cols-2 gap-6 mb-10">
+
+    <!-- OPENCLAW -->
+    <div class="card rounded-xl p-6 border-l-4 border-rose-500">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <div class="mono text-xs text-rose-400">PETER STEINBERGER · MIT · NODE.JS</div>
+          <h3 class="text-2xl font-bold text-white mt-1">OpenClaw <span class="lobster">🦞</span></h3>
+        </div>
+        <div class="text-right">
+          <div class="mono text-xs text-slate-500">v2026.4.22</div>
+          <div class="text-xs text-emerald-400 mt-1">+ 4.23-beta.3</div>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="bg-slate-900/60 rounded-lg p-3">
+          <div class="mono text-xs text-rose-400">APRIL VELOCITY</div>
+          <p class="text-slate-300 mt-1">~10 releases between Apr 9 and Apr 25. The team ships through holidays.</p>
+        </div>
+        <div class="bg-slate-900/60 rounded-lg p-3">
+          <div class="mono text-xs text-rose-400">APRIL HIGHLIGHTS</div>
+          <ul class="space-y-1 mt-1 text-xs text-slate-300">
+            <li><span class="text-rose-400">▸ 4.9</span> Dreaming feature — REM-style memory consolidation</li>
+            <li><span class="text-rose-400">▸ 4.10</span> Active Memory plugin · MLX local Talk · SSRF hardening</li>
+            <li><span class="text-rose-400">▸ 4.15</span> Codex provider · LM Studio · narrowed plugin loading</li>
+            <li><span class="text-rose-400">▸ 4.20</span> Cost calc fix · session OOM prevention · Mattermost streaming</li>
+            <li><span class="text-rose-400">▸ 4.21</span> gpt-image-2 default · owner-cmd hardening · Slack threading</li>
+            <li><span class="text-rose-400">▸ 4.22</span> xAI image gen · Voice Call streaming · TUI embedded mode</li>
+          </ul>
+        </div>
+        <div class="bg-rose-500/10 border border-rose-500/30 rounded-lg p-3">
+          <div class="mono text-xs text-rose-300 font-bold">⚠ APR 21 SECURITY</div>
+          <p class="text-slate-200 mt-1 text-xs">Researchers found <span class="font-bold">28,663 OpenClaw instances with exposed control panels</span> — anyone online can access them. Boomi-style permission boundaries now critical.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERMES -->
+    <div class="card rounded-xl p-6 border-l-4 border-sky-500">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <div class="mono text-xs text-sky-400">NOUS RESEARCH · MIT · PYTHON</div>
+          <h3 class="text-2xl font-bold text-white mt-1">Hermes Agent</h3>
+        </div>
+        <div class="text-right">
+          <div class="mono text-xs text-slate-500">v0.10.0</div>
+          <div class="text-xs text-emerald-400 mt-1">apr 16</div>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="bg-slate-900/60 rounded-lg p-3">
+          <div class="mono text-xs text-sky-400">EXPLOSIVE GROWTH</div>
+          <p class="text-slate-300 mt-1">From <span class="text-white font-semibold">57.2K stars on Apr 11</span> to <span class="text-white font-semibold">113K on Apr 24</span>. Roughly 9,500 stars/week — flipped OpenClaw on weekly velocity.</p>
+        </div>
+        <div class="bg-slate-900/60 rounded-lg p-3">
+          <div class="mono text-xs text-sky-400">APRIL HIGHLIGHTS</div>
+          <ul class="space-y-1 mt-1 text-xs text-slate-300">
+            <li><span class="text-sky-400">▸ v0.8 Apr 8</span> 209 PRs · Live model switching · Google AI Studio · MCP OAuth 2.1</li>
+            <li><span class="text-sky-400">▸ v0.9 Apr 13</span> 487 commits · Termux/Android · iMessage · WeChat · Local web dashboard</li>
+            <li><span class="text-sky-400">▸ v0.10 Apr 16</span> Tool Gateway — paid Nous Portal subs get web search, image gen, TTS, browser automation with zero extra API keys</li>
+          </ul>
+        </div>
+        <div class="bg-sky-500/10 border border-sky-500/30 rounded-lg p-3">
+          <div class="mono text-xs text-sky-300 font-bold">📈 ECOSYSTEM TRACKED</div>
+          <p class="text-slate-200 mt-1 text-xs">hermesatlas.com tracks <span class="font-bold">80+ community projects</span>. Vercel Labs published agent-skills. Black Forest Labs (FLUX team) ships official skills. Anthropic released a 754-skill cybersecurity collection mapped to MITRE ATT&CK.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMUNITY SPLIT -->
+  <h3 class="text-xl font-bold text-white mb-4">Community split (1,300+ Reddit comments analyzed)</h3>
+  <div class="card rounded-xl p-8 mb-8">
+    <div class="grid md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4 text-center">
+        <div class="text-4xl font-bold text-rose-400">35%</div>
+        <div class="text-sm text-white mt-1 font-semibold">OpenClaw only</div>
+        <div class="text-xs text-slate-400 mt-1">"unmatched integrations"</div>
+      </div>
+      <div class="bg-sky-500/10 border border-sky-500/30 rounded-lg p-4 text-center">
+        <div class="text-4xl font-bold text-sky-400">30%</div>
+        <div class="text-sm text-white mt-1 font-semibold">Switched to Hermes</div>
+        <div class="text-xs text-slate-400 mt-1">"easier setup, better memory"</div>
+      </div>
+      <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 text-center">
+        <div class="text-4xl font-bold text-purple-400">20%</div>
+        <div class="text-sm text-white mt-1 font-semibold">Run both</div>
+        <div class="text-xs text-slate-400 mt-1">orchestrator + executor</div>
+      </div>
+      <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 text-center">
+        <div class="text-4xl font-bold text-amber-400">15%</div>
+        <div class="text-sm text-white mt-1 font-semibold">Distrust Hermes</div>
+        <div class="text-xs text-slate-400 mt-1">astroturfing concerns</div>
+      </div>
+    </div>
+
+    <div class="bg-slate-900/60 rounded-lg p-4">
+      <div class="mono text-xs text-emerald-400">TOP-VOTED COMMENT</div>
+      <p class="text-slate-300 italic mt-2">"I spent 3 weeks trying to replace Open-Claw. The better setup was Open-Claw + Hermes." — u/damn_brotha</p>
+    </div>
+  </div>
+
+  <!-- SUPPORTING ECOSYSTEM -->
+  <h3 class="text-xl font-bold text-white mb-4">Supporting ecosystem</h3>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-rose-400">REGISTRY</div>
+      <h4 class="font-bold text-white mt-1">ClawHub (clawhub.ai)</h4>
+      <div class="text-xs text-slate-400 mt-2">13,729 community skills. ~26% have at least one vulnerability per Cisco audit. VirusTotal scanning now bundled. <span class="text-amber-400">Skill Vetter is the "day one install."</span></div>
+    </div>
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-emerald-400">CURATED</div>
+      <h4 class="font-bold text-white mt-1">awesome-openclaw-skills</h4>
+      <div class="text-xs text-slate-400 mt-2">5,400+ filtered skills with #1M monthly views. Maintained by VoltAgent. Won't accept skills "you created 3 hours ago."</div>
+    </div>
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-cyan-400">NVIDIA OFFICIAL</div>
+      <h4 class="font-bold text-white mt-1">NemoClaw on DGX Spark</h4>
+      <div class="text-xs text-slate-400 mt-2">"OpenClaw is the operating system for personal AI" — Jensen Huang. Local-first reference stack. April tutorial published.</div>
+    </div>
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-purple-400">PROC MANAGER</div>
+      <h4 class="font-bold text-white mt-1">botctl</h4>
+      <div class="text-xs text-slate-400 mt-2">Persistent bot mgr with TUI dashboard + web UI. BOT.md files define personas. Compatible with OpenClaw, Hermes, Claude Code, OpenCode.</div>
+    </div>
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-orange-400">SANDBOX (YC S25)</div>
+      <h4 class="font-bold text-white mt-1">Twill.ai</h4>
+      <div class="text-xs text-slate-400 mt-2">Per-task isolated cloud sandboxes for Claude Code, Codex, etc. 6-step Research→Plan→Approve→Implement→Review→Merge pipeline.</div>
+    </div>
+
+    <div class="card rounded-xl p-5">
+      <div class="mono text-xs text-pink-400">SOUL · STYLE · SKILL · MEMORY</div>
+      <h4 class="font-bold text-white mt-1">soul.md standard</h4>
+      <div class="text-xs text-slate-400 mt-2">Aaron Mars' markdown convention has become the lingua franca. Works with OpenClaw, Hermes, Claude Code, Codex, Goose, etc.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 06: MEMORY & KNOWLEDGE ================= -->
+<section id="memory" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">Memory &amp; knowledge: Karpathy's idea, plus the controversy</h2>
+  <p class="text-slate-400 mb-8">The most influential AI pattern of April wasn't a model — it was a markdown file.</p>
+
+  <!-- KARPATHY QUOTE -->
+  <div class="card rounded-2xl p-10 mb-10 text-center" style="background: radial-gradient(ellipse at center, rgba(245,158,11,0.1), transparent);">
+    <div class="mono text-xs text-amber-400 mb-4">APR 3-4 · GIST · 5K STARS · 16M VIEWS</div>
+    <p class="text-3xl md:text-4xl font-bold text-white leading-tight">"Obsidian is the IDE,<br>the LLM is the programmer,<br>the wiki is the codebase."</p>
+    <div class="mono text-sm text-amber-400 mt-6">— Andrej Karpathy, gist titled <span class="text-white">llm-wiki.md</span></div>
+  </div>
+
+  <!-- THE PHASES -->
+  <h3 class="text-xl font-bold text-white mb-4">Karpathy's three phases of human-AI collaboration</h3>
+  <div class="grid md:grid-cols-3 gap-4 mb-10">
+    <div class="card rounded-xl p-5 border-t-4 border-slate-500">
+      <div class="mono text-xs text-slate-400">FEB 2025</div>
+      <h4 class="font-bold text-white mt-1">Vibe Coding</h4>
+      <p class="text-xs text-slate-400 mt-2">"Accept AI-generated code without reviewing line-by-line. Trust the model, test the output."</p>
+    </div>
+    <div class="card rounded-xl p-5 border-t-4 border-indigo-500">
+      <div class="mono text-xs text-indigo-400">JAN 2026</div>
+      <h4 class="font-bold text-white mt-1">Agentic Engineering</h4>
+      <p class="text-xs text-slate-400 mt-2">"Humans orchestrate AI agents rather than writing code directly."</p>
+    </div>
+    <div class="card rounded-xl p-5 border-t-4 border-amber-500">
+      <div class="mono text-xs text-amber-400">APR 2026</div>
+      <h4 class="font-bold text-white mt-1">LLM Knowledge Bases</h4>
+      <p class="text-xs text-slate-400 mt-2">"AI manages knowledge, not just code. The human is a curator, not a writer."</p>
+    </div>
+  </div>
+
+  <!-- IMPLEMENTATIONS -->
+  <h3 class="text-xl font-bold text-white mb-4">Top implementations (ranked by stars as of Apr 25)</h3>
+  <div class="card rounded-xl p-6 mb-8">
+    <div class="space-y-3">
+      <div class="flex items-start gap-4 bg-slate-900/60 rounded-lg p-4">
+        <div class="text-2xl font-bold text-amber-400 w-12">1.</div>
+        <div class="flex-1">
+          <div class="flex justify-between items-start mb-1">
+            <h4 class="text-white font-bold">SamurAIGPT/llm-wiki-agent</h4>
+            <span class="mono text-xs text-amber-400">~1,965 ⭐</span>
+          </div>
+          <p class="text-xs text-slate-400">Multi-platform — Claude Code, Codex/OpenCode, Gemini CLI via separate schemas. Detects contradictions <span class="text-white">at ingest time</span>, not in a later lint pass.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-slate-900/60 rounded-lg p-4">
+        <div class="text-2xl font-bold text-amber-400 w-12">2.</div>
+        <div class="flex-1">
+          <div class="flex justify-between items-start mb-1">
+            <h4 class="text-white font-bold">AgriciDaniel/claude-obsidian</h4>
+            <span class="mono text-xs text-amber-400">~1,480 ⭐</span>
+          </div>
+          <p class="text-xs text-slate-400">Most polished. 10 specialized skills: ingest, query, lint, /save (file current chat to vault), /autoresearch (autonomous research loop). "Hot cache" updates recent-context summary every session.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-slate-900/60 rounded-lg p-4">
+        <div class="text-2xl font-bold text-amber-400 w-12">3.</div>
+        <div class="flex-1">
+          <div class="flex justify-between items-start mb-1">
+            <h4 class="text-white font-bold">rohitg00/llm-wiki-v2</h4>
+            <span class="mono text-xs text-amber-400">~969 ⭐</span>
+          </div>
+          <p class="text-xs text-slate-400">Production-grade extension. Adds confidence scoring, lifecycle management, hybrid retrieval (BM25 + vector + graph traversal with RRF). "What we learned running this in production."</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-4 bg-slate-900/60 rounded-lg p-4">
+        <div class="text-2xl font-bold text-amber-400 w-12">4.</div>
+        <div class="flex-1">
+          <div class="flex justify-between items-start mb-1">
+            <h4 class="text-white font-bold">nvk/llm-wiki</h4>
+            <span class="mono text-xs text-amber-400">~220 ⭐</span>
+          </div>
+          <p class="text-xs text-slate-400">Different angle: <span class="text-white">/wiki:research launches 5-10 parallel agents</span>, drilling into subtopics. Dedicated /wiki:research --mode thesis collects evidence for/against a claim and returns a verdict.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-6 border-t border-slate-800">
+      <div class="mono text-xs text-amber-400 mb-2">EMERGING V2 PATTERNS</div>
+      <p class="text-sm text-slate-400">Reading across all implementations, a clear v2 of the pattern is forming. The original is minimal — flat markdown, an index, a log. Production extensions consistently add: <span class="text-white">hybrid retrieval (BM25 + vector + graph), confidence scoring, lifecycle management, and contradiction detection at ingest time.</span></p>
+    </div>
+  </div>
+
+  <!-- MEMPALACE CONTROVERSY -->
+  <h3 class="text-xl font-bold text-white mb-4">The MemPalace controversy</h3>
+  <div class="card rounded-xl p-6 mb-8 border-l-4 border-rose-500">
+    <div class="flex justify-between items-start flex-wrap gap-4 mb-4">
+      <div>
+        <div class="mono text-xs text-rose-400">MILLA JOVOVICH + BEN SIGMAN · APR 6</div>
+        <h4 class="text-2xl font-bold text-white mt-1">MemPalace</h4>
+        <p class="text-slate-400 text-sm mt-1">Method-of-loci AI memory. 5,400 → 26,900 stars in 72 hours. Now 40K+.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <div class="mono text-xs text-emerald-400 mb-2">CLAIMED</div>
+        <div class="bg-slate-900/60 rounded-lg p-4">
+          <div class="text-3xl font-bold text-emerald-400">100%</div>
+          <div class="text-xs text-slate-400 mt-1">LongMemEval (later revised to 96.6%)</div>
+          <div class="text-xs text-slate-500 mt-2 italic">"highest-scoring AI memory system ever benchmarked"</div>
+        </div>
+      </div>
+      <div>
+        <div class="mono text-xs text-rose-400 mb-2">VERIFIED BY COMMUNITY</div>
+        <div class="bg-rose-500/10 rounded-lg p-4 border border-rose-500/30">
+          <div class="text-3xl font-bold text-rose-400">ChromaDB</div>
+          <div class="text-xs text-slate-400 mt-1">default embeddings — not the palace structure</div>
+          <div class="text-xs text-slate-500 mt-2 italic">"42K stars in 7 days — bot-farm timing patterns"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-2 text-sm">
+      <div>
+        <div class="flex justify-between mb-1"><span class="text-slate-300">Vanilla ChromaDB (baseline)</span><span class="mono text-emerald-400">96.6%</span></div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-emerald-500 rounded" style="width:96.6%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1"><span class="text-slate-300">+ palace "rooms mode"</span><span class="mono text-amber-400">89.6% <span class="text-rose-400 text-xs">(-7)</span></span></div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-amber-500 rounded" style="width:89.6%"></div></div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-1"><span class="text-slate-300">+ AAAK compression</span><span class="mono text-rose-400">84.2% <span class="text-xs">(-12)</span></span></div>
+        <div class="h-3 bg-slate-800 rounded"><div class="bar h-full bg-rose-500 rounded" style="width:84.2%"></div></div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-amber-400">MILLA JOVOVICH RESPONSE · APR 13</div>
+        <p class="text-xs text-slate-300 mt-2 italic">"This is my first time doing ANYTHING LIKE THIS. I had never made a single 'git pull' or 'push' before this!" Released v3.3 with corrections.</p>
+      </div>
+      <div class="bg-slate-900/60 rounded-lg p-4">
+        <div class="mono text-xs text-amber-400">GARRY TAN ENDORSEMENT · APR 10</div>
+        <p class="text-xs text-slate-300 mt-2 italic">"GBrain is MemPalace built natively for OpenClaw/Hermes." YC president shipped his own version 4 days later — also accused of "fake benchmarks."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMORY COMPARISON TABLE -->
+  <h3 class="text-xl font-bold text-white mb-4">Memory systems compared</h3>
+  <div class="card rounded-xl p-6 overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left border-b border-slate-700">
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">SYSTEM</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">APPROACH</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">STORAGE</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">COST</th>
+          <th class="pb-3 text-slate-400 font-normal mono text-xs">VERIFIED PERF</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-800">
+        <tr>
+          <td class="py-3 text-amber-400 font-semibold">LLM Wiki pattern</td>
+          <td class="py-3 text-slate-300">LLM compiles markdown wiki</td>
+          <td class="py-3 text-slate-300 mono text-xs">flat .md + Obsidian</td>
+          <td class="py-3 text-emerald-400 mono">$0/yr</td>
+          <td class="py-3 text-slate-400">best &lt;200 articles</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-purple-400 font-semibold">MemPalace</td>
+          <td class="py-3 text-slate-300">Verbatim store, method-of-loci</td>
+          <td class="py-3 text-slate-300 mono text-xs">ChromaDB local</td>
+          <td class="py-3 text-emerald-400 mono">$0/yr</td>
+          <td class="py-3 text-amber-400">96.6% (baseline)</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-emerald-400 font-semibold">GBrain</td>
+          <td class="py-3 text-slate-300">Compiled truth + evidence trail</td>
+          <td class="py-3 text-slate-300 mono text-xs">Postgres + pgvector</td>
+          <td class="py-3 text-amber-400 mono">~$5/mo</td>
+          <td class="py-3 text-slate-400">unverified</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-sky-400 font-semibold">Mem0</td>
+          <td class="py-3 text-slate-300">LLM extracts what to remember</td>
+          <td class="py-3 text-slate-300 mono text-xs">Cloud SaaS</td>
+          <td class="py-3 text-rose-400 mono">$19-249/mo</td>
+          <td class="py-3 text-slate-300">~85%</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-rose-400 font-semibold">OpenClaw native</td>
+          <td class="py-3 text-slate-300">MEMORY.md + daily + Active Memory plugin</td>
+          <td class="py-3 text-slate-300 mono text-xs">SQLite FTS5</td>
+          <td class="py-3 text-emerald-400 mono">$0/yr</td>
+          <td class="py-3 text-slate-400">unbenchmarked</td>
+        </tr>
+        <tr>
+          <td class="py-3 text-cyan-400 font-semibold">Hermes 3-tier</td>
+          <td class="py-3 text-slate-300">Self-improving skills + nudges</td>
+          <td class="py-3 text-slate-300 mono text-xs">SQLite + skill files</td>
+          <td class="py-3 text-emerald-400 mono">$0/yr</td>
+          <td class="py-3 text-slate-400">unbenchmarked</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= SECTION 07: ENTERPRISE ================= -->
+<section id="enterprise" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">Enterprise: agents become infrastructure</h2>
+  <p class="text-slate-400 mb-8">April was the month when enterprise AI agents stopped being a story about pilots and became a story about production at scale.</p>
+
+  <!-- INFRASTRUCTURE PLAYS -->
+  <h3 class="text-xl font-bold text-white mb-4">The big infrastructure plays</h3>
+  <div class="space-y-4 mb-10">
+
+    <div class="card rounded-xl p-6 border-l-4 border-orange-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-orange-400">SALESFORCE TDX · APR 16</div>
+          <h4 class="text-xl font-bold text-white mt-1">Headless 360 — "the most ambitious shift in 27 years"</h4>
+          <p class="text-slate-300 text-sm mt-3">Every Salesforce capability — CRM, customer service, marketing, ecommerce — exposed as an API, MCP tool, or CLI command. AI agents like Claude Code, Cursor, and Codex can build and operate on the platform <span class="text-white">without opening a browser.</span></p>
+        </div>
+        <div class="text-right">
+          <div class="mono text-xs text-slate-500">SHIPPED</div>
+          <div class="text-3xl font-bold text-orange-400">100+</div>
+          <div class="text-xs text-slate-400">new tools/skills</div>
+        </div>
+      </div>
+      <div class="mt-4 grid md:grid-cols-3 gap-3 text-sm">
+        <div class="bg-slate-900/60 rounded-lg p-3"><span class="text-orange-400 mono text-xs">60+</span> new MCP tools</div>
+        <div class="bg-slate-900/60 rounded-lg p-3"><span class="text-orange-400 mono text-xs">v2.0</span> Agentforce Vibes IDE</div>
+        <div class="bg-slate-900/60 rounded-lg p-3"><span class="text-orange-400 mono text-xs">multi</span>-model support</div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-cyan-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-cyan-400">GOOGLE CLOUD NEXT · APR 22</div>
+          <h4 class="text-xl font-bold text-white mt-1">Gemini Enterprise Agent Platform</h4>
+          <p class="text-slate-300 text-sm mt-3">Vertex AI rebranded. Agentspace absorbed. The "full-stack bet" — Google argues enterprises will choose <span class="text-white">a vertically integrated stack</span> (model + runtime + silicon + governance + productivity) over assembling pieces from multiple vendors.</p>
+        </div>
+        <div class="text-right">
+          <div class="mono text-xs text-slate-500">A2A v1.0</div>
+          <div class="text-3xl font-bold text-cyan-400">150</div>
+          <div class="text-xs text-slate-400">orgs in production</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-amber-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-amber-400">AWS · GA APRIL</div>
+          <h4 class="text-xl font-bold text-white mt-1">AWS Frontier Agents — agents priced like EC2</h4>
+          <p class="text-slate-300 text-sm mt-3">AWS's shift from <span class="text-white">selling agent-building platforms (Bedrock)</span> to <span class="text-white">selling pre-built agents directly.</span> Three first-party agents now GA.</p>
+        </div>
+      </div>
+      <div class="mt-4 grid md:grid-cols-3 gap-3">
+        <div class="bg-slate-900/60 rounded-lg p-3 text-sm">
+          <div class="mono text-xs text-amber-400">SECURITY AGENT</div>
+          <div class="text-white font-bold mt-1">$50/hr</div>
+          <div class="text-xs text-slate-400 mt-1">~$1,200 full pen test (vs $15-50K traditional)</div>
+        </div>
+        <div class="bg-slate-900/60 rounded-lg p-3 text-sm">
+          <div class="mono text-xs text-amber-400">DEVOPS AGENT</div>
+          <div class="text-white font-bold mt-1">$30/hr</div>
+          <div class="text-xs text-slate-400 mt-1">WGU: MTTR 2hr → 28min (77% better)</div>
+        </div>
+        <div class="bg-slate-900/60 rounded-lg p-3 text-sm">
+          <div class="mono text-xs text-amber-400">KIRO AGENT</div>
+          <div class="text-white font-bold mt-1">FREE preview</div>
+          <div class="text-xs text-slate-400 mt-1">Virtual developer · runs in isolated sandboxes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-blue-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-blue-400">MICROSOFT · APR 3</div>
+          <h4 class="text-xl font-bold text-white mt-1">Agent Framework 1.0 GA</h4>
+          <p class="text-slate-300 text-sm mt-3">Stable APIs, long-term support, .NET + Python. Multi-agent orchestration with graph-based workflows. <span class="text-white">DevUI for visualizing execution.</span> Native MCP + A2A support. Already integrated into Foundry Agent Service.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-pink-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-pink-400">DATABRICKS · APR 15</div>
+          <h4 class="text-xl font-bold text-white mt-1">Unity AI Gateway</h4>
+          <p class="text-slate-300 text-sm mt-3">Extends Unity Catalog governance to agentic AI. <span class="text-white">Fine-grained MCP governance with on-behalf-of access.</span> End-to-end observability across LLM and tool calls. Unified API with built-in fallbacks across Anthropic, OpenAI, Google, OSS.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ENTERPRISE STATS -->
+  <h3 class="text-xl font-bold text-white mb-4">The numbers behind enterprise adoption</h3>
+  <div class="card rounded-xl p-8 mb-8">
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="text-center">
+        <div class="text-4xl font-bold text-emerald-400">65%</div>
+        <div class="text-sm text-slate-400 mt-2">orgs experimenting with AI agents</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-amber-400">25%</div>
+        <div class="text-sm text-slate-400 mt-2">scaling agents to production</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-rose-400">2%</div>
+        <div class="text-sm text-slate-400 mt-2">deployed agents at full scale (McKinsey)</div>
+      </div>
+      <div class="text-center">
+        <div class="text-4xl font-bold text-indigo-400">97M</div>
+        <div class="text-sm text-slate-400 mt-2">monthly MCP SDK downloads</div>
+      </div>
+    </div>
+    <p class="text-slate-400 text-sm mt-8">The gap is real: <span class="text-white">enterprise agents are infrastructure now</span>, but only ~2% of organizations have agents running at scale. The bottleneck isn't capability — it's the trust, governance, and operational discipline to put autonomous systems in production.</p>
+  </div>
+
+  <!-- A2A PROTOCOL -->
+  <div class="card rounded-xl p-6">
+    <div class="mono text-xs text-cyan-400">A2A · ONE-YEAR ANNIVERSARY · APR 9</div>
+    <h3 class="text-xl font-bold text-white mt-1 mb-4">Agent-to-Agent protocol becomes the default coordination bus</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <h4 class="text-sm font-bold text-cyan-400 mb-2">v1.0 Released</h4>
+        <ul class="space-y-1.5 text-sm text-slate-300">
+          <li><span class="text-cyan-400">▸</span> Signed Agent Cards (cryptographic identity verification)</li>
+          <li><span class="text-cyan-400">▸</span> AP2 extension for payments and commerce transactions</li>
+          <li><span class="text-cyan-400">▸</span> IBM's ACP merged into A2A in 2025</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold text-cyan-400 mb-2">Native Support In</h4>
+        <ul class="space-y-1.5 text-sm text-slate-300">
+          <li><span class="text-cyan-400">▸</span> Google ADK, LangGraph, CrewAI</li>
+          <li><span class="text-cyan-400">▸</span> LlamaIndex Agents, Semantic Kernel, AutoGen</li>
+          <li><span class="text-cyan-400">▸</span> Microsoft, AWS, Salesforce, SAP, ServiceNow</li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-sm text-slate-400 mt-6">"The horizontal coordination bus." A Salesforce agent on Agentforce can hand off a task to a Google agent on Vertex AI, which queries a ServiceNow agent — none of the three needing to understand each other's internal architecture.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 08: THE LEAK ================= -->
+<section id="leak" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">The Claude Code leak — what April revealed</h2>
+  <p class="text-slate-400 mb-8">March 31's source code dump kept giving back into April. Features that started as leaked strings shipped as products. Anthropic's roadmap leaked in regex.</p>
+
+  <!-- THE STATS -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+    <div class="card rounded-xl p-4">
+      <div class="text-3xl font-bold text-rose-400">512K</div>
+      <div class="text-xs text-slate-400 mt-1">lines TypeScript exposed</div>
+    </div>
+    <div class="card rounded-xl p-4">
+      <div class="text-3xl font-bold text-rose-400">44</div>
+      <div class="text-xs text-slate-400 mt-1">hidden feature flags</div>
+    </div>
+    <div class="card rounded-xl p-4">
+      <div class="text-3xl font-bold text-rose-400">41,500</div>
+      <div class="text-xs text-slate-400 mt-1">forks before fix</div>
+    </div>
+    <div class="card rounded-xl p-4">
+      <div class="text-3xl font-bold text-emerald-400">$2.5B</div>
+      <div class="text-xs text-slate-400 mt-1">Claude Code ARR confirmed</div>
+    </div>
+  </div>
+
+  <!-- WHAT BECAME REAL -->
+  <h3 class="text-xl font-bold text-white mb-4">From leaked strings to shipped features</h3>
+  <div class="space-y-4 mb-10">
+
+    <div class="card rounded-xl p-6 border-l-4 border-amber-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-amber-400">LEAK · MAR 31  →  PARTIAL SHIP · APR</div>
+          <h4 class="text-xl font-bold text-white mt-1">⏰ KAIROS — the always-on daemon</h4>
+          <p class="text-slate-300 text-sm mt-3">150+ references in leaked source. Auto-Dream four-phase memory consolidation runs while you're idle: <span class="mono text-amber-400">orient → gather → consolidate → file</span>. Daily append-only logs at <span class="mono text-amber-400">~/.claude/.../logs/YYYY/MM/DD.md</span>.</p>
+          <p class="text-slate-400 text-sm mt-2">Status April 25: feature-gated behind <span class="mono text-amber-400">tengu_kairos</span>, partial ship via Ultraplan cloud planning. Full launch projected May 2026.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-purple-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-purple-400">LEAK · MAR 31  →  SHIPPED · APR 1</div>
+          <h4 class="text-xl font-bold text-white mt-1">🦆 BUDDY — the Tamagotchi pet</h4>
+          <p class="text-slate-300 text-sm mt-3">18 species (duck, goose, dragon, octopus, capybara, ghost, axolotl...) with stats: Debugging, Patience, Chaos, Wisdom, Snark. <span class="text-white">Shipped as /buddy on April 1</span> — what looked like an April Fools joke was real code from the leak.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-emerald-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-emerald-400">LEAK · MAR 31  →  SHIPPED · APR 6-10</div>
+          <h4 class="text-xl font-bold text-white mt-1">🧠 ULTRAPLAN — cloud planning offload</h4>
+          <p class="text-slate-300 text-sm mt-3">Offloads up to 30 minutes of planning to Opus 4.6. Now in early preview as <span class="text-white">"draft a plan in the cloud, review and comment in a web editor, run remote or pull back local."</span> First run auto-creates a cloud environment.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-rose-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-rose-400">LEAK · MAR 31  →  STILL HIDDEN</div>
+          <h4 class="text-xl font-bold text-white mt-1">🎭 Anti-distillation fake tools</h4>
+          <p class="text-slate-300 text-sm mt-3">When <span class="mono text-rose-400">ANTI_DISTILLATION_CC</span> flag is set, the API silently injects decoy tool definitions. Purpose: pollute training data if competitors record API traffic. Alex Kim noted: "A MITM proxy that strips the anti_distillation field would bypass it entirely."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card rounded-xl p-6 border-l-4 border-sky-500">
+      <div class="flex items-start justify-between flex-wrap gap-4">
+        <div class="flex-1">
+          <div class="mono text-xs text-sky-400">LEAK · MAR 31  →  IRONIC</div>
+          <h4 class="text-xl font-bold text-white mt-1">🕵️ Undercover mode</h4>
+          <p class="text-slate-300 text-sm mt-3">When <span class="mono text-sky-400">USER_TYPE === 'ant'</span> in public repos: <span class="text-white italic">"You are operating UNDERCOVER... NEVER mention you are an AI... Do not blow your cover."</span> Strips Co-Authored-By lines from git output. <span class="text-rose-400 font-semibold">Built to prevent leaks. Exposed by the leak.</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- POSTMORTEM -->
+  <div class="card rounded-xl p-6 border-l-4 border-emerald-500">
+    <div class="mono text-xs text-emerald-400">ANTHROPIC POSTMORTEM · APR 20</div>
+    <h3 class="text-xl font-bold text-white mt-1 mb-4">Three quality regressions, all fixed</h3>
+    <p class="text-slate-300 text-sm mb-4">Over March, users reported Claude responses had worsened. Anthropic traced reports to three separate changes affecting Claude Code, Agent SDK, and Cowork. <span class="text-white">"The API was not impacted."</span> All three resolved by v2.1.116 on April 20.</p>
+    <div class="grid md:grid-cols-3 gap-3 text-sm">
+      <div class="bg-slate-900/60 rounded p-3">
+        <div class="mono text-xs text-emerald-400">ISSUE 1 · MAR 4</div>
+        <p class="text-xs text-slate-400 mt-1">Claude Code default reasoning effort changed from high to medium to fix latency that made the UI appear frozen. <span class="text-amber-400">Side effect: quality regression.</span></p>
+      </div>
+      <div class="bg-slate-900/60 rounded p-3">
+        <div class="mono text-xs text-emerald-400">ISSUE 2</div>
+        <p class="text-xs text-slate-400 mt-1">Agent SDK harness drift. Stale assumptions about model capability after Sonnet 4.6 / Opus 4.6 release.</p>
+      </div>
+      <div class="bg-slate-900/60 rounded p-3">
+        <div class="mono text-xs text-emerald-400">ISSUE 3</div>
+        <p class="text-xs text-slate-400 mt-1">Cowork-specific routing. Different from API behavior. Fixed.</p>
+      </div>
+    </div>
+    <p class="text-slate-400 text-sm mt-6"><span class="text-white">Trust action:</span> Usage limits reset for all subscribers. Created @ClaudeDevs on X for product decision context. Public commitment to communicate via centralized GitHub threads.</p>
+  </div>
+</section>
+
+<!-- ================= SECTION 09: SECURITY ================= -->
+<section id="security" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">Security: the bill came due</h2>
+  <p class="text-slate-400 mb-8">April was a brutal month for AI agent security. Mythos's capabilities, exposed instances, supply-chain attacks, and the "lethal trifecta" all collided.</p>
+
+  <!-- THE BIG PICTURE -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+    <div class="card rounded-xl p-4 border-l-4 border-rose-500">
+      <div class="text-3xl font-bold text-rose-400">28,663</div>
+      <div class="text-xs text-slate-400 mt-1">exposed OpenClaw control panels (Apr 21)</div>
+    </div>
+    <div class="card rounded-xl p-4 border-l-4 border-amber-500">
+      <div class="text-3xl font-bold text-amber-400">26%</div>
+      <div class="text-xs text-slate-400 mt-1">audited skills with ≥1 vulnerability</div>
+    </div>
+    <div class="card rounded-xl p-4 border-l-4 border-rose-500">
+      <div class="text-3xl font-bold text-rose-400">73%</div>
+      <div class="text-xs text-slate-400 mt-1">expert-level CTF success by Mythos</div>
+    </div>
+    <div class="card rounded-xl p-4 border-l-4 border-amber-500">
+      <div class="text-3xl font-bold text-amber-400">45%</div>
+      <div class="text-xs text-slate-400 mt-1">of vulns unpatched after 12 months</div>
+    </div>
+  </div>
+
+  <!-- MYTHOS WAKE-UP CALL -->
+  <div class="card rounded-xl p-8 mb-10">
+    <div class="mono text-xs text-rose-400 mb-2">CLAUDE MYTHOS · BAIN ANALYSIS</div>
+    <h3 class="text-2xl font-bold text-white mb-4">The cyber wake-up call</h3>
+    <blockquote class="text-slate-300 border-l-4 border-rose-500 pl-4 italic mb-6">
+      "Claude Mythos is a signal, not the threat itself. Multiple frontier AI models already enable sophisticated cyberattacks. The era of AI-powered attacks at scale has arrived. AI does not create new vulnerabilities — it exposes existing ones."
+    </blockquote>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <h4 class="font-bold text-white mb-3">Mythos's four key cyber capabilities</h4>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><span class="text-rose-400 mono text-xs">▸</span> Understand code intent + find hidden flaws via simple instruction</li>
+          <li><span class="text-rose-400 mono text-xs">▸</span> Chain multiple small vulnerabilities into devastating attacks</li>
+          <li><span class="text-rose-400 mono text-xs">▸</span> Reconstruct source from deployed software to find exploitable weaknesses</li>
+          <li><span class="text-rose-400 mono text-xs">▸</span> Once inside a network, auto-map systems, move laterally, build custom tools to extract data — within hours</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-3">What Mythos actually found</h4>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li><span class="text-amber-400 mono text-xs">▸</span> OpenBSD's 27-year TCP SACK bug</li>
+          <li><span class="text-amber-400 mono text-xs">▸</span> FFmpeg's 16-year H.264 flaw</li>
+          <li><span class="text-amber-400 mono text-xs">▸</span> FreeBSD's 17-year NFS zero-day</li>
+          <li><span class="text-amber-400 mono text-xs">▸</span> "Thousands" of high-severity vulns in every major OS + browser</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4">
+        <div class="mono text-xs text-rose-300 font-bold">UK AISI EVAL</div>
+        <p class="text-sm text-slate-300 mt-2">First AI model able to complete the institute's full-network attack simulation — multi-stage attacks on vulnerable networks taking human professionals days of work, executed autonomously.</p>
+      </div>
+      <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+        <div class="mono text-xs text-amber-300 font-bold">CAVEAT FROM AISI</div>
+        <p class="text-sm text-slate-300 mt-2">Test environments lacked active defenders, defensive tooling, and security alerts. "Cannot say for sure whether Mythos would attack well-defended systems."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE LETHAL TRIFECTA -->
+  <div class="card rounded-xl p-8 mb-10">
+    <div class="mono text-xs text-rose-400 mb-2">1PASSWORD SECURITY RESEARCH</div>
+    <h3 class="text-2xl font-bold text-white mb-6">The "Lethal Trifecta" — why personal agents are vulnerable</h3>
+    <p class="text-slate-400 text-sm mb-6">Three conditions that, when combined, make any agent framework vulnerable to remote compromise. OpenClaw + Hermes meet all three by default.</p>
+
+    <svg viewBox="0 0 800 300" class="w-full">
+      <!-- Three overlapping circles -->
+      <g opacity="0.6">
+        <circle cx="280" cy="150" r="110" fill="#ef4444" opacity="0.3" stroke="#ef4444" stroke-width="2"/>
+        <circle cx="400" cy="150" r="110" fill="#f97316" opacity="0.3" stroke="#f97316" stroke-width="2"/>
+        <circle cx="520" cy="150" r="110" fill="#a855f7" opacity="0.3" stroke="#a855f7" stroke-width="2"/>
+      </g>
+      <text x="200" y="80" text-anchor="middle" fill="#ef4444" font-size="14" font-weight="bold">Private data</text>
+      <text x="200" y="98" text-anchor="middle" fill="#fca5a5" font-size="11">access</text>
+      <text x="400" y="50" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold">Untrusted content</text>
+      <text x="400" y="68" text-anchor="middle" fill="#fdba74" font-size="11">exposure</text>
+      <text x="600" y="80" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">Persistent memory</text>
+      <text x="600" y="98" text-anchor="middle" fill="#d8b4fe" font-size="11">writes</text>
+      <text x="400" y="155" text-anchor="middle" fill="white" font-size="16" font-weight="bold">⚠ REMOTE</text>
+      <text x="400" y="175" text-anchor="middle" fill="white" font-size="16" font-weight="bold">COMPROMISE</text>
+    </svg>
+
+    <p class="text-slate-400 text-sm mt-6">An attacker injects a prompt via untrusted content (e.g., a web page the agent reads), uses private data access (your emails, files) to perform harmful actions, then writes persistent memory to establish long-term control. <span class="text-white">Prompt injection remains "an unsolved industry-wide problem."</span></p>
+  </div>
+
+  <!-- INCIDENT TIMELINE -->
+  <h3 class="text-xl font-bold text-white mb-4">April security incidents</h3>
+  <div class="space-y-3 mb-10">
+    <div class="card rounded-xl p-4 flex items-start gap-4">
+      <span class="pill bg-rose-500/20 text-rose-300 mono">APR 4</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold">CVE-2026-33579 disclosed</h4>
+        <p class="text-xs text-slate-400 mt-1">HIGH-severity privilege escalation in OpenClaw &lt; 2026.3.28. The /pair approve command path failed to forward caller security scopes — any attacker with channel access could escalate. CVSS 8.6.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-4 flex items-start gap-4">
+      <span class="pill bg-rose-500/20 text-rose-300 mono">APR 4</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold">North Korean axios npm package compromise</h4>
+        <p class="text-xs text-slate-400 mt-1">A state actor compromised axios (70M+ weekly downloads). Every JS developer forced to audit their dependency tree. Foundation of agent ecosystems hit at the supply chain level.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-4 flex items-start gap-4">
+      <span class="pill bg-amber-500/20 text-amber-300 mono">APR 11</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold">Skill audit finds 16.4% malicious rate</h4>
+        <p class="text-xs text-slate-400 mt-1">Independent researcher scanned all 14,704 ClawHub skills. AI deep audit found <span class="text-rose-400">16.4% malicious</span> vs 6.6% by surface heuristics — surface scans miss roughly 60% of threats.</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-4 flex items-start gap-4">
+      <span class="pill bg-rose-500/20 text-rose-300 mono">APR 21</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold">28,663 OpenClaw instances exposed</h4>
+        <p class="text-xs text-slate-400 mt-1">Researchers found tens of thousands of OpenClaw control panels with no authentication. "When an AI agent can do anything on your computer, hackers who take control can do anything too."</p>
+      </div>
+    </div>
+    <div class="card rounded-xl p-4 flex items-start gap-4">
+      <span class="pill bg-rose-500/20 text-rose-300 mono">APR 22</span>
+      <div class="flex-1">
+        <h4 class="text-white font-semibold">Mythos accessed by unauthorized party</h4>
+        <p class="text-xs text-slate-400 mt-1">Anthropic confirmed investigating "unauthorized access" through a third-party vendor portal. The model restricted to ~40 vetted Glasswing partners got accessed by people Anthropic didn't approve. The supposedly safest model in the world.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAIN'S RECOMMENDATION -->
+  <div class="card rounded-xl p-6">
+    <div class="mono text-xs text-amber-400">BAIN &amp; CO. RECOMMENDATION · APR 21</div>
+    <h3 class="text-xl font-bold text-white mt-1 mb-4">"Many organizations need to 2× cybersecurity spending"</h3>
+    <p class="text-slate-300 text-sm mb-4">Most companies have significantly underinvested. Boards repeatedly deprioritized it. AI-enabled attacks will rapidly expose these weaknesses. <span class="text-white">Planned 10% annual increases fall far short.</span></p>
+    <div class="grid md:grid-cols-3 gap-3 text-sm">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded p-3">
+        <div class="mono text-xs text-emerald-400">PRIORITY 1</div>
+        <p class="mt-1 text-slate-200">Strengthen fundamentals — patching, access controls, logging, endpoint detection</p>
+      </div>
+      <div class="bg-amber-500/10 border border-amber-500/30 rounded p-3">
+        <div class="mono text-xs text-amber-400">PRIORITY 2</div>
+        <p class="mt-1 text-slate-200">Quantum-readiness by 2030. Most organizations haven't started.</p>
+      </div>
+      <div class="bg-sky-500/10 border border-sky-500/30 rounded p-3">
+        <div class="mono text-xs text-sky-400">PRIORITY 3</div>
+        <p class="mt-1 text-slate-200">Use AI for defense too — Mythos-class capabilities help defenders, not just attackers</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 10: SETUP GUIDE ================= -->
+<section id="setup" class="section">
+  <h2 class="text-3xl font-bold text-white mb-2">The April 2026 production setup</h2>
+  <p class="text-slate-400 mb-8">For someone standing up a multi-agent system today, here's what the evidence supports. Updated from earlier guides to reflect the post-Mythos, post-GPT-5.5, post-Cursor-3.2 reality.</p>
+
+  <!-- THE STACK -->
+  <h3 class="text-xl font-bold text-white mb-4">The recommended stack, top to bottom</h3>
+  <div class="card rounded-xl p-8 mb-10">
+    <div class="space-y-3">
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-rose-500">
+        <div class="mono text-xs text-rose-400 w-32">ORCHESTRATOR</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">OpenClaw 2026.4.22 🦞</div>
+          <div class="text-xs text-slate-400">Gateway + Brain + Body. SOUL.md / SKILL.md / MEMORY.md. Active Memory plugin. 25+ channels.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">planning · coordination</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-sky-500">
+        <div class="mono text-xs text-sky-400 w-32">EXEC WORKERS</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">Hermes Agent v0.10 (3-5 specialist instances)</div>
+          <div class="text-xs text-slate-400">Self-improving skills per domain. Tool Gateway via Nous Portal subscription. ACP federation with OpenClaw.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">execution · learning</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-orange-500">
+        <div class="mono text-xs text-orange-400 w-32">CODE MODEL</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">GPT-5.5 (Codex CLI) for daily, Opus 4.7 (Claude Code) for hard problems</div>
+          <div class="text-xs text-slate-400">Codex 4× more token-efficient. Opus xhigh effort for complex reasoning. Both via OpenClaw provider routing.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">cost-aware routing</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-amber-500">
+        <div class="mono text-xs text-amber-400 w-32">KNOWLEDGE</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">SamurAIGPT/llm-wiki-agent + Obsidian vault</div>
+          <div class="text-xs text-slate-400">Karpathy's pattern. Detects contradictions at ingest. Works with Claude Code, Codex, Gemini CLI.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">compile · interlink</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-emerald-500">
+        <div class="mono text-xs text-emerald-400 w-32">MEMORY</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">Hermes 3-tier + LLM Wiki for shared knowledge</div>
+          <div class="text-xs text-slate-400">Skip MemPalace and GBrain until benchmarks settle. Hermes' agent-curated memory is verified-working.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">verified vs marketing</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-green-500">
+        <div class="mono text-xs text-green-400 w-32">PROCESS MGR</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">botctl with TUI dashboard + web UI</div>
+          <div class="text-xs text-slate-400">BOT.md files define personas. Compatible with all major agents.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">supervise · restart</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-pink-500">
+        <div class="mono text-xs text-pink-400 w-32">SANDBOX</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">Twill.ai for cloud Claude Code/Codex tasks</div>
+          <div class="text-xs text-slate-400">6-step pipeline with mandatory human approval before code runs.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">isolate · approve</div>
+      </div>
+
+      <div class="flex items-center gap-4 p-4 bg-slate-900/60 rounded-lg border-l-4 border-purple-500">
+        <div class="mono text-xs text-purple-400 w-32">LOCAL MODELS</div>
+        <div class="flex-1">
+          <div class="text-white font-bold">Ollama + Qwen3.6-Plus or Kimi K2.5 (32B active)</div>
+          <div class="text-xs text-slate-400">Free on OpenRouter. 24GB+ VRAM. Routes routine tasks off the cloud.</div>
+        </div>
+        <div class="mono text-xs text-slate-500 hidden md:block">cheap · private</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUDGET TIERS -->
+  <h3 class="text-xl font-bold text-white mb-4">Updated budget tiers</h3>
+  <div class="grid md:grid-cols-3 gap-5 mb-10">
+    <div class="card rounded-xl p-6 border-t-4 border-emerald-500">
+      <div class="mono text-xs text-emerald-400">$0/MONTH</div>
+      <div class="text-4xl font-bold text-white mt-2">Local-first</div>
+      <ul class="space-y-2 text-sm text-slate-300 mt-4">
+        <li><span class="text-emerald-400">✓</span> Ollama + Qwen3.6-Plus locally</li>
+        <li><span class="text-emerald-400">✓</span> Gemini free tier (1K req/day)</li>
+        <li><span class="text-emerald-400">✓</span> OpenRouter free tier (Qwen, MiMo)</li>
+        <li><span class="text-emerald-400">✓</span> OpenClaw self-hosted</li>
+      </ul>
+    </div>
+    <div class="card rounded-xl p-6 border-t-4 border-amber-500">
+      <div class="mono text-xs text-amber-400">$1-3/DAY</div>
+      <div class="text-4xl font-bold text-white mt-2">Optimized</div>
+      <ul class="space-y-2 text-sm text-slate-300 mt-4">
+        <li><span class="text-amber-400">▸</span> Gemini Flash-Lite for orchestration ($0.25/MTok in)</li>
+        <li><span class="text-amber-400">▸</span> Composer 2 for IDE work ($0.50/$2.50)</li>
+        <li><span class="text-amber-400">▸</span> Sonnet 4.6 for execution ($3/$15)</li>
+        <li><span class="text-amber-400">▸</span> Opus 4.7 only for escalation</li>
+      </ul>
+      <div class="text-xs text-slate-500 mt-3">Verified: r/openclaw users got $40/mo → $2/mo</div>
+    </div>
+    <div class="card rounded-xl p-6 border-t-4 border-rose-500">
+      <div class="mono text-xs text-rose-400">$400+/MO</div>
+      <div class="text-4xl font-bold text-white mt-2">Power user</div>
+      <ul class="space-y-2 text-sm text-slate-300 mt-4">
+        <li><span class="text-rose-400">▸</span> Claude Max plan ($200/mo)</li>
+        <li><span class="text-rose-400">▸</span> ChatGPT Pro for Codex GPT-5.5 ($200)</li>
+        <li><span class="text-rose-400">▸</span> Cursor 3 Max ($200/mo background agents)</li>
+        <li><span class="text-rose-400">▸</span> Twill credits for sandboxed work</li>
+      </ul>
+      <div class="text-xs text-slate-500 mt-3">Multi-agent parallelism. 8+ workers.</div>
+    </div>
+  </div>
+
+  <!-- WHAT TO AVOID -->
+  <div class="card rounded-xl p-6 border-t-2 border-rose-500 mb-10">
+    <h3 class="text-xl font-bold text-rose-400 mb-4">What to avoid (April 2026 edition)</h3>
+    <div class="grid md:grid-cols-2 gap-3 text-sm">
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Running OpenClaw without authentication on the gateway port (28K instances already compromised)</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Trusting MemPalace or GBrain benchmark numbers — wait for independent eval</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Installing skills without VirusTotal scan or Skill Vetter audit (16.4% are malicious)</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Letting Hermes self-improve without human review — self-eval almost always passes</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Pinning to Opus 4 / Sonnet 4 — retiring June 15</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Stacking 3+ overlapping subscriptions when smart routing covers it</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Running 10+ agents before monitoring is in place (fleet-scale failures compound)</span></div>
+      <div class="flex gap-2"><span class="text-rose-400 mono">×</span> <span class="text-slate-300">Skipping the LLM Wiki lint step — hallucinations bake in as "facts"</span></div>
+    </div>
+  </div>
+
+  <!-- FINAL TAKEAWAYS -->
+  <div class="card rounded-xl p-8 text-center" style="background:radial-gradient(ellipse at center, rgba(99,102,241,0.1), transparent);">
+    <div class="mono text-xs text-indigo-400 mb-3">THE BOTTOM LINE · APRIL 25, 2026</div>
+    <h3 class="text-2xl font-bold text-white mb-6">Three things to internalize</h3>
+    <div class="grid md:grid-cols-3 gap-6 text-left">
+      <div>
+        <div class="text-3xl text-orange-400 mb-2">01</div>
+        <h4 class="font-bold text-white mb-1">Models ship like product features</h4>
+        <p class="text-xs text-slate-400">6-week release cadences. Plan stack updates monthly, not quarterly. Pin model versions; don't follow rolling aliases in production.</p>
+      </div>
+      <div>
+        <div class="text-3xl text-rose-400 mb-2">02</div>
+        <h4 class="font-bold text-white mb-1">Agents are now infrastructure</h4>
+        <p class="text-xs text-slate-400">Treat them like databases or queues — with identity, audit, governance, and SLOs. Salesforce, AWS, Microsoft, and Google have shipped that plumbing. Use it.</p>
+      </div>
+      <div>
+        <div class="text-3xl text-emerald-400 mb-2">03</div>
+        <h4 class="font-bold text-white mb-1">Trust is the binding constraint</h4>
+        <p class="text-xs text-slate-400">84% use AI daily, 29% trust it in production. The gap is verification, monitoring, and reproducibility. Build that layer first; capability is no longer the bottleneck.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-indigo-500/20 mt-16 py-10 grid-bg">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <div class="mono text-xs text-slate-500">Research compiled Apr 25, 2026 · Comprehensive April 2026 roundup · 120+ sources</div>
+    <div class="mono text-xs text-slate-600 mt-2">Mythos · GPT-5.5 · Opus 4.7 · Cursor 3.2 · Hermes 113K · OpenClaw 4.22 · Salesforce Headless 360 · Karpathy LLM Wiki · MemPalace · GBrain · Project Glasswing · AWS Frontier Agents · Microsoft Agent Framework 1.0 · Composer 2 · Codex CLI · Gemini CLI · A2A v1.0</div>
+    <div class="mono text-xs text-slate-700 mt-4">Claude Opus 4.7 · Live web research · Two-pass investigation</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('[data-tab]').forEach(b => {
+        b.classList.remove('tab-active');
+        b.classList.add('hover:bg-slate-800');
+      });
+      btn.classList.add('tab-active');
+      btn.classList.remove('hover:bg-slate-800');
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
