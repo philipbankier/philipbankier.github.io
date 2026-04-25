@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0B0A; --surface: #161514; --surfaceHi: #1E1C1A;
+    --border: #2A2725; --borderHi: #3D3833;
+    --text: #E8E0D4; --textMd: #B5A999; --textDim: #7A6F63;
+    --accent: #E8652B; --accentDim: #C4501E;
+    --green: #4A9E6D; --yellow: #C4A530; --blue: #4A7FB5;
+    --red: #C44B3E; --purple: #8B6BB5;
+    --display: 'Instrument Serif', Georgia, serif;
+    --body: 'DM Sans', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--body); }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 40px 48px 80px; }
+  .mono { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .disp { font-family: var(--display); line-height: 1.1; color: var(--text); font-weight: 400; }
+  .prose { font-family: var(--body); font-size: 14px; line-height: 1.55; color: var(--textMd); max-width: 800px; }
+  .prose p { margin-bottom: 12px; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose h3 { font-family: var(--display); font-size: 22px; color: var(--text); font-weight: 400; font-style: italic; margin: 28px 0 12px; }
+
+  /* Header */
+  header { border-bottom: 1px solid var(--border); padding-bottom: 28px; margin-bottom: 40px; }
+  header .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+  header h1 { font-family: var(--display); font-size: 64px; line-height: 1.05; letter-spacing: -0.03em; max-width: 900px; }
+  header h1 em { color: var(--accent); font-style: italic; }
+  header .sub { font-family: var(--body); font-size: 17px; line-height: 1.55; color: var(--textMd); max-width: 700px; margin-top: 16px; }
+
+  /* Section labels */
+  .slabel { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .slabel.red { color: var(--red); }
+  .slabel.green { color: var(--green); }
+  section { margin-bottom: 56px; }
+  section h2 { font-family: var(--display); font-size: 32px; line-height: 1.1; margin-bottom: 8px; }
+  section h2 em { font-style: italic; }
+  section .desc { font-family: var(--body); font-size: 13px; line-height: 1.55; color: var(--textMd); max-width: 640px; margin-bottom: 24px; }
+
+  /* Chart container */
+  .chart-box { background: var(--surface); border: 1px solid var(--border); padding: 24px 20px 16px; border-radius: 6px; }
+
+  /* Scatter dots */
+  .dot { cursor: pointer; transition: opacity 0.15s; }
+  .dot circle.main { transition: r 0.15s; }
+  .dot .ring { opacity: 0; transition: opacity 0.15s; }
+  .dot .label { opacity: 0.6; transition: opacity 0.15s; font-family: var(--body); font-size: 9px; }
+  .dot:hover circle.main { r: 7; }
+  .dot:hover .ring { opacity: 0.5; }
+  .dot:hover .label { opacity: 1; }
+
+  /* Legend */
+  .legend { display: flex; gap: 16px; justify-content: center; margin-top: 8px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--textMd); }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Insight cards */
+  .insights { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .insight { background: var(--surfaceHi); border: 1px solid var(--border); padding: 16px 18px; border-radius: 4px; }
+  .insight .title { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .insight .body { font-family: var(--body); font-size: 12px; line-height: 1.55; color: var(--textMd); }
+
+  /* Failures grid */
+  .fail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .fail-item { background: var(--surface); padding: 14px 16px; }
+  .fail-item .what { font-family: var(--body); font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+  .fail-item .why { font-family: var(--body); font-size: 11px; color: var(--textDim); line-height: 1.5; }
+  .fail-item .src { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); margin-top: 6px; }
+
+  /* Experiment cards */
+  .exp-card { display: grid; grid-template-columns: 60px 1fr 200px; gap: 20px; background: var(--surface); border: 1px solid var(--border); padding: 20px 24px; border-radius: 4px; align-items: start; margin-bottom: 12px; }
+  .exp-num { font-family: var(--display); font-size: 48px; color: var(--accent); font-style: italic; }
+  .exp-effort { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--textDim); margin-top: 4px; }
+  .exp-title { font-family: var(--body); font-size: 16px; color: var(--text); font-weight: 600; margin-bottom: 6px; }
+  .exp-desc { font-family: var(--body); font-size: 12px; line-height: 1.55; color: var(--textMd); }
+  .exp-meta { font-family: var(--mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--textDim); margin-bottom: 4px; }
+  .exp-meta span { color: var(--textMd); }
+  .tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; display: inline-block; margin-right: 6px; margin-top: 6px; }
+  .tag.green { color: var(--green); border: 1px solid rgba(74,158,109,0.25); }
+  .tag.yellow { color: var(--yellow); border: 1px solid rgba(196,165,48,0.25); }
+
+  /* Thesis */
+  .thesis { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .thesis h2 { font-size: 28px; margin-bottom: 16px; }
+  .thesis h2 em { color: var(--accent); }
+  .thesis p { font-size: 14px; line-height: 1.55; color: var(--textMd); margin-top: 12px; }
+  .venn-box { background: var(--surfaceHi); border: 1px solid var(--border); padding: 24px; border-radius: 6px; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  /* Deep dive */
+  .dd-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; color: var(--text); transition: border-color 0.2s; text-align: left; }
+  .dd-toggle:hover { border-color: rgba(232,101,43,0.37); }
+  .dd-arrow { font-family: var(--mono); font-size: 13px; color: var(--accent); width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(232,101,43,0.25); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; flex-shrink: 0; }
+  .dd-body { background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; padding: 8px 28px 28px; display: none; }
+  .dd-body.open { display: block; }
+  .dd-toggle.open { border-radius: 6px 6px 0 0; }
+  .dd-toggle.open .dd-arrow { transform: rotate(180deg); }
+
+  .sb { border-bottom: 1px solid var(--border); }
+  .sb-toggle { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; background: none; border: none; cursor: pointer; color: var(--text); font-family: var(--body); font-size: 15px; font-weight: 600; text-align: left; }
+  .sb-icon { font-family: var(--mono); font-size: 11px; color: var(--accent); transition: transform 0.2s; }
+  .sb-toggle.open .sb-icon { transform: rotate(45deg); }
+  .sb-content { padding-bottom: 24px; display: none; }
+  .sb-content.open { display: block; }
+
+  @media (max-width: 800px) {
+    .wrap { padding: 24px 20px 60px; }
+    header h1 { font-size: 36px; }
+    .insights { grid-template-columns: 1fr; }
+    .fail-grid { grid-template-columns: 1fr; }
+    .exp-card { grid-template-columns: 40px 1fr; }
+    .exp-card > div:last-child { grid-column: 1 / -1; }
+    .thesis { grid-template-columns: 1fr; }
+    section h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="top">
+      <span class="mono" style="color:var(--textMd)">Research Synthesis · April 2026</span>
+      <span class="mono" style="color:var(--textDim)">Beyond System Prompts, Before LoRAs</span>
+    </div>
+    <h1>The Landscape of <em>Taste Transfer</em></h1>
+    <p class="sub">A map of every approach that exists — or has been tried and failed — for packaging a non-technical expert's creative voice into an LLM, from system prompts to activation steering. What works, what doesn't, and what to try next.</p>
+  </header>
+
+  <!-- §01 LANDSCAPE -->
+  <section>
+    <div class="slabel">01 · THE LANDSCAPE</div>
+    <h2>Every technique, plotted by <em>what it does</em> vs. <em>who can use it</em></h2>
+    <p class="desc">Hover over any dot. The gap in the upper-right quadrant — high effectiveness, high accessibility — is the product that doesn't exist yet.</p>
+    <div class="chart-box">
+      <svg id="scatter" viewBox="0 0 680 400" style="width:100%;height:auto"></svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Shipping product</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Open-source / prototype</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Research paper</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Theoretical best</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §02 KEY FINDINGS -->
+  <section>
+    <div class="slabel">02 · KEY FINDINGS FROM RESEARCH</div>
+    <div class="insights">
+      <div class="insight"><div class="title">◆ ACTIVATION STEERING IS UNDERRATED</div><div class="body">Extract a 'voice vector' from 50-100 paired examples. No training, no weights changed. Zhang et al. (March 2025): 8% quality gain over RAG with a few-KB file. Works on any open model.</div></div>
+      <div class="insight"><div class="title">◆ ACE SOLVES THE FROZEN-TASTE PROBLEM</div><div class="body">Stanford's ACE treats context as an evolving playbook with structured delta updates. +10.6% on agents. Prevents context collapse that kills naive self-improving prompts. Open-source.</div></div>
+      <div class="insight"><div class="title">◆ SLEEP-TIME COMPUTE ENABLES OFFLINE LEARNING</div><div class="body">Letta's April 2025 paper: agents that reflect during downtime, consolidate memories, and precompute insights. 18% accuracy gain, 2.5× cost reduction. Like human sleep consolidation.</div></div>
+      <div class="insight"><div class="title">◆ PERSONA VECTORS ARE AUTOMATED</div><div class="body">Anthropic (July 2025): give a natural-language trait description → get a steering vector automatically. Correlations as high as 0.97 between vector activation and trait expression. Code is open.</div></div>
+      <div class="insight"><div class="title">◆ GEPA > HAND-WRITTEN PROMPTS, ALWAYS</div><div class="body">Genetic-Pareto prompt evolution (DSPy, July 2025) outperforms reinforcement learning on multiple benchmarks. Give it 30 examples + a metric → get a better prompt than you'd ever write.</div></div>
+      <div class="insight"><div class="title">◆ LETTA SHIPS PORTABILITY TODAY</div><div class="body">Agent File (.af) format serializes memory + skills + persona into a portable bundle across models. Letta Code decouples agent identity from provider. Closest to what you actually want.</div></div>
+    </div>
+  </section>
+
+  <!-- §03 ASSEMBLY -->
+  <section>
+    <div class="slabel">03 · THE ASSEMBLY</div>
+    <h2>How the pieces <em>could</em> fit together</h2>
+    <p class="desc">No single technique solves the problem. The opportunity is integrating ACE-style context evolution + persona vectors + sleep-time reflection + KTO feedback loops + portable agent format. Nobody has assembled this yet.</p>
+    <div class="chart-box">
+      <svg viewBox="0 0 700 320" style="width:100%;height:auto">
+        <defs>
+          <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D3833"/></marker>
+          <marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+        </defs>
+        <!-- Nodes -->
+        <rect x="60" y="50" width="130" height="52" rx="3" fill="rgba(196,165,48,0.09)" stroke="rgba(196,165,48,0.37)" stroke-width="1"/>
+        <text x="125" y="72" text-anchor="middle" class="mono" fill="var(--yellow)">YOUR PAST WORK</text>
+        <text x="125" y="88" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">200-500 pieces</text>
+
+        <rect x="60" y="140" width="130" height="52" rx="3" fill="rgba(74,158,109,0.09)" stroke="rgba(74,158,109,0.37)" stroke-width="1"/>
+        <text x="125" y="162" text-anchor="middle" class="mono" fill="var(--green)">GEPA OPTIMIZER</text>
+        <text x="125" y="178" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">auto-evolve prompt</text>
+
+        <rect x="60" y="230" width="130" height="52" rx="3" fill="rgba(74,158,109,0.09)" stroke="rgba(74,158,109,0.37)" stroke-width="1"/>
+        <text x="125" y="252" text-anchor="middle" class="mono" fill="var(--green)">PERSONAL RAG</text>
+        <text x="125" y="268" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">indexed archive</text>
+
+        <rect x="280" y="50" width="140" height="52" rx="3" fill="rgba(74,127,181,0.09)" stroke="rgba(74,127,181,0.37)" stroke-width="1"/>
+        <text x="350" y="72" text-anchor="middle" class="mono" fill="var(--blue)">ACE PLAYBOOK</text>
+        <text x="350" y="88" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">evolving context</text>
+
+        <rect x="280" y="140" width="140" height="52" rx="3" fill="rgba(139,107,181,0.09)" stroke="rgba(139,107,181,0.37)" stroke-width="1"/>
+        <text x="350" y="162" text-anchor="middle" class="mono" fill="var(--purple)">STEERING VECTOR</text>
+        <text x="350" y="178" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">~50 paired examples</text>
+
+        <rect x="280" y="230" width="140" height="52" rx="3" fill="rgba(74,127,181,0.09)" stroke="rgba(74,127,181,0.37)" stroke-width="1"/>
+        <text x="350" y="252" text-anchor="middle" class="mono" fill="var(--blue)">SLEEP-TIME AGENT</text>
+        <text x="350" y="268" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">offline reflection</text>
+
+        <rect x="510" y="90" width="150" height="52" rx="3" fill="rgba(232,101,43,0.12)" stroke="rgba(232,101,43,0.4)" stroke-width="1"/>
+        <text x="585" y="112" text-anchor="middle" class="mono" fill="var(--accent)">TASTE CONTAINER</text>
+        <text x="585" y="128" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">portable .af bundle</text>
+
+        <rect x="510" y="210" width="150" height="52" rx="3" fill="rgba(139,107,181,0.09)" stroke="rgba(139,107,181,0.37)" stroke-width="1"/>
+        <text x="585" y="232" text-anchor="middle" class="mono" fill="var(--purple)">KTO FEEDBACK</text>
+        <text x="585" y="248" text-anchor="middle" style="font-family:var(--body);font-size:9px;font-style:italic" fill="var(--textDim)">thumbs ✓/✗ loop</text>
+
+        <!-- Arrows -->
+        <line x1="190" y1="76" x2="280" y2="76" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="190" y1="166" x2="280" y2="166" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="190" y1="256" x2="280" y2="256" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="125" y1="102" x2="125" y2="140" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="125" y1="192" x2="125" y2="230" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="420" y1="76" x2="510" y2="110" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="420" y1="166" x2="510" y2="125" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="420" y1="256" x2="510" y2="230" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+        <line x1="510" y1="165" x2="510" y2="210" stroke="var(--borderHi)" marker-end="url(#ag)"/>
+
+        <!-- Feedback loop -->
+        <text x="585" y="170" text-anchor="middle" style="font-family:var(--display);font-size:11px;font-style:italic" fill="var(--accent)">continual</text>
+        <text x="585" y="185" text-anchor="middle" style="font-family:var(--display);font-size:11px;font-style:italic" fill="var(--accent)">learning loop</text>
+        <path d="M660 210C680 180,680 140,660 110" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#aa)"/>
+
+        <text x="350" y="308" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--textDim)">THE PRODUCT THAT DOESN'T EXIST YET: ALL THESE PIECES ASSEMBLED FOR A NON-TECHNICAL USER</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- §04 TIMELINE -->
+  <section>
+    <div class="slabel">04 · MATURITY TIMELINE</div>
+    <div class="chart-box">
+      <svg viewBox="0 0 700 120" style="width:100%;height:auto">
+        <line x1="30" y1="60" x2="670" y2="60" stroke="var(--border)" stroke-width="1"/>
+        <circle cx="60" cy="60" r="5" fill="var(--textDim)"/>
+        <text x="60" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--textDim)">2023</text>
+        <text x="60" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">System prompts</text>
+
+        <circle cx="160" cy="60" r="5" fill="var(--yellow)"/>
+        <text x="160" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--yellow)">2024</text>
+        <text x="160" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">Custom GPTs / Skills</text>
+
+        <circle cx="260" cy="60" r="5" fill="var(--yellow)"/>
+        <text x="260" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--yellow)">2024</text>
+        <text x="260" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">Brand voice platforms</text>
+
+        <circle cx="360" cy="60" r="5" fill="var(--green)"/>
+        <text x="360" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--green)">2025</text>
+        <text x="360" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">ACE / GEPA / Steering</text>
+
+        <circle cx="460" cy="60" r="5" fill="var(--blue)"/>
+        <text x="460" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--blue)">2025</text>
+        <text x="460" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">Persona vectors / Sleep-time</text>
+
+        <circle cx="580" cy="60" r="7" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <text x="580" y="45" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--accent)">2026+</text>
+        <text x="580" y="80" text-anchor="middle" style="font-family:var(--body);font-size:8px" fill="var(--textMd)">Assembled taste container?</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- §05 FAILURES -->
+  <section>
+    <div class="slabel red">05 · WHAT'S FAILED — DON'T RETRY THESE</div>
+    <div class="fail-grid">
+      <div class="fail-item"><div class="what">✕ Naive LoRA on small corpus</div><div class="why">LaMP benchmark: only 1.07% improvement. RAG on the same data gives 14.9%.</div><div class="src">LaMP 2024</div></div>
+      <div class="fail-item"><div class="what">✕ Adding steering vectors together</div><div class="why">Feature entanglement destroys both. Use layer-wise injection instead.</div><div class="src">Weij 2024</div></div>
+      <div class="fail-item"><div class="what">✕ Self-improving prompts without structure</div><div class="why">Context collapse: iterative rewriting erodes detail. Prompts grow then degrade.</div><div class="src">ACE paper</div></div>
+      <div class="fail-item"><div class="what">✕ Steering with < 50 examples</div><div class="why">Noisy activations capture spurious correlations. Need 50-100 minimum.</div><div class="src">SAE-RSV 2025</div></div>
+      <div class="fail-item"><div class="what">✕ Style LoRA without instruction merge</div><div class="why">Model forgets how to follow instructions. Need separate instruction LoRA merged.</div><div class="src">StyleTunedLM</div></div>
+      <div class="fail-item"><div class="what">✕ Pure thumbs-up/down products</div><div class="why">KTO works in theory but no polished consumer product exists. All academic.</div><div class="src">April 2026</div></div>
+    </div>
+  </section>
+
+  <!-- §06 EXPERIMENTS -->
+  <section>
+    <div class="slabel green">06 · EXPERIMENTS WORTH RUNNING</div>
+    <h2>Ranked by <em>effort to insight ratio</em></h2>
+    <div style="margin-top:24px">
+      <div class="exp-card">
+        <div><div class="exp-num">1</div><div class="exp-effort">1 afternoon</div></div>
+        <div><div class="exp-title">GEPA auto-prompt optimization</div><div class="exp-desc">Take 100+ examples of your best work → define an LLM-judge metric for voice fidelity → run DSPy GEPA → get a system prompt strictly better than hand-written.</div></div>
+        <div><div class="exp-meta">TOOLS: <span>DSPy + any API key</span></div><div class="exp-meta">COST: <span>$50-200</span></div><span class="tag green">PORTABLE</span><span class="tag yellow">STATIC</span></div>
+      </div>
+      <div class="exp-card">
+        <div><div class="exp-num">2</div><div class="exp-effort">30 sec + 1 month</div></div>
+        <div><div class="exp-title">Live with Letta Code</div><div class="exp-desc">Install, run /init on your project, work with it for real tasks. See if sleep-time reflection accumulates genuine taste over time.</div></div>
+        <div><div class="exp-meta">TOOLS: <span>npm install -g @letta-ai/letta-code</span></div><div class="exp-meta">COST: <span>API costs only</span></div><span class="tag green">PORTABLE</span><span class="tag green">CONTINUAL</span></div>
+      </div>
+      <div class="exp-card">
+        <div><div class="exp-num">3</div><div class="exp-effort">1 weekend</div></div>
+        <div><div class="exp-title">Fork ACE for personal voice</div><div class="exp-desc">Replace code-execution feedback with draft-acceptance feedback. Reflector reads your edits as gradients. Curator builds structured taste playbook.</div></div>
+        <div><div class="exp-meta">TOOLS: <span>github.com/ace-agent/ace</span></div><div class="exp-meta">COST: <span>API costs</span></div><span class="tag green">PORTABLE</span><span class="tag green">CONTINUAL</span></div>
+      </div>
+      <div class="exp-card">
+        <div><div class="exp-num">4</div><div class="exp-effort">2-3 days</div></div>
+        <div><div class="exp-title">Contrastive activation steering</div><div class="exp-desc">Spin up Llama 70B, create 50+ paired examples (your writing vs generic), extract steering vector. Result: a few-KB portable file encoding your voice.</div></div>
+        <div><div class="exp-meta">TOOLS: <span>Together AI + PyTorch</span></div><div class="exp-meta">COST: <span>$20-50 + GPU</span></div><span class="tag green">PORTABLE</span><span class="tag yellow">STATIC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §07 THESIS -->
+  <section style="border-top:1px solid var(--border);padding-top:32px">
+    <div class="slabel">07 · THE THESIS</div>
+    <div class="thesis">
+      <div>
+        <h2>The techniques exist.<br><em>The product doesn't.</em></h2>
+        <p style="margin-top:0">Activation steering, ACE playbooks, sleep-time reflection, KTO feedback, and portable agent formats each independently solve one piece of the problem. They live in three disconnected research communities — mechanistic interpretability, agent memory, and automatic prompt optimization — that haven't merged into a single consumer product.</p>
+        <p>The opportunity for someone willing to integrate these pieces is wide open. The gap in the upper-right quadrant of the landscape chart — high effectiveness, high accessibility — is where the next important product will be.</p>
+      </div>
+      <div class="venn-box">
+        <div class="mono" style="color:var(--accent);margin-bottom:16px">THREE COMMUNITIES, DISCONNECTED</div>
+        <svg viewBox="0 0 300 200" style="width:100%;height:auto">
+          <circle cx="100" cy="90" r="65" fill="rgba(139,107,181,0.12)" stroke="rgba(139,107,181,0.37)" stroke-width="1"/>
+          <circle cx="200" cy="90" r="65" fill="rgba(74,127,181,0.12)" stroke="rgba(74,127,181,0.37)" stroke-width="1"/>
+          <circle cx="150" cy="160" r="65" fill="rgba(74,158,109,0.12)" stroke="rgba(74,158,109,0.37)" stroke-width="1"/>
+          <text x="75" y="75" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--purple)">MECH.</text>
+          <text x="75" y="87" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--purple)">INTERP.</text>
+          <text x="75" y="105" text-anchor="middle" style="font-family:var(--body);font-size:7px;font-style:italic" fill="var(--textDim)">SAEs, steering</text>
+          <text x="75" y="115" text-anchor="middle" style="font-family:var(--body);font-size:7px;font-style:italic" fill="var(--textDim)">persona vectors</text>
+          <text x="225" y="75" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--blue)">AGENT</text>
+          <text x="225" y="87" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--blue)">MEMORY</text>
+          <text x="225" y="105" text-anchor="middle" style="font-family:var(--body);font-size:7px;font-style:italic" fill="var(--textDim)">Letta, sleep-time</text>
+          <text x="225" y="115" text-anchor="middle" style="font-family:var(--body);font-size:7px;font-style:italic" fill="var(--textDim)">episodic → semantic</text>
+          <text x="150" y="170" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--green)">AUTO PROMPT</text>
+          <text x="150" y="182" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--green)">OPTIMIZATION</text>
+          <text x="150" y="196" text-anchor="middle" style="font-family:var(--body);font-size:7px;font-style:italic" fill="var(--textDim)">GEPA, ACE, DSPy</text>
+          <text x="150" y="108" text-anchor="middle" style="font-family:var(--display);font-size:10px;font-style:italic" fill="var(--accent)">?</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- §08 DEEP DIVE -->
+  <section style="margin-bottom:56px">
+    <button class="dd-toggle" id="ddToggle" onclick="toggleDD()">
+      <div>
+        <div class="slabel" style="margin-bottom:6px">08 · FULL RESEARCH CONTEXT</div>
+        <div class="disp" style="font-size:24px;text-align:left" id="ddLabel">Expand the complete research synthesis</div>
+        <div style="font-family:var(--body);font-size:13px;color:var(--textDim);margin-top:4px">All findings, sources, cognitive science, domain analysis, failure modes, and mechanism comparisons</div>
+      </div>
+      <div class="dd-arrow">↓</div>
+    </button>
+    <div class="dd-body" id="ddBody">
+
+      <!-- Sub-sections -->
+      <div class="sb" id="sb1">
+        <button class="sb-toggle open" onclick="toggleSB('sb1')">Part I — The 80% That Works (and Why It Hits a Ceiling) <span class="sb-icon">+</span></button>
+        <div class="sb-content open"><div class="prose">
+          <p><strong>Klarna handles 80% of all marketing copywriting with AI at 70% cost reduction</strong>, cutting its marketing team from 200 to 100 people while running more campaigns. Adore Me achieves a 95/5 AI-to-human split on stylist notes using Writer.com's brand voice profiles. A Forrester TEI study found that half of Jasper AI's outputs were on-brand on the first attempt, reducing rework by 50%. Claude Skills users report that "the first output is already 80% there."</p>
+          <p>These results are genuinely impressive for structured, formulaic content — social media captions, product descriptions, email templates, ad copy variations. The pattern holds across tools: Claude Skills, Custom GPTs, Jasper brand voice, Writer.com voice profiles, and bespoke enterprise systems all deliver meaningful productivity gains when the target voice can be reduced to concrete rules.</p>
+          <p>But this success is domain-constrained. A Jasper user's Trustpilot review cuts to the problem: <strong>"The Brand Voice does NOT carry through, it reverts back to AI speak."</strong> Fahim AI's hands-on testing found Jasper "great for social media captions and online ads" but disappointing for long-form pieces where "every article needed heavy editing." The consistent signal is that instruction-based voice transfer works for short, structured, pattern-heavy content and degrades as outputs grow longer, more creative, or more tonally complex.</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb2">
+        <button class="sb-toggle" onclick="toggleSB('sb2')">Part II — Why Cognitive Science Says Rules Are Fundamentally Incomplete <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <p>Every major framework for understanding expert knowledge converges on the same conclusion: <strong>explicit rules capture perhaps 20–30% of what constitutes taste</strong>. The remaining 70–80% is tacit — inarticulate, embodied, acquired through immersion rather than instruction.</p>
+          <h3>Polanyi's Paradox</h3>
+          <p>Michael Polanyi's foundational insight — "we can know more than we can tell" — describes exactly the challenge of writing a skill file for creative voice. A skilled editor knows instantly when a sentence "feels wrong" but may struggle to articulate why.</p>
+          <h3>The Dreyfus Inversion</h3>
+          <p>Stuart Dreyfus's skill acquisition model makes the irony explicit: experts move beyond rule-following to intuitive pattern recognition, so asking them to write rules for an LLM is asking them to regress to the novice-level articulation they transcended years ago.</p>
+          <h3>Klein's Recognition-Primed Decisions</h3>
+          <p>Gary Klein's research with firefighters and military commanders found that of 134 expert decision points studied, 117 used rapid pattern recognition rather than analytical comparison — the experts insisted they didn't "make decisions," they just knew.</p>
+          <h3>Bourdieu's Habitus</h3>
+          <p>The deepest theoretical challenge: taste isn't a set of preferences you can list but an embodied disposition formed through years of cultural immersion. You cannot inject habitus through a system prompt any more than you can become a sommelier by reading a manual.</p>
+          <h3>The Critical Nuance</h3>
+          <p>Yet the case isn't entirely damning. LLMs already possess vast tacit knowledge from pre-training. The practical insight from Slite's engineering team: you can't put tacit knowledge in a prompt, but you can <strong>activate</strong> tacit knowledge the model already has by referencing authorities and conventions it has absorbed. The gap between "injecting new knowledge" and "activating existing knowledge" is the gap between what rules can and cannot do.</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb3">
+        <button class="sb-toggle" onclick="toggleSB('sb3')">Part III — Domain-by-Domain Effectiveness Analysis <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <h3>Works Well</h3>
+          <p>Marketing copywriting, UX writing, technical/academic writing, customer support. These domains share: relatively short outputs, pattern-heavy formats, well-established conventions, and taste that is more institutional than personal. Gorgias data shows people identify AI-generated service responses as AI only 46.9% of the time — below chance.</p>
+          <h3>Partially Works</h3>
+          <p>Long-form journalism (Bloomberg's Cyborg handles earnings reports but not analysis), brand design direction, teaching materials, nonfiction books. Author Kenny Kane finds Claude "exceptional at mirroring your style once it's seen enough examples" but notes it "occasionally over-edits, sanding off voice and rhythm in pursuit of clarity."</p>
+          <h3>Largely Fails</h3>
+          <p>Literary fiction (GPT models produce prose that is "too flowery, excessive, or over the top"), humor/comedy (depends on timing, subversion, audience-specific context), poetry (rhythm, sound, the unsaid), editorial judgment (knowing what story to tell, what angle to take). Music composition, video editing, and photography curation involve embodied, multimodal aesthetic judgments that text-based instructions capture only at the most superficial level.</p>
+          <p><strong>The pattern: the more a domain's quality depends on personal voice, cultural context, and the strategic deployment of surprise, the worse instruction-based taste transfer performs.</strong></p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb4">
+        <button class="sb-toggle" onclick="toggleSB('sb4')">Part IV — Five Structural Failure Modes (With Evidence) <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <h3>I. Voice Dissolves Across Long Outputs</h3>
+          <p>Every transformer tested degrades as context grows. Softmax attention normalizes weights across all tokens, so each style instruction receives proportionally less attention. Stanford's "lost-in-the-middle" research found accuracy drops 30%+ when relevant information sits in the middle of context. The ICML 2024 paper on persona drift found persona self-consistency metrics degrade by more than 30% after 8–12 dialogue turns.</p>
+          <h3>II. The Articulation Paradox</h3>
+          <p>Shrivu Shankar: "Out of the box, many of us can't fully articulate why we prefer one design over another." Nielsen Norman Group confirmed users "lack the vocabulary or knowledge necessary to articulate some components precisely." The ghostwriter behind Tastemaker.bot: "My clients always knew when something was off. 'This doesn't sound like me.' But they couldn't say why." This creates a selection bias: only rule-followable taste gets captured.</p>
+          <h3>III. Shared Instructions Homogenize Output at Population Scale</h3>
+          <p>Doshi and Hauser (Science Advances 2024): writers given AI ideas produced individually more creative but collectively more similar stories. A "creative scar" follow-up found homogeneity keeps climbing months after AI withdrawal. Cornell's CHI 2025 study found AI autocomplete caused Indian participants' writing to become more Westernized. Words like "delve" and "robust" spiked 50%+ in published writing.</p>
+          <h3>IV. Negative Constraints Are Unreliable</h3>
+          <p>Creative taste is often defined by restraint. But ICML 2025 research found positive rules achieved highest adherence while negative prohibitions "break down in the face of conflicting goals." The 16x.engineer "Pink Elephant Problem" analysis confirmed this at scale. Anthropic's own documentation advises "tell Claude what to do instead of what not to do."</p>
+          <h3>V. Static Instructions Freeze Your Taste</h3>
+          <p>Human taste evolves; instruction files don't. After a rebrand, "the 47 saved prompts still contain old-voice instructions. For three months, content oscillates." Underlying models change too. CLAUDE.md files grow to 800+ lines and the model starts ignoring them. Shankar: "alpha decay" — your taste advantage resets every few months.</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb5">
+        <button class="sb-toggle" onclick="toggleSB('sb5')">Part V — Fine-Tuning Dramatically Outperforms Instruction-Writing <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <p>Chakrabarty and Dhillon (2026): 28 MFA-program writers competed against LLMs emulating 50 acclaimed authors. With in-context prompting, expert judges preferred human writing <strong>82.7% of the time</strong>. After fine-tuning on the authors' complete works, judges preferred the AI output <strong>62% of the time</strong>. Fine-tuning flipped the result.</p>
+          <p>Sarah Constantin: prompting is "lousy for making a bot with a writing style substantially different from generic ChatGPT" but fine-tuning on 124 Frank Herbert quotes produced output with "a clearly Frank-Herbert-inspired style." Key insight: <strong>style includes conversational attitude</strong> — the fine-tuned bot would spontaneously argue with and belittle the user, a behavior nearly impossible to elicit from prompting.</p>
+          <p>LLMs are architecturally exemplar-biased — they learn through pattern matching from examples, not rule application. PNAS found GPT-J learns through "token-level analogical generalization." Few-shot examples produce 23.5× higher style-matching scores than zero-shot prompting.</p>
+          <p><strong>Practical hierarchy:</strong> hybrid (fine-tuning + rules + examples) > fine-tuning alone > sophisticated few-shot > basic few-shot > RAG > explicit rules > iterative feedback alone.</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb6">
+        <button class="sb-toggle" onclick="toggleSB('sb6')">Part VI — Frontier Techniques (The Research That Changes the Picture) <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <h3>Activation Steering / Contrastive Activation Addition</h3>
+          <p>Take paired examples, run through a model, extract the difference between hidden state activations, inject during inference. No training. Zhang et al. (March 2025): beats RAG by ~8% with a few KB per user. SteerX (October 2025) extends with style descriptions. Requires open models (Llama, Qwen, Gemma, DeepSeek) via Together AI or similar.</p>
+          <h3>Sparse Autoencoder Feature Steering</h3>
+          <p>Goodfire/DeepMind SAEs decompose activations into ~16,000-65,000 monosemantic features. Find features that fire for your writing style, amplify them. AxBench (January 2025): naive SAE steering loses to prompting, but newer methods (SAE-RSV, CorrSteer, FGAA) close the gap. Human-readable knobs: features labeled "uses concrete sensory detail," etc. Goodfire's Ember API is commercial.</p>
+          <h3>Anthropic's Persona Vectors</h3>
+          <p>July 2025. Automated: trait description → steering vector. Correlations up to 0.97. "Preventative steering" during training works better than post-hoc. Code: github.com/safety-research/persona_vectors. Could define your expert's best work as a trait and extract the vector.</p>
+          <h3>ACE — Agentic Context Engineering</h3>
+          <p>Stanford/SambaNova/Berkeley, October 2025. Evolving playbook: Generator → Reflector → Curator with structured delta items. Defends against brevity bias and context collapse. +10.6% on agents. Works without labels. Code: github.com/ace-agent/ace. Fork this for personal taste transfer.</p>
+          <h3>Sleep-Time Compute</h3>
+          <p>Letta + Berkeley, April 2025. Agents reflect during downtime. 18% accuracy gain, 2.5× cost reduction. "Sleeper agent" processes past conversations, "serve agent" uses learned context at query time. Your taste agent could reflect on your past work while you sleep.</p>
+          <h3>KTO — Kahneman-Tversky Optimization</h3>
+          <p>Binary "this is me / this isn't me" feedback instead of paired comparisons. Grounded in prospect theory. SimPO outperforms DPO by 6.4 points. The plumbing exists (Together AI), but no consumer product wraps it yet.</p>
+          <h3>Many-Shot ICL</h3>
+          <p>Google DeepMind, NeurIPS 2024 Spotlight. Hundreds/thousands of examples in-context. Key finding: in many-shot, example selection matters less — random nearly matches retrieval-based. Dumping your entire archive into context may work better than curating 5 examples.</p>
+          <h3>DSPy / GEPA</h3>
+          <p>Stanford's DSPy treats prompts as programs to optimize. GEPA (July 2025): genetic-Pareto reflective evolution outperforms RL. Define task + metric + 30-300 examples → algorithmically evolved prompt. Highest-leverage thing most people could try this week.</p>
+          <h3>Agent Memory Architectures</h3>
+          <p>Explosive research: episodic → semantic consolidation, procedural memory distillation. Key systems: Letta/MemGPT (self-editing memory), Mem0 (80% token reduction, 26% higher quality), MemMachine (93% accuracy). "Remember Me, Refine Me" formalizes skill life cycles. TiMem introduces temporal-hierarchical trees for personalization without fine-tuning.</p>
+          <h3>Letta / Agent File Format</h3>
+          <p>Agent File (.af) serializes stateful agents — memory + skills + persona — portably across Claude, GPT, Gemini. Letta Code (late 2025): /remember command for skill learning. Git-backed memory = version control over taste evolution. The only group productionizing statefulness as a first-class concern.</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb7">
+        <button class="sb-toggle" onclick="toggleSB('sb7')">Part VII — Failed Approaches (Detailed) <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <h3>Naive LoRA on small corpus (&lt;500 examples)</h3>
+          <p>LaMP benchmark: PEFT alone = 1.07% improvement; RAG = 14.92%; combined = 15.98%. Fine-tuning a small LoRA is worse than retrieving from the same corpus. Exception: 1000+ high-quality examples.</p>
+          <h3>Multi-property vector addition</h3>
+          <p>Adding steering vectors together fails due to feature entanglement (Weij 2024). Solution: simultaneous layer-wise injection at distinct layers.</p>
+          <h3>Self-improving prompts without structured updates</h3>
+          <p>Context collapse: iterative rewriting erodes details. Builder.io CLAUDE.md guide and MLOps "prompt bloat" article document the same failure: prompts grow to 800+ lines, model ignores them. ACE's structured delta-item approach was specifically designed to prevent this.</p>
+          <h3>Steering from too few examples</h3>
+          <p>Under 50-100 paired examples = noisy activations capturing spurious correlations. SAE-RSV (September 2025) denoises using sparse autoencoders to separate task-relevant from irrelevant features.</p>
+          <h3>Style fine-tuning without preserving instruction-following</h3>
+          <p>StyleTunedLM (September 2024): fine-tuning for style quietly kills instruction compliance. Solution: separate instruction LoRA (LIMA dataset) merged with style LoRA.</p>
+          <h3>LLM-based imitation of ordinary authors</h3>
+          <p>"Catch Me If You Can? Not Yet" (September 2025): 40,000+ generations, 400+ authors. Human-passing rate below 20% in most settings. GPT-4o near-zero by GPTZero. Faithfully imitating implicit individual style from few examples "remains a challenging task."</p>
+        </div></div>
+      </div>
+
+      <div class="sb" id="sb8">
+        <button class="sb-toggle" onclick="toggleSB('sb8')">Part VIII — Concrete Recommendations for a Non-Technical Expert <span class="sb-icon">+</span></button>
+        <div class="sb-content"><div class="prose">
+          <h3>Best single-action recommendation</h3>
+          <p>Take your best 200-500 pieces and build a personal RAG index (with annotations on why each worked) combined with a managed fine-tune on the same corpus every six months. RAG handles recency and examples; fine-tune bakes in deep cadence and attitude. Total cost: $50-200 per tuning run. Portability: the corpus is yours forever. Continual learning: add new pieces immediately, re-tune quarterly.</p>
+          <h3>If you want to push the frontier</h3>
+          <p>Fork ACE: adapt the Reflector to read draft-acceptance/rejection as feedback. Replace "did the code execute" with "did the user keep this draft." Curator builds structured taste playbook. Combine with Letta's .af format for portability. Add sleep-time agent for periodic reflection. This is ~a weekend to prototype and a genuine research contribution.</p>
+          <h3>The honest gap that remains</h3>
+          <p>Even the best combination captures the articulable 60-70% of an expert's taste. The remaining gap is editorial judgment — knowing which piece to write, which angle to take, which detail to foreground. No currently-shippable tool closes it. The 80/20 pattern isn't a sign the last 20% needs better prompting. It's a sign it may be structurally inaccessible to instruction-based approaches, residing in exactly the tacit knowledge that Polanyi told us we can know but cannot tell.</p>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="mono" style="font-size:8px;color:var(--textMd)">Sources: Zhang 2025 · Anthropic 2025 · Stanford/ACE 2025 · Letta/Berkeley 2025 · DSPy/GEPA 2025 · Goodfire · LaMP · StyleTunedLM · ICML/NeurIPS 2024-25</div>
+    <div class="mono" style="font-size:8px;color:var(--textDim)">"We can know more than we can tell." — Polanyi</div>
+  </footer>
+</div>
+
+<script>
+// ── Scatter chart ──
+(function() {
+  const data = [
+    { name:"Iterative feedback", eff:15, acc:97, color:"var(--red)" },
+    { name:"Skill files / system prompts", eff:30, acc:92, color:"var(--yellow)" },
+    { name:"RAG over personal archive", eff:42, acc:45, color:"var(--green)" },
+    { name:"GEPA auto-prompt optimization", eff:52, acc:60, color:"var(--green)" },
+    { name:"Many-shot ICL (100+ examples)", eff:55, acc:65, color:"var(--green)" },
+    { name:"Taste interview / elicitation", eff:48, acc:70, color:"var(--yellow)" },
+    { name:"ACE evolving playbook", eff:62, acc:40, color:"var(--blue)" },
+    { name:"Contrastive activation steering", eff:65, acc:25, color:"var(--blue)" },
+    { name:"SAE feature steering (Goodfire)", eff:60, acc:20, color:"var(--purple)" },
+    { name:"Persona vectors (Anthropic)", eff:58, acc:18, color:"var(--purple)" },
+    { name:"Sleep-time compute (Letta)", eff:55, acc:35, color:"var(--blue)" },
+    { name:"KTO preference learning", eff:70, acc:12, color:"var(--purple)" },
+    { name:"LoRA fine-tuning", eff:75, acc:18, color:"var(--green)" },
+    { name:"Hybrid (fine-tune + RAG + rules)", eff:88, acc:8, color:"var(--accent)" },
+    { name:"Full fine-tuning on corpus", eff:82, acc:10, color:"var(--green)" },
+    { name:"Letta stateful agents", eff:50, acc:50, color:"var(--green)" },
+  ];
+  const pad={l:60,r:30,t:20,b:50}, w=680, h=400;
+  const iw=w-pad.l-pad.r, ih=h-pad.t-pad.b;
+  const x=v=>pad.l+(v/100)*iw, y=v=>pad.t+ih-(v/100)*ih;
+  const svg=document.getElementById('scatter');
+  let html='';
+
+  // Grid
+  [0,25,50,75,100].forEach(v=>{
+    html+=`<line x1="${x(0)}" y1="${y(v)}" x2="${x(100)}" y2="${y(v)}" stroke="var(--border)" stroke-width="0.5"/>`;
+    html+=`<line x1="${x(v)}" y1="${y(0)}" x2="${x(v)}" y2="${y(100)}" stroke="var(--border)" stroke-width="0.5"/>`;
+    html+=`<text x="${pad.l-8}" y="${y(v)+3}" text-anchor="end" class="mono" style="font-size:8px" fill="var(--textDim)">${v}%</text>`;
+  });
+
+  // Quadrant labels
+  html+=`<text x="${x(75)}" y="${y(90)}" text-anchor="middle" class="mono" style="font-size:8px" fill="var(--textDim)">HIGH EFFECTIVENESS</text>`;
+  html+=`<text x="${x(75)}" y="${y(85)}" text-anchor="middle" class="mono" style="font-size:8px" fill="var(--textDim)">LOW ACCESSIBILITY</text>`;
+  html+=`<text x="${x(25)}" y="${y(90)}" text-anchor="middle" class="mono" style="font-size:8px" fill="var(--textDim)">HIGH EFFECTIVENESS</text>`;
+  html+=`<text x="${x(25)}" y="${y(85)}" text-anchor="middle" class="mono" style="font-size:8px" fill="var(--textDim)">HIGH ACCESSIBILITY</text>`;
+  html+=`<text x="${x(75)}" y="${y(8)}" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--textDim)">FRONTIER</text>`;
+  html+=`<text x="${x(25)}" y="${y(8)}" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--textDim)">SWEET SPOT</text>`;
+
+  // Gap zone
+  html+=`<rect x="${x(55)}" y="${y(95)}" width="${x(95)-x(55)}" height="${y(55)-y(95)}" fill="var(--accent)" opacity="0.04" rx="4"/>`;
+
+  // Axes
+  html+=`<text x="${w/2}" y="${h-6}" text-anchor="middle" class="mono" style="font-size:9px" fill="var(--textMd)">ACCESSIBILITY (NON-TECHNICAL EXPERT) →</text>`;
+  html+=`<text x="14" y="${h/2}" text-anchor="middle" class="mono" style="font-size:9px" fill="var(--textMd)" transform="rotate(-90 14 ${h/2})">EFFECTIVENESS →</text>`;
+
+  // Gap label
+  html+=`<text x="${x(52)}" y="${y(62)}" text-anchor="middle" style="font-family:var(--display);font-size:14px;font-style:italic" fill="var(--accent)" opacity="0.6">THE GAP</text>`;
+  html+=`<text x="${x(52)}" y="${y(57)}" text-anchor="middle" class="mono" style="font-size:7px" fill="var(--accent)" opacity="0.4">NO PRODUCT HERE YET</text>`;
+
+  // Dots
+  data.forEach(d=>{
+    const cx=x(d.acc), cy=y(d.eff);
+    html+=`<g class="dot">
+      <circle cx="${cx}" cy="${cy}" r="14" fill="none" stroke="${d.color}" stroke-width="1" class="ring"/>
+      <circle cx="${cx}" cy="${cy}" r="5" fill="${d.color}" opacity="0.9" class="main"/>
+      <text x="${cx+8}" y="${cy-8}" class="label" fill="${d.color}">${d.name}</text>
+    </g>`;
+  });
+
+  svg.innerHTML=html;
+})();
+
+// ── Toggles ──
+function toggleDD(){
+  const tog=document.getElementById('ddToggle');
+  const body=document.getElementById('ddBody');
+  const label=document.getElementById('ddLabel');
+  const isOpen=body.classList.contains('open');
+  if(isOpen){
+    body.classList.remove('open');
+    tog.classList.remove('open');
+    label.textContent='Expand the complete research synthesis';
+  } else {
+    body.classList.add('open');
+    tog.classList.add('open');
+    label.textContent='Collapse the complete research synthesis';
+  }
+}
+
+function toggleSB(id){
+  const el=document.getElementById(id);
+  const btn=el.querySelector('.sb-toggle');
+  const content=el.querySelector('.sb-content');
+  const isOpen=content.classList.contains('open');
+  if(isOpen){
+    content.classList.remove('open');
+    btn.classList.remove('open');
+  } else {
+    content.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>
