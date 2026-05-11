@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Devices as Agent Nodes — Field Guide 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=IBM+Plex+Mono:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0908;--sf:#13120F;--sf2:#1B1916;--bd:#2A2621;--bd2:#3D3830;--tx:#E8E0D4;--tx2:#B5A999;--tx3:#7A6F63;--ac:#E8652B;--gn:#4A9E6D;--yl:#C4A530;--bl:#4A7FB5;--rd:#C44B3E;--pu:#8B6BB5;--cy:#4AB5A0;--disp:'Instrument Serif',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-smoothing:antialiased}
+::selection{background:var(--ac);color:var(--bg)}
+.page{max-width:1200px;margin:0 auto;padding:36px 44px 64px}
+@media(max-width:900px){.page{padding:20px 18px 48px}}
+
+.topbar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--bd);padding-bottom:14px;margin-bottom:36px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)}
+.topbar .dot{color:var(--ac)}
+
+.hero{margin-bottom:48px}
+.hero .label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.hero h1{font-family:var(--disp);font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:-.03em;margin-bottom:12px}
+.hero h1 em{color:var(--ac);font-style:italic}
+.hero .sub{font-size:16px;line-height:1.6;color:var(--tx2);max-width:780px}
+.hero .sub strong{color:var(--tx);font-weight:600}
+
+/* Two-column layout */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
+@media(max-width:800px){.cols{grid-template-columns:1fr}}
+
+/* Section */
+.sec{margin-bottom:48px}
+.sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec h2{font-family:var(--disp);font-size:clamp(24px,3vw,34px);line-height:1.08;margin-bottom:6px}
+.sec h2 em{font-style:italic;color:var(--ac)}
+.sec .desc{font-size:14px;line-height:1.6;color:var(--tx2);max-width:750px;margin-bottom:24px}
+
+/* Comparison cards */
+.platform{background:var(--sf);border:1px solid var(--bd);padding:28px;border-radius:4px}
+.platform .icon{font-size:32px;margin-bottom:8px}
+.platform .tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:12px}
+.platform h3{font-family:var(--disp);font-size:24px;margin-bottom:4px}
+.platform h3 em{font-style:italic;color:var(--ac)}
+.platform .easiest{font-family:var(--mono);font-size:10px;color:var(--gn);letter-spacing:.08em;margin-bottom:14px}
+.platform p{font-size:14px;line-height:1.6;color:var(--tx2);margin-bottom:16px}
+.platform p strong{color:var(--tx);font-weight:600}
+
+/* Tool cards */
+.tool{background:var(--sf2);border:1px solid var(--bd2);padding:18px 20px;margin-bottom:10px;border-radius:3px}
+.tool .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.tool .name{font-family:var(--disp);font-size:17px;color:var(--tx)}
+.tool .name em{font-style:italic;color:var(--ac)}
+.tool .badge{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;border-radius:2px}
+.tool .desc{font-size:13px;line-height:1.55;color:var(--tx2)}
+.tool .tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.tool .tag{font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);padding:2px 6px;border:1px solid var(--bd);border-radius:2px}
+
+/* Steps */
+.steps{margin-top:20px;padding-left:0}
+.step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--bd);align-items:flex-start}
+.step:last-child{border-bottom:none}
+.step .num{font-family:var(--mono);font-size:11px;color:var(--ac);min-width:24px;font-weight:600}
+.step .content h4{font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic;margin-bottom:2px}
+.step .content p{font-size:13px;color:var(--tx2);line-height:1.5}
+.step .content code{font-family:var(--mono);font-size:11px;background:var(--sf);padding:1px 5px;border-radius:2px;color:var(--bl)}
+
+/* Key insight box */
+.insight{background:var(--sf);border-left:4px solid var(--ac);padding:20px 24px;margin:28px 0;border-radius:0 4px 4px 0}
+.insight .label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:8px}
+.insight p{font-size:15px;line-height:1.6;color:var(--tx)}
+.insight p em{font-style:italic;color:var(--ac)}
+
+/* Comparison table */
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+th{text-align:left;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);padding:10px 12px;border-bottom:2px solid var(--bd)}
+td{padding:10px 12px;border-bottom:1px solid var(--bd);color:var(--tx2);vertical-align:top}
+td:first-child{color:var(--tx);font-weight:500}
+tr:hover td{background:var(--sf)}
+.check{color:var(--gn)}
+.cross{color:var(--rd)}
+
+/* Footer */
+footer{border-top:1px solid var(--bd);padding-top:18px;margin-top:48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
+
+.divider{text-align:center;font-family:var(--mono);font-size:10px;color:var(--tx3);letter-spacing:.5em;margin:36px 0}
+
+/* Self-contained option card */
+.option{background:var(--sf);border:1px solid var(--bd);padding:20px;border-radius:4px;margin-bottom:12px}
+.option h4{font-family:var(--disp);font-size:16px;color:var(--tx);font-style:italic;margin-bottom:4px}
+.option p{font-size:13px;color:var(--tx2);line-height:1.5}
+.option .note{font-family:var(--mono);font-size:10px;color:var(--tx3);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="topbar">
+  <div><span class="dot">●</span> Field Guide · 2026</div>
+  <div>Mobile Devices as Agent Nodes</div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="label">Agent Infrastructure · OpenClaw & Hermes</div>
+  <h1>Mobile Devices as <em>Agent Nodes</em></h1>
+  <p class="sub">Your OpenClaw and Hermes agents already control Mac and Ubuntu machines. The same pattern extends to <strong>dedicated older iPhones and Android phones</strong> — but instead of desktop shell/browser access, you use <strong>device-specific automation layers</strong> that are actually <em>more reliable</em> than vision-based desktop control. LLMs get clean element references instead of guessing coordinates.</p>
+</header>
+
+<!-- KEY INSIGHT -->
+<div class="insight">
+  <div class="label">Why this works</div>
+  <p>Mobile automation tools expose <em>structured UI trees</em> (accessibility data), screenshots, taps, swipes, typing, and app launching. LLMs can reference elements by ID — <code>@e3 [button] "Settings"</code> — rather than pixel-guessing. This is <em>more precise</em> than desktop vision agents.</p>
+</div>
+
+<!-- §01 ANDROID -->
+<section class="sec">
+  <div class="sec-label">01 · Android Devices</div>
+  <div class="platform">
+    <div class="icon">🤖</div>
+    <div class="tag" style="background:rgba(74,158,109,.15);color:var(--gn)">Easiest & Most Flexible</div>
+    <h3>Android — Works on <em>Ubuntu or Mac</em> hosts</h3>
+    <div class="easiest">No root required · Native ADB · USB or wireless</div>
+    <p>Android has native <strong>ADB (Android Debug Bridge)</strong>, which is perfect for dedicated older phones. All tools below use ADB under the hood and integrate as skills/plugins in OpenClaw or Hermes.</p>
+  </div>
+
+  <div style="margin-top:24px">
+    <div class="sec-label" style="color:var(--gn)">Recommended tools</div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>PhoneAgent</em></div>
+        <div class="badge" style="background:rgba(232,101,43,.15);color:var(--ac)">★ Recommended for OpenClaw</div>
+      </div>
+      <div class="desc">Explicitly built with OpenClaw (and Codex) integration. Runs a lightweight JSON-RPC bridge on your host machine. The agent calls <code>get_tree</code>, <code>get_screen_image</code>, <code>tap</code>, <code>tap_element</code>, <code>swipe</code>, <code>open_app</code>, <code>enter_text</code>, etc. Ships with <strong>pre-made OpenClaw skills</strong>. Physical devices via USB or wireless ADB. No root needed.</div>
+      <div class="tags">
+        <div class="tag">openclaw-native</div>
+        <div class="tag">json-rpc</div>
+        <div class="tag">physical device</div>
+        <div class="tag">no root</div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>agent-device</em> (Callstack)</div>
+        <div class="badge" style="background:rgba(74,127,181,.15);color:var(--bl)">CLI for AI agents</div>
+      </div>
+      <div class="desc">CLI designed <em>specifically</em> for AI agents. Gives token-efficient accessibility snapshots (e.g., <code>@e3 [button] "Settings"</code>), then actions like <code>fill @e3 "text"</code> or tap-by-reference. Supports physical Android + simulators. Install via npm; add as a skill in OpenClaw/Hermes.</div>
+      <div class="tags">
+        <div class="tag">cli-first</div>
+        <div class="tag">token-efficient</div>
+        <div class="tag">npm install</div>
+        <div class="tag">ubuntu + mac</div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>Mobilerun + Droidrun</em></div>
+        <div class="badge" style="background:rgba(139,107,181,.15);color:var(--pu)">OpenClaw-native</div>
+      </div>
+      <div class="desc">Official OpenClaw skill (<code>@mobilerun/openclaw-mobilerun</code>). Connect your own physical old Android via their portal app <em>or</em> use their cloud phones. Your OpenClaw agent just says "open Instagram and like the latest post" and it executes on a real device. <strong>One-command skill install</strong>. Zero local ADB hassle.</div>
+      <div class="tags">
+        <div class="tag">official skill</div>
+        <div class="tag">cloud phones</div>
+        <div class="tag">zero setup</div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>Hermes Android Bridge</em></div>
+        <div class="badge" style="background:rgba(74,158,109,.15);color:var(--gn)">Hermes-specific</div>
+      </div>
+      <div class="desc">Kotlin app runs on the phone, connects outbound to your Hermes server. No USB or port-forwarding needed. Pairs with a 6-character code. Perfect for Hermes users who want zero network configuration.</div>
+      <div class="tags">
+        <div class="tag">hermes-native</div>
+        <div class="tag">outbound connection</div>
+        <div class="tag">no usb</div>
+        <div class="tag">pairing code</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup steps -->
+  <div style="margin-top:28px">
+    <div class="sec-label" style="color:var(--bl)">Quick setup (same for all tools)</div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div class="content">
+          <h4>On the old Android</h4>
+          <p>Enable Developer Options → USB debugging (and wireless debugging if you want cable-free)</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div class="content">
+          <h4>On your Mac/Ubuntu host</h4>
+          <p>Install ADB + the tool above (e.g., <code>npm install -g agent-device</code> or <code>openclaw skill add @mobilerun/openclaw-mobilerun</code>)</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div class="content">
+          <h4>Add the tool as a skill</h4>
+          <p>Most have ready-made skills. Add as plugin or shell tool in OpenClaw/Hermes</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div class="content">
+          <h4>Give the agent a task</h4>
+          <p>It takes screenshots/UI trees, reasons, and issues taps/swipes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §02 iPHONE -->
+<section class="sec">
+  <div class="sec-label">02 · iPhone / iOS Devices</div>
+  <div class="platform">
+    <div class="icon">📱</div>
+    <div class="tag" style="background:rgba(74,127,181,.15);color:var(--bl)">A Bit More Involved</div>
+    <h3>iOS — Requires a <em>Mac host</em></h3>
+    <div class="easiest">No jailbreak needed · Uses Apple's XCTest framework · Mac + Xcode required</div>
+    <p>iOS is more locked down, but Apple's own <strong>XCTest framework</strong> (used by developers for UI testing) gives agents full control without jailbreaking.</p>
+  </div>
+
+  <div style="margin-top:24px">
+    <div class="sec-label" style="color:var(--bl)">Recommended tools</div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>PhoneAgent</em></div>
+        <div class="badge" style="background:rgba(232,101,43,.15);color:var(--ac)">★ Same tool, works for iPhone</div>
+      </div>
+      <div class="desc">Same tool as Android; works excellently for physical iPhones. Runs a localhost RPC bridge (with USB/Wi-Fi forwarding). Uses XCTest under the hood. OpenClaw skills included. <strong>Mac host required.</strong></div>
+      <div class="tags">
+        <div class="tag">xctest</div>
+        <div class="tag">usb + wifi</div>
+        <div class="tag">rpc bridge</div>
+        <div class="tag">openclaw skills</div>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="head">
+        <div class="name"><em>agent-device</em></div>
+        <div class="badge" style="background:rgba(74,127,181,.15);color:var(--bl)">Same CLI, iOS support</div>
+      </div>
+      <div class="desc">Same excellent CLI as Android. Uses XCTest for iOS. Physical iPhones + simulators supported. Add as skill. <strong>Mac + Xcode required.</strong></div>
+      <div class="tags">
+        <div class="tag">xctest</div>
+        <div class="tag">simulators</div>
+        <div class="tag">mac only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §03 COMPARISON -->
+<section class="sec">
+  <div class="sec-label">03 · Platform Comparison</div>
+  <h2>Android vs iOS — at a <em>glance.</em></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Android</th>
+        <th>iOS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Host OS</td>
+        <td>Mac <em>or</em> Ubuntu</td>
+        <td>Mac only</td>
+      </tr>
+      <tr>
+        <td>Setup complexity</td>
+        <td>Low (plug in + ADB)</td>
+        <td>Medium (Xcode + XCTest)</td>
+      </tr>
+      <tr>
+        <td>Root/Jailbreak needed</td>
+        <td><span class="check">✗</span> No</td>
+        <td><span class="check">✗</span> No</td>
+      </tr>
+      <tr>
+        <td>Connection</td>
+        <td>USB or wireless ADB</td>
+        <td>USB or Wi-Fi (via Mac)</td>
+      </tr>
+      <tr>
+        <td>Tool maturity</td>
+        <td>4+ production tools</td>
+        <td>2 tools (PhoneAgent, agent-device)</td>
+      </tr>
+      <tr>
+        <td>OpenClaw skills</td>
+        <td><span class="check">✓</span> PhoneAgent, Mobilerun, agent-device</td>
+        <td><span class="check">✓</span> PhoneAgent, agent-device</td>
+      </tr>
+      <tr>
+        <td>Hermes-native option</td>
+        <td><span class="check">✓</span> Kotlin bridge app</td>
+        <td><span class="cross">✗</span> Not yet</td>
+      </tr>
+      <tr>
+        <td>Cloud phone option</td>
+        <td><span class="check">✓</span> Mobilerun cloud phones</td>
+        <td><span class="cross">✗</span> Not yet</td>
+      </tr>
+      <tr>
+        <td>Self-contained (agent on device)</td>
+        <td><span class="check">✓</span> Termux + proot</td>
+        <td><span class="cross">✗</span> Not available</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §04 SELF-CONTAINED -->
+<section class="sec">
+  <div class="sec-label">04 · Self-Contained Option</div>
+  <h2>Run the agent <em>on</em> the phone itself.</h2>
+  <p class="desc">Android-only. OpenClaw runs directly on the device via Termux. Fully self-contained — no host machine needed.</p>
+
+  <div class="option">
+    <h4>Termux + proot on Android</h4>
+    <p>Install OpenClaw directly on the old Android phone via <strong>Termux + proot</strong> (no root). The phone becomes a fully self-contained agent node — runs its own OpenClaw instance, controls itself via ADB loopback.</p>
+    <div class="note">⚠️ Less powerful than host-controlled — the "control from Mac/Ubuntu" approach is recommended because your existing agents treat the phone as just another device in the fleet.</div>
+  </div>
+
+  <div class="insight">
+    <div class="label">Recommended approach</div>
+    <p>Use <em>host-controlled</em> mode (Mac/Ubuntu controls the phone) as your primary. Self-contained is a fun experiment but you lose the fleet management benefits of having all agents on your existing machines.</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §05 DECISION TREE -->
+<section class="sec">
+  <div class="sec-label">05 · Decision Tree</div>
+  <h2>Which tool should <em>you</em> use?</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num" style="color:var(--ac)">Q</div>
+      <div class="content">
+        <h4>OpenClaw user?</h4>
+        <p>→ <strong>PhoneAgent</strong> (pre-made OpenClaw skills, JSON-RPC bridge, works on Android + iOS)<br>
+        → Or <strong>Mobilerun</strong> if you want zero local ADB setup (Android only, cloud phone option)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num" style="color:var(--ac)">Q</div>
+      <div class="content">
+        <h4>Hermes user?</h4>
+        <p>→ <strong>Hermes Android Bridge</strong> (Kotlin app, outbound connection, pairing code, no USB needed)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num" style="color:var(--ac)">Q</div>
+      <div class="content">
+        <h4>Token-conscious? Want CLI-first?</h4>
+        <p>→ <strong>agent-device</strong> (token-efficient accessibility snapshots, element references, npm install)</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num" style="color:var(--ac)">Q</div>
+      <div class="content">
+        <h4>Have old Android phones lying around?</h4>
+        <p>→ <strong>Any of the above</strong> — Android is the easiest starting point. Plug in, enable USB debugging, install the tool, done.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num" style="color:var(--ac)">Q</div>
+      <div class="content">
+        <h4>Only have old iPhones?</h4>
+        <p>→ <strong>PhoneAgent</strong> or <strong>agent-device</strong> — both use XCTest. You'll need a Mac host with Xcode.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Field Guide · Mobile Devices as Agent Nodes · May 2026</span>
+  <span>All tools open-source or free tier · No jailbreak/root required</span>
+</footer>
+
+</div>
+</body>
+</html>
