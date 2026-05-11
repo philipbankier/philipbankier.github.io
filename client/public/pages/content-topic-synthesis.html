@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Content & Research Synthesis — Philip Bankier, Spring 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=IBM+Plex+Mono:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0A0908;--sf:#13120F;--sf2:#1B1916;--bd:#2A2621;--bd2:#3D3830;
+  --tx:#E8E0D4;--tx2:#B5A999;--tx3:#7A6F63;
+  --ac:#E8652B;--ac2:#C4501E;--gn:#4A9E6D;--yl:#C4A530;--bl:#4A7FB5;
+  --rd:#C44B3E;--pu:#8B6BB5;--cy:#4AB5A0;
+  --disp:'Instrument Serif',Georgia,serif;
+  --body:'DM Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-smoothing:antialiased}
+::selection{background:var(--ac);color:var(--bg)}
+
+.page{max-width:1400px;margin:0 auto;padding:36px 44px 64px}
+@media(max-width:900px){.page{padding:20px 18px 48px}}
+
+/* TOPBAR */
+.topbar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--bd);padding-bottom:14px;margin-bottom:36px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)}
+.topbar .dot{color:var(--ac)}
+
+/* HERO */
+.hero{margin-bottom:48px}
+.hero h1{font-family:var(--disp);font-size:clamp(36px,5.5vw,68px);line-height:1.02;letter-spacing:-.03em;margin-bottom:14px}
+.hero h1 em{color:var(--ac);font-style:italic}
+.hero .sub{font-size:17px;line-height:1.55;color:var(--tx2);max-width:820px}
+.hero .sub strong{color:var(--tx);font-weight:600}
+.meta{display:flex;gap:28px;margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);flex-wrap:wrap}
+.meta span b{color:var(--tx2);font-weight:500}
+
+/* STAT STRIP */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);margin-bottom:48px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--sf);padding:22px 18px;text-align:center}
+.stat .n{font-family:var(--disp);font-size:42px;line-height:1;letter-spacing:-.04em}
+.stat .n .u{font-size:18px;color:var(--ac);margin-left:2px}
+.stat .l{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx2);margin-top:6px}
+.stat:nth-child(1) .n{color:var(--ac)}
+.stat:nth-child(2) .n{color:var(--gn)}
+.stat:nth-child(3) .n{color:var(--yl)}
+.stat:nth-child(4) .n{color:var(--bl)}
+.stat:nth-child(5) .n{color:var(--pu)}
+
+/* SECTIONS */
+.sec{margin-bottom:44px}
+.sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec h2{font-family:var(--disp);font-size:clamp(24px,3vw,36px);line-height:1.08;margin-bottom:6px}
+.sec h2 em{font-style:italic;color:var(--ac)}
+.sec .desc{font-size:13px;line-height:1.5;color:var(--tx2);max-width:700px;margin-bottom:20px}
+
+/* CARD GRID */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+.card{background:var(--sf);padding:20px;position:relative}
+.card .tag{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;display:inline-block;padding:2px 8px;border-radius:2px}
+.card h3{font-family:var(--disp);font-size:20px;line-height:1.15;margin-bottom:4px;font-weight:400}
+.card h3 em{font-style:italic}
+.card .who{font-size:12px;color:var(--tx3);font-style:italic;margin-bottom:10px}
+.card p{font-size:13px;line-height:1.55;color:var(--tx2);margin-bottom:10px}
+.card .link{font-family:var(--mono);font-size:10px;color:var(--bl);text-decoration:none;display:inline-block}
+.card .link:hover{color:var(--ac)}
+
+/* TAG COLORS */
+.tag-orange{color:var(--ac);border:1px solid rgba(232,101,43,.25)}
+.tag-green{color:var(--gn);border:1px solid rgba(74,158,109,.25)}
+.tag-blue{color:var(--bl);border:1px solid rgba(74,127,181,.25)}
+.tag-purple{color:var(--pu);border:1px solid rgba(139,107,181,.25)}
+.tag-yellow{color:var(--yl);border:1px solid rgba(196,165,48,.25)}
+.tag-red{color:var(--rd);border:1px solid rgba(196,75,62,.25)}
+.tag-cyan{color:var(--cy);border:1px solid rgba(74,181,160,.25)}
+
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:800px){.two{grid-template-columns:1fr}}
+
+/* FLOW DIAGRAM */
+.flow-box{background:var(--sf);border:1px solid var(--bd);padding:20px;border-radius:4px}
+
+/* TIMELINE */
+.tl-box{background:var(--sf);border:1px solid var(--bd);padding:20px;overflow-x:auto}
+
+/* VENN */
+.venn-box{background:var(--sf2);border:1px solid var(--bd);padding:24px;border-radius:6px}
+
+/* MATRIX TABLE */
+.mtx{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;background:var(--sf);border:1px solid var(--bd)}
+.mtx th,.mtx td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--bd);vertical-align:top}
+.mtx th{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);background:var(--sf2);font-weight:500}
+.mtx td.name{font-family:var(--disp);font-size:15px;color:var(--tx)}
+.mtx .pill{display:inline-block;padding:2px 6px;border-radius:2px;font-size:9px;font-weight:500}
+.mtx .pill.hi{background:rgba(74,158,109,.12);color:var(--gn);border:1px solid rgba(74,158,109,.3)}
+.mtx .pill.mid{background:rgba(196,165,48,.1);color:var(--yl);border:1px solid rgba(196,165,48,.25)}
+.mtx .pill.lo{background:rgba(196,75,62,.08);color:var(--rd);border:1px solid rgba(196,75,62,.25)}
+
+/* TAKEAWAYS */
+.takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
+@media(max-width:900px){.takeaways{grid-template-columns:1fr}}
+.take{background:var(--sf2);padding:22px}
+.take .pull{font-family:var(--disp);font-size:22px;line-height:1.2;margin-bottom:10px}
+.take .pull em{font-style:italic;color:var(--ac)}
+.take p{font-size:12px;line-height:1.5;color:var(--tx2)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--bd);padding-top:18px;margin-top:36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
+
+/* DIVIDER */
+.divider{text-align:center;font-family:var(--mono);font-size:10px;color:var(--tx3);letter-spacing:.5em;margin:36px 0}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div><span class="dot">●</span> Synthesis Brief · Spring 2026</div>
+  <div>321 messages · 6 research pieces · 3 months</div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Everything we built, <em>researched</em>, and published.</h1>
+  <p class="sub">From the AI Agent Ecosystem to the Codex-first agent manager, from the Taste Transfer landscape to the April Roundup — a single visual map of every research thread, published piece, content system, and operational tool that came out of this topic between <strong>April 13 and May 11, 2026</strong>.</p>
+  <div class="meta">
+    <span><b>6</b> major research pieces</span>
+    <span><b>3</b> published HTML pages</span>
+    <span><b>4</b> Notion databases</span>
+    <span><b>1</b> new content category</span>
+    <span><b>120+</b> sources cited</span>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="n">6<span class="u">pc</span></div><div class="l">Research deep dives</div></div>
+  <div class="stat"><div class="n">15<span class="u">K</span></div><div class="l">Words published</div></div>
+  <div class="stat"><div class="n">4<span class="u">DB</span></div><div class="l">Notion databases live</div></div>
+  <div class="stat"><div class="n">3<span class="u">pg</span></div><div class="l">Pages on philipbankier.com</div></div>
+  <div class="stat"><div class="n">1<span class="u">↑</span></div><div class="l">New "Untweeted" category</div></div>
+</div>
+
+<!-- §01 THE SIX PIECES -->
+<section class="sec">
+  <div class="sec-label">01 · The Six Research Pieces</div>
+  <h2>Six bodies of work, one <em>thematic arc.</em></h2>
+  <p class="desc">Each piece stands alone, but together they trace a story: agents are infrastructure now, and the people who understand them earliest will shape what comes next.</p>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag tag-orange">ROUNDUP · APR 25</span>
+      <h3>The April 2026 AI Agent <em>Roundup</em></h3>
+      <p class="who">120+ sources · 10 sections · Interactive HTML</p>
+      <p>Comprehensive month-in-review: GPT-5.5, Mythos, Opus 4.7, Cursor 3.x, Hermes 113K stars, Salesforce Headless 360, the Claude Code leak, and the security reality check.</p>
+      <a class="link" href="https://philipbankier.com/pages/april-2026-ai-agent-roundup.html">→ philipbankier.com/pages/…</a>
+    </div>
+    <div class="card">
+      <span class="tag tag-green">PLAYBOOK · APR 25</span>
+      <h3>The 2026 AI Agent <em>Playbook</em></h3>
+      <p class="who">Field Brief No. 04 · 12 min read</p>
+      <p>Three paradigms (Personal, Social, Enterprise), architecture deep dive, context engineering ops, LongMemEval memory benchmark, lethal trifecta threat model, and the framework decision tree.</p>
+      <a class="link" href="https://philipbankier.com/pages/agent-playbook.html">→ philipbankier.com/pages/…</a>
+    </div>
+    <div class="card">
+      <span class="tag tag-purple">RESEARCH · APR 25</span>
+      <h3>The Landscape of <em>Taste Transfer</em></h3>
+      <p class="who">Scatter plot · 8-part deep dive · Expandable</p>
+      <p>Every technique for packaging creative voice into an LLM. Activation steering, ACE playbooks, GEPA optimization, persona vectors, sleep-time compute. The gap in the upper-right is the product that doesn't exist yet.</p>
+      <a class="link" href="https://philipbankier.com/pages/taste-landscape.html">→ philipbankier.com/pages/…</a>
+    </div>
+    <div class="card">
+      <span class="tag tag-blue">ARCHITECTURE · APR 13</span>
+      <h3>AI Agent <em>Ecosystem</em> Map</h3>
+      <p class="who">Potential Bank entry · Content Pipeline filed · LLM KB update</p>
+      <p>Filed to all 4 systems: Potential Bank (local + Notion), Content Pipeline (local + Notion), LLM Knowledge Base deep dive, and daily memory. Adopted second-brain pattern as Phase 0 shortcut.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">OPS · MAY 5</span>
+      <h3>Codex-First Break-Glass <em>Agent Manager</em></h3>
+      <p class="who">Architecture · Bootstrap · 30/60/90 plan</p>
+      <p>SSH + tmux + ~/agent-ops as durable memory. AGENTS.md as behavior contract. Codex primary, Claude backup. Fleet standardization. Permission profiles, incident workflow, and golden bootstrap script.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-cyan">PIPELINE · APR 23</span>
+      <h3>NotebookLM <em>Handoff</em> Prompt</h3>
+      <p class="who">Published as GitHub gist · 9KB</p>
+      <p>Complete workflow for any agent to produce content via NotebookLM: source input methods ranked by reliability, customization instructions, the 5-mode pipeline, and download organization.</p>
+      <a class="link" href="https://gist.github.com/philipbankier/cb63f8e9f3b2510975b06f64d00d809a">→ gist.github.com/philipbankier/…</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §02 CONTENT ARCHITECTURE -->
+<section class="sec">
+  <div class="sec-label">02 · The Content Architecture</div>
+  <h2>How everything <em>flows</em> — from idea to published page.</h2>
+  <p class="desc">Four systems work together: Potential Bank captures signals, Content Pipeline manages production, LLM Knowledge Base stores deep research, and published pages are the output surface.</p>
+
+  <div class="flow-box">
+    <svg viewBox="0 0 900 340" style="width:100%;height:auto">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D3830"/></marker>
+        <marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#E8652B"/></marker>
+      </defs>
+
+      <!-- ROW 1: Sources -->
+      <text x="40" y="22" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7A6F63" letter-spacing="2">SIGNALS IN</text>
+      <rect x="30" y="32" width="160" height="48" rx="3" fill="rgba(74,158,109,.08)" stroke="rgba(74,158,109,.3)"/>
+      <text x="110" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#4A9E6D">WEB / X / NEWSLETTERS</text>
+      <text x="110" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">120+ sources tracked</text>
+
+      <rect x="220" y="32" width="160" height="48" rx="3" fill="rgba(232,101,43,.08)" stroke="rgba(232,101,43,.3)"/>
+      <text x="300" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#E8652B">PHILIP'S RESEARCH</text>
+      <text x="300" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">6 deep dives written</text>
+
+      <rect x="410" y="32" width="160" height="48" rx="3" fill="rgba(196,165,48,.08)" stroke="rgba(196,165,48,.3)"/>
+      <text x="490" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#C4A530">UNTWEETED THOUGHTS</text>
+      <text x="490" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">New category added Apr 25</text>
+
+      <rect x="600" y="32" width="160" height="48" rx="3" fill="rgba(139,107,181,.08)" stroke="rgba(139,107,181,.3)"/>
+      <text x="680" y="54" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#8B6BB5">NOTEBOOKLM OUTPUTS</text>
+      <text x="680" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Video · Audio · Slides</text>
+
+      <!-- Arrows down -->
+      <line x1="110" y1="80" x2="110" y2="120" stroke="#3D3830" marker-end="url(#ah)"/>
+      <line x1="300" y1="80" x2="300" y2="120" stroke="#3D3830" marker-end="url(#ah)"/>
+      <line x1="490" y1="80" x2="490" y2="120" stroke="#3D3830" marker-end="url(#ah)"/>
+      <line x1="680" y1="80" x2="680" y2="120" stroke="#3D3830" marker-end="url(#ah)"/>
+
+      <!-- ROW 2: Processing -->
+      <text x="40" y="112" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7A6F63" letter-spacing="2">SYSTEMS</text>
+
+      <rect x="30" y="120" width="210" height="56" rx="3" fill="rgba(74,158,109,.12)" stroke="rgba(74,158,109,.4)" stroke-width="1.5"/>
+      <text x="135" y="143" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4A9E6D">POTENTIAL BANK</text>
+      <text x="135" y="158" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Enrich → Tag → Resurface</text>
+      <text x="135" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Notion DB + local .md</text>
+
+      <rect x="270" y="120" width="210" height="56" rx="3" fill="rgba(232,101,43,.12)" stroke="rgba(232,101,43,.4)" stroke-width="1.5"/>
+      <text x="375" y="143" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#E8652B">CONTENT PIPELINE</text>
+      <text x="375" y="158" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Idea → Draft → Published</text>
+      <text x="375" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Notion DB + local entries/</text>
+
+      <rect x="510" y="120" width="210" height="56" rx="3" fill="rgba(139,107,181,.12)" stroke="rgba(139,107,181,.4)" stroke-width="1.5"/>
+      <text x="615" y="143" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#8B6BB5">LLM KNOWLEDGE BASE</text>
+      <text x="615" y="158" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Wiki pattern · Deep dives</text>
+      <text x="615" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">~/deepdives/ + Notion</text>
+
+      <!-- Arrows to synthesis -->
+      <line x1="135" y1="176" x2="135" y2="220" stroke="#3D3830" marker-end="url(#ah)"/>
+      <line x1="375" y1="176" x2="375" y2="220" stroke="#3D3830" marker-end="url(#ah)"/>
+      <line x1="615" y1="176" x2="615" y2="220" stroke="#3D3830" marker-end="url(#ah)"/>
+
+      <!-- ROW 3: Synthesis -->
+      <text x="40" y="214" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7A6F63" letter-spacing="2">SYNTHESIS</text>
+      <rect x="100" y="224" width="550" height="48" rx="4" fill="rgba(232,101,43,.15)" stroke="var(--ac)" stroke-width="1.5"/>
+      <text x="375" y="246" text-anchor="middle" font-family="Instrument Serif,serif" font-size="15" fill="#E8E0D4" font-style="italic">Visual HTML research pages — designed, built, and published</text>
+      <text x="375" y="264" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#B5A999">Roundup · Playbook · Taste Landscape · System Map</text>
+
+      <line x1="375" y1="272" x2="375" y2="300" stroke="#E8652B" stroke-width="1.5" marker-end="url(#ao)"/>
+
+      <!-- ROW 4: Output -->
+      <rect x="180" y="304" width="390" height="30" rx="3" fill="rgba(74,127,181,.12)" stroke="rgba(74,127,181,.4)"/>
+      <text x="375" y="324" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="#4A7FB5">philipbankier.com/pages/ · GitHub Gists · Notion</text>
+
+      <!-- Side: tools -->
+      <rect x="730" y="120" width="140" height="56" rx="3" fill="#13120F" stroke="#2A2621"/>
+      <text x="800" y="140" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7A6F63" letter-spacing="1">TOOLS USED</text>
+      <text x="800" y="155" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Notion API</text>
+      <text x="800" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">GitHub Pages / Gists</text>
+      <text x="800" y="179" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Vite + gh CLI</text>
+    </svg>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §03 THEMATIC MAP -->
+<section class="sec">
+  <div class="sec-label">03 · The Thematic Map</div>
+  <h2>Six pieces, four <em>interlocking themes.</em></h2>
+  <p class="desc">Every research thread connects back to one of these four themes. The Venn diagram shows where the pieces overlap.</p>
+
+  <div class="two">
+    <div class="venn-box">
+      <svg viewBox="0 0 420 320" style="width:100%;height:auto">
+        <circle cx="140" cy="130" r="90" fill="rgba(232,101,43,.1)" stroke="rgba(232,101,43,.35)" stroke-width="1"/>
+        <circle cx="280" cy="130" r="90" fill="rgba(74,127,181,.1)" stroke="rgba(74,127,181,.35)" stroke-width="1"/>
+        <circle cx="210" cy="230" r="90" fill="rgba(139,107,181,.1)" stroke="rgba(139,107,181,.35)" stroke-width="1"/>
+
+        <text x="95" y="105" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#E8652B" letter-spacing="1">AGENT</text>
+        <text x="95" y="117" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#E8652B" letter-spacing="1">INFRA</text>
+        <text x="95" y="135" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Roundup</text>
+        <text x="95" y="148" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Codex Manager</text>
+        <text x="95" y="161" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Playbook</text>
+
+        <text x="325" y="105" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4A7FB5" letter-spacing="1">CONTENT</text>
+        <text x="325" y="117" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4A7FB5" letter-spacing="1">SYSTEMS</text>
+        <text x="325" y="135" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Pipeline</text>
+        <text x="325" y="148" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">NotebookLM</text>
+        <text x="325" y="161" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Untweeted</text>
+
+        <text x="210" y="275" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#8B6BB5" letter-spacing="1">CREATIVE AI</text>
+        <text x="210" y="290" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Taste Transfer</text>
+        <text x="210" y="303" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#7A6F63" font-style="italic">Ecosystem Map</text>
+
+        <!-- Center: all overlap -->
+        <circle cx="210" cy="165" r="22" fill="rgba(196,165,48,.2)" stroke="rgba(196,165,48,.5)" stroke-width="1"/>
+        <text x="210" y="163" text-anchor="middle" font-family="Instrument Serif,serif" font-size="11" fill="#C4A530" font-style="italic">your</text>
+        <text x="210" y="178" text-anchor="middle" font-family="Instrument Serif,serif" font-size="11" fill="#C4A530" font-style="italic">voice</text>
+      </svg>
+    </div>
+
+    <div>
+      <div style="margin-bottom:20px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:6px">THEME A · AGENTS AS INFRASTRUCTURE</div>
+        <p style="font-size:13px;line-height:1.5;color:var(--tx2)">The April Roundup, the Agent Playbook, and the Codex Manager all converge on one point: agents are no longer features — they're infrastructure. Salesforce exposed everything as MCP tools. AWS prices agents like EC2 instances. The Codex Manager shows how to run them operationally.</p>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bl);margin-bottom:6px">THEME B · CONTENT SYSTEMS</div>
+        <p style="font-size:13px;line-height:1.5;color:var(--tx2)">The Content Pipeline, NotebookLM handoff, and "Untweeted" category form a complete production system: capture → enrich → produce → publish. The notebookLM gist enables any agent to use the pipeline. The Untweeted category captures thoughts that don't fit anywhere else.</p>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--pu);margin-bottom:6px">THEME C · CREATIVE AI FRONTIER</div>
+        <p style="font-size:13px;line-height:1.5;color:var(--tx2)">The Taste Transfer landscape maps every approach to packaging creative voice into an LLM. The conclusion: the techniques exist in three disconnected research communities but nobody has assembled them into a consumer product. That's the opportunity.</p>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--yl);margin-bottom:6px">THEME D · WHERE THEY OVERLAP</div>
+        <p style="font-size:13px;line-height:1.5;color:var(--tx2)">The intersection: <strong style="color:var(--tx)">agents that produce content with your voice</strong>. Every piece in this topic contributes to that vision. The Codex Manager runs the machines. The Pipeline produces the content. Taste Transfer encodes the voice. The Roundup provides the market context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §04 PUBLISHING JOURNEY -->
+<section class="sec">
+  <div class="sec-label">04 · The Publishing Journey</div>
+  <h2>From local files to <em>live pages.</em></h2>
+  <p class="desc">Three HTML pages were designed and published to philipbankier.com. The journey involved a key infrastructure discovery: GitHub Gists don't render HTML, so we moved to the Vite-based GitHub Pages site.</p>
+
+  <div class="tl-box">
+    <svg viewBox="0 0 880 160" style="width:100%;height:auto">
+      <line x1="40" y1="80" x2="840" y2="80" stroke="#2A2621" stroke-width="2"/>
+
+      <!-- Tick 1: Gist -->
+      <circle cx="100" cy="80" r="5" fill="#C4A530"/>
+      <line x1="100" y1="50" x2="100" y2="75" stroke="#2A2621"/>
+      <text x="100" y="38" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#C4A530" letter-spacing="1">APR 23</text>
+      <text x="100" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#E8E0D4" font-weight="600">NotebookLM Gist</text>
+      <text x="100" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7A6F63" font-style="italic">First gist published ✓</text>
+
+      <!-- Tick 2: HTML attempt -->
+      <circle cx="260" cy="80" r="5" fill="#C44B3E"/>
+      <line x1="260" y1="50" x2="260" y2="75" stroke="#2A2621"/>
+      <text x="260" y="38" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#C44B3E" letter-spacing="1">APR 25</text>
+      <text x="260" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#E8E0D4" font-weight="600">Gist → htmlpreview</text>
+      <text x="260" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#C44B3E" font-style="italic">Tailwind CDN fails ✗</text>
+
+      <!-- Tick 3: Discovery -->
+      <circle cx="420" cy="80" r="5" fill="#E8652B"/>
+      <line x1="420" y1="50" x2="420" y2="75" stroke="#2A2621"/>
+      <text x="420" y="38" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#E8652B" letter-spacing="1">APR 25</text>
+      <text x="420" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#E8E0D4" font-weight="600">GitHub Pages via Vite</text>
+      <text x="420" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7A6F63" font-style="italic">client/public/pages/ ✓</text>
+
+      <!-- Tick 4: Three pages live -->
+      <circle cx="580" cy="80" r="7" fill="none" stroke="#4A9E6D" stroke-width="2"/>
+      <line x1="580" y1="45" x2="580" y2="73" stroke="#4A9E6D" stroke-width="1"/>
+      <text x="580" y="32" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4A9E6D" letter-spacing="1">APR 25</text>
+      <text x="580" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#E8E0D4" font-weight="600">3 pages live</text>
+      <text x="580" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#4A9E6D" font-style="italic">Roundup · Playbook · Taste</text>
+
+      <!-- Tick 5: Untweeted -->
+      <circle cx="740" cy="80" r="5" fill="#4AB5A0"/>
+      <line x1="740" y1="50" x2="740" y2="75" stroke="#2A2621"/>
+      <text x="740" y="38" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8" fill="#4AB5A0" letter-spacing="1">APR 25</text>
+      <text x="740" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#E8E0D4" font-weight="600">"Untweeted" category</text>
+      <text x="740" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#7A6F63" font-style="italic">New Notion type added</text>
+
+      <!-- Legend -->
+      <text x="40" y="150" font-family="IBM Plex Mono,monospace" font-size="8" fill="#7A6F63" letter-spacing="1">INFRA LESSON:</text>
+      <text x="140" y="150" font-family="DM Sans,sans-serif" font-size="9" fill="#B5A999">Vite root is client/ → static files go in client/public/ → GitHub Actions builds and deploys</text>
+    </svg>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §05 KNOWLEDGE GRAPH -->
+<section class="sec">
+  <div class="sec-label">05 · The Knowledge Graph</div>
+  <h2>How the six pieces <em>reference each other.</em></h2>
+  <p class="desc">Cross-references between pieces. The thicker the line, the stronger the connection.</p>
+
+  <div class="flow-box">
+    <svg viewBox="0 0 700 360" style="width:100%;height:auto">
+      <!-- Connections (draw first so nodes sit on top) -->
+      <!-- Roundup ↔ Playbook (strongest) -->
+      <line x1="200" y1="60" x2="500" y2="60" stroke="#E8652B" stroke-width="3" opacity=".4"/>
+      <!-- Roundup ↔ Ecosystem -->
+      <line x1="130" y1="90" x2="130" y2="190" stroke="#3D3830" stroke-width="1.5"/>
+      <!-- Playbook ↔ Codex -->
+      <line x1="570" y1="90" x2="570" y2="190" stroke="#3D3830" stroke-width="1.5"/>
+      <!-- Taste ↔ Ecosystem -->
+      <line x1="200" y1="280" x2="200" y2="230" stroke="#3D3830" stroke-width="1.5"/>
+      <!-- Taste ↔ Roundup -->
+      <line x1="270" y1="270" x2="160" y2="90" stroke="#3D3830" stroke-width="1"/>
+      <!-- NotebookLM ↔ Pipeline -->
+      <line x1="500" y1="270" x2="500" y2="230" stroke="#3D3830" stroke-width="1.5"/>
+      <!-- Ecosystem ↔ Pipeline (conceptual) -->
+      <line x1="200" y1="210" x2="430" y2="210" stroke="#3D3830" stroke-width="1" stroke-dasharray="4 3"/>
+      <!-- Codex ↔ Playbook (strong) -->
+      <line x1="500" y1="90" x2="570" y2="190" stroke="#4A7FB5" stroke-width="2" opacity=".4"/>
+
+      <!-- NODES -->
+      <!-- Roundup -->
+      <rect x="60" y="36" width="140" height="56" rx="4" fill="rgba(232,101,43,.15)" stroke="#E8652B" stroke-width="1.5"/>
+      <text x="130" y="58" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" fill="#E8E0D4">April <tspan fill="#E8652B" font-style="italic">Roundup</tspan></text>
+      <text x="130" y="78" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">10 SECTIONS · 120+ SOURCES</text>
+
+      <!-- Playbook -->
+      <rect x="430" y="36" width="140" height="56" rx="4" fill="rgba(74,158,109,.12)" stroke="#4A9E6D" stroke-width="1.5"/>
+      <text x="500" y="58" text-anchor="middle" font-family="Instrument Serif,serif" font-size="13" fill="#E8E0D4">Agent <tspan fill="#4A9E6D" font-style="italic">Playbook</tspan></text>
+      <text x="500" y="78" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">FIELD BRIEF · 8 SECTIONS</text>
+
+      <!-- Ecosystem -->
+      <rect x="60" y="186" width="140" height="48" rx="4" fill="rgba(74,127,181,.1)" stroke="#4A7FB5" stroke-width="1"/>
+      <text x="130" y="208" text-anchor="middle" font-family="Instrument Serif,serif" font-size="12" fill="#E8E0D4">AI <tspan fill="#4A7FB5" font-style="italic">Ecosystem</tspan></text>
+      <text x="130" y="224" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">POTENTIAL BANK ENTRY</text>
+
+      <!-- Codex Manager -->
+      <rect x="430" y="186" width="140" height="48" rx="4" fill="rgba(196,165,48,.1)" stroke="#C4A530" stroke-width="1"/>
+      <text x="500" y="208" text-anchor="middle" font-family="Instrument Serif,serif" font-size="12" fill="#E8E0D4"><tspan fill="#C4A530" font-style="italic">Codex</tspan> Manager</text>
+      <text x="500" y="224" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">OPS ARCHITECTURE</text>
+
+      <!-- Taste Transfer -->
+      <rect x="160" y="262" width="140" height="48" rx="4" fill="rgba(139,107,181,.1)" stroke="#8B6BB5" stroke-width="1.5"/>
+      <text x="230" y="284" text-anchor="middle" font-family="Instrument Serif,serif" font-size="12" fill="#E8E0D4"><tspan fill="#8B6BB5" font-style="italic">Taste</tspan> Transfer</text>
+      <text x="230" y="300" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">LANDSCAPE · 8 PARTS</text>
+
+      <!-- NotebookLM -->
+      <rect x="430" y="262" width="140" height="48" rx="4" fill="rgba(74,181,160,.1)" stroke="#4AB5A0" stroke-width="1"/>
+      <text x="500" y="284" text-anchor="middle" font-family="Instrument Serif,serif" font-size="12" fill="#E8E0D4"><tspan fill="#4AB5A0" font-style="italic">NotebookLM</tspan> Handoff</text>
+      <text x="500" y="300" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">GIST · 9KB</text>
+
+      <!-- Connection labels -->
+      <text x="350" y="50" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7" fill="#E8652B" letter-spacing="1">SHARED AGENT DATA</text>
+      <text x="65" y="145" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">filed to</text>
+      <text x="575" y="145" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">extends</text>
+      <text x="505" y="250" font-family="IBM Plex Mono,monospace" font-size="7" fill="#7A6F63">feeds into</text>
+    </svg>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §06 NOTION ECOSYSTEM -->
+<section class="sec">
+  <div class="sec-label">06 · The Notion Ecosystem</div>
+  <h2>Four databases, one <em>source of truth.</em></h2>
+
+  <div style="overflow-x:auto">
+    <table class="mtx">
+      <thead>
+        <tr>
+          <th>Database</th>
+          <th>Purpose</th>
+          <th>Entries from this topic</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Potential Bank</td>
+          <td style="color:var(--tx2)">Smart bookmarks → enrichment → context-triggered resurfacing</td>
+          <td style="color:var(--tx2)">AI Agent Ecosystem · S3/EC2 · Give It a Mac</td>
+          <td><span class="pill hi">OPERATIONAL</span></td>
+        </tr>
+        <tr>
+          <td class="name">Content Pipeline</td>
+          <td style="color:var(--tx2)">Idea → Draft → Published tracking for all content</td>
+          <td style="color:var(--tx2)">6 entries · new "Untweeted" type added</td>
+          <td><span class="pill hi">OPERATIONAL</span></td>
+        </tr>
+        <tr>
+          <td class="name">Tools & Projects Bank</td>
+          <td style="color:var(--tx2)">Tier-based curation of tools (Watchlist/Archive/Dead)</td>
+          <td style="color:var(--tx2)">python-substack evaluated</td>
+          <td><span class="pill hi">OPERATIONAL</span></td>
+        </tr>
+        <tr>
+          <td class="name">LLM Knowledge Base</td>
+          <td style="color:var(--tx2)">Wiki-pattern deep research storage</td>
+          <td style="color:var(--tx2)">Updated with wiki pattern + GBrain findings</td>
+          <td><span class="pill mid">PLANNING</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §07 KEY INSIGHTS FROM EACH PIECE -->
+<section class="sec">
+  <div class="sec-label">07 · The One-Line Takeaway From Each</div>
+  <div class="takeaways">
+    <div class="take">
+      <div class="pull">Models ship like <em>product features</em> now.</div>
+      <p>6 weeks between GPT-5.4 and 5.5. The labs are racing to lock down agent categories, not publish papers. Plan stack updates monthly, not quarterly.</p>
+    </div>
+    <div class="take">
+      <div class="pull">The moat is in the <em>harness</em>, not the model.</div>
+      <p>A well-engineered Sonnet deployment beats a badly-engineered Opus one at a fraction of the cost. Context engineering, memory, and skills are what differentiate.</p>
+    </div>
+    <div class="take">
+      <div class="pull">The techniques exist. <em>The product doesn't.</em></div>
+      <p>Activation steering, ACE playbooks, and KTO feedback live in three disconnected research communities. Nobody has assembled them for a non-technical user yet.</p>
+    </div>
+    <div class="take">
+      <div class="pull">Files as memory, <em>not chat as memory.</em></div>
+      <p>Codex should anchor continuity in ~/agent-ops, not in the context window. Write handoffs to disk before compacting. This is the cultural shift from Claude to Codex.</p>
+    </div>
+    <div class="take">
+      <div class="pull">Trust is the <em>binding constraint.</em></div>
+      <p>84% of devs use AI daily, only 29% trust it in production. 28K exposed OpenClaw instances. The gap is verification, not capability.</p>
+    </div>
+    <div class="take">
+      <div class="pull">Substack has a <em>real API.</em></div>
+      <p>python-substack is legit: full draft→publish workflow, markdown conversion, image upload, cookie auth. Could replace browser-based publishing entirely.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §08 OPEN THREADS -->
+<section class="sec">
+  <div class="sec-label">08 · Open Threads</div>
+  <h2>What's still <em>pending.</em></h2>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag tag-red">BLOCKED</span>
+      <h3>GOG Auth</h3>
+      <p>philip@mailai.live has no Gmail/Calendar auth. 14+ days. Needs <code>gog auth add</code> command.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">AWAITING</span>
+      <h3>S3/EC2 Piece</h3>
+      <p>Outline done, not yet written. Waiting on Philip's DevOps manager war stories.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-yellow">AWAITING</span>
+      <h3>"Give It a Mac"</h3>
+      <p>8 hot takes from a single core quote. Philip hasn't chosen which angle to hit first.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-blue">READY</span>
+      <h3>LLM Knowledge Base</h3>
+      <p>Wiki pattern adopted, second-brain shortcut identified. Phase 0 ready to test.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-green">LIVE</span>
+      <h3>philipbankier.com/pages/</h3>
+      <p>3 pages live. Publishing pipeline proven. New pages can be added in <60 seconds.</p>
+    </div>
+    <div class="card">
+      <span class="tag tag-purple">DEFERRED</span>
+      <h3>Vic Mission Planner</h3>
+      <p>Plan written, awaiting Philip approval before implementation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Content Topic 169 · 321 messages · April 13 – May 11, 2026</span>
+  <span>Synthesized by Vic · philipbankier.com</span>
+</footer>
+
+</div>
+</body>
+</html>
