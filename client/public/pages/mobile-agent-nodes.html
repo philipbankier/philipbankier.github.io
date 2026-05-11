@@ -549,6 +549,108 @@ footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacin
   </div>
 </section>
 
+<!-- §08 ARCHITECTURE DIAGRAM -->
+<section class="sec">
+  <div class="sec-label">08 · How It Works</div>
+  <h2>From agent to phone in <em>one hop.</em></h2>
+
+  <div style="background:var(--sf);border:1px solid var(--bd);padding:32px;border-radius:4px;margin-top:20px">
+    <svg viewBox="0 0 900 120" style="width:100%;height:auto;font-family:var(--mono)">
+      <!-- Agent -->
+      <rect x="0" y="30" width="150" height="60" rx="4" fill="#1B1916" stroke="#4A9E6D" stroke-width="1.5"/>
+      <text x="75" y="55" text-anchor="middle" fill="#4A9E6D" font-size="9" letter-spacing="1">AGENT</text>
+      <text x="75" y="72" text-anchor="middle" fill="#E8E0D4" font-size="10">OpenClaw / Hermes</text>
+
+      <!-- Arrow 1 -->
+      <line x1="155" y1="60" x2="220" y2="60" stroke="#3D3830" stroke-width="2"/>
+      <polygon points="220,55 230,60 220,65" fill="#3D3830"/>
+
+      <!-- Tool Bridge -->
+      <rect x="235" y="30" width="160" height="60" rx="4" fill="#1B1916" stroke="#E8652B" stroke-width="1.5"/>
+      <text x="315" y="55" text-anchor="middle" fill="#E8652B" font-size="9" letter-spacing="1">TOOL BRIDGE</text>
+      <text x="315" y="72" text-anchor="middle" fill="#E8E0D4" font-size="10">PhoneAgent • agent-device</text>
+
+      <!-- Arrow 2 -->
+      <line x1="400" y1="60" x2="465" y2="60" stroke="#3D3830" stroke-width="2"/>
+      <polygon points="465,55 475,60 465,65" fill="#3D3830"/>
+
+      <!-- Physical Phone -->
+      <rect x="480" y="30" width="140" height="60" rx="4" fill="#1B1916" stroke="#C4A530" stroke-width="1.5"/>
+      <text x="550" y="55" text-anchor="middle" fill="#C4A530" font-size="9" letter-spacing="1">PHYSICAL PHONE</text>
+      <text x="550" y="72" text-anchor="middle" fill="#E8E0D4" font-size="10">USB or Wi-Fi</text>
+
+      <!-- Arrow 3 -->
+      <line x1="625" y1="60" x2="690" y2="60" stroke="#3D3830" stroke-width="2"/>
+      <polygon points="690,55 700,60 690,65" fill="#3D3830"/>
+
+      <!-- Actions -->
+      <rect x="705" y="20" width="185" height="80" rx="4" fill="#1B1916" stroke="#8B6BB5" stroke-width="1.5"/>
+      <text x="797" y="42" text-anchor="middle" fill="#8B6BB5" font-size="9" letter-spacing="1">ACTIONS</text>
+      <text x="797" y="58" text-anchor="middle" fill="#E8E0D4" font-size="10">Tap · Swipe · Type</text>
+      <text x="797" y="73" text-anchor="middle" fill="#E8E0D4" font-size="10">Launch App · Drive Browser</text>
+      <text x="797" y="88" text-anchor="middle" fill="#B5A999" font-size="9">Gmail → WhatsApp → Instagram</text>
+    </svg>
+  </div>
+
+  <div class="insight">
+    <div class="label">Why it's more reliable than desktop</div>
+    <p>Desktop agents guess pixel coordinates from screenshots. Mobile agents get <strong>structured accessibility trees</strong> — every button, label, and text field has a clean reference like <code>@e3 [button] "Send"</code>. The LLM doesn't guess. It knows.</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §09 QUICK-START CHECKLIST -->
+<section class="sec">
+  <div class="sec-label">09 · Quick-Start Checklist</div>
+  <h2>5–15 minutes to <em>first tap.</em></h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd);border:1px solid var(--bd);margin-top:20px">
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" checked style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Pick phone OS + tool</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">Android (easier) or iPhone</div>
+      </div>
+    </label>
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" checked style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Connect device</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">USB or Wi-Fi to host machine</div>
+      </div>
+    </label>
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" checked style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Install bridge + add as skill</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">npm install or openclaw skill add</div>
+      </div>
+    </label>
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" checked style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Test: "Open Settings → turn on Wi-Fi"</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">First real task</div>
+      </div>
+    </label>
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Scale to browser tasks & multi-step workflows</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">Gmail → WhatsApp → Instagram</div>
+      </div>
+    </label>
+    <label style="background:var(--sf);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" style="accent-color:var(--ac);width:18px;height:18px;margin-top:2px;flex-shrink:0">
+      <div>
+        <div style="font-family:var(--disp);font-size:15px;color:var(--tx);font-style:italic">Keep phone charged + on same network</div>
+        <div style="font-size:12px;color:var(--tx3);margin-top:2px">Ongoing maintenance</div>
+      </div>
+    </label>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <span>Field Guide · Mobile Devices as Agent Nodes · May 2026</span>
