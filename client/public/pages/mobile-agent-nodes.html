@@ -261,6 +261,61 @@ footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacin
       </div>
     </div>
   </div>
+
+  <!-- iOS setup steps -->
+  <div style="margin-top:28px">
+    <div class="sec-label" style="color:var(--bl)">iOS setup notes</div>
+    <div class="steps">
+      <div class="step">
+        <div class="num" style="color:var(--bl)">01</div>
+        <div class="content">
+          <h4>Mac + Xcode</h4>
+          <p>Your existing Mac is perfect. Install Xcode from the Mac App Store if not already present.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num" style="color:var(--bl)">02</div>
+        <div class="content">
+          <h4>Connect & trust</h4>
+          <p>Connect the old iPhone via USB (or Wi-Fi after initial setup). Enable <strong>Developer Mode</strong> on the iPhone and trust the Mac.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num" style="color:var(--bl)">03</div>
+        <div class="content">
+          <h4>Full control via accessibility</h4>
+          <p>The agent gets the <strong>full accessibility tree + screenshots</strong> and can tap, swipe, type, open apps — exactly like on Android.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num" style="color:var(--bl)">04</div>
+        <div class="content">
+          <h4>Simulator option</h4>
+          <p>iOS simulators on your Mac are even easier to test with, but since you have physical devices, the physical path works fine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §02b BROWSER & COMPUTER USE -->
+<section class="sec">
+  <div class="sec-label">02b · Browser & Computer Use on Mobile</div>
+  <h2>Once the agent controls the <em>phone…</em></h2>
+  <p class="desc">The same browser and computer-use tasks that work on desktops work on mobile — often better.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+    <div style="background:var(--sf);border:1px solid var(--bd);padding:20px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gn);margin-bottom:8px">BROWSER TASKS</div>
+      <p style="font-size:14px;color:var(--tx2);line-height:1.6">Open Chrome, Safari, Firefox — drive the <em>mobile</em> browser the same way the agent drives desktop browsers. Tasks like <strong>"check Gmail on mobile, reply, then open WhatsApp"</strong> work end-to-end.</p>
+    </div>
+    <div style="background:var(--sf);border:1px solid var(--bd);padding:20px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bl);margin-bottom:8px">WHY IT'S BETTER</div>
+      <p style="font-size:14px;color:var(--tx2);line-height:1.6">Vision + structured UI tree is usually <strong>more accurate</strong> than pure desktop computer-use because mobile apps expose clean element data. No pixel-guessing — you get <code>@e3 [button] "Send"</code> references.</p>
+    </div>
+  </div>
 </section>
 
 <div class="divider">◆ ◇ ◆ ◇ ◆</div>
@@ -350,9 +405,76 @@ footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacin
 
 <div class="divider">◆ ◇ ◆ ◇ ◆</div>
 
-<!-- §05 DECISION TREE -->
+<!-- §05 TOOL COMPARISON TABLE -->
 <section class="sec">
-  <div class="sec-label">05 · Decision Tree</div>
+  <div class="sec-label">05 · Tool Comparison</div>
+  <h2>All four tools, <em>head to head.</em></h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Best For</th>
+        <th>Host</th>
+        <th>OpenClaw</th>
+        <th>Hermes</th>
+        <th>Physical Device</th>
+        <th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--ac)">PhoneAgent</td>
+        <td>OpenClaw users</td>
+        <td>Mac (iOS) / any (Android)</td>
+        <td><span class="check">✓</span> Native RPC + skills</td>
+        <td>Via CLI</td>
+        <td><span class="check">✓</span> Excellent</td>
+        <td>Low</td>
+      </tr>
+      <tr>
+        <td style="color:var(--bl)">agent-device</td>
+        <td>General agents</td>
+        <td>Mac (iOS) / any (Android)</td>
+        <td>Skill / CLI</td>
+        <td>Skill / CLI</td>
+        <td><span class="check">✓</span> Excellent</td>
+        <td>Low</td>
+      </tr>
+      <tr>
+        <td style="color:var(--pu)">Mobilerun</td>
+        <td>OpenClaw + cloud</td>
+        <td>Any</td>
+        <td><span class="check">✓</span> Official plugin</td>
+        <td>Via API</td>
+        <td>Own phone or cloud</td>
+        <td><span style="color:var(--gn)">Very low</span></td>
+      </tr>
+      <tr>
+        <td style="color:var(--gn)">hermes-android</td>
+        <td>Hermes users</td>
+        <td>Any</td>
+        <td>N/A</td>
+        <td><span class="check">✓</span> Native bridge</td>
+        <td>Android only</td>
+        <td>Low</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <div class="label">Top recommendation</div>
+    <p>OpenClaw main → <strong>PhoneAgent</strong> (local, full control) or <strong>Mobilerun</strong> (easiest for old Androids).<br>
+    Hermes main → <strong>hermes-android bridge</strong> for Android phones.<br>
+    Cross-platform → <strong>agent-device</strong> CLI (add once as a skill, works for both OSes).</p>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §06 DECISION TREE -->
+<section class="sec">
+  <div class="sec-label">06 · Decision Tree</div>
   <h2>Which tool should <em>you</em> use?</h2>
 
   <div class="steps">
@@ -392,6 +514,38 @@ footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacin
         <p>→ <strong>PhoneAgent</strong> or <strong>agent-device</strong> — both use XCTest. You'll need a Mac host with Xcode.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+
+<!-- §07 PRACTICAL TIPS -->
+<section class="sec">
+  <div class="sec-label">07 · Practical Tips & Gotchas</div>
+  <h2>Things to know <em>before</em> you start.</h2>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd);border:1px solid var(--bd)">
+    <div style="background:var(--sf);padding:18px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--yl);margin-bottom:8px">⚡ POWER</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.5">Keep the phones <strong>plugged in / charging</strong> and on the same Wi-Fi as the host (or use USB). Old phones drain fast under agent use.</p>
+    </div>
+    <div style="background:var(--sf);padding:18px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bl);margin-bottom:8px">🔓 UNLOCK</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.5">The agent needs the phone unlocked, or tools that can wake it. <strong>Most handle basic wake/unlock cases</strong>, but test this first.</p>
+    </div>
+    <div style="background:var(--sf);padding:18px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--rd);margin-bottom:8px">🔒 PRIVACY</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.5">The agent sees <strong>everything the UI exposes</strong>. Treat dedicated phones like dedicated VMs — don't use your personal phone.</p>
+    </div>
+    <div style="background:var(--sf);padding:18px">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gn);margin-bottom:8px">🧪 START SMALL</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.5">Give the agent <strong>one phone + one skill</strong> and test <em>"open Settings → turn on Wi-Fi"</em> before complex tasks. Browser tasks work immediately once the tool is installed.</p>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top:24px">
+    <div class="label">Bottom line</div>
+    <p>You're <strong>one skill away</strong> from mobile computer-use. All four tools are actively maintained and built <em>for exactly this use case</em> — LLM agents controlling real phones the same way they control desktops.</p>
   </div>
 </section>
 
