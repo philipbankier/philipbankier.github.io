@@ -48,14 +48,6 @@ export default function HeroSection() {
             ref={containerRef}
             className="flex-1 max-w-2xl opacity-0 translate-y-4 transition-all duration-700 ease-out"
           >
-            {/* Status pill */}
-            <div className="flex items-center gap-2 mb-6">
-              <span className="flex items-center gap-1.5 pill pill-green">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Available for select projects
-              </span>
-            </div>
-
             {/* Name */}
             <h1 className="font-display font-bold text-[#0F1923] leading-[1.05] mb-4"
               style={{ fontSize: "clamp(2.8rem, 6vw, 4.5rem)" }}>
