@@ -110,3 +110,4 @@ temp/
 
 # Manus debug logs
 .manus-logs/
+.vercel
