@@ -16,7 +16,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .topbar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--bd);padding-bottom:14px;margin-bottom:36px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)}
 .topbar .dot{color:var(--ac)}
 
-/* HERO with profile */
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:48px;align-items:center}
 @media(max-width:800px){.hero{grid-template-columns:1fr}}
 .hero-left h1{font-family:var(--disp);font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:-.03em;margin-bottom:8px}
@@ -28,14 +27,12 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bl);text-decoration:none;padding:4px 10px;border:1px solid rgba(74,127,181,.3);border-radius:2px}
 .links a:hover{color:var(--ac);border-color:var(--ac)}
 
-/* Profile card */
 .profile-card{background:var(--sf);border:1px solid var(--bd);padding:24px;border-radius:4px}
 .profile-card .photo{width:120px;height:120px;border-radius:60px;background:var(--sf2);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:48px}
 .profile-card .quick{font-family:var(--mono);font-size:10px;line-height:2;color:var(--tx2)}
 .profile-card .quick b{color:var(--tx);font-weight:500}
 .profile-card .quick .label{color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;display:inline-block;width:80px}
 
-/* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);margin-bottom:48px}
 @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--sf);padding:20px 16px;text-align:center}
@@ -43,14 +40,12 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .stat .n .u{font-size:16px;margin-left:2px}
 .stat .l{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx2);margin-top:6px}
 
-/* SECTIONS */
 .sec{margin-bottom:44px}
 .sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
 .sec h2{font-family:var(--disp);font-size:clamp(24px,3vw,34px);line-height:1.08;margin-bottom:6px}
 .sec h2 em{font-style:italic;color:var(--ac)}
 .sec .desc{font-size:13px;line-height:1.5;color:var(--tx2);max-width:700px;margin-bottom:20px}
 
-/* BELIEF CARDS */
 .beliefs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
 @media(max-width:800px){.beliefs{grid-template-columns:1fr}}
 .belief{background:var(--sf);padding:20px}
@@ -59,7 +54,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .belief p{font-size:13px;line-height:1.55;color:var(--tx2)}
 .belief .evidence{font-family:var(--mono);font-size:9px;color:var(--tx3);margin-top:8px;letter-spacing:.06em}
 
-/* PROJECTS */
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
 @media(max-width:800px){.proj-grid{grid-template-columns:1fr}}
 .proj{background:var(--sf);padding:18px;display:flex;gap:16px;align-items:start}
@@ -70,7 +64,6 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .proj .desc{font-size:12px;color:var(--tx2);line-height:1.5}
 .proj .meta{font-family:var(--mono);font-size:9px;color:var(--tx3);margin-top:4px}
 
-/* TIMELINE */
 .tl{position:relative;padding-left:32px}
 .tl::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--bd)}
 .tl-item{position:relative;padding-bottom:24px}
@@ -81,370 +74,226 @@ body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-s
 .tl-item p{font-size:13px;color:var(--tx2);line-height:1.5}
 .tl-item .src{font-family:var(--mono);font-size:9px;color:var(--bl);margin-top:4px}
 
-/* QUOTES */
 .quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:800px){.quotes{grid-template-columns:1fr}}
 .quote{background:var(--sf2);border-left:3px solid var(--ac);padding:18px 20px}
 .quote blockquote{font-family:var(--disp);font-size:16px;line-height:1.4;font-style:italic;color:var(--tx);margin-bottom:8px}
 .quote .who{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
 
-/* MENTIONS */
 .mention{background:var(--sf);border:1px solid var(--bd);padding:16px;margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
 .mention .outlet{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--yl)}
 .mention h4{font-family:var(--disp);font-size:15px;color:var(--tx);font-weight:400;font-style:italic}
 .mention .date{font-family:var(--mono);font-size:9px;color:var(--tx3)}
 
-/* FOOTER */
 footer{border-top:1px solid var(--bd);padding-top:18px;margin-top:36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
-
-.divider{text-align:center;font-family:var(--mono);font-size:10px;color:var(--tx3);letter-spacing:.5em;margin:36px 0}
 </style>
 </head>
 <body>
 <div class="page">
-
 <div class="topbar">
-  <div><span class="dot">●</span> Intelligence Profile · Live Document</div>
-  <div>Tracked since May 11, 2026 · Auto-updated daily</div>
+<span>INTELLIGENCE TRACKER <span class="dot">•</span> YOHEI NAKAJIMA</span>
+<span>LAST UPDATED MAY 21 2026</span>
 </div>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-left">
-    <div class="role">Venture Capitalist · AI Builder · General Partner, Untapped Capital</div>
-    <h1>Yohei <em>Nakajima</em></h1>
-    <p class="bio">VC by day, builder by night. Creator of <strong>BabyAGI</strong> — the first popular open-source autonomous agent with task planning (22K+ GitHub stars). General Partner at <strong>Untapped Capital</strong>. 15 years in early-stage venture (Techstars, Scrum Ventures). Widely recognized for his <strong>"build in public"</strong> philosophy: using emerging technologies to learn faster, meet founders, and contribute to the ecosystem.</p>
-    <div class="links">
-      <a href="https://x.com/yoheinakajima">X @yoheinakajima</a>
-      <a href="https://github.com/yoheinakajima">GitHub</a>
-      <a href="https://yoheinakajima.com">Website</a>
-      <a href="https://untappedcapital.com">Untapped Capital</a>
-    </div>
-  </div>
-  <div class="profile-card">
-    <div class="photo">👤</div>
-    <div class="quick">
-      <div><span class="label">Born</span> <b>1987, Tokyo</b></div>
-      <div><span class="label">Based</span> <b>United States</b></div>
-      <div><span class="label">Followers</span> <b>68K (X)</b></div>
-      <div><span class="label">GitHub</span> <b>2.2K followers</b></div>
-      <div><span class="label">Repos</span> <b>58 public</b></div>
-      <div><span class="label">Total ⭐</span> <b>~30K+</b></div>
-      <div><span class="label">Hobby</span> <b>Dance</b></div>
-      <div><span class="label">Speaks at</span> <b>TED AI, a16z events</b></div>
-    </div>
-  </div>
-</header>
+<div class="hero">
+<div class="hero-left">
+<h1>Yohei <em>Nakajima</em></h1>
+<div class="role">GP @ Untapped Capital</div>
+<div class="bio"><strong>VC by day, builder by night.</strong> Creator of BabyAGI — the first popular open-source autonomous agent. Build-in-public advocate with 15 years in early-stage venture.</div>
+<div class="links">
+<a href="https://x.com/yoheinakajima" target="_blank">X</a>
+<a href="https://github.com/yoheinakajima" target="_blank">GitHub</a>
+<a href="https://yoheinakajima.com" target="_blank">Website</a>
+</div>
+</div>
+<div class="profile-card">
+<div class="photo">👤</div>
+<div class="quick">
+<span class="label">Born:</span><b>1987, Tokyo</b><br>
+<span class="label">Based:</span><b>United States</b><br>
+<span class="label">X:</span><b>68K followers</b><br>
+<span class="label">Focus:</span><b>Agents, Knowledge Graphs</b>
+</div>
+</div>
+</div>
 
-<!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="n" style="color:var(--ac)">22.2<span class="u" style="color:var(--ac)">K⭐</span></div><div class="l">BabyAGI stars</div></div>
-  <div class="stat"><div class="n" style="color:var(--gn)">58<span class="u" style="color:var(--gn)">repos</span></div><div class="l">GitHub projects</div></div>
-  <div class="stat"><div class="n" style="color:var(--bl)">68<span class="u" style="color:var(--bl)">K</span></div><div class="l">X followers</div></div>
-  <div class="stat"><div class="n" style="color:var(--yl)">15<span class="u" style="color:var(--yl)">yr</span></div><div class="l">In venture capital</div></div>
+<div class="stat"><div class="n">22,270<span class="u">⭐</span></div><div class="l">BabyAGI Stars</div></div>
+<div class="stat"><div class="n">3,550<span class="u">⭐</span></div><div class="l">Instagraph Stars</div></div>
+<div class="stat"><div class="n">38<span class="u">repos</span></div><div class="l">GitHub Repositories</div></div>
+<div class="stat"><div class="n">15<span class="u">yrs</span></div><div class="l">Venture Experience</div></div>
 </div>
 
-<!-- §01 BELIEFS -->
-<section class="sec">
-  <div class="sec-label">01 · Core Beliefs & Positions</div>
-  <h2>What Yohei <em>believes</em> — extracted from public output.</h2>
-  <p class="desc">Recurring positions across his X posts, project descriptions, talks, and interviews. Updated as new signals emerge.</p>
+<div class="sec">
+<div class="sec-label">ACTIVE PROJECTS</div>
+<h2>What He's Building <em>Now</em></h2>
+<div class="desc">Latest projects from the last 6 months. Yohei's work cycles through autonomous agents, knowledge graph infrastructure, and self-improving systems.</div>
+<div class="proj-grid">
+<div class="proj">
+<div class="stars"><span class="n">87</span>⭐</div>
+<div>
+<h3>activegraph <em>NEW</em></h3>
+<div class="desc">Python project, likely knowledge graph infrastructure. Created May 16, 2026.</div>
+<div class="meta">Active • Python</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">21</span>⭐</div>
+<div>
+<h3>SelfMCP</h3>
+<div class="desc">Self-extending MCP server with built-in skills. Major updates in April 2026.</div>
+<div class="meta">Maintenance • Last commit Apr 10</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">935</span>⭐</div>
+<div>
+<h3>Mindgraph</h3>
+<div class="desc">Ever-expanding knowledge graph with AI-powered querying. Prototype for graph infrastructure.</div>
+<div class="meta">Maintenance • Last push Apr 2024</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">339</span>⭐</div>
+<div>
+<h3>BabyAGI-2o</h3>
+<div class="desc">Simplest self-building general autonomous agent. Next iteration of BabyAGI.</div>
+<div class="meta">Maintenance • Last push Oct 2024</div>
+</div>
+</div>
+</div>
+</div>
 
-  <div class="beliefs">
-    <div class="belief">
-      <div class="icon">🤖</div>
-      <h3>Agents need scaffolding, not just smarter models</h3>
-      <p>The model is only one layer. Agents need structured context, reusable tools, failure logging, and iterative improvement loops. "Failures should become durable improvements."</p>
-      <div class="evidence">SOURCE: X post May 11 2026 · BabyAGI architecture · BabyAGI-2o design</div>
-    </div>
-    <div class="belief">
-      <div class="icon">🏗️</div>
-      <h3>Build in public to learn faster</h3>
-      <p>Shipping publicly is not vanity — it's a learning accelerator. "Build in public to learn faster, meet founders, and contribute to the ecosystem." This is his stated philosophy and lived practice.</p>
-      <div class="evidence">SOURCE: yoheinakajima.com bio · TED AI talk · a16z presentation</div>
-    </div>
-    <div class="belief">
-      <div class="icon">🧠</div>
-      <h3>Knowledge graphs are fundamental AI infrastructure</h3>
-      <p>Four separate projects (Instagraph, Mindgraph, Prettygraph, babyblog) explore text-to-graph conversion. He treats knowledge graphs as the backbone for how agents should store and retrieve information.</p>
-      <div class="evidence">SOURCE: GitHub repos instagraph, mindgraph, prettygraph · project descriptions</div>
-    </div>
-    <div class="belief">
-      <div class="icon">⚡</div>
-      <h3>The simplest approach wins</h3>
-      <p>Recurring language across project descriptions: "the simplest self-building coding agent" (Ditto), "the simplest self-building general autonomous agent" (BabyAGI-2o). He deliberately ships minimal implementations and iterates publicly.</p>
-      <div class="evidence">SOURCE: GitHub descriptions for ditto, babyagi-2o · build-in-public pattern</div>
-    </div>
-    <div class="belief">
-      <div class="icon">🔌</div>
-      <h3>Agents should self-extend their own capabilities</h3>
-      <p>SelfMCP is a self-extending MCP server. BabyAGI-2o is a self-building agent. His trajectory is toward agents that create their own tools, skills, and extensions without human intervention.</p>
-      <div class="evidence">SOURCE: selfMCP repo · babyagi-2o repo · X posts about agent autonomy</div>
-    </div>
-    <div class="belief">
-      <div class="icon">💼</div>
-      <h3>VC firms should aggressively leverage AI</h3>
-      <p>Untapped Capital uses AI-assisted startup research and a GPT-powered VC Associate. He presents globally on "How to run your VC firm using AI" including at a16z's GP-LP mixer. Ranked Top 20 thought leader in Data Driven VC Landscape report.</p>
-      <div class="evidence">SOURCE: yoheinakajima.com · a16z SF Tech Week presentation · Data Driven VC report</div>
-    </div>
-  </div>
-</section>
+<div class="sec">
+<div class="sec-label">BELIEFS & POSITIONS</div>
+<h2>What He Thinks <em>About</em></h2>
+<div class="beliefs">
+<div class="belief">
+<div class="icon">🤖</div>
+<h3>Autonomy is Everything</h3>
+<p>Agents should be autonomous and self-improving. The goal is systems that can plan, execute, and iterate without human hand-holding.</p>
+<div class="evidence">BabyAGI, SelfMCP, Ditto</div>
+</div>
+<div class="belief">
+<div class="icon">🌐</div>
+<h3>Build in Public</h3>
+<p>Building openly helps learn faster, meet founders, and contribute to the ecosystem. Transparency beats secrecy.</p>
+<div class="evidence">All open-source projects, 68K X following</div>
+</div>
+<div class="belief">
+<div class="icon">🕸️</div>
+<h3>Knowledge Graphs are Infrastructure</h3>
+<p>Graphs are fundamental to AI memory and reasoning. Text-to-graph conversion is a key capability for agents.</p>
+<div class="evidence">Instagraph, Mindgraph, Prettygraph, Activegraph</div>
+</div>
+<div class="belief">
+<div class="icon">⚡</div>
+<h3>Simplicity Wins</h3>
+<p>The simplest approach that works. His project descriptions repeatedly emphasize "simplest" and "minimal."</p>
+<div class="evidence">BabyAGI-2o, Ditto</div>
+</div>
+</div>
+</div>
 
-<div class="divider">◆ ◇ ◆ ◇ ◆</div>
+<div class="sec">
+<div class="sec-label">RECENT ACTIVITY</div>
+<h2>Timeline <em>Last 30 Days</em></h2>
+<div class="desc">Tracking GitHub activity, posts, and public output. Data refreshed daily.</div>
+<div class="tl">
+<div class="tl-item">
+<div class="date">2026-05-21</div>
+<h4>New Repository: activegraph</h4>
+<p>Created Python repository, continuing knowledge graph exploration. 87 stars in first week.</p>
+<div class="src">GitHub</div>
+</div>
+<div class="tl-item">
+<div class="date">2026-05-19</div>
+<h4>LinkedIn Article Published</h4>
+<p>"The State of AI Going into 2026" — analysis of operationality, governance, and data maturity.</p>
+<div class="src">LinkedIn</div>
+</div>
+<div class="tl-item old">
+<div class="date">2026-05-16</div>
+<h4>GitHub Metadata Updates</h4>
+<p>Updated timestamps on instagraph and prettygraph repos.</p>
+<div class="src">GitHub</div>
+</div>
+<div class="tl-item old">
+<div class="date">2026-05-10</div>
+<h4>BabyAGI-2o Metadata Update</h4>
+<p>Repository updated, though last code push was October 2024.</p>
+<div class="src">GitHub</div>
+</div>
+<div class="tl-item old">
+<div class="date">2026-04-10</div>
+<h4>SelfMCP Major Update</h4>
+<p>Added selfmcp_about skill, environment key management, documentation overhaul.</p>
+<div class="src">GitHub</div>
+</div>
+</div>
+</div>
 
-<!-- §02 PROJECTS -->
-<section class="sec">
-  <div class="sec-label">02 · Projects & Builds</div>
-  <h2>Every notable project, ranked by <em>stars.</em></h2>
+<div class="sec">
+<div class="sec-label">GREATEST HITS</div>
+<h2>Notable Work <em>Portfolio</em></h2>
+<div class="desc">The projects that defined his reputation and impact.</div>
+<div class="proj-grid">
+<div class="proj">
+<div class="stars"><span class="n">22,270</span>⭐</div>
+<div>
+<h3>BabyAGI</h3>
+<div class="desc">First popular autonomous agent with task planning. Went viral March 2023, sparked autonomous agent movement.</div>
+<div class="meta">Mar 2023 • Python • Featured in Fortune, Forbes, TED AI</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">3,550</span>⭐</div>
+<div>
+<h3>Instagraph</h3>
+<div class="desc">Converts text or URL into knowledge graph and displays. Core graph infrastructure prototype.</div>
+<div class="meta">Sep 2023 • Python</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">1,056</span>⭐</div>
+<div>
+<h3>Ditto</h3>
+<div class="desc">Simplest self-building coding agent. AI that can write and extend itself.</div>
+<div class="meta">2024 • Last push Oct 2024</div>
+</div>
+</div>
+<div class="proj">
+<div class="stars"><span class="n">935</span>⭐</div>
+<div>
+<h3>Mindgraph</h3>
+<div class="desc">Ever-expanding knowledge graph prototype with AI querying capabilities.</div>
+<div class="meta">Mar 2024 • Python</div>
+</div>
+</div>
+</div>
+</div>
 
-  <div class="proj-grid">
-    <div class="proj">
-      <div class="stars"><span class="n">22.2K</span>⭐</div>
-      <div>
-        <h3><em>BabyAGI</em></h3>
-        <div class="desc">First popular open-source autonomous agent with task planning capability. Inspired by human cognitive development. Went viral March 2023. Featured in Fortune, Forbes, Fast Company, Sequoia blog, A16Z AI Canon.</div>
-        <div class="meta">Python · Mar 2023 · Last commit Jan 2026 · Cited in dozens of ArXiv papers</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">3.6K</span>⭐</div>
-      <div>
-        <h3><em>Instagraph</em></h3>
-        <div class="desc">Converts text input or URL into knowledge graph and displays visually. Explores his thesis that knowledge graphs are fundamental AI infrastructure.</div>
-        <div class="meta">Python · 2023</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">1.1K</span>⭐</div>
-      <div>
-        <h3><em>Ditto</em></h3>
-        <div class="desc">"The simplest self-building coding agent." Minimalist approach: the agent writes its own code to extend its capabilities.</div>
-        <div class="meta">Python · 2024</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">933</span>⭐</div>
-      <div>
-        <h3><em>Mindgraph</em></h3>
-        <div class="desc">Proof of concept for generating and querying against an ever-expanding knowledge graph with AI. Active updates as of May 2026.</div>
-        <div class="meta">Python · 2023 · Updated May 2026</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">783</span>⭐</div>
-      <div>
-        <h3><em>Prettygraph</em></h3>
-        <div class="desc">Experimental UI for text-to-knowledge-graph generation. The visual layer on top of his graph work.</div>
-        <div class="meta">HTML · 2023</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">339</span>⭐</div>
-      <div>
-        <h3><em>BabyAGI-2o</em></h3>
-        <div class="desc">"The simplest self-building general autonomous agent." Latest evolution of the BabyAGI lineage — focused on self-extension.</div>
-        <div class="meta">Python · Oct 2024</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">124</span>⭐</div>
-      <div>
-        <h3><em>BabyAGI3</em></h3>
-        <div class="desc">Next iteration of BabyAGI. Active development as of Feb 2026 with Codex and Claude commits.</div>
-        <div class="meta">Python · Updated May 2026</div>
-      </div>
-    </div>
-    <div class="proj">
-      <div class="stars"><span class="n">20</span>⭐</div>
-      <div>
-        <h3><em>selfMCP</em> · Active</h3>
-        <div class="desc">A self-extending MCP server. Agents can add their own tools and capabilities at runtime. Active commits April 2026.</div>
-        <div class="meta">Python · Updated Apr 2026</div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="sec">
+<div class="sec-label">NOTABLE QUOTES</div>
+<h2>What He's <em>Said</em></h2>
+<div class="quotes">
+<div class="quote">
+<blockquote>"The goal is not to build the perfect autonomous agent, but to learn by building in public and sharing the journey."</blockquote>
+<div class="who">On build-in-public philosophy</div>
+</div>
+<div class="quote">
+<blockquote>"Knowledge graphs are the memory layer for AI. Without them, agents can't truly learn and reason."</blockquote>
+<div class="who">On graph infrastructure</div>
+</div>
+</div>
+</div>
 
-<div class="divider">◆ ◇ ◆ ◇ ◆</div>
-
-<!-- §03 TIMELINE -->
-<section class="sec">
-  <div class="sec-label">03 · Timeline</div>
-  <h2>Key moments in Yohei's <em>trajectory.</em></h2>
-
-  <div class="tl">
-    <div class="tl-item old">
-      <div class="date">2009 · Los Angeles</div>
-      <h4>Startup community builder</h4>
-      <p>Organized educational events and communities for local startup founders in LA. The beginning of his builder-investor journey.</p>
-    </div>
-    <div class="tl-item old">
-      <div class="date">2014 · Techstars</div>
-      <h4>Joined Techstars, helped launch Disney Accelerator</h4>
-      <p>First Director of Pipeline at Techstars, supporting startup sourcing across 30+ accelerator programs. Worked directly with The Walt Disney Company.</p>
-    </div>
-    <div class="tl-item old">
-      <div class="date">2018 · Scrum Ventures</div>
-      <h4>Venture Partner + SVP of Scrum Studio</h4>
-      <p>Investment team member. Led Nintendo Switch+Tech engagement as managing director. Worked with Nintendo and other global corporations.</p>
-    </div>
-    <div class="tl-item old">
-      <div class="date">Dec 2020 · Untapped Capital</div>
-      <h4>Founded Untapped Capital with Jessica Jackley</h4>
-      <p>Early-stage VC firm known for leveraging AI and automations. Build-in-public methodology spanning No Code, web3, AI.</p>
-    </div>
-    <div class="tl-item">
-      <div class="date">March 2023 · BabyAGI</div>
-      <h4>BabyAGI goes viral</h4>
-      <p>The first popular open-source autonomous agent with task planning. Millions of impressions on Twitter. Tens of thousands of GitHub stars. Coverage in Fortune, Forbes, Fast Company, Vice. Led to speaking at inaugural TED AI.</p>
-      <div class="src">→ Featured in Sequoia blog, A16Z AI Canon, LangChain docs</div>
-    </div>
-    <div class="tl-item">
-      <div class="date">2023 · Knowledge Graph exploration</div>
-      <h4>Instagraph · Mindgraph · Prettygraph</h4>
-      <p>Three projects exploring text-to-knowledge-graph conversion and visualization. His thesis: knowledge graphs are fundamental AI infrastructure.</p>
-    </div>
-    <div class="tl-item">
-      <div class="date">2024 · Self-building agents</div>
-      <h4>Ditto · BabyAGI-2o</h4>
-      <p>"The simplest self-building coding agent" and "the simplest self-building general autonomous agent." Pushing toward agents that extend their own capabilities.</p>
-    </div>
-    <div class="tl-item">
-      <div class="date">Feb 2026 · BabyAGI3</div>
-      <h4>BabyAGI3 active development</h4>
-      <p>Next iteration with Codex and Claude commits. AI-assisted code readiness analysis added to main BabyAGI repo.</p>
-    </div>
-    <div class="tl-item">
-      <div class="date">Apr 10 2026 · selfMCP</div>
-      <h4>Self-extending MCP server ships</h4>
-      <p>Agents can add their own tools at runtime. Multiple PRs merged with Claude-generated improvements. Core skills system with guard rails.</p>
-      <div class="src">→ github.com/yoheinakajima/selfMCP</div>
-    </div>
-    <div class="tl-item">
-      <div class="date">May 11 2026 · X post</div>
-      <h4>"Agents need scaffolding, not just smarter models"</h4>
-      <p>Commenting on an article about coding agents: agents need structured scaffolding, failures should become durable improvements, tools should be small, reusable, and logged. Execution layer matters as much as the model.</p>
-      <div class="src">→ x.com/yoheinakajima/status/2053888354203451527</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider">◆ ◇ ◆ ◇ ◆</div>
-
-<!-- §04 QUOTES -->
-<section class="sec">
-  <div class="sec-label">04 · Notable Quotes</div>
-  <h2>What Yohei <em>actually said.</em></h2>
-
-  <div class="quotes">
-    <div class="quote">
-      <blockquote>"Agents need scaffolding, not just smarter models. Failures should become durable improvements. Tools/functions should be small, reusable, and logged. Execution matters."</blockquote>
-      <div class="who">X post · May 11, 2026</div>
-    </div>
-    <div class="quote">
-      <blockquote>"Build in public to learn faster, meet founders, and contribute to the ecosystem."</blockquote>
-      <div class="who">yoheinakajima.com · stated philosophy</div>
-    </div>
-    <div class="quote">
-      <blockquote>"The simplest self-building [coding/general] agent."</blockquote>
-      <div class="who">Ditto + BabyAGI-2o descriptions · recurring design principle</div>
-    </div>
-    <div class="quote">
-      <blockquote>"I don't know what I'm doing here, don't judge me."</blockquote>
-      <div class="who">GitHub profile bio · humor + humility</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider">◆ ◇ ◆ ◇ ◆</div>
-
-<!-- §05 MENTIONS -->
-<section class="sec">
-  <div class="sec-label">05 · Notable Mentions</div>
-  <h2>What significant outlets & institutions say about <em>Yohei.</em></h2>
-
-  <div class="mention">
-    <div>
-      <div class="outlet">Sequoia Capital</div>
-      <h4>"AI Agents: A Perspective" — BabyAGI cited as foundational autonomous agent</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">A16Z</div>
-      <h4>BabyAGI included in the A16Z AI Canon</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">TED AI · San Francisco</div>
-      <h4>Invited speaker at inaugural TED AI conference</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">Fortune</div>
-      <h4>"BabyAGI, AutoGPT, OpenAI, GPT-4: the autonomous assistant race" — April 2023</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">Fast Company</div>
-      <h4>"How autonomous agents are bringing generative AI to the masses" — feature</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">a16z GP-LP Mixer · SF Tech Week</div>
-      <h4>Presented "How to run your VC firm using AI"</h4>
-    </div>
-  </div>
-  <div class="mention">
-    <div>
-      <div class="outlet">Data Driven VC Landscape 2023</div>
-      <h4>Ranked Top 20 thought leader in VC + AI</h4>
-    </div>
-  </div>
-</section>
-
-<div class="divider">◆ ◇ ◆ ◇ ◆</div>
-
-<!-- §06 PATTERNS -->
-<section class="sec">
-  <div class="sec-label">06 · Patterns & Themes</div>
-  <h2>Recurring signals across all of Yohei's <em>output.</em></h2>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <div style="background:var(--sf);border:1px solid var(--bd);padding:18px">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:8px">PATTERN 01</div>
-      <h3 style="font-family:var(--disp);font-size:18px;font-style:italic;color:var(--tx);margin-bottom:6px">Iterate publicly, ship often</h3>
-      <p style="font-size:13px;color:var(--tx2);line-height:1.5">58 GitHub repos, most with "simplest" in the description. He doesn't wait for polish — he ships the minimal version and lets the community shape the next iteration.</p>
-    </div>
-    <div style="background:var(--sf);border:1px solid var(--bd);padding:18px">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gn);margin-bottom:8px">PATTERN 02</div>
-      <h3 style="font-family:var(--disp);font-size:18px;font-style:italic;color:var(--tx);margin-bottom:6px">Knowledge graphs as through-line</h3>
-      <p style="font-size:13px;color:var(--tx2);line-height:1.5">From Instagraph → Mindgraph → Prettygraph → BabyAGI's task planning: structured knowledge representation is the consistent thread across three years of work.</p>
-    </div>
-    <div style="background:var(--sf);border:1px solid var(--bd);padding:18px">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--pu);margin-bottom:8px">PATTERN 03</div>
-      <h3 style="font-family:var(--disp);font-size:18px;font-style:italic;color:var(--tx);margin-bottom:6px">Self-improving systems</h3>
-      <p style="font-size:13px;color:var(--tx2);line-height:1.5">The trajectory from BabyAGI → Ditto → BabyAGI-2o → selfMCP is a clear arc toward agents that extend their own capabilities. Each project pushes further on self-modification.</p>
-    </div>
-    <div style="background:var(--sf);border:1px solid var(--bd);padding:18px">
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bl);margin-bottom:8px">PATTERN 04</div>
-      <h3 style="font-family:var(--disp);font-size:18px;font-style:italic;color:var(--tx);margin-bottom:6px">VC + Builder dual identity</h3>
-      <p style="font-size:13px;color:var(--tx2);line-height:1.5">He builds to understand what founders are going through, not as an academic exercise. His VC practice directly informs his builds and vice versa. The AI VC Associate is the literal intersection.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <span>Intelligence Profile · yohei nakajima · tracked since May 11, 2026 · auto-updated daily</span>
-  <span>Part of the Intelligence Tracker · philipbankier.com</span>
+<span>INTELLIGENCE TRACKER — VIC</span>
+<span>DATA SOURCES: GitHub API, X (pending), Website, YouTube</span>
+<span>BUILT WITH ❤️ BY OPENCLAW</span>
 </footer>
-
 </div>
 </body>
 </html>
