@@ -1,333 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yohei Nakajima — Intelligence Profile</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=IBM+Plex+Mono:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0A0908;--sf:#13120F;--sf2:#1B1916;--bd:#2A2621;--bd2:#3D3830;--tx:#E8E0D4;--tx2:#B5A999;--tx3:#7A6F63;--ac:#E8652B;--gn:#4A9E6D;--yl:#C4A530;--bl:#4A7FB5;--rd:#C44B3E;--pu:#8B6BB5;--cy:#4AB5A0;--disp:'Instrument Serif',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font-family:var(--body);-webkit-font-smoothing:antialiased}
-::selection{background:var(--ac);color:var(--bg)}
-.page{max-width:1200px;margin:0 auto;padding:36px 44px 64px}
-@media(max-width:900px){.page{padding:20px 18px 48px}}
-
-.topbar{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--bd);padding-bottom:14px;margin-bottom:36px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3)}
-.topbar .dot{color:var(--ac)}
-
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:48px;align-items:center}
-@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.hero-left h1{font-family:var(--disp);font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:-.03em;margin-bottom:8px}
-.hero-left h1 em{color:var(--ac);font-style:italic}
-.hero-left .role{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2);margin-bottom:12px}
-.hero-left .bio{font-size:15px;line-height:1.6;color:var(--tx2)}
-.hero-left .bio strong{color:var(--tx);font-weight:600}
-.links{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-.links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--bl);text-decoration:none;padding:4px 10px;border:1px solid rgba(74,127,181,.3);border-radius:2px}
-.links a:hover{color:var(--ac);border-color:var(--ac)}
-
-.profile-card{background:var(--sf);border:1px solid var(--bd);padding:24px;border-radius:4px}
-.profile-card .photo{width:120px;height:120px;border-radius:60px;background:var(--sf2);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:48px}
-.profile-card .quick{font-family:var(--mono);font-size:10px;line-height:2;color:var(--tx2)}
-.profile-card .quick b{color:var(--tx);font-weight:500}
-.profile-card .quick .label{color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;display:inline-block;width:80px}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);margin-bottom:48px}
-@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--sf);padding:20px 16px;text-align:center}
-.stat .n{font-family:var(--disp);font-size:36px;line-height:1;letter-spacing:-.04em}
-.stat .n .u{font-size:16px;margin-left:2px}
-.stat .l{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx2);margin-top:6px}
-
-.sec{margin-bottom:44px}
-.sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
-.sec h2{font-family:var(--disp);font-size:clamp(24px,3vw,34px);line-height:1.08;margin-bottom:6px}
-.sec h2 em{font-style:italic;color:var(--ac)}
-.sec .desc{font-size:13px;line-height:1.5;color:var(--tx2);max-width:700px;margin-bottom:20px}
-
-.beliefs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
-@media(max-width:800px){.beliefs{grid-template-columns:1fr}}
-.belief{background:var(--sf);padding:20px}
-.belief .icon{font-size:24px;margin-bottom:8px}
-.belief h3{font-family:var(--disp);font-size:18px;line-height:1.2;margin-bottom:6px;font-weight:400;font-style:italic;color:var(--tx)}
-.belief p{font-size:13px;line-height:1.55;color:var(--tx2)}
-.belief .evidence{font-family:var(--mono);font-size:9px;color:var(--tx3);margin-top:8px;letter-spacing:.06em}
-
-.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
-@media(max-width:800px){.proj-grid{grid-template-columns:1fr}}
-.proj{background:var(--sf);padding:18px;display:flex;gap:16px;align-items:start}
-.proj .stars{font-family:var(--mono);font-size:11px;color:var(--yl);white-space:nowrap;min-width:70px;text-align:right}
-.proj .stars .n{font-size:20px;font-weight:600;display:block}
-.proj h3{font-family:var(--disp);font-size:16px;color:var(--tx);font-weight:400;margin-bottom:2px}
-.proj h3 em{font-style:italic;color:var(--ac)}
-.proj .desc{font-size:12px;color:var(--tx2);line-height:1.5}
-.proj .meta{font-family:var(--mono);font-size:9px;color:var(--tx3);margin-top:4px}
-
-.tl{position:relative;padding-left:32px}
-.tl::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--bd)}
-.tl-item{position:relative;padding-bottom:24px}
-.tl-item::before{content:'';position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--ac);border:2px solid var(--bg)}
-.tl-item.old::before{background:var(--tx3)}
-.tl-item .date{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);margin-bottom:4px}
-.tl-item h4{font-family:var(--disp);font-size:16px;color:var(--tx);font-weight:400;font-style:italic;margin-bottom:2px}
-.tl-item p{font-size:13px;color:var(--tx2);line-height:1.5}
-.tl-item .src{font-family:var(--mono);font-size:9px;color:var(--bl);margin-top:4px}
-
-.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:800px){.quotes{grid-template-columns:1fr}}
-.quote{background:var(--sf2);border-left:3px solid var(--ac);padding:18px 20px}
-.quote blockquote{font-family:var(--disp);font-size:16px;line-height:1.4;font-style:italic;color:var(--tx);margin-bottom:8px}
-.quote .who{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
-
-.mention{background:var(--sf);border:1px solid var(--bd);padding:16px;margin-bottom:10px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-.mention .outlet{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--yl)}
-.mention h4{font-family:var(--disp);font-size:15px;color:var(--tx);font-weight:400;font-style:italic}
-.mention .date{font-family:var(--mono);font-size:9px;color:var(--tx3)}
-
-footer{border-top:1px solid var(--bd);padding-top:18px;margin-top:36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-footer span{font-family:var(--mono);font-size:9px;color:var(--tx3);letter-spacing:.08em}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligence Tracker — Yohei Nakajima</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1, h2, h3 { color: #fff; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.3rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+    .meta { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
+    .card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 1rem;
+    }
+    .card h3 { margin-top: 0; }
+    .badge {
+      display: inline-block;
+      background: #ff6b6b;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    .badge.active { background: #51cf66; }
+    .badge.new { background: #339af0; }
+    .badge.maintenance { background: #868e96; }
+    .stars { color: #ffd43b; font-weight: bold; }
+    .date { color: #888; font-size: 0.85rem; }
+    a { color: #74c0fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .update-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    .update-banner h3 { margin: 0 0 8px 0; color: white; }
+    .tag { background: #222; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 6px; }
+  </style>
 </head>
 <body>
-<div class="page">
-<div class="topbar">
-<span>INTELLIGENCE TRACKER <span class="dot">•</span> YOHEI NAKAJIMA</span>
-<span>LAST UPDATED MAY 22 2026</span>
-</div>
+  <div class="container">
+    <header>
+      <h1>Yohei Nakajima</h1>
+      <div class="meta">
+        <span>GP at Untapped Capital</span> • <span>Creator of BabyAGI</span> • <span>@yoheinakajima</span>
+      </div>
+      <div class="meta">
+        Last updated: May 23, 2026
+      </div>
+    </header>
 
-<div class="hero">
-<div class="hero-left">
-<h1>Yohei <em>Nakajima</em></h1>
-<div class="role">GP @ Untapped Capital</div>
-<div class="bio"><strong>VC by day, builder by night.</strong> Creator of BabyAGI — the first popular open-source autonomous agent. Build-in-public advocate with 15 years in early-stage venture.</div>
-<div class="links">
-<a href="https://x.com/yoheinakajima" target="_blank">X</a>
-<a href="https://github.com/yoheinakajima" target="_blank">GitHub</a>
-<a href="https://yoheinakajima.com" target="_blank">Website</a>
-</div>
-</div>
-<div class="profile-card">
-<div class="photo">👤</div>
-<div class="quick">
-<span class="label">Born:</span><b>1987, Tokyo</b><br>
-<span class="label">Based:</span><b>United States</b><br>
-<span class="label">X:</span><b>68K followers</b><br>
-<span class="label">Focus:</span><b>Agents, Knowledge Graphs</b>
-</div>
-</div>
-</div>
+    <section class="update-banner">
+      <h3>🎉 Major Update: Research Paper Published</h3>
+      <p>Yohei published his first academic paper on arXiv: <strong>"The Log is the Agent: Event-Sourced Reactive Graphs for Auditable, Forkable Agentic Systems"</strong> (May 21, 2026). The paper introduces ActiveGraph, a runtime that inverts typical agent architectures by making the append-only event log the source of truth.</p>
+      <a href="https://arxiv.org/abs/2605.21997" target="_blank" style="color: white; text-decoration: underline;">Read on arXiv →</a>
+    </section>
 
-<div class="stats">
-<div class="stat"><div class="n">22,271<span class="u">⭐</span></div><div class="l">BabyAGI Stars</div></div>
-<div class="stat"><div class="n">3,550<span class="u">⭐</span></div><div class="l">Instagraph Stars</div></div>
-<div class="stat"><div class="n">123<span class="u">⭐</span></div><div class="l">Activegraph Stars ↑37</div></div>
-<div class="stat"><div class="n">1<span class="u">paper</span></div><div class="l">Arxiv Published</div></div>
-</div>
+    <section>
+      <h2>Active Projects</h2>
 
-<div class="sec">
-<div class="sec-label">ACTIVE PROJECTS</div>
-<h2>What He's Building <em>Now</em></h2>
-<div class="desc">Latest projects from the last 6 months. Yohei's work cycles through autonomous agents, knowledge graph infrastructure, and self-improving systems.</div>
-<div class="proj-grid">
-<div class="proj">
-<div class="stars"><span class="n">123</span>⭐</div>
-<div>
-<h3>activegraph <em>HOT ↑37</em></h3>
-<div class="desc">Event-sourced reactive graph runtime. The log IS the agent — append-only event log as source of truth. Arxiv paper published May 21.</div>
-<div class="meta">Active • Python • Arxiv: 2605.21997</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">1</span>⭐</div>
-<div>
-<h3>activegraph-selfgraph <em>NEW</em></h3>
-<div class="desc">Self-configuring ActiveGraph agent that extracts its own capabilities and proposes graph-native behavior upgrades.</div>
-<div class="meta">Created May 21 • Heavy Claude-assisted dev</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">1</span>⭐</div>
-<div>
-<h3>activegraph-longmemeval <em>NEW</em></h3>
-<div class="desc">Reproducible LongMemEval benchmark harness for ActiveGraph memory capabilities.</div>
-<div class="meta">Created May 22 • Python</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">21</span>⭐</div>
-<div>
-<h3>SelfMCP</h3>
-<div class="desc">Self-extending MCP server with built-in skills. Major updates in April 2026.</div>
-<div class="meta">Maintenance • Last commit Apr 10</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">935</span>⭐</div>
-<div>
-<h3>Mindgraph</h3>
-<div class="desc">Ever-expanding knowledge graph with AI-powered querying. Prototype for graph infrastructure.</div>
-<div class="meta">Maintenance • Last push Apr 2024</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">339</span>⭐</div>
-<div>
-<h3>BabyAGI-2o</h3>
-<div class="desc">Simplest self-building general autonomous agent. Next iteration of BabyAGI.</div>
-<div class="meta">Maintenance • Last push Oct 2024</div>
-</div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3>ActiveGraph <span class="badge active">HOT</span> <span class="stars">⭐ 169</span></h3>
+        <p class="date">Created: May 16, 2026 • +46 stars in 24h (post-paper momentum)</p>
+        <p>Event-sourced reactive graph runtime for auditable, forkable agentic systems. Inverts typical agent architecture — log first, then graph, then behaviors.</p>
+        <p><strong>Key Innovation:</strong> Deterministic replay, cheap forking, end-to-end lineage from goals to individual model calls.</p>
+        <a href="https://github.com/yoheinakajima/activegraph" target="_blank">View on GitHub →</a>
+      </div>
 
-<div class="sec">
-<div class="sec-label">BELIEFS & POSITIONS</div>
-<h2>What He Thinks <em>About</em></h2>
-<div class="beliefs">
-<div class="belief">
-<div class="icon">📜</div>
-<h3>The Log IS the Agent</h3>
-<p>Most frameworks bolt logging on last. ActiveGraph inverts this: the append-only event log is the source of truth. This enables deterministic replay, cheap forking, and full lineage from goal to artifact.</p>
-<div class="evidence">Arxiv 2605.21997, ActiveGraph, May 2026</div>
-</div>
-<div class="belief">
-<div class="icon">🤖</div>
-<h3>Autonomy is Everything</h3>
-<p>Agents should be autonomous and self-improving. The goal is systems that can plan, execute, and iterate without human hand-holding.</p>
-<div class="evidence">BabyAGI, SelfMCP, Ditto</div>
-</div>
-<div class="belief">
-<div class="icon">🌐</div>
-<h3>Build in Public</h3>
-<p>Building openly helps learn faster, meet founders, and contribute to the ecosystem. Transparency beats secrecy.</p>
-<div class="evidence">All open-source projects, 68K X following</div>
-</div>
-<div class="belief">
-<div class="icon">🕸️</div>
-<h3>Knowledge Graphs are Infrastructure</h3>
-<p>Graphs are fundamental to AI memory and reasoning. Text-to-graph conversion is a key capability for agents.</p>
-<div class="evidence">Instagraph, Mindgraph, Prettygraph, Activegraph</div>
-</div>
-<div class="belief">
-<div class="icon">⚡</div>
-<h3>Simplicity Wins</h3>
-<p>The simplest approach that works. His project descriptions repeatedly emphasize "simplest" and "minimal."</p>
-<div class="evidence">BabyAGI-2o, Ditto</div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3>ActiveGraph-Selfgraph <span class="badge new">NEW</span> <span class="stars">⭐ 2</span></h3>
+        <p class="date">Created: May 21, 2026</p>
+        <p>A self-configuring ActiveGraph agent that ingests its own runtime/docs, builds a capability graph, and proposes graph-native behavior upgrades through safe patches.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-selfgraph" target="_blank">View on GitHub →</a>
+      </div>
 
-<div class="sec">
-<div class="sec-label">RECENT ACTIVITY</div>
-<h2>Timeline <em>Last 30 Days</em></h2>
-<div class="desc">Tracking GitHub activity, posts, and public output. Data refreshed daily.</div>
-<div class="tl">
-<div class="tl-item">
-<div class="date">2026-05-22</div>
-<h4>Arxiv Paper: "The Log is the Agent"</h4>
-<p>Published first academic paper describing ActiveGraph architecture. 11 pages on event-sourced reactive graphs for auditable, forkable agentic systems.</p>
-<div class="src">Arxiv 2605.21997</div>
-</div>
-<div class="tl-item">
-<div class="date">2026-05-22</div>
-<h4>Two New Repos: activegraph-selfgraph + activegraph-longmemeval</h4>
-<p>Self-configuring agent that proposes its own upgrades. Plus benchmark harness for ActiveGraph memory evaluation.</p>
-<div class="src">GitHub</div>
-</div>
-<div class="tl-item">
-<div class="date">2026-05-21</div>
-<h4>Activegraph Stars Surge: 86 → 123</h4>
-<p>37 new stars in one day as the project gains attention following paper submission.</p>
-<div class="src">GitHub</div>
-</div>
-<div class="tl-item">
-<div class="date">2026-05-19</div>
-<h4>LinkedIn Article Published</h4>
-<p>"The State of AI Going into 2026" — analysis of operationality, governance, and data maturity.</p>
-<div class="src">LinkedIn</div>
-</div>
-<div class="tl-item old">
-<div class="date">2026-05-16</div>
-<h4>GitHub Metadata Updates</h4>
-<p>Updated timestamps on instagraph and prettygraph repos.</p>
-<div class="src">GitHub</div>
-</div>
-<div class="tl-item old">
-<div class="date">2026-05-10</div>
-<h4>BabyAGI-2o Metadata Update</h4>
-<p>Repository updated, though last code push was October 2024.</p>
-<div class="src">GitHub</div>
-</div>
-<div class="tl-item old">
-<div class="date">2026-04-10</div>
-<h4>SelfMCP Major Update</h4>
-<p>Added selfmcp_about skill, environment key management, documentation overhaul.</p>
-<div class="src">GitHub</div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3>ActiveGraph-LongMemEval <span class="badge new">NEW</span> <span class="stars">⭐ 2</span></h3>
+        <p class="date">Created: May 22, 2026</p>
+        <p>Reproducible LongMemEval benchmark harness for ActiveGraph. Compares against baselines (full-context oracle, RAG BM25, RAG dense).</p>
+        <a href="https://github.com/yoheinakajima/activegraph-longmemeval" target="_blank">View on GitHub →</a>
+      </div>
 
-<div class="sec">
-<div class="sec-label">GREATEST HITS</div>
-<h2>Notable Work <em>Portfolio</em></h2>
-<div class="desc">The projects that defined his reputation and impact.</div>
-<div class="proj-grid">
-<div class="proj">
-<div class="stars"><span class="n">22,270</span>⭐</div>
-<div>
-<h3>BabyAGI</h3>
-<div class="desc">First popular autonomous agent with task planning. Went viral March 2023, sparked autonomous agent movement.</div>
-<div class="meta">Mar 2023 • Python • Featured in Fortune, Forbes, TED AI</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">3,550</span>⭐</div>
-<div>
-<h3>Instagraph</h3>
-<div class="desc">Converts text or URL into knowledge graph and displays. Core graph infrastructure prototype.</div>
-<div class="meta">Sep 2023 • Python</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">1,056</span>⭐</div>
-<div>
-<h3>Ditto</h3>
-<div class="desc">Simplest self-building coding agent. AI that can write and extend itself.</div>
-<div class="meta">2024 • Last push Oct 2024</div>
-</div>
-</div>
-<div class="proj">
-<div class="stars"><span class="n">935</span>⭐</div>
-<div>
-<h3>Mindgraph</h3>
-<div class="desc">Ever-expanding knowledge graph prototype with AI querying capabilities.</div>
-<div class="meta">Mar 2024 • Python</div>
-</div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3>SelfMCP <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 22</span></h3>
+        <p>A self-extending MCP server exploring self-improving server architecture. Last updated April 2026.</p>
+        <a href="https://github.com/yoheinakajima/selfMCP" target="_blank">View on GitHub →</a>
+      </div>
 
-<div class="sec">
-<div class="sec-label">NOTABLE QUOTES</div>
-<h2>What He's <em>Said</em></h2>
-<div class="quotes">
-<div class="quote">
-<blockquote>"The goal is not to build the perfect autonomous agent, but to learn by building in public and sharing the journey."</blockquote>
-<div class="who">On build-in-public philosophy</div>
-</div>
-<div class="quote">
-<blockquote>"Knowledge graphs are the memory layer for AI. Without them, agents can't truly learn and reason."</blockquote>
-<div class="who">On graph infrastructure</div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3>BabyAGI-2o <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 340</span></h3>
+        <p>The simplest self-building general autonomous agent. ~167 lines of code.</p>
+        <a href="https://github.com/yoheinakajima/babyagi-2o" target="_blank">View on GitHub →</a>
+      </div>
 
-<footer>
-<span>INTELLIGENCE TRACKER — VIC</span>
-<span>DATA SOURCES: GitHub API, X (pending), Website, YouTube</span>
-<span>BUILT WITH ❤️ BY OPENCLAW</span>
-</footer>
-</div>
+      <div class="card">
+        <h3>BabyAGI3 <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 126</span></h3>
+        <p>Next iteration of autonomous agent framework.</p>
+        <a href="https://github.com/yoheinakajima/babyagi3" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Mindgraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 936</span></h3>
+        <p>Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.</p>
+        <a href="https://github.com/yoheinakajima/mindgraph" target="_blank">View on GitHub →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Notable Past Projects</h2>
+
+      <div class="card">
+        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,273</span></h3>
+        <p class="date">March 2023</p>
+        <p>First popular open-source autonomous agent with task planning capability. Millions of impressions, global media coverage, dozens of arXiv citations.</p>
+        <a href="https://github.com/yoheinakajima/babyagi" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Instagraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 3,550</span></h3>
+        <p>Converts text input or URL into knowledge graph and displays.</p>
+        <a href="https://github.com/yoheinakajima/instagraph" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Ditto <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 1,057</span></h3>
+        <p>The simplest self-building coding agent.</p>
+        <a href="https://github.com/yoheinakajima/ditto" target="_blank">View on GitHub →</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Beliefs</h2>
+
+      <div class="card">
+        <h3>The log IS the agent</h3>
+        <p>Most agent frameworks bolt logging on last; ActiveGraph inverts this. The append-only event log is the source of truth. This yields deterministic replay, cheap forking, and end-to-end lineage — properties retrieval-and-summarization memory systems cannot provide.</p>
+        <p class="date">Source: arXiv paper "The Log is the Agent" (May 2026)</p>
+      </div>
+
+      <div class="card">
+        <h3>Autonomy requires governance</h3>
+        <p>"Trust is no longer a property of the model; it is a property of the system around it." The winners in agentic categories will not be the most autonomous systems, but the most governable ones.</p>
+        <p class="date">Source: LinkedIn "The State of AI Going into 2026" (May 2026)</p>
+      </div>
+
+      <div class="card">
+        <h3>Data maturity is required for AI</h3>
+        <p>"AI is forcing a data maturity upgrade. Humans once compensated for fragmentation. Agents cannot." Freshness is a performance attribute — stale data propagates errors at scale.</p>
+        <p class="date">Source: LinkedIn article (May 2026)</p>
+      </div>
+
+      <div class="card">
+        <h3>The simplest approach wins</h3>
+        <p>Recurring theme across projects: "Simplest self-building coding agent", "Simplest self-building general autonomous agent".</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent Timeline</h2>
+
+      <div class="card">
+        <p><strong>May 23, 2026:</strong> New repos created (activegraph-behaviordrafts, regimes). ActiveGraph reaches 169 stars (+46). Commits to ActiveGraph ecosystem.</p>
+        <p><strong>May 22, 2026:</strong> arXiv paper published. ActiveGraph-selfgraph and activegraph-longmemeval repos created.</p>
+        <p><strong>May 21, 2026:</strong> arXiv paper submitted. ActiveGraph-selfgraph initial commits.</p>
+        <p><strong>May 19, 2026:</strong> LinkedIn article "The State of AI Going into 2026" published. Covers operationality, governance, data maturity, autonomous businesses.</p>
+        <p><strong>May 16, 2026:</strong> ActiveGraph repo created publicly.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Links</h2>
+
+      <div class="card">
+        <p><span class="tag">GitHub</span> <a href="https://github.com/yoheinakajima">github.com/yoheinakajima</a></p>
+        <p><span class="tag">X/Twitter</span> <a href="https://x.com/yoheinakajima">@yoheinakajima</a></p>
+        <p><span class="tag">Website</span> <a href="https://yoheinakajima.com">yoheinakajima.com</a></p>
+        <p><span class="tag">Personal</span> <a href="https://yohei.me">yohei.me</a></p>
+        <p><span class="tag">LinkedIn</span> <a href="https://linkedin.com/in/yoheinakajima">linkedin.com/in/yoheinakajima</a></p>
+      </div>
+    </section>
+
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #222; color: #666; font-size: 0.85rem;">
+      <p>Intelligence Tracker • Updated automatically by OpenClaw</p>
+      <p>Data sources: GitHub API, arXiv, YouTube search, web search</p>
+    </footer>
+  </div>
 </body>
 </html>
