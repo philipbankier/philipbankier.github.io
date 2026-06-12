@@ -43,6 +43,7 @@
     .badge.active { background: #51cf66; }
     .badge.new { background: #339af0; }
     .badge.maintenance { background: #868e96; }
+    .badge.released { background: #ffd43b; color: #333; }
     .stars { color: #ffd43b; font-weight: bold; }
     .date { color: #888; font-size: 0.85rem; }
     a { color: #74c0fc; text-decoration: none; }
@@ -66,58 +67,114 @@
         <span>GP at Untapped Capital</span> • <span>Creator of BabyAGI</span> • <span>@yoheinakajima</span>
       </div>
       <div class="meta">
-        Last updated: May 24, 2026
+        Last updated: June 12, 2026
       </div>
     </header>
 
     <section class="update-banner">
-      <h3>🔥 ActiveGraph Ecosystem Expanding Rapidly</h3>
-      <p>ActiveGraph surged to <strong>201 stars</strong> (+32 in 24h). New repo <strong>regimes</strong> — an autonomous eval-improvement loop built natively on the ActiveGraph runtime — was created May 23 with 15+ events in its first 24 hours. This is the first real application dogfooding the ActiveGraph framework for agent meta-improvement. The ecosystem now spans 5 repos: core runtime + behavior lifecycle spec + eval benchmark + self-configuring agent + eval-improvement loop.</p>
-      <a href="https://github.com/yoheinakajima/activegraph" target="_blank" style="color: white; text-decoration: underline;">View ActiveGraph on GitHub →</a>
+      <h3>🔥 ActiveGraph v1.1.0 Released + Talk at AI2 Incubator Seattle</h3>
+      <p><strong>activegraph-lab</strong> PRs #14–#15 merged — serverless Postgres resilience fixes + seam-proposal truncation. <strong>Multi-model routing</strong> confirmed (Opus now in the mix, temperature handling added). <strong>regimes-probe</strong> reaches Level 5u (service lifecycle accounting). BabyAGI hits <strong>22,302 stars</strong>. ActiveGraph at <strong>306 stars</strong>. <strong>Yohei speaking at AI House (AI2 Incubator), Seattle, June 24th 3pm</strong> on ActiveGraph. All code via <strong>Claude Code</strong> — Yohei operating as orchestrator/reviewer.</p>
     </section>
 
     <section>
       <h2>Active Projects</h2>
 
       <div class="card">
-        <h3>ActiveGraph <span class="badge active">HOT</span> <span class="stars">⭐ 201</span></h3>
-        <p class="date">Created: May 16, 2026 • +115 stars in 4 days (rapid growth)</p>
+        <h3>ActiveGraph <span class="badge released">v1.1.0</span> <span class="badge active">HOT</span> <span class="stars">⭐ 305</span></h3>
+        <p class="date">Created: May 16, 2026 • <strong>v1.1.0 released June 10, 2026</strong> • ArXiv paper "The Log is the Agent" (2605.21997)</p>
         <p>Event-sourced reactive graph runtime for auditable, forkable agentic systems. Inverts typical agent architecture — log first, then graph, then behaviors.</p>
         <p><strong>Key Innovation:</strong> Deterministic replay, cheap forking, end-to-end lineage from goals to individual model calls.</p>
         <a href="https://github.com/yoheinakajima/activegraph" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>Regimes <span class="badge new">NEW</span> <span class="stars">⭐ 1</span></h3>
-        <p class="date">Created: May 23, 2026 • 15+ events in first 24h</p>
-        <p>Autonomous eval-improvement loop running natively on ActiveGraph. Diagnoses LongMemEval failures, has LLM author score-transforms, validates through compile → sandbox → eval-diff → promotion gates. The entire loop history is an ActiveGraph event log.</p>
+        <h3>Regimes-Probe <span class="badge new">NEW</span> <span class="badge active">HOT</span> <span class="stars">⭐ 1</span></h3>
+        <p class="date">Created: June 7, 2026 • 35+ commits through June 12 (Levels 2–5u)</p>
+        <p>Benchmark probing tool for the regimes autonomous eval-improvement loop. Built rapidly with Claude assistance on BrowseComp benchmark. Multi-level architecture:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li><strong>Level 2:</strong> Query decomposition + benchmark-contamination detection</li>
+          <li><strong>Level 3:</strong> firecrawl_scrape follow-up tool</li>
+          <li><strong>Level 4/4b:</strong> Task-frame / constraint-graph search + LLM task-frame parser</li>
+          <li><strong>Level 5/5b/5c:</strong> Candidate-slate frontier, optional controller, LLM frontier-action proposer</li>
+          <li><strong>Level 5r/5s/5t (June 11):</strong> Validator consistency, predicate-passage acquisition, pending-read servicing + persisted targeted rejudgment</li>
+          <li><strong>Level 5u (NEW June 12):</strong> Service lifecycle accounting + rejudgment persistence accounting</li>
+        </ul>
+        <a href="https://github.com/yoheinakajima/regimes-probe" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Ag-Coder <span class="badge new">NEW</span> <span class="stars">⭐ 8</span></h3>
+        <p class="date">Created: June 5, 2026 • PR merged June 8</p>
+        <p>"Simple activegraph coding agent demo" — demonstrates ActiveGraph as a coding agent. Simplified from earlier ditto/babyagi-2o work. Gaining traction (1→8 stars in 3 days).</p>
+        <a href="https://github.com/yoheinakajima/ag-coder" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Regimes <span class="badge released">v0.01 RELEASED</span> <span class="stars">⭐ 1</span></h3>
+        <p class="date">Created: May 23, 2026 • README updated June 8 • Cross-author ablation runs</p>
+        <p>Autonomous eval-improvement loop running natively on ActiveGraph. README updated to paper-aligned narrative. Cross-author ablation experiments (haiku author, sonnet reader, multiple seeds).</p>
         <a href="https://github.com/yoheinakajima/regimes" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>ActiveGraph-Behaviordrafts <span class="badge new">NEW</span> <span class="stars">⭐ 2</span></h3>
-        <p class="date">Created: May 23, 2026</p>
-        <p>Specifies the lifecycle principle for ActiveGraph behaviors: draft → static → sandbox → semantic-diff → promotion → disable.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-behaviordrafts" target="_blank">View on GitHub →</a>
+        <h3>ActiveGraph-Repo-Manager <span class="badge active">ACTIVE</span> <span class="stars">⭐ 1</span></h3>
+        <p class="date">Created: May 24, 2026 • Phase 2: GitHub read-only sync layer merged May 26</p>
+        <p>Repository manager pack for ActiveGraph. GitHub repository management with deterministic replay, repo indexing primitives, and ingest helpers.</p>
+        <a href="https://github.com/yoheinakajima/activegraph_repo_manager" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>ActiveGraph-Selfgraph <span class="badge new">NEW</span> <span class="stars">⭐ 2</span></h3>
-        <p class="date">Created: May 21, 2026</p>
-        <p>A self-configuring ActiveGraph agent that ingests its own runtime/docs, builds a capability graph, and proposes graph-native behavior upgrades through safe patches.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-selfgraph" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>ActiveGraph-LongMemEval <span class="badge new">NEW</span> <span class="stars">⭐ 2</span></h3>
+        <h3>ActiveGraph-LongMemEval <span class="badge active">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
         <p class="date">Created: May 22, 2026</p>
         <p>Reproducible LongMemEval benchmark harness for ActiveGraph. Compares against baselines (full-context oracle, RAG BM25, RAG dense).</p>
         <a href="https://github.com/yoheinakajima/activegraph-longmemeval" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
+        <h3>ActiveGraph-tau2-bench <span class="badge active">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
+        <p class="date">Created: May 26, 2026 • Phase 1: vendoring and smoke tests via Codex</p>
+        <p>Tau2 benchmark for ActiveGraph capabilities. Phase 1 testing framework.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-tau2-bench" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>ActiveGraph-Behaviordrafts <span class="badge maintenance">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
+        <p class="date">Created: May 23, 2026</p>
+        <p>Specifies the lifecycle principle for ActiveGraph behaviors: draft → static → sandbox → semantic-diff → promotion → disable.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-behaviordrafts" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>ActiveGraph-Selfgraph <span class="badge maintenance">ACTIVE</span> <span class="stars">⭐ 3</span></h3>
+        <p class="date">Created: May 21, 2026</p>
+        <p>A self-configuring ActiveGraph agent that ingests its own runtime/docs, builds a capability graph, and proposes graph-native behavior upgrades through safe patches.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-selfgraph" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>ActiveGraph-Packs <span class="badge new">NEW</span> <span class="stars">⭐ 0</span></h3>
+        <p class="date">Created: June 10, 2026</p>
+        <p>Core pack schema for ActiveGraph with a UI to explore capabilities. Represents the framework's first plugin/pack architecture.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-packs" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>ActiveGraph-Lab <span class="badge new">NEW</span> <span class="badge active">HOT</span> <span class="stars">⭐ 0</span></h3>
+        <p class="date">Created: June 10, 2026 • PRs #6–#15 merged through June 12 via Claude Code</p>
+        <p>ActiveGraph experimental lab. ADRs 018–024 authored: chat robustness (prod 500 fix), boot readiness guarantees, docs consolidation. Heavy Claude Code orchestration.</p>
+        <a href="https://github.com/yoheinakajima/activegraph-lab" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
+        <h3>Regimes-Site <span class="badge new">NEW</span> <span class="stars">⭐ 0</span></h3>
+        <p class="date">Created: June 10, 2026</p>
+        <p>GitHub Pages site for the regimes project. Presentation/demo website for the regimes eval-improvement loop.</p>
+        <a href="https://github.com/yoheinakajima/regimes-site" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="card">
         <h3>SelfMCP <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 22</span></h3>
-        <p>A self-extending MCP server exploring self-improving server architecture. Last updated April 2026.</p>
+        <p>A self-extending MCP server exploring self-improving server architecture.</p>
         <a href="https://github.com/yoheinakajima/selfMCP" target="_blank">View on GitHub →</a>
       </div>
 
@@ -128,13 +185,13 @@
       </div>
 
       <div class="card">
-        <h3>BabyAGI3 <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 126</span></h3>
+        <h3>BabyAGI3 <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 127</span></h3>
         <p>Next iteration of autonomous agent framework.</p>
         <a href="https://github.com/yoheinakajima/babyagi3" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>Mindgraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 936</span></h3>
+        <h3>Mindgraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 940</span></h3>
         <p>Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.</p>
         <a href="https://github.com/yoheinakajima/mindgraph" target="_blank">View on GitHub →</a>
       </div>
@@ -144,20 +201,20 @@
       <h2>Notable Past Projects</h2>
 
       <div class="card">
-        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,273</span></h3>
+        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,300</span></h3>
         <p class="date">March 2023</p>
         <p>First popular open-source autonomous agent with task planning capability. Millions of impressions, global media coverage, dozens of arXiv citations.</p>
         <a href="https://github.com/yoheinakajima/babyagi" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>Instagraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 3,550</span></h3>
+        <h3>Instagraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 3,551</span></h3>
         <p>Converts text input or URL into knowledge graph and displays.</p>
         <a href="https://github.com/yoheinakajima/instagraph" target="_blank">View on GitHub →</a>
       </div>
 
       <div class="card">
-        <h3>Ditto <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 1,057</span></h3>
+        <h3>Ditto <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 1,056</span></h3>
         <p>The simplest self-building coding agent.</p>
         <a href="https://github.com/yoheinakajima/ditto" target="_blank">View on GitHub →</a>
       </div>
@@ -188,17 +245,31 @@
         <h3>The simplest approach wins</h3>
         <p>Recurring theme across projects: "Simplest self-building coding agent", "Simplest self-building general autonomous agent".</p>
       </div>
+
+      <div class="card">
+        <h3>Build in public to learn faster</h3>
+        <p>"I build in public because it helps me learn faster and meet founders." All ActiveGraph ecosystem development happens openly with AI agent assistance visible via branch names and PRs.</p>
+        <p class="date">Source: Social media and GitHub patterns</p>
+      </div>
     </section>
 
     <section>
       <h2>Recent Timeline</h2>
 
       <div class="card">
-        <p><strong>May 24, 2026:</strong> Regimes repo extremely active (15+ events). ActiveGraph hits 201 stars. Activegraph-behaviordrafts getting multiple PR merges.</p>
-        <p><strong>May 23, 2026:</strong> New repos created (activegraph-behaviordrafts, regimes). ActiveGraph reaches 169 stars (+46). Commits to ActiveGraph ecosystem.</p>
-        <p><strong>May 22, 2026:</strong> arXiv paper published. ActiveGraph-selfgraph and activegraph-longmemeval repos created.</p>
-        <p><strong>May 21, 2026:</strong> arXiv paper submitted. ActiveGraph-selfgraph initial commits.</p>
-        <p><strong>May 19, 2026:</strong> LinkedIn article "The State of AI Going into 2026" published. Covers operationality, governance, data maturity, autonomous businesses.</p>
+        <p><strong>June 12, 2026:</strong> activegraph-lab: PRs #14–#15 (Postgres resilience, seam-proposal truncation). Multi-model routing now live (Opus). regimes-probe: Level 5u. BabyAGI 22,302. ActiveGraph 306.</p>
+        <p><strong>June 11, 2026:</strong> <strong>ActiveGraph v1.1.0 released!</strong> activegraph-lab: 5+ PRs merged (ADRs 018–024). regimes-probe: Levels 5r–5t. regimes-site created. Yohei announces talk at AI House (AI2 Incubator), Seattle, June 24. BabyAGI hits 22,300 stars.</p>
+        <p><strong>June 10, 2026:</strong> activegraph-packs + activegraph-lab repos created. ActiveGraph PR #25 merged (v1.1 docs reconciliation via Codex). ActiveGraph hits 305 stars. regimes-probe continues development.</p>
+        <p><strong>June 9, 2026:</strong> regimes-probe: 5 more commits (Levels 5→5c — candidate-slate frontier, LLM frontier proposer). ActiveGraph hits 302 stars. ag-coder at 8 stars (+7 in 3 days).</p>
+        <p><strong>June 8, 2026:</strong> regimes-probe: 20 commits building Levels 2–5 (query decomposition, constraint-graph search, frontier layer). ag-coder PR #4 merged. regimes README updated + ablation runs.</p>
+        <p><strong>June 7, 2026:</strong> regimes-probe repo created. regimes ablation experiments continue. ag-coder docs work.</p>
+        <p><strong>June 6, 2026:</strong> regimes cross-author ablation runs (seeds 5, 7, 23).</p>
+        <p><strong>June 5, 2026:</strong> ag-coder repo created ("simple activegraph coding agent demo"). babyagi3 updated.</p>
+        <p><strong>June 2, 2026:</strong> ag-code-agent-pushtest (throwaway push test for ActiveGraph Code Agent). ActiveGraph at 272 stars.</p>
+        <p><strong>June 1, 2026:</strong> activegraph-longmemeval + activegraph-tau2-bench updated. Multiple PRs merged.</p>
+        <p><strong>May 27, 2026:</strong> ActiveGraph surges to 232 stars. YouTube video "The Log is the Agent" appeared. Phemex profile published.</p>
+        <p><strong>May 26, 2026:</strong> Regimes v0.01 released. ActiveGraph-tau2-bench created. 30 GitHub events.</p>
+        <p><strong>May 22, 2026:</strong> arXiv paper published. ActiveGraph-selfgraph and activegraph-longmemeval created.</p>
         <p><strong>May 16, 2026:</strong> ActiveGraph repo created publicly.</p>
       </div>
     </section>
@@ -217,7 +288,8 @@
 
     <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #222; color: #666; font-size: 0.85rem;">
       <p>Intelligence Tracker • Updated automatically by OpenClaw</p>
-      <p>Data sources: GitHub API, arXiv, YouTube search, web search</p>
+      <p>Data sources: GitHub API, arXiv, web search</p>
+      <p>ActiveGraph ecosystem: 13+ repos (core + tooling/benchmarks/probes/packs/lab/site)</p>
     </footer>
   </div>
 </body>
