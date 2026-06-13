@@ -67,21 +67,21 @@
         <span>GP at Untapped Capital</span> • <span>Creator of BabyAGI</span> • <span>@yoheinakajima</span>
       </div>
       <div class="meta">
-        Last updated: June 12, 2026
+        Last updated: June 13, 2026
       </div>
     </header>
 
     <section class="update-banner">
-      <h3>🔥 ActiveGraph v1.1.0 Released + Talk at AI2 Incubator Seattle</h3>
-      <p><strong>activegraph-lab</strong> PRs #14–#15 merged — serverless Postgres resilience fixes + seam-proposal truncation. <strong>Multi-model routing</strong> confirmed (Opus now in the mix, temperature handling added). <strong>regimes-probe</strong> reaches Level 5u (service lifecycle accounting). BabyAGI hits <strong>22,302 stars</strong>. ActiveGraph at <strong>306 stars</strong>. <strong>Yohei speaking at AI House (AI2 Incubator), Seattle, June 24th 3pm</strong> on ActiveGraph. All code via <strong>Claude Code</strong> — Yohei operating as orchestrator/reviewer.</p>
+      <h3>🔥 NEW: Second arXiv Paper + 5 PRs in activegraph-lab</h3>
+      <p><strong>NEW PAPER:</strong> "Regimes: An Auditable, Held-Out-Gated Improvement Loop" (arXiv 2606.10241, submitted June 8) — Yohei's second arXiv paper. 30 pages. Demonstrates the Regimes improvement loop on ActiveGraph. Key finding: dominant LongMemEval failure is reconciliation, not retrieval. <strong>activegraph-lab</strong>: PRs #16–#20 merged (ADRs 025–030) — operator control improvements: truthful steering, rationale persistence, budget observability, rejection-as-teaching, operator notes. Total: +3,078/-225 across 65 files. <strong>regimes-probe</strong> at Level 5v.1 (body-hash canonicalization). BabyAGI: <strong>22,305 stars</strong>. ActiveGraph: <strong>307 stars</strong>. All code via <strong>Claude Code</strong>.</p>
     </section>
 
     <section>
       <h2>Active Projects</h2>
 
       <div class="card">
-        <h3>ActiveGraph <span class="badge released">v1.1.0</span> <span class="badge active">HOT</span> <span class="stars">⭐ 305</span></h3>
-        <p class="date">Created: May 16, 2026 • <strong>v1.1.0 released June 10, 2026</strong> • ArXiv paper "The Log is the Agent" (2605.21997)</p>
+        <h3>ActiveGraph <span class="badge released">v1.1.0</span> <span class="badge active">HOT</span> <span class="stars">⭐ 307</span></h3>
+        <p class="date">Created: May 16, 2026 • <strong>v1.1.0 released June 10, 2026</strong> • Two ArXiv papers: "The Log is the Agent" (2605.21997) + "Regimes" (2606.10241)</p>
         <p>Event-sourced reactive graph runtime for auditable, forkable agentic systems. Inverts typical agent architecture — log first, then graph, then behaviors.</p>
         <p><strong>Key Innovation:</strong> Deterministic replay, cheap forking, end-to-end lineage from goals to individual model calls.</p>
         <a href="https://github.com/yoheinakajima/activegraph" target="_blank">View on GitHub →</a>
@@ -97,7 +97,8 @@
           <li><strong>Level 4/4b:</strong> Task-frame / constraint-graph search + LLM task-frame parser</li>
           <li><strong>Level 5/5b/5c:</strong> Candidate-slate frontier, optional controller, LLM frontier-action proposer</li>
           <li><strong>Level 5r/5s/5t (June 11):</strong> Validator consistency, predicate-passage acquisition, pending-read servicing + persisted targeted rejudgment</li>
-          <li><strong>Level 5u (NEW June 12):</strong> Service lifecycle accounting + rejudgment persistence accounting</li>
+          <li><strong>Level 5u (June 12):</strong> Service lifecycle accounting + rejudgment persistence accounting</li>
+          <li><strong>Level 5v/5v.1 (NEW June 13):</strong> Exact read-body provenance + body-hash canonicalization reconciliation</li>
         </ul>
         <a href="https://github.com/yoheinakajima/regimes-probe" target="_blank">View on GitHub →</a>
       </div>
@@ -160,8 +161,8 @@
 
       <div class="card">
         <h3>ActiveGraph-Lab <span class="badge new">NEW</span> <span class="badge active">HOT</span> <span class="stars">⭐ 0</span></h3>
-        <p class="date">Created: June 10, 2026 • PRs #6–#15 merged through June 12 via Claude Code</p>
-        <p>ActiveGraph experimental lab. ADRs 018–024 authored: chat robustness (prod 500 fix), boot readiness guarantees, docs consolidation. Heavy Claude Code orchestration.</p>
+        <p class="date">Created: June 10, 2026 • PRs #6–#20 merged through June 13 via Claude Code</p>
+        <p>ActiveGraph experimental lab. ADRs 018–030 authored. Latest: ADR-025 (truthful steering), ADR-026 (operator rationale), ADR-027 (rejection teaches), ADR-028/029/030 (operator notes, provenance, repo files). Total: +3,078/-225 today alone. Heavy Claude Code orchestration.</p>
         <a href="https://github.com/yoheinakajima/activegraph-lab" target="_blank">View on GitHub →</a>
       </div>
 
@@ -201,7 +202,7 @@
       <h2>Notable Past Projects</h2>
 
       <div class="card">
-        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,300</span></h3>
+        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,305</span></h3>
         <p class="date">March 2023</p>
         <p>First popular open-source autonomous agent with task planning capability. Millions of impressions, global media coverage, dozens of arXiv citations.</p>
         <a href="https://github.com/yoheinakajima/babyagi" target="_blank">View on GitHub →</a>
@@ -257,6 +258,7 @@
       <h2>Recent Timeline</h2>
 
       <div class="card">
+        <p><strong>June 13, 2026:</strong> 📄 NEW arXiv paper "Regimes" (2606.10241). activegraph-lab: PRs #16–#20 (ADRs 025–030) — operator control, rationale persistence, budget observability, rejection-as-teaching, operator notes. regimes-probe: Levels 5v/5v.1 (provenance + canonicalization). BabyAGI 22,305. ActiveGraph 307.</p>
         <p><strong>June 12, 2026:</strong> activegraph-lab: PRs #14–#15 (Postgres resilience, seam-proposal truncation). Multi-model routing now live (Opus). regimes-probe: Level 5u. BabyAGI 22,302. ActiveGraph 306.</p>
         <p><strong>June 11, 2026:</strong> <strong>ActiveGraph v1.1.0 released!</strong> activegraph-lab: 5+ PRs merged (ADRs 018–024). regimes-probe: Levels 5r–5t. regimes-site created. Yohei announces talk at AI House (AI2 Incubator), Seattle, June 24. BabyAGI hits 22,300 stars.</p>
         <p><strong>June 10, 2026:</strong> activegraph-packs + activegraph-lab repos created. ActiveGraph PR #25 merged (v1.1 docs reconciliation via Codex). ActiveGraph hits 305 stars. regimes-probe continues development.</p>
@@ -289,7 +291,7 @@
     <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #222; color: #666; font-size: 0.85rem;">
       <p>Intelligence Tracker • Updated automatically by OpenClaw</p>
       <p>Data sources: GitHub API, arXiv, web search</p>
-      <p>ActiveGraph ecosystem: 13+ repos (core + tooling/benchmarks/probes/packs/lab/site)</p>
+      <p>ActiveGraph ecosystem: 13+ repos (core + tooling/benchmarks/probes/packs/lab/site) • 2 arXiv papers</p>
     </footer>
   </div>
 </body>
