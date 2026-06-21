@@ -3,296 +3,426 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Intelligence Tracker — Yohei Nakajima</title>
+  <title>Yohei Nakajima — Intelligence Tracker</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0b;
+      --fg: #e4e4e7;
+      --muted: #71717a;
+      --accent: #6366f1;
+      --border: #27272a;
+    }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0a0a0a;
-      color: #e0e0e0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
       line-height: 1.6;
     }
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 2rem 1rem;
     }
-    h1, h2, h3 { color: #fff; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
-    h3 { font-size: 1.3rem; margin-top: 2rem; margin-bottom: 0.8rem; }
-    .meta { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
-    .card {
-      background: #111;
-      border: 1px solid #222;
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+    section {
+      margin-bottom: 2.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px;
+      padding: 1rem;
       margin-bottom: 1rem;
     }
-    .card h3 { margin-top: 0; }
-    .badge {
-      display: inline-block;
-      background: #ff6b6b;
-      color: white;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      margin-left: 8px;
+    .project-title {
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .badge.active { background: #51cf66; }
-    .badge.new { background: #339af0; }
-    .badge.maintenance { background: #868e96; }
-    .badge.released { background: #ffd43b; color: #333; }
-    .stars { color: #ffd43b; font-weight: bold; }
-    .date { color: #888; font-size: 0.85rem; }
-    a { color: #74c0fc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .update-banner {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 2rem;
+    .stars {
+      color: var(--accent);
+      font-size: 0.85rem;
     }
-    .update-banner h3 { margin: 0 0 8px 0; color: white; }
-    .tag { background: #222; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 6px; }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .belief {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .belief:last-child {
+      border-bottom: none;
+    }
+    .belief strong {
+      color: var(--fg);
+    }
+    .timeline-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-date {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+    .timeline-content {
+      margin-top: 0.25rem;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Yohei Nakajima</h1>
-      <div class="meta">
-        <span>GP at Untapped Capital</span> • <span>Creator of BabyAGI</span> • <span>@yoheinakajima</span>
-      </div>
-      <div class="meta">
-        Last updated: June 13, 2026
+      <div class="avatar">YN</div>
+      <div>
+        <h1>Yohei Nakajima</h1>
+        <div class="subtitle">GP @ Untapped Capital · Creator of BabyAGI</div>
+        <div class="links">
+          <a href="https://x.com/yoheinakajima" target="_blank">X</a>
+          <a href="https://github.com/yoheinakajima" target="_blank">GitHub</a>
+          <a href="https://yoheinakajima.com" target="_blank">Website</a>
+        </div>
       </div>
     </header>
-
-    <section class="update-banner">
-      <h3>🔥 NEW: Second arXiv Paper + 5 PRs in activegraph-lab</h3>
-      <p><strong>NEW PAPER:</strong> "Regimes: An Auditable, Held-Out-Gated Improvement Loop" (arXiv 2606.10241, submitted June 8) — Yohei's second arXiv paper. 30 pages. Demonstrates the Regimes improvement loop on ActiveGraph. Key finding: dominant LongMemEval failure is reconciliation, not retrieval. <strong>activegraph-lab</strong>: PRs #16–#20 merged (ADRs 025–030) — operator control improvements: truthful steering, rationale persistence, budget observability, rejection-as-teaching, operator notes. Total: +3,078/-225 across 65 files. <strong>regimes-probe</strong> at Level 5v.1 (body-hash canonicalization). BabyAGI: <strong>22,305 stars</strong>. ActiveGraph: <strong>307 stars</strong>. All code via <strong>Claude Code</strong>.</p>
-    </section>
 
     <section>
       <h2>Active Projects</h2>
 
-      <div class="card">
-        <h3>ActiveGraph <span class="badge released">v1.1.0</span> <span class="badge active">HOT</span> <span class="stars">⭐ 307</span></h3>
-        <p class="date">Created: May 16, 2026 • <strong>v1.1.0 released June 10, 2026</strong> • Two ArXiv papers: "The Log is the Agent" (2605.21997) + "Regimes" (2606.10241)</p>
-        <p>Event-sourced reactive graph runtime for auditable, forkable agentic systems. Inverts typical agent architecture — log first, then graph, then behaviors.</p>
-        <p><strong>Key Innovation:</strong> Deterministic replay, cheap forking, end-to-end lineage from goals to individual model calls.</p>
-        <a href="https://github.com/yoheinakajima/activegraph" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>activegraph</span>
+          <span class="stars">315 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Event-sourced reactive graph runtime for auditable, forkable agentic systems.
+          v1.1.0 released 2026-06-10. Core infrastructure — append-only event log as source of truth.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Regimes-Probe <span class="badge new">NEW</span> <span class="badge active">HOT</span> <span class="stars">⭐ 1</span></h3>
-        <p class="date">Created: June 7, 2026 • 35+ commits through June 12 (Levels 2–5u)</p>
-        <p>Benchmark probing tool for the regimes autonomous eval-improvement loop. Built rapidly with Claude assistance on BrowseComp benchmark. Multi-level architecture:</p>
-        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-          <li><strong>Level 2:</strong> Query decomposition + benchmark-contamination detection</li>
-          <li><strong>Level 3:</strong> firecrawl_scrape follow-up tool</li>
-          <li><strong>Level 4/4b:</strong> Task-frame / constraint-graph search + LLM task-frame parser</li>
-          <li><strong>Level 5/5b/5c:</strong> Candidate-slate frontier, optional controller, LLM frontier-action proposer</li>
-          <li><strong>Level 5r/5s/5t (June 11):</strong> Validator consistency, predicate-passage acquisition, pending-read servicing + persisted targeted rejudgment</li>
-          <li><strong>Level 5u (June 12):</strong> Service lifecycle accounting + rejudgment persistence accounting</li>
-          <li><strong>Level 5v/5v.1 (NEW June 13):</strong> Exact read-body provenance + body-hash canonicalization reconciliation</li>
-        </ul>
-        <a href="https://github.com/yoheinakajima/regimes-probe" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>activegraph-lab</span>
+          <span class="stars">2 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Self-hosted research agent growing activegraph.ai's evidence base.
+          28+ PRs merged in 24h (2026-06-15) — all via Claude code workers.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Ag-Coder <span class="badge new">NEW</span> <span class="stars">⭐ 8</span></h3>
-        <p class="date">Created: June 5, 2026 • PR merged June 8</p>
-        <p>"Simple activegraph coding agent demo" — demonstrates ActiveGraph as a coding agent. Simplified from earlier ditto/babyagi-2o work. Gaining traction (1→8 stars in 3 days).</p>
-        <a href="https://github.com/yoheinakajima/ag-coder" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>regimes-probe</span>
+          <span class="stars">2 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Benchmark probing tool for autonomous eval-improvement loop.
+          BrowseComp benchmark with multi-level query decomposition.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Regimes <span class="badge released">v0.01 RELEASED</span> <span class="stars">⭐ 1</span></h3>
-        <p class="date">Created: May 23, 2026 • README updated June 8 • Cross-author ablation runs</p>
-        <p>Autonomous eval-improvement loop running natively on ActiveGraph. README updated to paper-aligned narrative. Cross-author ablation experiments (haiku author, sonnet reader, multiple seeds).</p>
-        <a href="https://github.com/yoheinakajima/regimes" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>regimes</span>
+          <span class="stars">1 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Autonomous eval-improvement loop running natively on ActiveGraph.
+          Diagnoses LongMemEval failures, runs improvement cycles, validates through gates.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>ActiveGraph-Repo-Manager <span class="badge active">ACTIVE</span> <span class="stars">⭐ 1</span></h3>
-        <p class="date">Created: May 24, 2026 • Phase 2: GitHub read-only sync layer merged May 26</p>
-        <p>Repository manager pack for ActiveGraph. GitHub repository management with deterministic replay, repo indexing primitives, and ingest helpers.</p>
-        <a href="https://github.com/yoheinakajima/activegraph_repo_manager" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>activegraph-packs</span>
+          <span class="stars">3 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Core pack schema for activegraph and a UI to explore capabilities.
+          Created 2026-06-10.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>ActiveGraph-LongMemEval <span class="badge active">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
-        <p class="date">Created: May 22, 2026</p>
-        <p>Reproducible LongMemEval benchmark harness for ActiveGraph. Compares against baselines (full-context oracle, RAG BM25, RAG dense).</p>
-        <a href="https://github.com/yoheinakajima/activegraph-longmemeval" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>ag-coder</span>
+          <span class="stars">9 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Simple activegraph coding agent demo.
+          Demonstrates ActiveGraph as a coding agent.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>ActiveGraph-tau2-bench <span class="badge active">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
-        <p class="date">Created: May 26, 2026 • Phase 1: vendoring and smoke tests via Codex</p>
-        <p>Tau2 benchmark for ActiveGraph capabilities. Phase 1 testing framework.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-tau2-bench" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>ag-tcg</span>
+          <span class="stars">1 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Automated Replit Agent tournament and benchmark loop. June 21 activity focused on tournament engine safety,
+          persistent storage, report generation, benchmark opponents, and auto-quarantine logic.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>ActiveGraph-Behaviordrafts <span class="badge maintenance">ACTIVE</span> <span class="stars">⭐ 2</span></h3>
-        <p class="date">Created: May 23, 2026</p>
-        <p>Specifies the lifecycle principle for ActiveGraph behaviors: draft → static → sandbox → semantic-diff → promotion → disable.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-behaviordrafts" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>SelfMCP</span>
+          <span class="stars">21 ⭐</span>
+        </div>
+        <div class="project-desc">
+          A self-extending MCP server.
+          Explore self-improving server architecture. Last commit 2026-04-10.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>ActiveGraph-Selfgraph <span class="badge maintenance">ACTIVE</span> <span class="stars">⭐ 3</span></h3>
-        <p class="date">Created: May 21, 2026</p>
-        <p>A self-configuring ActiveGraph agent that ingests its own runtime/docs, builds a capability graph, and proposes graph-native behavior upgrades through safe patches.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-selfgraph" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>ActiveGraph-Packs <span class="badge new">NEW</span> <span class="stars">⭐ 0</span></h3>
-        <p class="date">Created: June 10, 2026</p>
-        <p>Core pack schema for ActiveGraph with a UI to explore capabilities. Represents the framework's first plugin/pack architecture.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-packs" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>ActiveGraph-Lab <span class="badge new">NEW</span> <span class="badge active">HOT</span> <span class="stars">⭐ 0</span></h3>
-        <p class="date">Created: June 10, 2026 • PRs #6–#20 merged through June 13 via Claude Code</p>
-        <p>ActiveGraph experimental lab. ADRs 018–030 authored. Latest: ADR-025 (truthful steering), ADR-026 (operator rationale), ADR-027 (rejection teaches), ADR-028/029/030 (operator notes, provenance, repo files). Total: +3,078/-225 today alone. Heavy Claude Code orchestration.</p>
-        <a href="https://github.com/yoheinakajima/activegraph-lab" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>Regimes-Site <span class="badge new">NEW</span> <span class="stars">⭐ 0</span></h3>
-        <p class="date">Created: June 10, 2026</p>
-        <p>GitHub Pages site for the regimes project. Presentation/demo website for the regimes eval-improvement loop.</p>
-        <a href="https://github.com/yoheinakajima/regimes-site" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>SelfMCP <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 22</span></h3>
-        <p>A self-extending MCP server exploring self-improving server architecture.</p>
-        <a href="https://github.com/yoheinakajima/selfMCP" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>BabyAGI-2o <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 340</span></h3>
-        <p>The simplest self-building general autonomous agent. ~167 lines of code.</p>
-        <a href="https://github.com/yoheinakajima/babyagi-2o" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>BabyAGI3 <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 127</span></h3>
-        <p>Next iteration of autonomous agent framework.</p>
-        <a href="https://github.com/yoheinakajima/babyagi3" target="_blank">View on GitHub →</a>
-      </div>
-
-      <div class="card">
-        <h3>Mindgraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 940</span></h3>
-        <p>Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.</p>
-        <a href="https://github.com/yoheinakajima/mindgraph" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>BabyAGI-2o</span>
+          <span class="stars">339 ⭐</span>
+        </div>
+        <div class="project-desc">
+          The simplest self-building general autonomous agent.
+          Next iteration of autonomous agent framework. Maintenance mode.
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Notable Past Projects</h2>
+      <h2>Past Notable Projects</h2>
 
-      <div class="card">
-        <h3>BabyAGI (Original) <span class="badge active">LEGENDARY</span> <span class="stars">⭐ 22,305</span></h3>
-        <p class="date">March 2023</p>
-        <p>First popular open-source autonomous agent with task planning capability. Millions of impressions, global media coverage, dozens of arXiv citations.</p>
-        <a href="https://github.com/yoheinakajima/babyagi" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>BabyAGI</span>
+          <span class="stars">22,310 ⭐</span>
+        </div>
+        <div class="project-desc">
+          First popular open source autonomous agent with task planning.
+          Created March 2023. Millions of impressions, coverage across major publications.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Instagraph <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 3,551</span></h3>
-        <p>Converts text input or URL into knowledge graph and displays.</p>
-        <a href="https://github.com/yoheinakajima/instagraph" target="_blank">View on GitHub →</a>
+      <div class="project">
+        <div class="project-title">
+          <span>Instagraph</span>
+          <span class="stars">3,547 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Converts text input or URL into knowledge graph and displays.
+          Text-to-knowledge-graph generation.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Ditto <span class="badge maintenance">MAINTENANCE</span> <span class="stars">⭐ 1,056</span></h3>
-        <p>The simplest self-building coding agent.</p>
-        <a href="https://github.com/yoheinakajima/ditto" target="_blank">View on GitHub →</a>
-      </div>
-    </section>
-
-    <section>
-      <h2>Key Beliefs</h2>
-
-      <div class="card">
-        <h3>The log IS the agent</h3>
-        <p>Most agent frameworks bolt logging on last; ActiveGraph inverts this. The append-only event log is the source of truth. This yields deterministic replay, cheap forking, and end-to-end lineage — properties retrieval-and-summarization memory systems cannot provide.</p>
-        <p class="date">Source: arXiv paper "The Log is the Agent" (May 2026)</p>
+      <div class="project">
+        <div class="project-title">
+          <span>Ditto</span>
+          <span class="stars">1,056 ⭐</span>
+        </div>
+        <div class="project-desc">
+          The simplest self-building coding agent.
+          Self-building AI for code generation.
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Autonomy requires governance</h3>
-        <p>"Trust is no longer a property of the model; it is a property of the system around it." The winners in agentic categories will not be the most autonomous systems, but the most governable ones.</p>
-        <p class="date">Source: LinkedIn "The State of AI Going into 2026" (May 2026)</p>
-      </div>
-
-      <div class="card">
-        <h3>Data maturity is required for AI</h3>
-        <p>"AI is forcing a data maturity upgrade. Humans once compensated for fragmentation. Agents cannot." Freshness is a performance attribute — stale data propagates errors at scale.</p>
-        <p class="date">Source: LinkedIn article (May 2026)</p>
-      </div>
-
-      <div class="card">
-        <h3>The simplest approach wins</h3>
-        <p>Recurring theme across projects: "Simplest self-building coding agent", "Simplest self-building general autonomous agent".</p>
-      </div>
-
-      <div class="card">
-        <h3>Build in public to learn faster</h3>
-        <p>"I build in public because it helps me learn faster and meet founders." All ActiveGraph ecosystem development happens openly with AI agent assistance visible via branch names and PRs.</p>
-        <p class="date">Source: Social media and GitHub patterns</p>
+      <div class="project">
+        <div class="project-title">
+          <span>Mindgraph</span>
+          <span class="stars">942 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.
+          Knowledge graph infrastructure for agents.
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>Recent Timeline</h2>
+      <h2>Core Beliefs</h2>
 
-      <div class="card">
-        <p><strong>June 13, 2026:</strong> 📄 NEW arXiv paper "Regimes" (2606.10241). activegraph-lab: PRs #16–#20 (ADRs 025–030) — operator control, rationale persistence, budget observability, rejection-as-teaching, operator notes. regimes-probe: Levels 5v/5v.1 (provenance + canonicalization). BabyAGI 22,305. ActiveGraph 307.</p>
-        <p><strong>June 12, 2026:</strong> activegraph-lab: PRs #14–#15 (Postgres resilience, seam-proposal truncation). Multi-model routing now live (Opus). regimes-probe: Level 5u. BabyAGI 22,302. ActiveGraph 306.</p>
-        <p><strong>June 11, 2026:</strong> <strong>ActiveGraph v1.1.0 released!</strong> activegraph-lab: 5+ PRs merged (ADRs 018–024). regimes-probe: Levels 5r–5t. regimes-site created. Yohei announces talk at AI House (AI2 Incubator), Seattle, June 24. BabyAGI hits 22,300 stars.</p>
-        <p><strong>June 10, 2026:</strong> activegraph-packs + activegraph-lab repos created. ActiveGraph PR #25 merged (v1.1 docs reconciliation via Codex). ActiveGraph hits 305 stars. regimes-probe continues development.</p>
-        <p><strong>June 9, 2026:</strong> regimes-probe: 5 more commits (Levels 5→5c — candidate-slate frontier, LLM frontier proposer). ActiveGraph hits 302 stars. ag-coder at 8 stars (+7 in 3 days).</p>
-        <p><strong>June 8, 2026:</strong> regimes-probe: 20 commits building Levels 2–5 (query decomposition, constraint-graph search, frontier layer). ag-coder PR #4 merged. regimes README updated + ablation runs.</p>
-        <p><strong>June 7, 2026:</strong> regimes-probe repo created. regimes ablation experiments continue. ag-coder docs work.</p>
-        <p><strong>June 6, 2026:</strong> regimes cross-author ablation runs (seeds 5, 7, 23).</p>
-        <p><strong>June 5, 2026:</strong> ag-coder repo created ("simple activegraph coding agent demo"). babyagi3 updated.</p>
-        <p><strong>June 2, 2026:</strong> ag-code-agent-pushtest (throwaway push test for ActiveGraph Code Agent). ActiveGraph at 272 stars.</p>
-        <p><strong>June 1, 2026:</strong> activegraph-longmemeval + activegraph-tau2-bench updated. Multiple PRs merged.</p>
-        <p><strong>May 27, 2026:</strong> ActiveGraph surges to 232 stars. YouTube video "The Log is the Agent" appeared. Phemex profile published.</p>
-        <p><strong>May 26, 2026:</strong> Regimes v0.01 released. ActiveGraph-tau2-bench created. 30 GitHub events.</p>
-        <p><strong>May 22, 2026:</strong> arXiv paper published. ActiveGraph-selfgraph and activegraph-longmemeval created.</p>
-        <p><strong>May 16, 2026:</strong> ActiveGraph repo created publicly.</p>
+      <div class="belief">
+        <strong>Agents should be autonomous and self-improving</strong><br>
+        <em style="color: var(--muted)">BabyAGI, SelfMCP, Regimes demonstrate self-improvement patterns. Dogfooding his own infrastructure.</em>
+      </div>
+
+      <div class="belief">
+        <strong>The log IS the agent</strong><br>
+        <em style="color: var(--muted)">Append-only event log is the source of truth. Graph is a deterministic projection. Enables deterministic replay, cheap forking, end-to-end lineage.</em>
+      </div>
+
+      <div class="belief">
+        <strong>Autonomy requires governance</strong><br>
+        <em style="color: var(--muted)">"The winners in agentic categories will not be the most autonomous systems, but the most governable ones."</em>
+      </div>
+
+      <div class="belief">
+        <strong>Data maturity is required for AI</strong><br>
+        <em style="color: var(--muted)">"AI is forcing a data maturity upgrade. Humans once compensated for fragmentation. Agents cannot."</em>
+      </div>
+
+      <div class="belief">
+        <strong>Build in public to learn faster</strong><br>
+        <em style="color: var(--muted)">"Build in public to learn faster, meet founders, and contribute to the ecosystem."</em>
+      </div>
+
+      <div class="belief">
+        <strong>The simplest approach wins</strong><br>
+        <em style="color: var(--muted)">Recurring theme: "Simplest self-building coding agent", "Simplest self-building general autonomous agent".</em>
+      </div>
+
+      <div class="belief">
+        <strong>AI-augmented development enables self-hosted research</strong><br>
+        <em style="color: var(--muted)">ActiveGraph Lab uses Claude as a code worker to self-repair and improve itself. Believes in self-hosted, local-first AI infrastructure.</em>
       </div>
     </section>
 
     <section>
-      <h2>Links</h2>
+      <h2>Timeline (Recent Activity)</h2>
 
-      <div class="card">
-        <p><span class="tag">GitHub</span> <a href="https://github.com/yoheinakajima">github.com/yoheinakajima</a></p>
-        <p><span class="tag">X/Twitter</span> <a href="https://x.com/yoheinakajima">@yoheinakajima</a></p>
-        <p><span class="tag">Website</span> <a href="https://yoheinakajima.com">yoheinakajima.com</a></p>
-        <p><span class="tag">Personal</span> <a href="https://yohei.me">yohei.me</a></p>
-        <p><span class="tag">LinkedIn</span> <a href="https://linkedin.com/in/yoheinakajima">linkedin.com/in/yoheinakajima</a></p>
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-21</div>
+        <div class="timeline-content">
+          ag-tcg continued automated Replit Agent work with 18 new commits since the prior retrieval window. No new visible public X posts; managed browser scrape shows pinned Fund II post and 125.2K followers. Newly captured mention: LinkedIn "The State of AI Going into 2026" article/post.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-16</div>
+        <div class="timeline-content">
+          GitHub activity: activegraph (+3 stars), babyagi (+2 stars), activegraph-lab push, regimes-probe and activegraph-packs new repos detected. X scrape showed no new posts in last 48h.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-15</div>
+        <div class="timeline-content">
+          ActiveGraph Lab surge: 28+ PRs merged in 24 hours, all via Claude code workers. Self-repair loops, code worker diff authoring, planner self-repair.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-13</div>
+        <div class="timeline-content">
+          Second arXiv paper "Regimes" (2606.10241) submitted — formalizes autonomous improvement loops. Demonstrated +0.05 to +0.10 accuracy improvement on LongMemEval-S.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-10</div>
+        <div class="timeline-content">
+          ActiveGraph v1.1.0 released. ActiveGraph Lab created. ActiveGraph Packs created.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-05-21</div>
+        <div class="timeline-content">
+          ArXiv paper "The Log is the Agent" (2605.21997) published. Core ActiveGraph framework made public.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-05-16</div>
+        <div class="timeline-content">
+          ActiveGraph repository created. Event-sourced reactive graph runtime for auditable, forkable agentic systems.
+        </div>
       </div>
     </section>
 
-    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #222; color: #666; font-size: 0.85rem;">
-      <p>Intelligence Tracker • Updated automatically by OpenClaw</p>
-      <p>Data sources: GitHub API, arXiv, web search</p>
-      <p>ActiveGraph ecosystem: 13+ repos (core + tooling/benchmarks/probes/packs/lab/site) • 2 arXiv papers</p>
-    </footer>
+    <section>
+      <h2>Patterns & Themes</h2>
+
+      <div class="belief">
+        <strong>Autonomous Agents</strong><br>
+        <em style="color: var(--muted)">BabyAGI lineage — BabyAGI, BabyAGI-2o, BabyAGI3, Regimes</em>
+      </div>
+
+      <div class="belief">
+        <strong>Knowledge Graphs</strong><br>
+        <em style="color: var(--muted)">Instagraph, Mindgraph, Prettygraph, ActiveGraph (log → graph projection)</em>
+      </div>
+
+      <div class="belief">
+        <strong>Self-Improvement</strong><br>
+        <em style="color: var(--muted)">SelfMCP, Ditto, Regimes, ActiveGraph Lab self-repair loops</em>
+      </div>
+
+      <div class="belief">
+        <strong>Dogfooding Own Infrastructure</strong><br>
+        <em style="color: var(--muted)">Regimes runs on ActiveGraph; ActiveGraph Lab manages ActiveGraph evidence; Repo Manager manages ActiveGraph repos</em>
+      </div>
+
+      <div class="belief">
+        <strong>Benchmark & Tournament Loops</strong><br>
+        <em style="color: var(--muted)">ag-tcg uses automated tournament runs, benchmark opponents, generated reports, and quarantine/deployment checks</em>
+      </div>
+
+      <div class="belief">
+        <strong>Simplicity</strong><br>
+        <em style="color: var(--muted)">"Simplest" appears repeatedly in project descriptions</em>
+      </div>
+    </section>
+
+    <div class="footer">
+      Last updated: 2026-06-21 · Data from GitHub, X, YouTube, and public sources
+    </div>
   </div>
 </body>
 </html>
