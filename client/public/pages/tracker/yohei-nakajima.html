@@ -149,7 +149,7 @@
       <div class="project">
         <div class="project-title">
           <span>activegraph</span>
-          <span class="stars">315 ⭐</span>
+          <span class="stars">316 ⭐</span>
         </div>
         <div class="project-desc">
           Event-sourced reactive graph runtime for auditable, forkable agentic systems.
@@ -164,7 +164,7 @@
         </div>
         <div class="project-desc">
           Self-hosted research agent growing activegraph.ai's evidence base.
-          28+ PRs merged in 24h (2026-06-15) — all via Claude code workers.
+          ADR-044 added a bounded daily heartbeat: one gated step per cadence window, idempotent via durable log markers.
         </div>
       </div>
 
@@ -331,10 +331,22 @@
         <strong>AI-augmented development enables self-hosted research</strong><br>
         <em style="color: var(--muted)">ActiveGraph Lab uses Claude as a code worker to self-repair and improve itself. Believes in self-hosted, local-first AI infrastructure.</em>
       </div>
+
+      <div class="belief">
+        <strong>Scheduled autonomy should be bounded and killable</strong><br>
+        <em style="color: var(--muted)">ActiveGraph Lab's daily heartbeat advances work inside durable-log, budget, pause, and human-gate constraints.</em>
+      </div>
     </section>
 
     <section>
       <h2>Timeline (Recent Activity)</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-22</div>
+        <div class="timeline-content">
+          activegraph-lab merged PR #34 / ADR-044, adding the first daily heartbeat: a bounded, gated, killable cadence that advances one worklist step without bypassing approval, promotion, or PR-submit gates. X scrape found no new visible public posts; YouTube and mentions were unchanged.
+        </div>
+      </div>
 
       <div class="timeline-item">
         <div class="timeline-date">2026-06-21</div>
@@ -415,13 +427,18 @@
       </div>
 
       <div class="belief">
+        <strong>Bounded Standing Behaviors</strong><br>
+        <em style="color: var(--muted)">ActiveGraph Lab is adding scheduled cadence only when it remains idempotent, budget-limited, globally pausable, and operator-gated</em>
+      </div>
+
+      <div class="belief">
         <strong>Simplicity</strong><br>
         <em style="color: var(--muted)">"Simplest" appears repeatedly in project descriptions</em>
       </div>
     </section>
 
     <div class="footer">
-      Last updated: 2026-06-21 · Data from GitHub, X, YouTube, and public sources
+      Last updated: 2026-06-22 · Data from GitHub, X, YouTube, and public sources
     </div>
   </div>
 </body>
