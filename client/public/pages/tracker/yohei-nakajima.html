@@ -149,11 +149,12 @@
       <div class="project">
         <div class="project-title">
           <span>activegraph</span>
-          <span class="stars">316 ⭐</span>
+          <span class="stars">322 ⭐</span>
         </div>
         <div class="project-desc">
           Event-sourced reactive graph runtime for auditable, forkable agentic systems.
-          v1.1.0 released 2026-06-10. Core infrastructure — append-only event log as source of truth.
+          v1.1.0 released 2026-06-10. FalkorDBGraphStore added 2026-06-23 for persistent graph projections.
+          Publicly framed as "Active Graph Agent Runtime (BabyAGI 4)."
         </div>
       </div>
 
@@ -219,7 +220,8 @@
         </div>
         <div class="project-desc">
           Automated Replit Agent tournament and benchmark loop. June 21 activity focused on tournament engine safety,
-          persistent storage, report generation, benchmark opponents, and auto-quarantine logic.
+          persistent storage, report generation, benchmark opponents, and auto-quarantine logic. June 23 commits
+          continued planner/reference-gap and strategy-evaluation documentation work.
         </div>
       </div>
 
@@ -252,7 +254,7 @@
       <div class="project">
         <div class="project-title">
           <span>BabyAGI</span>
-          <span class="stars">22,310 ⭐</span>
+          <span class="stars">22,311 ⭐</span>
         </div>
         <div class="project-desc">
           First popular open source autonomous agent with task planning.
@@ -263,7 +265,7 @@
       <div class="project">
         <div class="project-title">
           <span>Instagraph</span>
-          <span class="stars">3,547 ⭐</span>
+          <span class="stars">3,548 ⭐</span>
         </div>
         <div class="project-desc">
           Converts text input or URL into knowledge graph and displays.
@@ -336,10 +338,22 @@
         <strong>Scheduled autonomy should be bounded and killable</strong><br>
         <em style="color: var(--muted)">ActiveGraph Lab's daily heartbeat advances work inside durable-log, budget, pause, and human-gate constraints.</em>
       </div>
+
+      <div class="belief">
+        <strong>Graph-native memory should be persistent but semantically honest</strong><br>
+        <em style="color: var(--muted)">ActiveGraph's FalkorDB support persists graph projections while documenting relations-as-nodes and whole-projection read boundaries.</em>
+      </div>
     </section>
 
     <section>
       <h2>Timeline (Recent Activity)</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-06-24</div>
+        <div class="timeline-content">
+          ActiveGraph merged FalkorDB persistent graph-store support and follow-up docs clarifying relation/projection semantics. External mentions surfaced AI Engineer World's Fair's "Active Graph Agent Runtime (BabyAGI 4)" listing and AI House's "The Log Is the Agent" ActiveGraph talk. X public scrape showed no new visible posts and 125.7K followers.
+        </div>
+      </div>
 
       <div class="timeline-item">
         <div class="timeline-date">2026-06-22</div>
@@ -432,13 +446,23 @@
       </div>
 
       <div class="belief">
+        <strong>Graph Database Persistence</strong><br>
+        <em style="color: var(--muted)">FalkorDB-backed projections point toward durable graph-native agent memory, with implementation limits documented clearly</em>
+      </div>
+
+      <div class="belief">
+        <strong>ActiveGraph as BabyAGI 4</strong><br>
+        <em style="color: var(--muted)">AI Engineer World's Fair lists the runtime as "Active Graph Agent Runtime (BabyAGI 4)"</em>
+      </div>
+
+      <div class="belief">
         <strong>Simplicity</strong><br>
         <em style="color: var(--muted)">"Simplest" appears repeatedly in project descriptions</em>
       </div>
     </section>
 
     <div class="footer">
-      Last updated: 2026-06-22 · Data from GitHub, X, YouTube, and public sources
+      Last updated: 2026-06-24 · Data from GitHub, X, YouTube, and public sources
     </div>
   </div>
 </body>
