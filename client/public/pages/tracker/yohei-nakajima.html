@@ -149,12 +149,25 @@
       <div class="project">
         <div class="project-title">
           <span>activegraph</span>
-          <span class="stars">333 ⭐</span>
+          <span class="stars">356 ⭐</span>
         </div>
         <div class="project-desc">
           Event-sourced reactive graph runtime for auditable, forkable agentic systems.
-          v1.1.0 released 2026-06-10. FalkorDBGraphStore added 2026-06-23 for persistent graph projections.
-          Publicly framed as "Active Graph Agent Runtime (BabyAGI 4)" in the AI Engineer World's Fair speaker data and now appearing in Pokémon AI strategy-generation experiments.
+          v1.3 cycle merged via PR #50 (2026-07-04): strict types (41/41 modules), Ring 0 docstrings at 100%, native structured-output mode (opt-in per-behavior), and CODE_OF_CONDUCT.md.
+          v1.2.0 (2026-07-03) was the GraphStore release, making materialized graph projections pluggable and FalkorDB-backed.
+          Publicly framed as "Active Graph Agent Runtime (BabyAGI 4)" in the AI Engineer World's Fair speaker data.
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-title">
+          <span>activegraph-terminalbench</span>
+          <span class="stars">1 ⭐</span>
+        </div>
+        <div class="project-desc">
+          Terminal-Bench 2.0 / WolfBench harness using ActiveGraph as the memory and logging substrate.
+          Every model step, command, observation, error, token count, and timing datum becomes an inspectable event log and typed graph projection.
+          Active development on <code>claude/activegraph-harness-benchmark-eiyeek</code> branch — 13+ pushes since 2026-07-04.
         </div>
       </div>
 
@@ -214,7 +227,7 @@
       <div class="project">
         <div class="project-title">
           <span>activegraph-packs</span>
-          <span class="stars">3 ⭐</span>
+          <span class="stars">4 ⭐</span>
         </div>
         <div class="project-desc">
           Core pack schema for activegraph and a UI to explore capabilities.
@@ -225,7 +238,7 @@
       <div class="project">
         <div class="project-title">
           <span>ag-coder</span>
-          <span class="stars">9 ⭐</span>
+          <span class="stars">10 ⭐</span>
         </div>
         <div class="project-desc">
           Simple activegraph coding agent demo.
@@ -259,7 +272,7 @@
       <div class="project">
         <div class="project-title">
           <span>BabyAGI-2o</span>
-          <span class="stars">340 ⭐</span>
+          <span class="stars">339 ⭐</span>
         </div>
         <div class="project-desc">
           The simplest self-building general autonomous agent.
@@ -274,7 +287,7 @@
       <div class="project">
         <div class="project-title">
           <span>BabyAGI</span>
-          <span class="stars">22,309 ⭐</span>
+          <span class="stars">22,320 ⭐</span>
         </div>
         <div class="project-desc">
           First popular open source autonomous agent with task planning.
@@ -285,7 +298,7 @@
       <div class="project">
         <div class="project-title">
           <span>Instagraph</span>
-          <span class="stars">3,548 ⭐</span>
+          <span class="stars">3,546 ⭐</span>
         </div>
         <div class="project-desc">
           Converts text input or URL into knowledge graph and displays.
@@ -307,7 +320,7 @@
       <div class="project">
         <div class="project-title">
           <span>Mindgraph</span>
-          <span class="stars">942 ⭐</span>
+          <span class="stars">941 ⭐</span>
         </div>
         <div class="project-desc">
           Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.
@@ -368,10 +381,34 @@
         <strong>Small live tools are useful applied surfaces</strong><br>
         <em style="color: var(--muted)">aie-talks and aie-side-events show time-bound conference utilities as proving grounds for Claude-assisted agent development.</em>
       </div>
+
+      <div class="belief">
+        <strong>Benchmark traces should be inspectable event logs</strong><br>
+        <em style="color: var(--muted)">activegraph-terminalbench applies ActiveGraph to Terminal-Bench so every reasoning step, command, observation, error, and token/timing record survives as an auditable graph-backed trace.</em>
+      </div>
+
+      <div class="belief">
+        <strong>Quality is ratcheted via contracts</strong><br>
+        <em style="color: var(--muted)">v1.3 enforces strict types (41/41 modules) and 100% Ring 0 docstrings as build gates. Structured output is opt-in per-behavior. Community conduct reporting is public-by-design, not hidden in email.</em>
+      </div>
     </section>
 
     <section>
       <h2>Timeline (Recent Activity)</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-07-05</div>
+        <div>
+          ActiveGraph <strong>PR #50 merged</strong>: the v1.3 cycle delivers Phase 1 quality ratchets (41/41 strict types, Ring 0 docstrings 100%), Phase 2 native structured-output mode (opt-in per-behavior with JSON-schema fallback), and Phase 4 community surface (CODE_OF_CONDUCT.md, then revised to public-by-design issues-first reporting). Meanwhile, <strong>activegraph-terminalbench</strong> saw 13+ pushes to its Claude benchmark branch — an active Terminal-Bench evaluation cycle. Stars: activegraph +5 to 356, babyagi +1 to 22,320, mindgraph +1 to 941.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2026-07-04</div>
+        <div>
+          New repo: <strong>activegraph-terminalbench</strong>, a Terminal-Bench 2.0 / WolfBench harness using ActiveGraph as the memory and logging substrate for each trial. ActiveGraph v1.2.0 also shipped as the <strong>GraphStore release</strong>, locking the projection-storage contract and adding FalkorDB-backed query pushdown. GitHub metadata showed <strong>activegraph</strong> +18 stars to 351 and <strong>babyagi</strong> +4 stars to 22,319. X public scrape remained limited to pinned/older posts.
+        </div>
+      </div>
 
       <div class="timeline-item">
         <div class="timeline-date">2026-06-29</div>
@@ -516,6 +553,11 @@
       </div>
 
       <div class="belief">
+        <strong>ActiveGraph as Benchmark Harness Substrate</strong><br>
+        <em style="color: var(--muted)">activegraph-terminalbench treats benchmark runs as durable event logs and graph projections, not just pass/fail outputs</em>
+      </div>
+
+      <div class="belief">
         <strong>Practical Event Tools and Live-Competition Benchmarks</strong><br>
         <em style="color: var(--muted)">aie-side-events and Pokémon AI/Kaggle work show ActiveGraph-era ideas being tested through concrete events, games, competitions, and public workflows</em>
       </div>
@@ -526,13 +568,18 @@
       </div>
 
       <div class="belief">
+        <strong>Contract-Driven Quality Ratchets</strong><br>
+        <em style="color: var(--muted)">v1.3 enforces strict types, complete docs, and per-behavior structured output through build-time contracts with CI gates</em>
+      </div>
+
+      <div class="belief">
         <strong>Simplicity</strong><br>
         <em style="color: var(--muted)">"Simplest" appears repeatedly in project descriptions</em>
       </div>
     </section>
 
     <div class="footer">
-      Last updated: 2026-06-29 · Data from GitHub, X, YouTube, and public sources
+      Last updated: 2026-07-05 · Data from GitHub, X, YouTube, and public sources
     </div>
   </div>
 </body>
