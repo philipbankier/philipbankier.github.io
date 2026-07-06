@@ -50,81 +50,59 @@
     }
     .subtitle {
       color: var(--muted);
-      font-size: 0.95rem;
-      margin-top: 0.25rem;
-    }
-    .links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-    }
-    .links a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .links a:hover {
-      text-decoration: underline;
-    }
-    section {
-      margin-bottom: 2.5rem;
+      font-size: 1rem;
     }
     h2 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
+      color: var(--fg);
+      border-bottom: 2px solid var(--border);
       padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+      margin-top: 2.5rem;
+      font-size: 1.25rem;
     }
-    .project {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    h3 {
+      color: var(--fg);
+      margin-top: 2rem;
+      font-size: 1.1rem;
     }
-    .project-title {
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .section {
+      margin-bottom: 2rem;
     }
-    .stars {
-      color: var(--accent);
-      font-size: 0.85rem;
-    }
-    .project-desc {
+    .timestamp {
+      font-size: 0.875rem;
       color: var(--muted);
-      font-size: 0.9rem;
       margin-top: 0.5rem;
     }
-    .belief {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
+    code {
+      background: var(--border);
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
     }
-    .belief:last-child {
-      border-bottom: none;
+    pre {
+      background: var(--border);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      font-size: 0.875rem;
     }
-    .belief strong {
-      color: var(--fg);
+    ul, ol {
+      padding-left: 1.5rem;
     }
-    .timeline-item {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
+    li {
+      margin-bottom: 0.5rem;
     }
-    .timeline-date {
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-family: monospace;
+    .highlight {
+      background: var(--accent);
+      color: white;
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
     }
-    .timeline-content {
-      margin-top: 0.25rem;
-    }
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
+    .badge {
+      background: var(--border);
+      padding: 0.125rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      margin-right: 0.5rem;
     }
   </style>
 </head>
@@ -134,453 +112,811 @@
       <div class="avatar">YN</div>
       <div>
         <h1>Yohei Nakajima</h1>
-        <div class="subtitle">GP @ Untapped Capital · Creator of BabyAGI</div>
-        <div class="links">
-          <a href="https://x.com/yoheinakajima" target="_blank">X</a>
-          <a href="https://github.com/yoheinakajima" target="_blank">GitHub</a>
-          <a href="https://yoheinakajima.com" target="_blank">Website</a>
-        </div>
+        <div class="subtitle">Intelligence Tracker — Daily Monitoring</div>
+        <div class="timestamp">Last updated: 2026-07-06 06:08:09 UTC</div>
       </div>
     </header>
 
-    <section>
-      <h2>Active Projects</h2>
+    <div class="section">
+      <h2>Timeline</h2>
+      <div class="timeline-content"># Timeline - Yohei Nakajima
 
-      <div class="project">
-        <div class="project-title">
-          <span>activegraph</span>
-          <span class="stars">356 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Event-sourced reactive graph runtime for auditable, forkable agentic systems.
-          v1.3 cycle merged via PR #50 (2026-07-04): strict types (41/41 modules), Ring 0 docstrings at 100%, native structured-output mode (opt-in per-behavior), and CODE_OF_CONDUCT.md.
-          v1.2.0 (2026-07-03) was the GraphStore release, making materialized graph projections pluggable and FalkorDB-backed.
-          Publicly framed as "Active Graph Agent Runtime (BabyAGI 4)" in the AI Engineer World's Fair speaker data.
-        </div>
-      </div>
+Last updated: 2026-07-06
 
-      <div class="project">
-        <div class="project-title">
-          <span>activegraph-terminalbench</span>
-          <span class="stars">1 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Terminal-Bench 2.0 / WolfBench harness using ActiveGraph as the memory and logging substrate.
-          Every model step, command, observation, error, token count, and timing datum becomes an inspectable event log and typed graph projection.
-          Active development on <code>claude/activegraph-harness-benchmark-eiyeek</code> branch — 13+ pushes since 2026-07-04.
-        </div>
-      </div>
+## Recent Activity (Last 30 Days)
 
-      <div class="project">
-        <div class="project-title">
-          <span>aie-talks</span>
-          <span class="stars">0 ⭐</span>
-        </div>
-        <div class="project-desc">
-          New AI Engineer World's Fair talks/session browser. First-day work rapidly iterated search UX, styling, and session navigation through Claude-assisted PRs.
-        </div>
-      </div>
+### 2026-07-06
+- **Continued Terminal-Bench evaluation: 15 more pushes to Claude benchmark branch.** 15 additional push events to `claude/activegraph-harness-benchmark-eiyeek` between 2026-07-05T16:09Z and 2026-07-05T23:22Z. Total across both days: 28+ pushes in ~31 hours, all to feature branch with force-push pattern. No commits to default branch. Sustained intensive evaluation cycle.
+- **ActiveGraph stars accelerate to +17 in single day:** Significant acceleration from usual +5/day growth (356→373). Other repos: babyagi +2 (22320→22322), instagraph +1 (3546→3547). Suggests v1.3 cycle and arxiv paper visibility effect.
+- **Issue #51 opened:** FalkorDB design pass for `where` predicate push-down (property flattening / dual-write). Enhancement label signals continued investment in FalkorDB as production backend. Gap-fill capture (created 2026-07-04T16:56:30Z, before baseline).
+- **X/Twitter and mentions:** Browser blocked (Chrome DevToolsActivePort missing, managed profile blocked by policy). No X data. DuckDuckGo mentions search shows only pre-existing content (May 2026 activegraph.ai, arxiv, cofounder.co). No new high-signal mentions.
+- **Signal:** Terminal-Bench evaluation continues at sustained intensity (28+ pushes in 31 hours). ActiveGraph star acceleration suggests growing awareness. FalkorDB issue signals production backend hardening focus.
 
-      <div class="project">
-        <div class="project-title">
-          <span>aie-side-events</span>
-          <span class="stars">0 ⭐</span>
-        </div>
-        <div class="project-desc">
-          AI Engineer World's Fair 2026 side-event navigator. Added AI Breakfast with Yohei, event URLs, a live header clock, and additional side events.
-        </div>
-      </div>
+### 2026-07-05
+- **ActiveGraph PR #50 merged: v1.3 cycle.** Merged at 2026-07-04T21:42:52Z. Three arcs on a single feature branch (`claude/activegraph-v1-3-cycle-4oq3vn`): (1) Phase 1 quality ratchets — all 41 modules pass strict type checking, Ring 0 docstrings reach 100% full coverage. (2) Phase 2 native structured-output mode — opt-in per-behavior, resolves at registration time with JSON-schema fallback. (3) Phase 4 community surface — CODE_OF_CONDUCT.md (Contributor Covenant v2.1), then revised by Yohei to drop the conduct@ email channel in favor of public-by-design issues-first reporting. 10 commits since baseline, almost all Claude-authored.
+- **activegraph-terminalbench: 13+ pushes to Claude benchmark branch.** Intense Claude-driven activity on `claude/activegraph-harness-benchmark-eiyeek` between 2026-07-04T16:31Z and 2026-07-05T08:44Z. No commits to default branch yet — work is isolated to the feature branch. Suggests an active Terminal-Bench evaluation cycle using Claude as coding agent.
+- **Star changes:** activegraph 351→356 (+5), babyagi 22319→22320 (+1), mindgraph 940→941 (+1), pippin 107→108 (+1). Steady momentum.
+- **X/Twitter and mentions:** Browser blocked (user profile DevToolsActivePort missing, managed profile blocked by policy). No X data. DuckDuckGo shows only pre-existing content. No new high-signal mentions.
+- **Signal:** v1.3 shows ActiveGraph maturing rapidly — strict types, complete docs, structured output, and community governance all landing in one cycle. Terminal-Bench harness activity suggests Yohei is benchmarking ActiveGraph's own retrieval/memory improvements.
 
-      <div class="project">
-        <div class="project-title">
-          <span>activegraph-lab</span>
-          <span class="stars">2 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Self-hosted research agent growing activegraph.ai's evidence base.
-          ADR-044 added a bounded daily heartbeat: one gated step per cadence window, idempotent via durable log markers.
-        </div>
-      </div>
+### 2026-07-04
+- **NEW repo: activegraph-terminalbench** — Yohei created a Python repo on 2026-07-02 for a custom Harbor / Terminal-Bench 2.0 harness using ActiveGraph as the memory and logging substrate. Claude-authored commits scaffolded the package, added the core ReAct agent loop, event schema, Anthropic wrapper, context seam, smoke tests, WolfBench metrics, and README/DECISIONS docs.
+- **Terminal-Bench signal:** The README says each model reasoning step, command, observation, error, timing, and token count is appended to a per-trial ActiveGraph store, so the run is both an event log and deterministic typed graph projection. The key future seam is `build_context()`: v1 reconstructs a transcript tail from the event log; v2 is planned to swap in graph retrieval without changing the outer loop.
+- **ActiveGraph v1.2.0 released:** Release published 2026-07-03 as the **GraphStore release**. It locks the GraphStore contract, makes the materialized graph projection pluggable, keeps InMemoryGraphStore as default, and backs FalkorDBGraphStore with a traversable Cypher-queryable graph plus query pushdown hooks.
+- **GitHub repo metadata:** `activegraph` rose 333->351 stars (+18), `babyagi` rose 22,315->22,319 (+4), `ag-coder` rose 9->10 (+1), and `activegraph-packs` rose 3->4 (+1). Some older repos lost stars: `instagraph` -3, `prettygraph` -2, `babyagi-2o` -1, `mindgraph` -1, `GPTvsGPT` -1.
+- **X/Twitter public scrape:** Existing-session Chrome attach still failed due missing DevToolsActivePort. Managed browser loaded the public profile but exposed pinned/older posts rather than a reliable chronological feed. Visible follower count: 124.8K.
+- **YouTube and mentions:** yt-dlp returned third-party/background results, no new Yohei-authored appearance. Web search captured Digg's Talk Explorer item and an AI House attendee LinkedIn post as useful external validation, but no new project beyond the GitHub discoveries.
+- **Signal:** Yohei is pushing ActiveGraph into benchmark/eval infrastructure. The work ties together Terminal-Bench/WolfBench, auditable ReAct traces, graph-backed memory, and v1.2's production GraphStore hardening.
 
-      <div class="project">
-        <div class="project-title">
-          <span>regimes-probe</span>
-          <span class="stars">2 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Benchmark probing tool for autonomous eval-improvement loop.
-          BrowseComp benchmark with multi-level query decomposition.
-        </div>
-      </div>
+### 2026-06-29
+- **GitHub repo metadata:** No new repos and no new post-2026-06-28 retrieval commits detected. `babyagi-2o` rose 339->340 stars (+1), and `activegraph` rose 332->333 (+1). No watched repo had a new push after the prior retrieval window.
+- **AI Engineer speaker data:** AI Engineer World's Fair `speakers.json` / `sessions.json` confirms Yohei's session details: **"Active Graph Agent Runtime (BabyAGI 4)"**, Day 4 / Session Day 3, 11:10-11:30am, Track 5, Graphs. Description frames the work as an event-sourced graph runtime for long-running auditable agentic systems, combining BabyAGI iterations and graph experiments.
+- **X/Twitter public scrape:** Existing-session Chrome attach failed due missing DevToolsActivePort. Managed public profile loaded, but visible posts were pinned/older content rather than a reliable chronological latest feed.
+- **YouTube and mentions:** yt-dlp returned mostly third-party/background results. Web search resurfaced already-captured AI Engineer, ActiveGraph, Digg/Kaggle, and arXiv signals; no clearly new high-signal mention after the prior window.
+- **Signal:** No new substantive item today. The useful enrichment is higher-confidence public positioning of ActiveGraph as BabyAGI 4, plus lightweight GitHub star momentum.
 
-      <div class="project">
-        <div class="project-title">
-          <span>regimes</span>
-          <span class="stars">1 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Autonomous eval-improvement loop running natively on ActiveGraph.
-          Diagnoses LongMemEval failures, runs improvement cycles, validates through gates.
-        </div>
-      </div>
+### 2026-06-28
+- **NEW repo: aie-talks** - Yohei created a new AI Engineer World's Fair talks/session browser repo on 2026-06-27. The first day shows rapid Claude-assisted iteration: removing grid view, improving search examples, fixing Yohei search, restyling to match the side-event navigator aesthetic, and adding a header search toggle with `/` keyboard shortcut.
+- **aie-side-events follow-on work:** The side-event navigator added an AI Breakfast with Yohei event, real event-page URLs, a live centered header clock, and additional AI Engineer side events. Yohei merged PR #2 from a `claude/` branch and Claude authored the follow-on event addition.
+- **GitHub repo metadata:** `babyagi` rose 22,313->22,315 stars (+2), `activegraph` rose 331->332 (+1), and `ditto` rose 1,056->1,057 (+1). `babyagi` and `activegraph` had updated_at changes without new pushes.
+- **X/Twitter public scrape:** Existing-session Chrome attach failed due missing DevToolsActivePort. Managed public profile loaded, but visible posts were pinned/older content rather than a reliable chronological latest feed.
+- **YouTube and mentions:** yt-dlp returned third-party/background results; web search resurfaced already-captured AI Engineer schedule, ActiveGraph/Cofounder, Digg/Kaggle, and paper/event-page signals.
+- **Signal:** Yohei is turning AI Engineer World's Fair into a live applied surface for practical event tooling, with small public utilities shipped through Claude-assisted coding loops.
 
-      <div class="project">
-        <div class="project-title">
-          <span>activegraph-packs</span>
-          <span class="stars">4 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Core pack schema for activegraph and a UI to explore capabilities.
-          Created 2026-06-10.
-        </div>
-      </div>
+### 2026-06-27
+- **NEW repo: aie-side-events** — Yohei created a new HTML repo for an **AI Engineer World's Fair 2026 side-event navigator**. Initial commit landed at 2026-06-26 18:47 UTC; Claude authored the app/README commit at 18:51 UTC; Yohei merged PR #1 at 18:55 UTC.
+- **GitHub repo metadata:** `activegraph` rose 328->331 stars (+3) and `babyagi` rose 22,311->22,313 (+2). No new ActiveGraph core pushes after the 2026-06-23 FalkorDB work.
+- **New mention / X-derived signal:** Digg surfaced Yohei's Pokémon AI/Kaggle activity from June 25: Yohei framed it as his first real Kaggle competition and noted ActiveGraph is starting to generate and test deck/strategy combinations.
+- **X/Twitter public scrape:** Existing-session Chrome attach still failed due missing DevToolsActivePort. Managed public profile loaded, but visible posts were pinned/older content rather than reliable chronological latest feed. Follower count visible around 125.1K.
+- **YouTube:** yt-dlp returned 5 third-party/background results; no new Yohei-authored appearance detected.
+- **Signal:** Yohei is applying ActiveGraph-style loops to practical event tooling and game/competition strategy testing, with Claude-assisted coding still embedded in the workflow.
 
-      <div class="project">
-        <div class="project-title">
-          <span>ag-coder</span>
-          <span class="stars">10 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Simple activegraph coding agent demo.
-          Demonstrates ActiveGraph as a coding agent.
-        </div>
-      </div>
+### 2026-06-26
+- **GitHub repo metadata:** No new repos and no new post-2026-06-25 retrieval commits detected. `activegraph` rose 325->328 stars (+3), `babyagi` rose 22,309->22,311 (+2), `GPTvsGPT` rose 205->206 (+1), `instagraph` rose 3,548->3,549 (+1), and `babyagi_archive` moved 109->108 (-1). `activegraph`, `babyagi`, `babyagi_archive`, `GPTvsGPT`, and `instagraph` had updated_at changes without new pushes.
+- **GitHub events:** A newly surfaced GitHub event showed activegraph issue #38 ("Add support for FalkorDB graph store") marked closed, but the underlying issue/PR work was already captured in the 2026-06-24 retrieval.
+- **X/Twitter public scrape:** Existing-session Chrome attach still failed due missing DevToolsActivePort. Managed public profile loaded but exposed pinned/older visible posts rather than a reliable chronological latest feed. Follower count visible around 125.6K.
+- **YouTube and mentions:** YouTube search returned third-party/background results. Web search/web_fetch resurfaced already-captured ActiveGraph/BabyAGI 4 and Regimes signals; ResearchGate blocked direct fetch with 403.
+- **Signal:** No new substantive intel item today. ActiveGraph continues to show lightweight community momentum, but there were no new pushes, launches, or reliably captured new posts.
 
-      <div class="project">
-        <div class="project-title">
-          <span>ag-tcg</span>
-          <span class="stars">1 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Automated Replit Agent tournament and benchmark loop. June 21 activity focused on tournament engine safety,
-          persistent storage, report generation, benchmark opponents, and auto-quarantine logic. June 23 commits
-          continued planner/reference-gap and strategy-evaluation documentation work. June 25 X/Digg signal says ActiveGraph is starting to generate and test deck/strategy combinations.
-        </div>
-      </div>
+### 2026-06-25
+- **GitHub repo metadata:** No new repos and no new post-2026-06-24 commits detected. `activegraph` rose 322->325 stars (+3), `babyagi_archive` rose 108->109 (+1), and `babyagi` moved 22,311->22,309 (-2). `activegraph`, `babyagi_archive`, `ai-share-widget`, and `babyagi` had updated_at changes without new pushes.
+- **X/Twitter public scrape:** Existing-session Chrome attach failed due missing DevToolsActivePort. Managed public profile loaded but still exposed only pinned/older visible posts, not a reliable chronological latest feed. Follower count remains visible around 125.7K.
+- **YouTube and mentions:** YouTube search returned third-party/background results. Web search resurfaced already-captured ActiveGraph/BabyAGI 4 and AI House/LinkedIn signals from the previous retrieval.
+- **Signal:** No new substantive intel item today. ActiveGraph continues to gain lightweight community attention after the FalkorDB/BabyAGI 4 signals captured on 2026-06-24.
 
-      <div class="project">
-        <div class="project-title">
-          <span>SelfMCP</span>
-          <span class="stars">21 ⭐</span>
-        </div>
-        <div class="project-desc">
-          A self-extending MCP server.
-          Explore self-improving server architecture. Last commit 2026-04-10.
-        </div>
-      </div>
+### 2026-06-24
+- **ActiveGraph adds FalkorDB persistent graph storage:** activegraph merged PR #39 on 2026-06-23, adding `FalkorDBGraphStore` for materialized graph projections in FalkorDB, with connection resolution, conformance tests, docs, and integration tests.
+- **Projection semantics clarified:** activegraph PR #40 followed immediately with docs clarifying that relations are stored as `AGRelation` nodes rather than native graph edges, and that filters, neighborhood walks, and `where` evaluation currently read the full FalkorDB projection into Python instead of pushing queries down. This is an important practical boundary on the graph-store abstraction.
+- **External event signal:** AI Engineer World's Fair 2026 schedule lists Yohei for **"Active Graph Agent Runtime (BabyAGI 4)"**, suggesting ActiveGraph is being positioned publicly as the next BabyAGI runtime generation.
+- **AI House talk:** AI House/Luma promoted Yohei's June 24 Seattle talk, "The Log Is the Agent: Yohei Nakajima on Building AI That Persists," focused on ActiveGraph as log-centric/reactive agentic architecture.
+- **GitHub repo metadata:** No new repos. `activegraph` rose 316→322 stars (+6), `babyagi` rose 22,308→22,311 (+3), `babyagi_archive` rose 107→108 (+1), `instagraph` dipped 3,549→3,548 (-1).
+- **X/Twitter public scrape:** Managed browser loaded the profile, but only pinned/older posts were visible; no new public post captured. Follower count now visible as 125.7K. Existing-session Chrome attach still failed due missing DevToolsActivePort.
+- **Signal:** The strongest new signal is ActiveGraph moving from abstract event-sourced graph runtime into concrete graph-database persistence, while public positioning increasingly says "BabyAGI 4."
 
-      <div class="project">
-        <div class="project-title">
-          <span>BabyAGI-2o</span>
-          <span class="stars">339 ⭐</span>
-        </div>
-        <div class="project-desc">
-          The simplest self-building general autonomous agent.
-          Next iteration of autonomous agent framework. Maintenance mode.
-        </div>
-      </div>
-    </section>
+### 2026-06-22
+- **activegraph-lab added a daily heartbeat:** 2 new post-baseline commits landed after the 2026-06-21 retrieval window. PR #34 merged ADR-044: "The daily heartbeat — bounded, gated, killable standing behavior."
+- **Architecture signal:** ActiveGraph Lab now has a wall-clock cadence, but it is deliberately bounded: at most one tick per cadence window, idempotent via durable log markers, skipped under budget/global pause, and barred from approving/promoting/submitting PRs. This preserves the human gate while allowing controlled recurring work.
+- **GitHub repo metadata:** No new repos. `activegraph-lab` pushed at 2026-06-21 17:10 UTC and now shows updated_at 2026-06-21 17:10 UTC. `activegraph` gained +1 star (315→316) from yesterday's local snapshot.
+- **X/Twitter public scrape succeeded with managed browser:** No new visible public posts. Pinned Fund II post from 2025-09-22 remains first; follower count now visible as 125.4K.
+- **YouTube and mentions:** No new YouTube search results and no newly published web mentions found. Search continues to surface recent ActiveGraph/Cofounder/LinkedIn items already represented in the tracker.
+- **Signal:** The day's main new item is ActiveGraph Lab crossing from purely reactive self-repair into a bounded, operator-gated standing behavior.
 
-    <section>
-      <h2>Past Notable Projects</h2>
+### 2026-06-21
+- **ag-tcg automated activity continues:** 18 new Replit Agent commits since the prior daily retrieval window. Work focused on a standing tournament engine, persistent storage, report site generation, deployment checks, benchmark opponents, and auto-quarantine logic.
+- **GitHub repo metadata:** No new repos. Star changes: ag-coder 8→9 (+1), babyagi 22,310→22,308 (-2), instagraph 3,550→3,549 (-1). activegraph remains 315, activegraph-lab remains 2.
+- **X/Twitter public scrape succeeded with managed browser:** No new visible public posts. Pinned Fund II post from 2025-09-22 remains first; follower count now visible as 125.2K.
+- **Mentions:** DuckDuckGo/web_fetch surfaced Yohei's LinkedIn "The State of AI Going into 2026" article/post as newly captured by the tracker. It was published earlier in 2026 and is already represented in beliefs/themes.
+- **Signal:** No new manual Yohei commits, no new public X posts, no new YouTube results. Today's new operational signal is mostly automated ag-tcg tournament infrastructure.
 
-      <div class="project">
-        <div class="project-title">
-          <span>BabyAGI</span>
-          <span class="stars">22,320 ⭐</span>
-        </div>
-        <div class="project-desc">
-          First popular open source autonomous agent with task planning.
-          Created March 2023. Millions of impressions, coverage across major publications.
-        </div>
-      </div>
+### 2026-06-15 ⚡ MAJOR MILESTONE
+- **🚨 SURGE ACTIVITY: ActiveGraph Lab — 28+ PRs merged in 24 hours** — ALL via Claude code workers
+- **🆕 Project description CLARIFIED:** "A self-hosted research agent growing activegraph.ai's evidence base"
+- **Architecture detected:** Self-repair loops, code worker diff authoring, planner self-repair, routing self-checks, consolidation
+- **All PR branch prefixes:** `claude/` — indicates automated code worker system
+- **PRs merged:** #21-#28, covering:
+  - Self-repair integrity (PR #28)
+  - Authored diffs apply (PR #27)
+  - Code worker diff authoring (PR #26)
+  - Code task metadata self-repair (PR #25)
+  - Planner self-repair loop (PR #24)
+  - ActiveGraph code worker submit PR (PR #23)
+  - ActiveGraph-lab consolidation (PR #22)
+  - ActiveGraph routing self-check (PR #21)
+- **Significance:** Major pivot from BabyAGI-style autonomous agents → self-hosted research infrastructure for AI self-improvement
+- **X/Twitter:** 21+ months of silence continues (last post Sep 2024), follower count 124.8K (up from 68K)
+- **YouTube search:** 5 videos mentioning Yohei/related topics (analytical content, not new from Yohei)
+- **Star changes:** babyagi 22,305→22,308 (+3), activegraph 307→310 (+3), activegraph-lab 0→1 (+1)
+- **Pattern:** Heads-down deep development mode — intense private work, no public-facing updates
 
-      <div class="project">
-        <div class="project-title">
-          <span>Instagraph</span>
-          <span class="stars">3,546 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Converts text input or URL into knowledge graph and displays.
-          Text-to-knowledge-graph generation.
-        </div>
-      </div>
+### 2026-06-14
+- **🆕 arXiv paper discovered: "Regimes: An Auditable, Held-Out-Gated Improvement Loop"** (2606.10241, submitted June 8, 2026). Yohei's SECOND arXiv paper. 30 pages, 5 figures. Demonstrates the Regimes improvement loop on ActiveGraph runtime with LongMemEval-S benchmark. Key finding: dominant failure mode is reconciliation (not retrieval) — evidence is in context but reader answers incorrectly. +0.05 to +0.10 accuracy improvement in 4/5 held-out splits.
+- **activegraph-lab: PR #16 merged (ADR-025)** — Truthful steering replies, decision keying, crawl stall fix. +878/-67, 14 files. Steering mutations now apply before replies; pending decisions indexed by branch.
+- **activegraph-lab: PR #17 merged (ADR-026)** — Decision resolution carries operator rationale. +541/-30, 17 files. Resolution rationale persisted separately from proposer pitch.
+- **activegraph-lab: PR #18 merged** — Per-behavior budget exhaustion is observable; burst incident seeded as finding. +170/-6. Fixes silent budget starvation from 2026-06-12 19:24-19:30 burst.
+- **activegraph-lab: PR #19 merged (ADR-027)** — Rejection teaches, not buries; operator briefs ride verbatim. +900/-102, 19 files. Rejected decisions now land on `decided` (never archived).
+- **activegraph-lab: PR #20 merged (ADR-028/029/030)** — Operator notes, provenance footer, repo file contents. +589/-20, 9 files. Adds note/comment steering verbs for operator commentary.
+- **regimes-probe: Level 5v** — Exact read-body provenance + terminal rejudgment semantics. 5u smoke confirmed: 5/5 service URLs, 48 actual bodies, 25 strict verdicts.
+- **regimes-probe: Level 5v.1** — Body-hash / canonicalization reconciliation. Fixes 7 unverifiable rejudgments (body_hash_mismatch).
+- **Star changes:** babyagi 22,302→22,305 (+3), activegraph 306→307 (+1)
+- **Cofounder.co profile:** New external profile page about Yohei building ActiveGraph with Cofounder tool.
+- **X/Twitter:** Browser unavailable (Philip's Chrome not running at 6AM)
 
-      <div class="project">
-        <div class="project-title">
-          <span>Ditto</span>
-          <span class="stars">1,056 ⭐</span>
-        </div>
-        <div class="project-desc">
-          The simplest self-building coding agent.
-          Self-building AI for code generation.
-        </div>
-      </div>
+### 202-06-12
+- **activegraph-lab: PR #15 merged** — Seam-proposal truncation + evidence relevance (decision#195). Fixes operator text truncation, enforces VERBATIM, adds seam-relevant evidence filtering. Claude Code-authored.
+- **activegraph-lab: Multi-model routing fix** — Model-parameter compatibility commit. Omits `temperature`, strips-and-retries on unsupported-param 400s. Separates call vs parse failure domains. Triggered by first Opus-routed call in production. **Signals: ActiveGraph is now routing to multiple LLM providers.**
+- **activegraph-lab: PR #14 merged** — Store connection resilience: reconnect-and-retry-once for serverless Postgres. Deduplicates two parallel fixes (ADR-009/023). Root cause: Neon serverless Postgres idle-kills.
+- **regimes-probe: Level 5u** — Service lifecycle accounting + rejudgment persistence accounting. Notes 5t smoke test was "real partial pass" (3/5). Claude Code-authored.
+- **Star changes:** babyagi 22,300→22,302 (+2), activegraph 305→306 (+1)
+- **X/Twitter:** Browser unavailable (Philip's Chrome not running at 6AM)
 
-      <div class="project">
-        <div class="project-title">
-          <span>Mindgraph</span>
-          <span class="stars">941 ⭐</span>
-        </div>
-        <div class="project-desc">
-          Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI.
-          Knowledge graph infrastructure for agents.
-        </div>
-      </div>
-    </section>
+### 2026-06-11
+- **ActiveGraph v1.1.0 released!** — Tagged and pushed to main (2026-06-10 14:38 UTC, reflected today). Release PR #35 merged via Codex.
+- **activegraph-lab: Massive Claude Code session** — 5+ PRs merged today (PRs #6-#11), all via Claude Code. ADR-018 through ADR-024 reserved/authored. Topics: chat robustness, boot readiness, docs consolidation.
+- **regimes-probe: Rapid development continues** — Levels 5r, 5s, 5t added (validator consistency, predicate-passage acquisition, pending-read servicing). All Claude-assisted.
+- **NEW repo: regimes-site** — Created 2026-06-10 21:45 UTC. GitHub Pages site with index.html, styles.css, script.js. Presentation/demo site for regimes project.
+- **Star changes:** babyagi 22,298→22,300 (+2), instagraph 3,550→3,551 (+1)
+- **LinkedIn (June 9):** Announced talk at AI House (AI2 Incubator), Seattle — June 24th 3pm on ActiveGraph. Luma event created.
+- **X/Twitter:** Browser unavailable (Philip's Chrome not running at 6AM)
 
-    <section>
-      <h2>Core Beliefs</h2>
+### 2026-06-10
+- **2 NEW repos created today:**
+  - **activegraph-lab** — created 03:56 UTC, pushed 06:50 UTC (no description yet, no language detected)
+  - **activegraph-packs** — created 03:19 UTC, "first iteration of a core pack schema for activegraph and a UI to explore capabilities" (Python)
+- **ActiveGraph: commit merged** — "Docs: reconcile v1.1 planning surface" (PR #25, via Codex)
+  - Also: CI update for docs-only PR checks
+  - ActiveGraph stars: **305** (+3 since yesterday)
+- **regimes-probe: pushed** at 06:26 UTC (continued development)
+- **Star changes:** instagraph 3,550 (re-appeared in top repos), babyagi 22,298
+- **X/Twitter:** Browser unavailable (Philip's Chrome not running at 6AM)
+- **Mentions found:** Cofounder.co case study on ActiveGraph (May 27), LinkedIn "State of AI Going into 2026" (Jan 6)
 
-      <div class="belief">
-        <strong>Agents should be autonomous and self-improving</strong><br>
-        <em style="color: var(--muted)">BabyAGI, SelfMCP, Regimes demonstrate self-improvement patterns. Dogfooding his own infrastructure.</em>
-      </div>
+### 2026-06-09
+- **regimes-probe: 5 new commits** (Levels 5→5c development)
+  - "Add ActiveGraph-native candidate-slate / frontier layer (Level 5)"
+  - "Promote candidate-slate frontier from shadow to optional controller (Level 5b)"
+  - "Add optional LLM frontier-action/query proposer (Level 5c)"
+  - "Fix LLM frontier proposal->action->evidence integrity (Level 5c)"
+  - All on claude/regimes-probe-setup-ILfr0 branch
+- **ActiveGraph stars: 302** (+8 since June 6)
+- **ag-coder stars: 8** (+7 since June 6, gaining traction)
+- **Star changes:** babyagi +2 (22296), idealist +1 (189), activegraph-learn +1 (2)
 
-      <div class="belief">
-        <strong>The log IS the agent</strong><br>
-        <em style="color: var(--muted)">Append-only event log is the source of truth. Graph is a deterministic projection. Enables deterministic replay, cheap forking, end-to-end lineage.</em>
-      </div>
+### 2026-06-08
+- **regimes-probe: 20 commits** (massive Claude-assisted sprint)
+  - Levels 2-5 of query decomposition and frontier architecture built out
+  - Level 2: Query decomposition + benchmark-contamination detection
+  - Level 3: firecrawl_scrape follow-up tool
+  - Level 4/4b: Task-frame / constraint-graph search + LLM task-frame parser
+  - Level 5: Candidate-slate / frontier layer
+  - Open-world semantic constraints, operational affordances, escalation controller
+- **ag-coder: PR #4 merged** — "Simplify documentation: remove Tier framing" (Claude PR)
+- **regimes: README update** to paper-aligned narrative
+- **regimes: cross-author ablation runs** (haiku author, sonnet reader, seeds 5/7/23/101)
 
-      <div class="belief">
-        <strong>Autonomy requires governance</strong><br>
-        <em style="color: var(--muted)">"The winners in agentic categories will not be the most autonomous systems, but the most governable ones."</em>
-      </div>
+### 2026-06-07
+- **regimes: more ablation runs** (seeds 5, 7, 23, 101)
+- **regimes-probe: created** (June 7, first commits)
+- **ag-coder: PR #4 docs work** (claude/laughing-bardeen branch)
 
-      <div class="belief">
-        <strong>Data maturity is required for AI</strong><br>
-        <em style="color: var(--muted)">"AI is forcing a data maturity upgrade. Humans once compensated for fragmentation. Agents cannot."</em>
-      </div>
+### 2026-05-26
+- **30 GitHub events** in last 24 hours
+- **NEW Repo: activegraph-tau2-bench** — first activity
+  - Tau2 benchmark for ActiveGraph capabilities
+  - Phase 1: vendoring and smoke tests (multiple PRs opened/merged via Codex)
+  - "set up baseline for testing activegraph.ai" PR merged
+  - Repo: https://github.com/yoheinakajima/activegraph-tau2-bench
+- **regimes: v0.01 release published** (2026-05-26 06:05:56 UTC)
+  - First official release of autonomous eval-improvement loop
+  - Claude Code creating branches (claude/eloquent-carson, claude/target-interface-phase1)
+- **activegraph_repo_manager:** PR merged
+  - "add-github-read-only-sync-layer" via Codex (merged 2026-05-26 05:48:33 UTC)
+  - Continues Phase 2 work on repo synchronization
+- **activegraph-longmemeval:** Continued development
+  - 7 push events to `sem-extract-stage1` branch
+  - PR opened (2026-05-26 06:17:55 UTC)
+- **ActiveGraph Stars:** 216 (216⭐)
+- **Web Mentions:** ArXiv paper "The Log is the Agent" discovered, Digg coverage, DeepWiki documentation
+- **Theme:** ActiveGraph ecosystem rapidly expanding with tau2-bench, regimes release, and continued tooling development
+- **AI Agent Usage:** Heavy use of Claude Code and Codex for ActiveGraph development (branches, PRs)
 
-      <div class="belief">
-        <strong>Build in public to learn faster</strong><br>
-        <em style="color: var(--muted)">"Build in public to learn faster, meet founders, and contribute to the ecosystem."</em>
-      </div>
+### 2026-05-25
+- **30 GitHub events** in last 24 hours (since 6AM yesterday)
+- **New Repo: activegraph_repo_manager** — 10 commits since creation
+  - Repository manager pack for ActiveGraph
+  - Phase 0: Idempotent fixture ingest
+  - Phase 1: Repo indexing primitives
+  - Phase 2: Issue/PR classification, lightweight planning links
+  - Deterministic replay and fixtures for reliable testing
+  - Repo: https://github.com/yoheinakajima/activegraph_repo_manager
+- **activegraph-longmemeval:** 5 new commits
+  - "Full n=500 matrix results: package-native ActiveGraph + baselines"
+  - "Activegraph package native" — native implementation without adapters
+  - Comparing package-native vs adapter-based approaches
+- **activegraph_repo_manager:** Heavy PR activity (opened/merged/closed)
+  - All via Codex branches (codex/implement-phase-2, codex/implement-repo-indexing, etc.)
+- **regimes:** New commit saving run artifacts (2026-05-24 05:09 UTC)
+- **ActiveGraph Stars:** 210 (+9 from yesterday)
+- **Theme:** Building complete ActiveGraph ecosystem with management tooling
+- **Browser Status:** X/Twitter scrape unavailable (Philip's Chrome not running at 6AM)
 
-      <div class="belief">
-        <strong>The simplest approach wins</strong><br>
-        <em style="color: var(--muted)">Recurring theme: "Simplest self-building coding agent", "Simplest self-building general autonomous agent".</em>
-      </div>
+### 2026-05-24
+- **Regimes repo extremely active:** 15+ push/PR events in first 24h since creation
+  - Autonomous eval-improvement loop on ActiveGraph runtime
+  - Diagnoses LongMemEval failures, LLM-authored score-transforms, gated validation
+  - Frozen OPTIMIZE/CONFIRM split discipline
+  - Heavy Claude-assisted development
+- **ActiveGraph Stars:** 201 (+32 from yesterday, continuing rapid growth post-paper)
+- **Activegraph-behaviordrafts:** Multiple PR merges, codex-audited integration
+- X/Twitter scrape unavailable (Philip's Chrome not running at 6AM)
 
-      <div class="belief">
-        <strong>AI-augmented development enables self-hosted research</strong><br>
-        <em style="color: var(--muted)">ActiveGraph Lab uses Claude as a code worker to self-repair and improve itself. Believes in self-hosted, local-first AI infrastructure.</em>
-      </div>
+### 2026-05-23
+- **New Repos:** activegraph-behaviordrafts, regimes
+  - Created today; descriptions pending
+- **ActiveGraph Stars:** 169 (+46 from yesterday, continuing post-paper momentum)
+- **Activegraph-selfgraph:** Pushed at 05:00:43Z
+- **Activegraph-longmemeval:** Pushed at 04:43:04Z
+- X/Twitter scrape unavailable (profile=user not running)
 
-      <div class="belief">
-        <strong>Scheduled autonomy should be bounded and killable</strong><br>
-        <em style="color: var(--muted)">ActiveGraph Lab's daily heartbeat advances work inside durable-log, budget, pause, and human-gate constraints.</em>
-      </div>
+### 2026-05-22
+- **Arxiv Paper Published:** "The Log is the Agent: Event-Sourced Reactive Graphs for Auditable, Forkable Agentic Systems" (2605.21997)
+  - Submitted May 21, 2026 by Yohei Nakajima
+  - 11 pages, describes ActiveGraph architecture
+  - Key innovation: append-only event log as source of truth, deterministic replay, cheap forking, end-to-end lineage
+  - Extends BabyAGI lineage and graph-memory research
+- **New Repo: activegraph-selfgraph** — self-configuring ActiveGraph agent with capability extraction
+  - Heavy Claude-assisted development (3 merged PRs, binding mechanism tests, extractor recall harness)
+- **New Repo: activegraph-longmemeval** — reproducible LongMemEval benchmark for ActiveGraph
+  - 5 systems (full-context oracle, full-context-s, rag-bm25, rag-dense, activegraph stub)
+  - Frozen judge (GPT-4o), Anthropic Sonnet reader, stratified smoke tests
+- **Activegraph Stars:** 123 (+37 from yesterday!) — rapid growth
+- **BabyAGI Stars:** 22,271
+- X/Twitter scrape failed (Chrome not running)
 
-      <div class="belief">
-        <strong>Graph-native memory should be persistent but semantically honest</strong><br>
-        <em style="color: var(--muted)">ActiveGraph's FalkorDB support persists graph projections while documenting relations-as-nodes and whole-projection read boundaries.</em>
-      </div>
+### 2026-05-21
+- **Arxiv paper submitted** (published next day)
+- **activegraph-selfgraph** created with initial commits
+- **Activegraph Stars:** 86
+- X/Twitter scrape failed (CDP browser not running)
 
-      <div class="belief">
-        <strong>Small live tools are useful applied surfaces</strong><br>
-        <em style="color: var(--muted)">aie-talks and aie-side-events show time-bound conference utilities as proving grounds for Claude-assisted agent development.</em>
-      </div>
+### 2026-05-19
+- **LinkedIn Article Published:** "The State of AI Going into 2026"
+  - Key themes: operationality, governance, data maturity, autonomous businesses
+  - 5 major sections with analysis of AI market transition
+  - Mentions 12 companies as examples of emerging patterns
 
-      <div class="belief">
-        <strong>Benchmark traces should be inspectable event logs</strong><br>
-        <em style="color: var(--muted)">activegraph-terminalbench applies ActiveGraph to Terminal-Bench so every reasoning step, command, observation, error, and token/timing record survives as an auditable graph-backed trace.</em>
-      </div>
+### 2026-05-17
+- GitHub metadata updates (babyagi, babyagi_archive)
 
-      <div class="belief">
-        <strong>Quality is ratcheted via contracts</strong><br>
-        <em style="color: var(--muted)">v1.3 enforces strict types (41/41 modules) and 100% Ring 0 docstrings as build gates. Structured output is opt-in per-behavior. Community conduct reporting is public-by-design, not hidden in email.</em>
-      </div>
-    </section>
+### 2026-05-16
+- GitHub metadata updates (instagraph, prettygraph)
 
-    <section>
-      <h2>Timeline (Recent Activity)</h2>
+### 2026-05-15
+- GitHub metadata updates (mindgraph, GPTvsGPT, predictivechat)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-07-05</div>
-        <div>
-          ActiveGraph <strong>PR #50 merged</strong>: the v1.3 cycle delivers Phase 1 quality ratchets (41/41 strict types, Ring 0 docstrings 100%), Phase 2 native structured-output mode (opt-in per-behavior with JSON-schema fallback), and Phase 4 community surface (CODE_OF_CONDUCT.md, then revised to public-by-design issues-first reporting). Meanwhile, <strong>activegraph-terminalbench</strong> saw 13+ pushes to its Claude benchmark branch — an active Terminal-Bench evaluation cycle. Stars: activegraph +5 to 356, babyagi +1 to 22,320, mindgraph +1 to 941.
-        </div>
-      </div>
+### 2026-05-10
+- GitHub metadata update (babyagi-2o)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-07-04</div>
-        <div>
-          New repo: <strong>activegraph-terminalbench</strong>, a Terminal-Bench 2.0 / WolfBench harness using ActiveGraph as the memory and logging substrate for each trial. ActiveGraph v1.2.0 also shipped as the <strong>GraphStore release</strong>, locking the projection-storage contract and adding FalkorDB-backed query pushdown. GitHub metadata showed <strong>activegraph</strong> +18 stars to 351 and <strong>babyagi</strong> +4 stars to 22,319. X public scrape remained limited to pinned/older posts.
-        </div>
-      </div>
+### 2026-05-08
+- GitHub metadata update (ditto)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-29</div>
-        <div>
-          No new GitHub pushes or post-baseline commits after the prior retrieval window. GitHub metadata showed <strong>babyagi-2o</strong> +1 star to 340 and <strong>activegraph</strong> +1 star to 333. AI Engineer World's Fair speaker JSON confirmed Yohei's session details: <strong>Active Graph Agent Runtime (BabyAGI 4)</strong>, Day 4 / Session Day 3, 11:10-11:30am, Track 5, Graphs. X public scrape remained limited to pinned/older posts.
-        </div>
-      </div>
+### 2026-05-06
+- GitHub metadata updates (babyagi3, selfMCP)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-28</div>
-        <div>
-          New repo: <strong>aie-talks</strong>, an AI Engineer World's Fair talks/session browser. The first day included Claude-assisted PRs for UI simplification, search examples, Yohei search fixes, style matching, and a header search toggle. <strong>aie-side-events</strong> added AI Breakfast with Yohei, event URLs, a live clock, and more side events. GitHub metadata: babyagi +2 stars to 22,315, activegraph +1 to 332, ditto +1 to 1,057.
-        </div>
-      </div>
+### 2026-04-26
+- GitHub metadata update (pippin_moves)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-27</div>
-        <div>
-          New repo: <strong>aie-side-events</strong>, an AI Engineer World's Fair 2026 side-event navigator. Yohei made the initial commit and merged PR #1 after a Claude Opus 4.8 app/README commit. Digg also surfaced Yohei's Pokémon AI/Kaggle activity, including the signal that ActiveGraph is generating and testing deck/strategy combinations. GitHub metadata: activegraph +3 stars to 331, babyagi +2 to 22,313.
-        </div>
-      </div>
+### 2026-04-23
+- GitHub metadata update (airtable_to_graph)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-26</div>
-        <div>
-          No new substantive items detected. GitHub metadata showed continued ActiveGraph community interest (+3 stars, now 328) and no new pushes after the 2026-06-25 retrieval. X public scrape remained limited to pinned/older posts, and web mentions resurfaced already-captured ActiveGraph/BabyAGI 4 and Regimes signals.
-        </div>
-      </div>
+### 2026-04-10
+- **SelfMCP Commits:** Major usability improvements
+  - Added built-in selfmcp_about skill
+  - Added selfmcp_env_keys core skill
+  - Fixed soft-delete name reuse
+  - Improved Replit integration
+  - Documentation overhaul
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-25</div>
-        <div>
-          No new substantive items detected. GitHub metadata showed continued ActiveGraph community interest (+3 stars, now 325) and no new pushes after the 2026-06-24 retrieval. X public scrape remained limited to pinned/older posts.
-        </div>
-      </div>
+## 2026 Activity Summary
+- **Major publication:** LinkedIn article on AI state (May 19)
+- **Active repos:** BabyAGI-2o, Mindgraph, SelfMCP, BabyAGI3
+- **Pattern:** Minimal daily activity, occasional burst of content
+- **Primary channels:** LinkedIn (thought leadership), GitHub (maintenance), X (unknown - scraping blocked)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-24</div>
-        <div class="timeline-content">
-          ActiveGraph merged FalkorDB persistent graph-store support and follow-up docs clarifying relation/projection semantics. External mentions surfaced AI Engineer World's Fair's "Active Graph Agent Runtime (BabyAGI 4)" listing and AI House's "The Log Is the Agent" ActiveGraph talk. X public scrape showed no new visible posts and 125.7K followers.
-        </div>
-      </div>
+## 2025 Activity Summary
+- **SelfMCP development:** Continued through April 2026
+- **Pippin projects:** Multiple playful/experimental projects
+- **Ditto-2:** v2 of self-building coding agent (Dec 2025)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-22</div>
-        <div class="timeline-content">
-          activegraph-lab merged PR #34 / ADR-044, adding the first daily heartbeat: a bounded, gated, killable cadence that advances one worklist step without bypassing approval, promotion, or PR-submit gates. X scrape found no new visible public posts; YouTube and mentions were unchanged.
-        </div>
-      </div>
+## 2024 Activity Summary
+- **BabyAGI-2o:** Latest agent framework (Oct 2024)
+- **Ditto:** Self-building coding agent (Oct 2024)
+- **Mindgraph:** Knowledge graph prototype (Mar 2024)
+- **Instagraph:** Text-to-knowledge-graph (Dec 2023)
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-21</div>
-        <div class="timeline-content">
-          ag-tcg continued automated Replit Agent work with 18 new commits since the prior retrieval window. No new visible public X posts; managed browser scrape shows pinned Fund II post and 125.2K followers. Newly captured mention: LinkedIn "The State of AI Going into 2026" article/post.
-        </div>
-      </div>
+## 2023 Activity Summary
+- **BabyAGI launch:** March 2023 - viral impact
+- **TED AI:** Inaugural speaker
+- **Media coverage:** Fortune, Fast Company, Forbes, Vice
+- **Global speaking engagements**
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-16</div>
-        <div class="timeline-content">
-          GitHub activity: activegraph (+3 stars), babyagi (+2 stars), activegraph-lab push, regimes-probe and activegraph-packs new repos detected. X scrape showed no new posts in last 48h.
-        </div>
-      </div>
+## Historical Milestones
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-15</div>
-        <div class="timeline-content">
-          ActiveGraph Lab surge: 28+ PRs merged in 24 hours, all via Claude code workers. Self-repair loops, code worker diff authoring, planner self-repair.
-        </div>
-      </div>
+### 2009
+- Started Los Angeles startup community work as community leader
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-13</div>
-        <div class="timeline-content">
-          Second arXiv paper "Regimes" (2606.10241) submitted — formalizes autonomous improvement loops. Demonstrated +0.05 to +0.10 accuracy improvement on LongMemEval-S.
-        </div>
-      </div>
+### 2014
+- Joined Techstars, helped launch The Disney Accelerator
+- First Director of Pipeline, 30+ accelerator programs
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-06-10</div>
-        <div class="timeline-content">
-          ActiveGraph v1.1.0 released. ActiveGraph Lab created. ActiveGraph Packs created.
-        </div>
-      </div>
+### 2018
+- Joined Scrum Ventures as venture partner
+- SVP of Scrum Studio, managing director of Nintendo Switch+Tech
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-05-21</div>
-        <div class="timeline-content">
-          ArXiv paper "The Log is the Agent" (2605.21997) published. Core ActiveGraph framework made public.
-        </div>
-      </div>
+### 2020
+- Co-founded Untapped Capital with Jessica Jackley
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026-05-16</div>
-        <div class="timeline-content">
-          ActiveGraph repository created. Event-sourced reactive graph runtime for auditable, forkable agentic systems.
-        </div>
-      </div>
-    </section>
+### 2023
+- BabyAGI launches (March)
+- Ranked Top 20 VC thought leader (Data Driven VC Landscape)
+- TED AI speaker
 
-    <section>
-      <h2>Patterns & Themes</h2>
+### 2025
+- Ongoing build-in-public work, agent infrastructure
 
-      <div class="belief">
-        <strong>Autonomous Agents</strong><br>
-        <em style="color: var(--muted)">BabyAGI lineage — BabyAGI, BabyAGI-2o, BabyAGI3, Regimes</em>
-      </div>
-
-      <div class="belief">
-        <strong>Knowledge Graphs</strong><br>
-        <em style="color: var(--muted)">Instagraph, Mindgraph, Prettygraph, ActiveGraph (log → graph projection)</em>
-      </div>
-
-      <div class="belief">
-        <strong>Self-Improvement</strong><br>
-        <em style="color: var(--muted)">SelfMCP, Ditto, Regimes, ActiveGraph Lab self-repair loops</em>
-      </div>
-
-      <div class="belief">
-        <strong>Dogfooding Own Infrastructure</strong><br>
-        <em style="color: var(--muted)">Regimes runs on ActiveGraph; ActiveGraph Lab manages ActiveGraph evidence; Repo Manager manages ActiveGraph repos</em>
-      </div>
-
-      <div class="belief">
-        <strong>Benchmark & Tournament Loops</strong><br>
-        <em style="color: var(--muted)">ag-tcg uses automated tournament runs, benchmark opponents, generated reports, and quarantine/deployment checks</em>
-      </div>
-
-      <div class="belief">
-        <strong>Bounded Standing Behaviors</strong><br>
-        <em style="color: var(--muted)">ActiveGraph Lab is adding scheduled cadence only when it remains idempotent, budget-limited, globally pausable, and operator-gated</em>
-      </div>
-
-      <div class="belief">
-        <strong>Graph Database Persistence</strong><br>
-        <em style="color: var(--muted)">FalkorDB-backed projections point toward durable graph-native agent memory, with implementation limits documented clearly</em>
-      </div>
-
-      <div class="belief">
-        <strong>ActiveGraph as BabyAGI 4</strong><br>
-        <em style="color: var(--muted)">AI Engineer World's Fair speaker/session data frames the runtime as "Active Graph Agent Runtime (BabyAGI 4)" for long-running auditable agentic systems</em>
-      </div>
-
-      <div class="belief">
-        <strong>ActiveGraph as Benchmark Harness Substrate</strong><br>
-        <em style="color: var(--muted)">activegraph-terminalbench treats benchmark runs as durable event logs and graph projections, not just pass/fail outputs</em>
-      </div>
-
-      <div class="belief">
-        <strong>Practical Event Tools and Live-Competition Benchmarks</strong><br>
-        <em style="color: var(--muted)">aie-side-events and Pokémon AI/Kaggle work show ActiveGraph-era ideas being tested through concrete events, games, competitions, and public workflows</em>
-      </div>
-
-      <div class="belief">
-        <strong>Conference Navigation as Agent-Coding Surface</strong><br>
-        <em style="color: var(--muted)">aie-talks extends the AI Engineer tooling cluster from side events into talks/session discovery, with rapid Claude-assisted UX iteration</em>
-      </div>
-
-      <div class="belief">
-        <strong>Contract-Driven Quality Ratchets</strong><br>
-        <em style="color: var(--muted)">v1.3 enforces strict types, complete docs, and per-behavior structured output through build-time contracts with CI gates</em>
-      </div>
-
-      <div class="belief">
-        <strong>Simplicity</strong><br>
-        <em style="color: var(--muted)">"Simplest" appears repeatedly in project descriptions</em>
-      </div>
-    </section>
-
-    <div class="footer">
-      Last updated: 2026-07-05 · Data from GitHub, X, YouTube, and public sources
+### 2026
+- LinkedIn thought leadership on AI market transition (May)
+- ActiveGraph open-sourced (May 20), ArXiv paper (May 21)
+- ActiveGraph ecosystem expands: tau2-bench, regimes, repo-manager (May 23-26)
+- ActiveGraph stars surge to 232 (May 27)
+- New YouTube: "The Log is the Agent" talk (May 27)
+- Phemex profile: "Who Is Yohei Nakajima | The VC Behind BabyAGI and PIPPIN" (May 27)
+</div>
     </div>
+
+    <div class="section">
+      <h2>Profile</h2>
+      <div class="profile-content">{
+  "name": "Yohei Nakajima",
+  "title": "GP at Untapped Capital",
+  "description": "Creator of BabyAGI",
+  "twitter": "@yoheinakajima",
+  "github": "yoheinakajima",
+  "interests": [
+    "AI agents",
+    "event-sourced systems",
+    "graph runtime",
+    "open source"
+  ],
+  "status": "Active"
+}</div>
+    </div>
+
+    <div class="section">
+      <h2>Projects</h2>
+      <div class="projects-content"># Projects - Yohei Nakajima
+
+Last updated: 2026-07-06
+
+## Active Projects (Last 6 months)
+
+### Activegraph-Terminalbench (NEW 2026-07-04)
+- **Status:** Active benchmark harness — Claude branch in heavy development
+- **Stars:** 1 (2026-07-06)
+- **Description:** No GitHub description yet
+- **Language:** Python
+- **Purpose:** Custom Harbor / Terminal-Bench 2.0 agent harness using ActiveGraph as the memory and logging substrate
+- **Update (2026-07-06):** 15 additional push events to `claude/activegraph-harness-benchmark-eiyeek` branch between 2026-07-05T16:09Z and 2026-07-05T23:22Z. Total across both days: 28+ pushes in ~31 hours. Sustained intensive evaluation cycle with no commits to default branch. Force-push pattern suggests intensive debugging/refinement. 
+- **Update (2026-07-05):** 13+ push events to `claude/activegraph-harness-benchmark-eiyeek` branch between 2026-07-04T16:31Z and 2026-07-05T08:44Z. No commits to default branch yet. Suggests an active Terminal-Bench evaluation cycle with Claude as coding agent.
+- **Recent (2026-07-04):** New repo created 2026-07-02. Initial commit by Yohei followed by Claude-authored commits for uv/package scaffolding, ActiveGraph event/log schema, ReAct loop, Anthropic retry wrapper, transcript-tail context builder, Harbor ATIF output, smoke tests, WolfBench metrics, README, DECISIONS, and Claude Code sandbox API-key fallback.
+- **Signal note:** This is a strong ActiveGraph application signal: every trial becomes an inspectable event log and typed graph projection, while `build_context()` is isolated as the seam where graph retrieval can replace a simple transcript tail.
+- **Repo:** https://github.com/yoheinakajima/activegraph-terminalbench
+
+### AIE Talks (NEW 2026-06-28) 🆕
+- **Status:** Newly created, event/session utility
+- **Stars:** 0 (2026-06-28)
+- **Description:** No GitHub description yet
+- **Language:** HTML
+- **Purpose:** AI Engineer World's Fair talks/session browser
+- **Recent (2026-06-28):** First-day work included PRs #5-#9: removing grid view, improving search examples, fixing Yohei search, restyling the UI to match the side-event navigator aesthetic, and adding a hidden-by-default search bar with header toggle and `/` keyboard shortcut.
+- **Signal note:** Paired with `aie-side-events`, this suggests Yohei is using AI Engineer World's Fair as a real-time proving ground for practical, public, Claude-assisted information-navigation tools.
+- **Repo:** https://github.com/yoheinakajima/aie-talks
+
+### AIE Side Events (NEW 2026-06-27) 🆕
+- **Status:** Newly created, event utility
+- **Stars:** 0 (2026-06-27)
+- **Description:** No GitHub description yet
+- **Language:** HTML
+- **Purpose:** AI Engineer World's Fair 2026 side-event navigator
+- **Recent (2026-06-28):** Added AI Breakfast with Yohei, live header clock, real event-page URLs, and additional side events. Yohei merged PR #2 from a `claude/` branch; Claude authored the follow-on event addition.
+- **Recent (2026-06-27):** Initial commit by Yohei, followed by a Claude Opus 4.8 co-authored Side Event Navigator app/README commit and Yohei's merge of PR #1 from a `claude/` branch.
+- **Signal note:** Practical, time-bound event tooling around AI Engineer World's Fair; reinforces Yohei's pattern of using AI coding agents to ship small public utilities around AI-community workflows.
+- **Repo:** https://github.com/yoheinakajima/aie-side-events
+
+### Ag-TCG (NEW 2026-06-17) 🆕
+- **Status:** Active, automated Replit Agent development (low signal unless human-approved checkpoints appear)
+- **Stars:** 1 (2026-06-27)
+- **Description:** Pokemon TCG tournament / benchmark agent work; no repo description yet
+- **Language:** Not yet classified in tracker
+- **Purpose:** Appears to run iterative tournament, strategy, and benchmark loops with generated reports and deployment checks
+- **Recent (2026-06-27):** Digg surfaced a June 25 X-derived item describing Yohei's first real Kaggle competition in Pokémon AI Agents and quoting that ActiveGraph is starting to generate and test deck/strategy combinations. This strengthens the link between `ag-tcg` and ActiveGraph as a strategy-generation/benchmark loop.
+- **Recent (2026-06-21):** 18 new automated Replit Agent commits since prior daily retrieval. Themes: standing tournament engine, persistent storage, auto-quarantine logic, benchmark opponents, report site generation, and deployment checks.
+- **Recent (2026-06-24):** Automated Replit Agent commits continued after the 2026-06-22 retrieval window, focused on planner/reference gaps, strategy evaluation documentation, and metric/test-count corrections.
+- **Signal note:** Commits are authored by Replit Agent, not manual Yohei commits. Treat as background automated activity unless commit text indicates human approval or product launch.
+- **Repo:** https://github.com/yoheinakajima/ag-tcg
+
+### Activegraph ⚡ (HOT)
+- **Status:** Active — **v1.3 cycle merged (PR #50)!** (public since 2026-05-16)
+- **Stars:** 356 (2026-07-05)
+- **Update (2026-07-05):** PR #50 merged at 2026-07-04T21:42:52Z — the v1.3 cycle on branch `claude/activegraph-v1-3-cycle-4oq3vn`. Three arcs: (1) Phase 1 quality ratchets: all 41 modules pass strict type checking, Ring 0 docstrings at 100% full coverage. (2) Phase 2 native structured-output mode: opt-in per-behavior at registration time, with JSON-schema fallback. (3) Phase 4 community surface: CODE_OF_CONDUCT.md (Contributor Covenant v2.1), then revised to drop conduct@ email in favor of public-by-design issues-first reporting. Stars rose 351→356 (+5).
+- **Update (2026-07-04):** v1.2.0 published as the GraphStore release. The materialized graph projection is now a pluggable seam; InMemoryGraphStore remains default while FalkorDBGraphStore backs objects/relations with a traversable Cypher-queryable graph and query pushdown hooks. `activegraph` gained +18 stars since the 2026-06-29 run.
+- **Update (2026-06-29):** No new pushes or post-baseline commits; lightweight community momentum continued (+1 star). AI Engineer World's Fair speaker JSON confirms the talk details: "Active Graph Agent Runtime (BabyAGI 4)", Day 4 / Session Day 3, 11:10-11:30am, Track 5, Graphs.
+- **Update (2026-06-28):** No new pushes after the FalkorDB work, but the repo gained +1 star. Adjacent AI Engineer tooling (`aie-talks`, `aie-side-events`) shows ActiveGraph-era event/community work continuing in small public utilities.
+- **Update (2026-06-27):** No new pushes after the FalkorDB work, but the repo gained +3 stars. External Digg/X-derived signal says ActiveGraph is being used to generate and test Pokémon deck/strategy combinations for Yohei's Kaggle competition.
+- **Update (2026-06-26):** No new pushes or post-baseline commits; lightweight community momentum continued (+3 stars). A GitHub issue-closed event for FalkorDB support surfaced after yesterday's run, but the underlying graph-store work was already captured on 2026-06-24.
+- **Update (2026-06-25):** No new commits since yesterday's retrieval; lightweight community momentum continued (+3 stars).
+- **NEW (2026-06-24):** PR #39 added `FalkorDBGraphStore` for persistent materialized graph projections. PR #40 clarified practical semantics: relations are stored as `AGRelation` nodes, not native graph edges, and graph filters/neighborhood/where currently read the projection into Python rather than pushing down server-side graph queries.
+- **Public positioning:** AI Engineer World's Fair 2026 lists Yohei's talk as **"Active Graph Agent Runtime (BabyAGI 4)"**, indicating ActiveGraph is being framed as the next-generation BabyAGI runtime.
+- **NEW (2026-06-11):** v1.1.0 tagged and released! PR #35 merged via Codex.
+- **NEW (2026-06-10):** PR #25 merged — "Docs: reconcile v1.1 planning surface" via Codex; CI for docs-only PR checks
+- **Ecosystem expanding:** activegraph-lab and activegraph-packs repos created today
+- **Description:** Event-sourced reactive graph runtime for auditable, forkable agentic systems
+- **Language:** Python
+- **Purpose:** Core runtime infrastructure — append-only event log as source of truth, graph as projection, behaviors react to changes
+- **Created:** May 16, 2026
+- **Arxiv Papers:**
+  - "The Log is the Agent" (2605.21997, submitted May 21, 2026)
+  - **NEW (2026-06-13):** "Regimes: An Auditable, Held-Out-Gated Improvement Loop" (2606.10241, submitted June 8, 2026) — 30 pages, 5 figures. Code at github.com/yoheinakajima/regimes
+- **NEW (2026-06-02): Issue #27 opened — retry logic for transient LLM errors to avoid cache corruption during credit-out events
+- **NEW (2026-06-01): Multiple pushes and PR merges across ActiveGraph ecosystem
+- **Key Innovation:** Inverts typical agent architecture — log first, then graph, then behaviors. Enables deterministic replay, cheap forking, end-to-end lineage.
+- **Repo:** https://github.com/yoheinakajima/activegraph
+
+### Activegraph-Selfgraph (NEW 2026-05-22)
+- **Status:** Active (created 2026-05-21)
+- **Stars:** 2 (2026-05-23)
+- **Description:** A self-configuring ActiveGraph agent that ingests its own runtime/docs, builds a capability graph, and proposes graph-native behavior upgrades through safe patches
+- **Language:** Python
+- **Purpose:** Self-improving agent built on ActiveGraph — extracts its own capabilities, proposes upgrades
+- **Key Work:** Heavy Claude-assisted development with harness tests, binding mechanism, extractor recall
+- **Repo:** https://github.com/yoheinakajima/activegraph-selfgraph
+
+### Activegraph-LongMemEval (NEW 2026-05-22) ⚡
+- **Status:** Active (created 2026-05-22, heavy development through 2026-05-26)
+- **Stars:** 2 (2026-05-27)
+- **Description:** Reproducible LongMemEval benchmark harness for ActiveGraph
+- **Language:** Python
+- **Purpose:** Benchmark ActiveGraph memory capabilities against baselines (full-context oracle, RAG BM25, RAG dense)
+- **Key Work:** Five systems, frozen judge (GPT-4o), Anthropic Sonnet reader, stratified smoke tests, n=500 matrix results for package-native ActiveGraph
+- **Recent (2026-05-25):** "Full n=500 matrix results: package-native ActiveGraph + baselines" - comparing native implementation vs adapters
+- **NEW (2026-05-26): Sem-extract-stage1 branch work, PR opened
+- **Repo:** https://github.com/yoheinakajima/activegraph-longmemeval
+
+### Activegraph-tau2-bench (NEW 2026-05-26) 🆕
+- **Status:** Active (first activity 2026-05-26)
+- **Stars:** 2 (2026-06-02, +1 since 2026-05-27)
+- **Description:** Tau2 benchmark for ActiveGraph
+- **Language:** Python
+- **Purpose:** Phase 1 testing framework for ActiveGraph capabilities
+- **Key Work:** Codex-assisted development, multiple PRs opened/merged on phase 1 vendoring and smoke tests
+- **NEW (2026-06-01): PR #45 merged — "add-tau2-regimes-port-milestone-report"
+- **Recent (2026-05-26): "set up baseline for testing activegraph.ai", "complete phase-1 vendoring and smoke-test" PRs
+- **Repo:** https://github.com/yoheinakajima/activegraph-tau2-bench
+
+### Activegraph-Lab (NEW 2026-06-10) ⚡
+- **Status:** Active / post-surge monitoring — 28+ PRs merged in 24 hours on 2026-06-15; last push 2026-06-21
+- **Stars:** 2 (2026-06-21)
+- **Description:** **"A self-hosted research agent growing activegraph.ai's evidence base"** — CLARIFIED 2026-06-15
+- **Purpose:** Self-hosted research infrastructure for ActiveGraph.ai with autonomous self-repair via Claude code workers
+- **NEW (2026-06-22):** ADR-044 / PR #34 added a bounded daily heartbeat. This is the lab's first wall-clock cadence: it advances one worklist step, reacts through existing planner paths, writes idempotent heartbeat markers to the durable log, respects budget/global pause gates, and explicitly cannot approve, promote, or submit PRs.
+- **🔥 NEW (2026-06-15): MAJOR SURGE ACTIVITY — 28+ PRs merged in 24 hours, ALL via Claude code workers:
+  - PR #28: Self-repair integrity PR (claude/self-repair-integrity-pr-retry)
+  - PR #27: Authored diffs apply (claude/authored-diffs-apply)
+  - PR #26: Code worker diff authoring (claude/code-worker-diff-authoring)
+  - PR #25: Code task metadata self-repair (claude/code-task-metadata-self-repair)
+  - PR #24: Planner self-repair loop (claude/planner-self-repair-loop)
+  - PR #23: ActiveGraph code worker submit PR (claude/activegraph-code-worker-submit-pr)
+  - PR #22: ActiveGraph-lab consolidation (claude/activegraph-lab-consolidation)
+  - PR #21: ActiveGraph routing self-check (claude/activegraph-routing-self-check)
+  - **Pattern:** All PRs have `claude/` branch prefixes — indicates automated code worker system
+  - **Architecture:** Self-repair loops, code worker diff authoring, planner self-repair, routing self-checks, consolidation
+- **Previous activity (2026-06-11/13):** PRs #6-#20 — ADRs, production resilience, model routing, per-behavior budget exhaustion, operator notes, provenance footer, decision rationale, truthful steering
+- **Significance:** This is likely Yohei's PRIMARY project right now — shift from agents to AI infrastructure for self-hosted research
+- **Repo:** https://github.com/yoheinakajima/activegraph-lab
+
+### Activegraph-Packs (NEW 2026-06-10) 🆕
+- **Status:** Just created (2026-06-10 03:19 UTC)
+- **Stars:** 0
+- **Description:** "First iteration of a core pack schema for activegraph and a UI to explore capabilities"
+- **Language:** Python
+- **Purpose:** Pack system for ActiveGraph — schema + UI for capability exploration
+- **Repo:** https://github.com/yoheinakajima/activegraph-packs
+
+### Regimes-Probe (NEW 2026-06-07) ⚡
+- **Status:** Extremely active (30+ commits June 7-11, Claude-assisted development)
+- **Stars:** 1 (2026-06-11)
+- **Description:** Benchmark probing tool for the "regimes" autonomous eval-improvement loop
+- **Language:** Python
+- **Purpose:** Tests and extends the regimes framework — BrowseComp benchmark with multi-level query decomposition, constraint-graph search, candidate-slate frontier, and LLM frontier proposals
+- **NEW (2026-06-13):** Levels 5v and 5v.1 added:
+  - Level 5v: Exact read-body provenance + terminal rejudgment semantics (5u smoke was partial pass: 5/5 service URLs, 48 bodies, 25 strict verdicts)
+  - Level 5v.1: Body-hash / canonicalization reconciliation (7 unverifiable rejudgments due to body_hash_mismatch)
+- **NEW (2026-06-12):** Level 5u added: service lifecycle accounting + rejudgment persistence accounting. 5t smoke test noted as "real partial pass" (3/5).
+- **NEW (2026-06-11):** Levels 5r, 5s, 5t added:
+  - Level 5r: validator internal consistency + precise stage reasons + read hygiene
+  - Level 5s: predicate-passage acquisition + pending-source service
+  - Level 5t: first-class pending-read servicing + persisted targeted rejudgment
+- **Key Work (June 7-9):**
+  - Level 2: Query decomposition + benchmark-contamination detection
+  - Level 3: firecrawl_scrape as follow-up tool
+  - Level 4: Task-frame / constraint-graph search layer
+  - Level 4b: Cached/validated LLM task-frame parser
+  - Level 5: ActiveGraph-native candidate-slate / frontier layer
+  - Level 5b: Candidate-slate frontier promoted to optional controller
+  - Level 5c: LLM frontier-action/query proposer
+- **Branch:** claude/regimes-probe-setup-ILfr0 (all commits on Claude branch)
+- **Repo:** https://github.com/yoheinakajima/regimes-probe
+
+### Ag-Coder (NEW 2026-06-05) 🆕
+- **Status:** Active (PR merged June 8)
+- **Stars:** 9 (2026-06-21, +1 since June 20)
+- **Description:** "simple activegraph coding agent demo"
+- **Language:** Python
+- **Purpose:** Demonstrates ActiveGraph as a coding agent — simplified from earlier ditto/babyagi-2o work
+- **Key Work:**
+  - PR #4 merged June 8: "Simplify documentation: remove Tier framing"
+  - Claude-assisted PR (branch claude/laughing-bardeen-5JUxE)
+- **Repo:** https://github.com/yoheinakajima/ag-coder
+
+### Regimes-Site (NEW 2026-06-10) 🆕
+- **Status:** Just created (2026-06-10 21:45 UTC)
+- **Stars:** 0
+- **Description:** GitHub Pages site for the regimes project
+- **Language:** HTML/CSS/JS
+- **Purpose:** Presentation/demo website for regimes eval-improvement loop
+- **Repo:** https://github.com/yoheinakajima/regimes-site
+
+### Regimes (Updated 2026-06-08)
+- **Status:** Active (README update, ablation runs)
+- **Stars:** 1 (2026-06-09)
+- **Description:** Autonomous eval-improvement loop
+- **Key Work (June 6-8):**
+  - README updated to paper-aligned narrative
+  - Cross-author ablation runs: haiku author, sonnet reader (Threat 5 analysis)
+  - Multiple seed experiments (seeds 5, 7, 23, 101, 11)
+- **Repo:** https://github.com/yoheinakajima/regimes
+
+### Activegraph-Repo-Manager (NEW 2026-05-25)
+- **Status:** Active (created 2026-05-24)
+- **Stars:** 1
+- **Description:** Repository manager pack for ActiveGraph
+- **Language:** Python
+- **Purpose:** GitHub repository management tooling with deterministic replay, repo indexing primitives, and ingest helpers
+- **Key Work:**
+  - Phase 0: Idempotent fixture ingest
+  - Phase 1: Repo indexing primitives
+  - Phase 2: Issue/PR classification, lightweight planning links
+  - NEW (2026-05-26): GitHub read-only sync layer merged via Codex
+  - All phases built with deterministic tests and fixtures
+- **Significance:** Dogfooding ActiveGraph for managing its own ecosystem
+- **Repo:** https://github.com/yoheinakajima/activegraph_repo_manager
+
+### Regimes (NEW 2026-05-23) 🔥
+- **Status:** Extremely active (created 2026-05-23, v0.01 release 2026-05-26)
+- **Stars:** 1 (2026-06-02)
+- **Description:** Autonomous eval-improvement loop running natively on ActiveGraph runtime
+- **Language:** Python
+- **Purpose:** Diagnoses LongMemEval failures into regimes, has LLM author score-transforms, validates through compile → sandbox → eval-diff → promotion gates. The entire loop history is an ActiveGraph event log.
+- **Key Work:** Heavy Claude-assisted development (codex/claude branches), frozen OPTIMIZE/CONFIRM split discipline, LLMAuthor real mode
+- **NEW (2026-06-01): PR #15 merged — "great-sagan-EWytW", multiple pushes
+- **Significance:** First real application built ON ActiveGraph — dogfooding his own framework for agent meta-improvement
+- **Repo:** https://github.com/yoheinakajima/regimes
+
+### Activegraph-Behaviordrafts (NEW 2026-05-23)
+- **Status:** Active (created 2026-05-23, multiple PRs merged)
+- **Stars:** 2 (2026-05-24)
+- **Description:** Specifies the lifecycle principle for ActiveGraph behaviors (draft → static → sandbox → semantic-diff → promotion → disable)
+- **Language:** Python
+- **Purpose:** Paper/specification for behavior lifecycle in ActiveGraph ecosystem
+- **Key Work:** Codex-audited integration, harness tests, multiple PR merges
+- **Repo:** https://github.com/yoheinakajima/activegraph-behaviordrafts
+
+### SelfMCP
+- **Status:** Maintenance (last commit 2026-04-10)
+- **Stars:** 21
+- **Description:** A self-extending MCP server
+- **Purpose:** Explore self-improving server architecture
+- **Key Features:** Built-in skills (selfmcp_about, selfmcp_env_keys), soft-delete with name reuse, Replit integration
+- **Recent Work (Apr 2026):** Major usability improvements, documentation overhaul, API key management
+- **Repo:** https://github.com/yoheinakajima/selfMCP
+
+### BabyAGI-2o
+- **Status:** Maintenance (last push 2024-10-19)
+- **Stars:** 340 (2026-06-29, +1 since 2026-06-28)
+- **Description:** The simplest self-building general autonomous agent
+- **Purpose:** Next iteration of autonomous agent framework
+- **Key Features:** Self-building, general-purpose autonomy
+- **Repo:** https://github.com/yoheinakajima/babyagi-2o
+
+### babyagi_archive (NEW 2026-06-01)
+- **Status:** Archive
+- **Stars:** 104 (2026-06-02)
+- **Description:** Snapshot of the original BabyAGI repo as of September 2024
+- **Purpose:** Preserve historical BabyAGI code for reference
+- **Repo:** https://github.com/yoheinakajima/babyagi_archive
+
+### ag-code-agent-pushtest (NEW 2026-06-02)
+- **Status:** Throwaway test
+- **Stars:** 0 (2026-06-02)
+- **Description:** Throwaway repo for AG Code Agent no-token push test
+- **Purpose:** Test CI/CD or AG tooling without tokens
+- **Repo:** https://github.com/yoheinakajima/ag-code-agent-pushtest
+
+### activegraph-longmemeval-sem (NEW 2026-05-30)
+- **Status:** Active (created 2026-05-30)
+- **Stars:** 0 (2026-06-02)
+- **Description:** ActiveGraph semantic-memory harness & analysis for LongMemEval-S
+- **Purpose:** Extend ActiveGraph LongMemEval with semantic memory variant
+- **Repo:** https://github.com/yoheinakajima/activegraph-longmemeval-sem
+
+### Mindgraph
+- **Status:** Maintenance (last push 2024-04-08)
+- **Stars:** 940 (2026-06-02, +2 since 2026-05-27)
+- **Description:** Proof of concept prototype for generating and querying against an ever-expanding knowledge graph with AI
+- **Purpose:** Knowledge graph infrastructure for agents
+- **Key Features:** Ever-expanding graph, AI-powered querying
+- **Repo:** https://github.com/yoheinakajima/mindgraph
+
+### BabyAGI3
+- **Status:** Maintenance (last push 2026-03-07)
+- **Stars:** 124
+- **Description:** Next iteration of BabyAGI
+- **Purpose:** Experimental agent framework evolution
+- **Repo:** https://github.com/yoheinakajima/babyagi3
+
+## Past Notable Projects
+
+### BabyAGI (The Original)
+- **Status:** Maintenance / Archive
+- **Stars:** 22,308 (2026-06-15, +3 since 2026-06-13)
+- **Created:** March 2023
+- **Description:** First popular open source autonomous agent with task planning capability
+- **Impact:**
+  - Millions of impressions on Twitter
+  - Tens of thousands of GitHub stars
+  - Dozens of Arxiv citations
+  - Coverage: Fortune, Fast Company, Forbes, Vice, Ars Technica, Benzinga, Nikkei
+  - Featured: Sequoia blog, A16Z AI Canon, LangChain docs
+  - TED AI speaker, global engagements
+- **Original Purpose:** Prototype an autonomous founder
+- **Evolved:** General-purpose autonomous agent
+- **Repo:** https://github.com/yoheinakajima/babyagi
+
+### Instagraph
+- **Status:** Maintenance
+- **Stars:** 3,547 (2026-06-02)
+- **Description:** Converts text input or URL into knowledge graph and displays
+- **Purpose:** Text-to-knowledge-graph generation
+- **Repo:** https://github.com/yoheinakajima/instagraph
+
+### Prettygraph
+- **Status:** Maintenance
+- **Stars:** 782
+- **Description:** An experimental UI for text-to-knowledge-graph generation
+- **Purpose:** UI layer for Instagraph functionality
+- **Repo:** https://github.com/yoheinakajima/prettygraph
+
+### Ditto
+- **Status:** Maintenance (last push 2024-10-19)
+- **Stars:** 1,056
+- **Description:** The simplest self-building coding agent
+- **Purpose:** Self-building AI for code generation
+- **Repo:** https://github.com/yoheinakajima/ditto
+
+### Pippin Projects (Various)
+- **Status:** Experimental / Playground
+- **Stars:** 16-106 across multiple repos
+- **Description:** AI-generated unicorn character and related experiments
+- **Purpose:** Playful exploration, character AI
+- **Repos:** pippin, pippin_moves, pippin-animation-factory, pippin-studio, pippin-tasks, custom-pippin-art, pippin-website
+
+### Other Notable Projects
+- **GPTvsGPT** (205⭐): AI conversation via OpenAI Assistants API
+- **predictivechat** (106⭐): AI chatbot that predicts user messages
+- **idealist** (188⭐): Infinite idea generator
+- **captainfunction** (55⭐): Dynamic function loading for OpenAI Assistant
+- **jsondr** (73⭐): URL content to JSON converter
+- **autofinetune** (78⭐): Auto fine-tuning with synthetic data
+- **asymmetrix** (132⭐): Game/experiment
+
+## Pattern Analysis
+
+### Project Themes
+1. **Autonomous Agents:** BabyAGI lineage (BabyAGI, BabyAGI-2o, BabyAGI3)
+2. **Knowledge Graphs:** Instagraph, Mindgraph, Prettygraph
+3. **Self-Improvement:** SelfMCP, Ditto
+4. **Simplification:** "Simplest" appears repeatedly in descriptions
+5. **Playful Experiments:** Pippin universe, GPTvsGPT
+
+### Naming Convention
+- **BabyAGI**: Core brand, multiple iterations (BabyAGI, BabyAGI-2o, BabyAGI3)
+- **"Simplest"**: Ditto, BabyAGI-2o
+- **"Graph" suffix**: Instagraph, Mindgraph, Prettygraph
+- **Character-based**: Pippin universe
+
+### Activity Pattern
+- **2023**: BabyAGI explosion, heavy development
+- **2024**: Knowledge graph focus, SelfMCP exploration
+- **2025**: Maintenance, experimental projects
+- **2026-Q2 (May-June): Heavy ActiveGraph ecosystem development — core runtime + benchmarks + applications + community growth (+40 stars in 6 days). ArXiv paper published on ActiveGraph approach. Cofounder-assisted ActiveGraph development highlighted in public coverage.
+
+### Star Count Distribution (Top 10)
+1. BabyAGI: 22,308 ⭐
+2. Instagraph: 3,551 ⭐
+3. Ditto: 1,057 ⭐
+4. Mindgraph: 942 ⭐
+5. Prettygraph: 780 ⭐
+6. idealist: 189 ⭐
+7. asymmetrix: 132 ⭐
+8. BabyAGI-2o: 340 ⭐
+9. BabyAGI3: 127 ⭐
+10. activegraph: 333 ⭐
+</div>
+    </div>
+
+    <div class="section">
+      <h2>Latest Summary</h2>
+      <div class="summary-content"># Intelligence Tracker Summary - July 6, 2026
+
+## Overview
+3 new items captured today: sustained Terminal-Bench evaluation cycle, accelerated ActiveGraph star growth, and FalkorDB enhancement issue.
+
+## New Items (3 total)
+
+### 1. Terminal-Bench Evaluation: 15 More Pushes to Claude Benchmark Branch
+- **Type:** GitHub Branch Activity
+- **Date Range:** 2026-07-05T16:09Z - 2026-07-05T23:22Z
+- **Branch:** `claude/activegraph-harness-benchmark-eiyeek`
+- **Total:** 28+ pushes in ~31 hours across both days
+- **Pattern:** Force-push pattern with distinct SHAs, 0 visible commits on default branch
+- **Signal:** Sustained intensive evaluation cycle suggests deep debugging/refinement
+
+### 2. ActiveGraph Star Growth Acceleration
+- **Type:** GitHub Metadata
+- **Changes:** activegraph +17 stars (356→373), babyagi +2, instagraph +1
+- **Pattern:** Accelerated from usual +5/day to +17/day
+- **Signal:** v1.3 cycle merge and arxiv paper visibility effect
+
+### 3. FalkorDB Enhancement Issue #51
+- **Type:** GitHub Issue
+- **Title:** "FalkorDB: design pass for `where` predicate push-down (property flattening / dual-write)"
+- **Created:** 2026-07-04T16:56:30Z (gap-fill from before baseline)
+- **Signal:** Continued investment in FalkorDB as production backend
+
+## Data Sources Status
+- **GitHub:** ✅ Complete (repos, events, commits, issues, releases)
+- **X/Twitter:** ❌ Blocked (Chrome DevToolsActivePort missing, managed profile blocked)
+- **YouTube:** ✅ Complete (5 results, no new Yohei content)
+- **Mentions:** ✅ Partial (DuckDuckGo shows pre-existing content only)
+- **Notion:** ❌ Blocked (object_not_found errors in previous runs)
+
+## Key Insights
+1. **Terminal-Bench evaluation continues at unprecedented intensity** (28+ pushes in 31 hours)
+2. **ActiveGraph community momentum accelerating** (+17 stars suggests growing awareness)
+3. **Production backend focus** with FalkorDB optimization on the roadmap
+4. **Browser scraping limitations** persist - X data unavailable
+
+## Next Opportunities
+- Monitor for Terminal-Bench results once evaluation completes
+- Track if ActiveGraph star acceleration continues
+- Watch for FalkorDB implementation progress on Issue #51
+
+---
+*Generated by Intelligence Tracker cron job 54a2ef68-a5c2-4f51-80f-f55b44eeae62*</div>
+    </div>
+
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem;">
+      Generated by Intelligence Tracker • Intel on yoheinakajima tracked daily
+    </footer>
   </div>
 </body>
 </html>
