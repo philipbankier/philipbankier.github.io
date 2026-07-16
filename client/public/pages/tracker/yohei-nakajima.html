@@ -214,26 +214,27 @@
                         <div class="meta-item"><span class="meta-label">X:</span><span class="meta-value">@yoheinakajima</span></div>
                         <div class="meta-item"><span class="meta-label">Website:</span><span class="meta-value">yoheinakajima.com</span></div>
                         <div class="meta-item"><span class="meta-label">Followers:</span><span class="meta-value">125.3K</span></div>
+                    <div class="meta-item"><span class="meta-label">Location:</span><span class="meta-value">Seattle, WA</span></div>
                     </div>
                 </div>
             </div>
             
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-value">396</div>
-                    <div class="stat-label">ActiveGraph Stars <span style="color: var(--success)">+2 today</span></div>
+                    <div class="stat-value">401</div>
+                    <div class="stat-label">ActiveGraph Stars <span style="color: var(--success)">+3 today</span></div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">125.3K</div>
                     <div class="stat-label">X Followers <span style="color: var(--success)">+100</span></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">6 ADRs</div>
-                    <div class="stat-label">In 24h (ADR 0040-0046) <span class="new-indicator">HOT</span></div>
+                    <div class="stat-value">82</div>
+                    <div class="stat-label">GitHub Repos <span style="color: var(--warning)">+1 NEW</span></div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">543</div>
-                    <div class="stat-label">Tests Passing (was 507)</div>
+                    <div class="stat-value">22,333</div>
+                    <div class="stat-label">BabyAGI Stars <span style="color: var(--success)">+2</span></div>
                 </div>
             </div>
         </div>
@@ -244,7 +245,7 @@
             <div class="ecosystem-map">
                 <div class="ecosystem-layer">
                     <span class="ecosystem-label">CORE RUNTIME</span>
-                    <span class="ecosystem-item">activegraph · v1.10.0 · AGENTS.md added · comprehension-dividend branch · 396⭐</span>
+                    <span class="ecosystem-item">activegraph · v1.10.0 · AGENTS.md added · comprehension-dividend branch · 401⭐</span>
                 </div>
                 <div class="ecosystem-layer">
                     <span class="ecosystem-label">PACKS</span>
@@ -264,6 +265,7 @@
                 </div>
                 <div class="ecosystem-layer">
                     <span class="ecosystem-label">EXTENSIONS</span>
+                    <span class="ecosystem-item new">activegraph-bridge · execution membrane for external agents · 0⭐ · NEW Jul 15</span>
                     <span class="ecosystem-item">hookatlas · terminalbench · parallel-prefetch · ag-coder</span>
                 </div>
             </div>
@@ -337,54 +339,33 @@
 
         <!-- Recent Activity Timeline -->
         <div class="section">
-            <h2 class="section-title">Recent Activity <span class="highlight">July 14, 2026</span></h2>
+            <h2 class="section-title">Recent Activity <span class="highlight">July 15-16, 2026</span></h2>
             
             <div class="timeline-item hot">
-                <div class="timeline-date">July 14 05:31 UTC — AGENTS.md for Coding Agents</div>
+                <div class="timeline-date">July 15 13:47 UTC — 🆕 activegraph-bridge Created</div>
                 <div class="timeline-content">
-                    <strong>📝 Both repos get AGENTS.md:</strong> ActiveGraph commit <code>07b3b45</code> and Packs commit <code>e07c509</code> add working guides for coding agents. Positions Packs as a capability library. Gate E: one canonical project owner, conformance docs, policy v3 pins, cross-pack import audit (every cross-pack import is a declared stable API). 543 passed, doctor clean.
+                    <strong>🔗 New repo + PR #1 merged same day:</strong> <code>activegraph-bridge</code> — "an execution membrane for existing agents." Wraps any existing agent (function, invoke-style) into ActiveGraph's event-sourced graph runtime. Initial commit at 12:43, PR #1 opened and merged by 13:47. <strong>Strategic significance:</strong> This is the adapter layer that turns ActiveGraph from a standalone framework into a platform — external agents don't need a rewrite, just a bridge.
                 </div>
             </div>
             
             <div class="timeline-item hot">
-                <div class="timeline-date">July 14 04:08 UTC — Comprehension Campaigns + Sent-Mail + Setup Draft (ADR 0044-0046)</div>
+                <div class="timeline-date">July 15 00:06–20:30 UTC — activegraph-packs Sprint Continues</div>
                 <div class="timeline-content">
-                    <strong>🚀 Four-gate sprint:</strong> Gate A: durable external work ledger (crash-safe commit without re-calling provider). Gate B: adaptive multi-round research campaigns with query lineage, scope gates, hard budgets over model recommendations. Gate C: sent-mail comprehension with staged reduction (fast-model leaf rows → aggregation), gmail sent recipe. Gate D: deterministic setup draft — six routed sections, review grammar (accept/reject/edit/merge/reclassify/defer). 541 passed.
-                </div>
-            </div>
-            
-            <div class="timeline-item hot">
-                <div class="timeline-date">July 13 23:33 UTC — subject_synthesis 0.1.0 (ADR 0043)</div>
-                <div class="timeline-content">
-                    <strong>🧠 Synthesis Proposes, Verdicts Promote:</strong> Bounded comprehension pass over promoted facts, connector taxonomy, recurring entities. Proposes identity profile_candidates and project_candidates — every proposal cites refs or is dropped. Durable request + run receipt. Also: projects 0.2.0 (labels corroborate, never propose), subject_profile 0.4.0 (attribute classes + classifier).
-                </div>
-            </div>
-            
-            <div class="timeline-item hot">
-                <div class="timeline-date">July 13 21:45 UTC — Idempotent Promotion + Deferred Execution</div>
-                <div class="timeline-content">
-                    <strong>🔄 ADR 0041-0042:</strong> Three-phase extraction seam (prepare/perform/commit) with deferred host execution. subject_profile 0.3.0: re-confirmation resolves to existing fact, multi-valued attributes accumulate. web_research 0.2.0: queries from confirmed facts only, settlement byte-identical to sync.
-                </div>
-            </div>
-            
-            <div class="timeline-item hot">
-                <div class="timeline-date">July 13 16:48 UTC — web_research + projects packs (ADR 0040)</div>
-                <div class="timeline-content">
-                    <strong>📦 Two new packs:</strong> Owner-consented web research (emails never enter outward queries, server-side search discovers pages, findings join verdict path). Projects: deterministic explainable candidates promoted only by owner verdict.
+                    <strong>📦 6 push events:</strong> Continued heavy development on activegraph-packs. Gmail history hydration race fixes, extraction hardening into guarded procedures, learning importance from conversation outcomes. The comprehension-dividend sprint shows no signs of slowing.
                 </div>
             </div>
             
             <div class="timeline-item">
-                <div class="timeline-date">July 13 — v1.10.0 Tagged + Gmail/Memory Sprint</div>
+                <div class="timeline-date">July 13 — v1.10.0 Tagged + Comprehension Sprint</div>
                 <div class="timeline-content">
-                    <strong>📋 Previous day:</strong> ActiveGraph v1.10.0 tagged with cooperative scheduling. Packs Gmail/Composio connector sprint (#26-35). Learning/proceduralization (#31-33, ADR 0029). Memory PR #1 evidence-authoritative. Comprehension-dividend branch started.
+                    <strong>📋 ActiveGraph v1.10.0</strong> tagged with cooperative scheduling. Packs comprehension-dividend sprint (ADRs 0040-0046): three-phase extraction, web research, subject synthesis, comprehension campaigns. Memory PR #1 evidence-authoritative. 543 tests passing.
                 </div>
             </div>
             
             <div class="timeline-item">
-                <div class="timeline-date">July 12 — Quiet Saturday</div>
+                <div class="timeline-date">July 14 — AGENTS.md + Durable Work Ledger</div>
                 <div class="timeline-content">
-                    <strong>😴 No activity.</strong> Stars ticked up slightly.
+                    <strong>📝 Both repos get AGENTS.md</strong> for coding agents. Durable external work ledger (crash-safe commit). Deterministic setup draft with review grammar. Canonical project ownership (Gate E). 541→543 tests.
                 </div>
             </div>
         </div>
@@ -496,7 +477,7 @@
                     <div class="project-name">BabyAGI</div>
                     <div class="project-description">The original autonomous agent that started it all. First popular open-source autonomous agent with task planning.</div>
                     <div class="project-stats">
-                        <span class="project-stars">⭐ 22,330</span>
+                        <span class="project-stars">⭐ 22,333</span>
                         <span class="project-date">March 2023</span>
                     </div>
                 </div>
@@ -534,7 +515,7 @@
         </div>
 
         <div class="last-updated">
-            <p><strong>Intelligence Tracker</strong> — Live Artifact | Last Updated: July 14, 2026 10:21 UTC</p>
+            <p><strong>Intelligence Tracker</strong> — Live Artifact | Last Updated: July 16, 2026 10:00 UTC</p>
             <p>Monitoring: GitHub ✅ · X/Twitter ⚠️ · YouTube ✅ · Web Mentions ⚠️ | Status: Active</p>
         </div>
     </div>
