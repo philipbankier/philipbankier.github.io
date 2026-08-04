@@ -1,523 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yohei Nakajima — Intelligence Tracker</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@400;500;600;700&display=swap');
-        
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-card: #252525;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-primary: #4a9eff;
-            --accent-secondary: #ff6b6b;
-            --accent-tertiary: #4caf50;
-            --border-color: #333333;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --info: #2196f3;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        .header {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
-            border-radius: 16px; padding: 40px; margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .profile-section { display: flex; align-items: center; gap: 30px; margin-bottom: 30px; }
-        
-        .avatar {
-            width: 120px; height: 120px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 48px; font-weight: bold; color: white; flex-shrink: 0;
-        }
-        
-        .profile-info h1 {
-            font-size: 2.5rem; font-family: 'Merriweather', serif; margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--text-primary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        
-        .profile-info .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 15px; }
-        
-        .meta-info { display: flex; gap: 30px; flex-wrap: wrap; }
-        .meta-item { display: flex; align-items: center; gap: 8px; }
-        .meta-label { color: var(--text-secondary); }
-        .meta-value { font-weight: 500; }
-        
-        .stats {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; margin-top: 30px;
-        }
-        
-        .stat-card {
-            background: var(--bg-card); padding: 20px; border-radius: 12px;
-            border: 1px solid var(--border-color); text-align: center;
-        }
-        
-        .stat-value { font-size: 2rem; font-weight: bold; color: var(--accent-primary); margin-bottom: 5px; }
-        .stat-label { color: var(--text-secondary); font-size: 0.9rem; }
-        
-        .section {
-            background: var(--bg-secondary); border-radius: 16px;
-            padding: 30px; margin-bottom: 30px; border: 1px solid var(--border-color);
-        }
-        
-        .section-title {
-            font-family: 'Merriweather', serif; font-size: 1.8rem;
-            margin-bottom: 20px; color: var(--accent-primary);
-        }
-        
-        .section-title .highlight { color: var(--accent-secondary); font-weight: 700; }
-        
-        .project-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
-        }
-        
-        .project-card {
-            background: var(--bg-card); border-radius: 12px; padding: 20px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
-        }
-        
-        .project-card.featured {
-            border: 2px solid var(--accent-primary);
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(74, 158, 255, 0.1) 100%);
-        }
-        
-        .project-card.new-card {
-            border: 2px solid var(--warning);
-            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 152, 0, 0.1) 100%);
-        }
-        
-        .project-status {
-            display: inline-block; padding: 4px 12px; border-radius: 20px;
-            font-size: 0.8rem; font-weight: 500; margin-bottom: 10px;
-        }
-        
-        .status-active { background: rgba(76, 175, 80, 0.2); color: var(--success); }
-        .status-new { background: rgba(255, 152, 0, 0.2); color: var(--warning); }
-        .status-rc { background: rgba(74, 158, 255, 0.2); color: var(--accent-primary); }
-        .status-milestone { background: rgba(255, 107, 107, 0.2); color: var(--accent-secondary); }
-        
-        .project-name { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
-        .project-description { color: var(--text-secondary); margin-bottom: 15px; line-height: 1.5; }
-        .project-stats { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
-        .project-stars { color: #ffd700; font-weight: 500; }
-        .project-date { color: var(--text-secondary); font-size: 0.9rem; }
-        
-        .timeline-item {
-            background: var(--bg-card); border-radius: 12px; padding: 20px;
-            margin-bottom: 15px; border-left: 4px solid var(--accent-primary);
-        }
-        
-        .timeline-item.hot { border-left: 4px solid var(--accent-secondary); }
-        
-        .timeline-date { color: var(--accent-primary); font-weight: 600; margin-bottom: 8px; }
-        .timeline-content { color: var(--text-secondary); }
-        
-        .theme-tag {
-            display: inline-block; background: var(--bg-secondary); color: var(--accent-primary);
-            padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; margin: 4px;
-            border: 1px solid var(--accent-primary);
-        }
-        
-        .belief-card {
-            background: var(--bg-card); border-radius: 12px; padding: 20px;
-            margin-bottom: 15px; border-left: 4px solid var(--accent-secondary);
-        }
-        
-        .belief-title { font-weight: 600; color: var(--accent-secondary); margin-bottom: 10px; }
-        
-        .quote {
-            background: rgba(74, 158, 255, 0.1); border-left: 4px solid var(--accent-primary);
-            padding: 20px; margin: 20px 0; border-radius: 8px;
-            font-style: italic; color: var(--text-secondary);
-        }
-        
-        .last-updated {
-            text-align: center; color: var(--text-secondary); margin-top: 40px;
-            padding: 20px; border-top: 1px solid var(--border-color);
-        }
-        
-        .new-indicator {
-            background: var(--accent-secondary); color: white; padding: 2px 8px;
-            border-radius: 12px; font-size: 0.75rem; margin-left: 8px;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
-        
-        .ecosystem-map {
-            background: var(--bg-card); border-radius: 12px; padding: 25px;
-            margin-bottom: 15px; border: 1px solid var(--border-color);
-        }
-        
-        .ecosystem-layer {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        
-        .ecosystem-label {
-            font-family: 'Inter', monospace; font-size: 0.8rem; color: var(--accent-primary);
-            font-weight: 600; min-width: 120px;
-        }
-        
-        .ecosystem-item {
-            background: var(--bg-secondary); padding: 6px 14px; border-radius: 8px;
-            font-size: 0.9rem; border: 1px solid var(--border-color);
-        }
-        
-        .ecosystem-item.new { border-color: var(--warning); color: var(--warning); }
-        
-        @media (max-width: 768px) {
-            .profile-section { flex-direction: column; text-align: center; }
-            .meta-info { justify-content: center; }
-            .stats { grid-template-columns: 1fr 1fr; }
-            .project-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yohei Nakajima — Intelligence Tracker</title>
+<style>
+:root { --bg:#08090b; --panel:#111318; --panel2:#171a21; --fg:#f4f0e8; --muted:#a9a29a; --line:#2b303a; --accent:#91f2c4; --accent2:#9bbcff; --warn:#ffd479; }
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#1b2440 0,#08090b 35%,#050607 100%);color:var(--fg);font:16px/1.55 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--accent2);text-decoration:none} a:hover{text-decoration:underline}
+.container{max-width:1120px;margin:0 auto;padding:40px 22px 80px}
+.hero{display:grid;gap:18px;padding:34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,rgba(145,242,196,.12),rgba(155,188,255,.08) 40%,rgba(17,19,24,.9));box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.kicker{color:var(--accent);font:700 12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(38px,7vw,78px);line-height:.95;margin:0;font-family:Georgia,serif;letter-spacing:-.05em}
+.sub{max-width:820px;color:var(--muted);font-size:18px}
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;margin-top:22px} @media(max-width:850px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(17,19,24,.86);border:1px solid var(--line);border-radius:22px;padding:24px;overflow:hidden}
+h2{margin:0 0 14px;font:700 13px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h3{margin:24px 0 10px;font-size:22px;line-height:1.15} h4{margin:18px 0 8px;color:var(--warn)}
+ul{padding-left:1.15rem} li{margin:.45rem 0} code{background:#222733;border:1px solid #303747;border-radius:6px;padding:.1rem .32rem;font-size:.9em}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0} .badges span{border:1px solid var(--line);background:var(--panel2);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:12px}
+.callout{border-color:rgba(145,242,196,.35);background:linear-gradient(180deg,rgba(145,242,196,.08),rgba(17,19,24,.86))}
+table{width:100%;border-collapse:collapse;font-size:14px} th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top} th{color:var(--muted);font:700 11px/1.2 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase}
+.footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+.full{grid-column:1/-1}
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="profile-section">
-                <div class="avatar">YN</div>
-                <div class="profile-info">
-                    <h1>Yohei Nakajima</h1>
-                    <div class="subtitle">General Partner at Untapped Capital · Creator of BabyAGI · Building ActiveGraph</div>
-                    <div class="meta-info">
-                        <div class="meta-item"><span class="meta-label">GitHub:</span><span class="meta-value">yoheinakajima</span></div>
-                        <div class="meta-item"><span class="meta-label">X:</span><span class="meta-value">@yoheinakajima</span></div>
-                        <div class="meta-item"><span class="meta-label">Website:</span><span class="meta-value">yoheinakajima.com</span></div>
-                        <div class="meta-item"><span class="meta-label">Followers:</span><span class="meta-value">125.3K</span></div>
-                    <div class="meta-item"><span class="meta-label">Location:</span><span class="meta-value">Seattle, WA</span></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-value">401</div>
-                    <div class="stat-label">ActiveGraph Stars <span style="color: var(--success)">+3 today</span></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">125.3K</div>
-                    <div class="stat-label">X Followers <span style="color: var(--success)">+100</span></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">82</div>
-                    <div class="stat-label">GitHub Repos <span style="color: var(--warning)">+1 NEW</span></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">22,333</div>
-                    <div class="stat-label">BabyAGI Stars <span style="color: var(--success)">+2</span></div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+  <section class="hero">
+    <div class="kicker">Intelligence Tracker · Yohei Nakajima</div>
+    <h1>Yohei Nakajima</h1>
+    <div class="sub">Daily public-signal tracker for Yohei's projects, beliefs, themes, and activity. Last rebuilt 2026-08-04 10:00 UTC.</div>
+  </section>
+  <div class="grid">
+    <section class="card callout"><h2>Latest daily summary</h2><h2>Yohei Nakajima — Daily Retrieval Summary (2026-08-04)</h2>
 
-        <!-- Ecosystem Map -->
-        <div class="section">
-            <h2 class="section-title">ActiveGraph <span class="highlight">Ecosystem</span></h2>
-            <div class="ecosystem-map">
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">CORE RUNTIME</span>
-                    <span class="ecosystem-item">activegraph · v1.10.0 · AGENTS.md added · comprehension-dividend branch · 401⭐</span>
-                </div>
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">PACKS</span>
-                    <span class="ecosystem-item new">activegraph-packs · comprehension-dividend sprint · synthesis + research campaigns · 4⭐</span>
-                </div>
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">MEMORY</span>
-                    <span class="ecosystem-item new">activegraph-memory · PR #1 evidence-authoritative · 0⭐</span>
-                </div>
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">EVALUATION</span>
-                    <span class="ecosystem-item">activegraph-longmemeval · V4 full eval · 2⭐</span>
-                </div>
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">BLOG</span>
-                    <span class="ecosystem-item new">activegraph-blog · 1⭐ · initial commit</span>
-                </div>
-                <div class="ecosystem-layer">
-                    <span class="ecosystem-label">EXTENSIONS</span>
-                    <span class="ecosystem-item new">activegraph-bridge · execution membrane for external agents · 0⭐ · NEW Jul 15</span>
-                    <span class="ecosystem-item">hookatlas · terminalbench · parallel-prefetch · ag-coder</span>
-                </div>
-            </div>
-        </div>
+<h3>New high-signal items (vs 2026-08-03)</h3>
 
-        <!-- Active Projects -->
-        <div class="section">
-            <h2 class="section-title">Active Projects <span class="highlight">Core Focus</span></h2>
-            <div class="project-grid">
-                <div class="project-card featured">
-                    <div class="project-status status-milestone">v1.10.0 TAGGED · COOPERATIVE SCHEDULING</div>
-                    <div class="project-name">ActiveGraph <span class="new-indicator">HOT</span></div>
-                    <div class="project-description">Event-sourced graph runtime. v1.10.0 tagged with Runtime.run_quantum for cooperative single-writer host scheduling (PR #65). v1.10 also added context-read tracing + reserved-field collision detection. CONTRACT v1.9 established canonical action_class authority, runtime hardening R3-R5, EventSink seam.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 394 (+6)</span>
-                        <span class="project-date">July 13, 2026</span>
-                    </div>
-                </div>
-                
-                <div class="project-card featured">
-                    <div class="project-status status-milestone">COMPREHENSION-DIVIDEND SPRINT · 6 ADRs IN 24h</div>
-                    <div class="project-name">ActiveGraph Packs <span class="new-indicator">HOT</span></div>
-                    <div class="project-description">Massive comprehension-dividend sprint on <code>claude/comprehension-dividend</code> branch (10 commits, ADRs 0040-0046): three-phase extraction seam (prepare/perform/commit), owner-consented web research with adaptive multi-round campaigns, subject_synthesis (synthesis proposes, verdicts promote), sent-mail comprehension with staged reduction, deterministic setup draft with review grammar, durable external work ledger (crash-safe), canonical project ownership + cross-pack conformance audit. 543 tests passing. Both repos now have AGENTS.md guides for coding agents.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 4</span>
-                        <span class="project-date">July 14, 2026</span>
-                    </div>
-                </div>
-                
-                <div class="project-card new-card">
-                    <div class="project-status status-active">PR #1 MERGED · EVIDENCE-AUTHORITATIVE</div>
-                    <div class="project-name">ActiveGraph Memory <span class="new-indicator">NEW</span></div>
-                    <div class="project-description">PR #1 makes compiled memory evidence-authoritative: raw sources get full budget, compiled projections can't self-boost, computed candidates require all cited claims selected. Fixes LongMemEval evidence-floor regressions — compiled memory augments, never displaces, Tier 0/1 evidence.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 0</span>
-                        <span class="project-date">July 13, 2026</span>
-                    </div>
-                </div>
-                
-                <div class="project-card new-card">
-                    <div class="project-status status-active">V4 EVAL DOCUMENTED</div>
-                    <div class="project-name">ActiveGraph LongMemEval</div>
-                    <div class="project-description">Memory v4 full evaluation documented. Smoke gate recorded. Experiment prepared. Benchmarks evolving V2→V3→V4 in two days alongside the memory system.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 2</span>
-                        <span class="project-date">July 10, 2026</span>
-                    </div>
-                </div>
-                
-                <div class="project-card new-card">
-                    <div class="project-status status-new">CREATED JULY 10</div>
-                    <div class="project-name">ActiveGraph Blog</div>
-                    <div class="project-description">Newly created — initial commit only, first star gained. Signals Yohei preparing to publish about ActiveGraph ecosystem, architecture decisions, and development philosophy.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 1 (+1)</span>
-                        <span class="project-date">July 10, 2026</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-status status-active">LAUNCHED JULY 8</div>
-                    <div class="project-name">Hook Atlas</div>
-                    <div class="project-description">Game design framework with 94 specimens. Lenses, splice lab, field exam, hook stacks, share cards. BYOK apply-to-company.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 1</span>
-                        <span class="project-date">July 8, 2026</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<h4>1. Fresh X posts (Aug 3 evening ET) — agentic VC ops surface</h4>
+<p>Managed browser scrape of <code>x.com/yoheinakajima</code> captured four new chronological posts (~16–19h old at retrieval):</p>
 
-        <!-- Recent Activity Timeline -->
-        <div class="section">
-            <h2 class="section-title">Recent Activity <span class="highlight">July 15-16, 2026</span></h2>
-            
-            <div class="timeline-item hot">
-                <div class="timeline-date">July 15 13:47 UTC — 🆕 activegraph-bridge Created</div>
-                <div class="timeline-content">
-                    <strong>🔗 New repo + PR #1 merged same day:</strong> <code>activegraph-bridge</code> — "an execution membrane for existing agents." Wraps any existing agent (function, invoke-style) into ActiveGraph's event-sourced graph runtime. Initial commit at 12:43, PR #1 opened and merged by 13:47. <strong>Strategic significance:</strong> This is the adapter layer that turns ActiveGraph from a standalone framework into a platform — external agents don't need a rewrite, just a bridge.
-                </div>
-            </div>
-            
-            <div class="timeline-item hot">
-                <div class="timeline-date">July 15 00:06–20:30 UTC — activegraph-packs Sprint Continues</div>
-                <div class="timeline-content">
-                    <strong>📦 6 push events:</strong> Continued heavy development on activegraph-packs. Gmail history hydration race fixes, extraction hardening into guarded procedures, learning importance from conversation outcomes. The comprehension-dividend sprint shows no signs of slowing.
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">July 13 — v1.10.0 Tagged + Comprehension Sprint</div>
-                <div class="timeline-content">
-                    <strong>📋 ActiveGraph v1.10.0</strong> tagged with cooperative scheduling. Packs comprehension-dividend sprint (ADRs 0040-0046): three-phase extraction, web research, subject synthesis, comprehension campaigns. Memory PR #1 evidence-authoritative. 543 tests passing.
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">July 14 — AGENTS.md + Durable Work Ledger</div>
-                <div class="timeline-content">
-                    <strong>📝 Both repos get AGENTS.md</strong> for coding agents. Durable external work ledger (crash-safe commit). Deterministic setup draft with review grammar. Canonical project ownership (Gate E). 541→543 tests.
-                </div>
-            </div>
-        </div>
+<p>1. <strong>Stream Deck as modern VC ops</strong> — photo post: “a basic stream deck set up of a modern day VC”  </p>
+<p>   https://x.com/yoheinakajima/status/2084291585567793429 · 34 likes / 8.1K views</p>
+<p>2. <strong>Buttons → talkable agents</strong> — “i’m hoping there’s a near future where I hook these up to agents that I can just press and talk to them”  </p>
+<p>   https://x.com/yoheinakajima/status/2084307631733383399 · 18 likes / 4.7K views</p>
+<p>3. <strong>Portfolio tool rec: cura.inc</strong> — public news + private update monitoring, aggregated cash/runway stats; founder @sharanjhangiani in SF  </p>
+<p>   https://x.com/yoheinakajima/status/2084303214917374263 · 13 likes / 4.3K views</p>
+<p>4. <strong>Fewer agents?</strong> — quote-reply to Hiten Shah (“easier to do more with less when fewer people involved”): “does the same hold true for having fewer agents? why or why not?”  </p>
+<p>   https://x.com/yoheinakajima/status/2084339281645244516 · 33 likes / 9.1K views</p>
 
-        <!-- Core Beliefs -->
-        <div class="section">
-            <h2 class="section-title">Core Beliefs & <span class="highlight">Positions</span></h2>
-            
-            <div class="belief-card">
-                <div class="belief-title">Observability as Contract</div>
-                <div>Context reads should be explicitly traceable (v1.10). Reserved-field collisions must fail loud, never silent. Observation deserves its own architectural seam (EventSink). You can't optimize what you can't see.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Semantic Extraction is Architectural</div>
-                <div>LLM-backed extraction deserves a declared seam in the architecture (D025), not inline hacks. One provider configuration point across packs. Semantic attention is data, not just a mechanism — it needs its own observation substrate.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Canonical Type Authority</div>
-                <div>Action classification is a first-class architectural concern. Types must be canonical at runtime boundaries. Audit trails built into authority systems. (CONTRACT v1.9 / ADR 0016)</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Production-Grade Reliability</div>
-                <div>Record/replay is fundamental for deterministic agent testing. Trial execution should be isolated. Developer overrides must be explicit and receipted — never silent.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Synthesis Proposes, Verdicts Promote</div>
-                <div>AI generates candidates (identity profiles, project candidates, research findings); only owner verdicts promote to facts. Every proposal must cite evidence refs or is dropped at commit. Determinism floors ensure replayable results. The setup draft is deterministic and editable — owner edits supersede without minting prediction wins. (ADR 0043-0046, Jul 14)</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Owner-Consented Research</div>
-                <div>Web research queries derive only from owner-confirmed facts — emails never enter outward queries. Adaptive multi-round campaigns with query lineage, scope gates, and hard budgets authoritative over model recommendations. Campaign disclosure on the owner-approved plan. (ADR 0040, 0044, Jul 14)</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Three-Phase Extraction</div>
-                <div>Semantic extraction follows prepare (reads) / perform (provider) / commit (writes). Sync default stays byte-identical. Deferred execution mirrors the exact contract. Restart replay must not double-append. (ADR 0041, 0045, Jul 13-14)</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Evidence-Authoritative Memory</div>
-                <div>Compiled memory must augment, never displace, Tier 0/1 evidence. Compiled projections cannot boost their own inputs. Raw sources get full budget and render first. Computed candidates require all cited claims selected. Evaluation regressions directly drive architecture.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Governed Learning → Deterministic Procedures</div>
-                <div>Dynamic behavior should promote to deterministic procedures through fail-closed gates, guards, and earned-region execution. Deopt and demotion on drift. Typed importance and source-trust vectors. Conversation-outcome attention signals.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Provider-Neutral Connector Control</div>
-                <div>Connectors should be bounded by operational budgets and a provider-neutral control plane. Conversation families are first-class entities. Evidence-first subject knowledge. Owner-anchored interpretation with outcome-only trust.</div>
-            </div>
-            
-            <div class="belief-card">
-                <div class="belief-title">Cooperative Scheduling</div>
-                <div>Runtime should support fair single-writer host scheduling via run quanta. Agents must share execution resources cooperatively, not dominate them.</div>
-            </div>
-            
-            <div class="quote">
-                "The Log is the Agent" — Event-Sourced Reactive Graphs for Auditable, Forkable Agentic Systems<br><br>
-                "The simplest approach wins" — recurring theme across all projects<br><br>
-                "Reserved-field collisions must fail loud" — CONTRACT v1.10
-            </div>
-        </div>
+<p><strong>Interpretation:</strong> Strong “agentic VC operator” lane — physical control surfaces, voice/agent invocation, and portfolio OS tooling — sitting beside his multi-agent research questions about coordination overhead.</p>
 
-        <!-- Key Themes -->
-        <div class="section">
-            <h2 class="section-title">Key Themes & <span class="highlight">Patterns</span></h2>
-            <div>
-                <span class="theme-tag">Synthesis Proposes, Verdicts Promote</span>
-                <span class="theme-tag">Three-Phase Extraction</span>
-                <span class="theme-tag">Owner-Consented Research</span>
-                <span class="theme-tag">Adaptive Research Campaigns</span>
-                <span class="theme-tag">Sent-Mail Comprehension</span>
-                <span class="theme-tag">Deterministic Setup Draft</span>
-                <span class="theme-tag">Durable External Work</span>
-                <span class="theme-tag">Canonical Project Ownership</span>
-                <span class="theme-tag">Evidence-Authoritative Memory</span>
-                <span class="theme-tag">Connector Control Planes</span>
-                <span class="theme-tag">Deterministic Procedures</span>
-                <span class="theme-tag">Fail-Closed Promotion</span>
-                <span class="theme-tag">Owner-Anchored Interpretation</span>
-                <span class="theme-tag">Operational Budgets</span>
-                <span class="theme-tag">Context-Read Tracing</span>
-                <span class="theme-tag">Semantic Extraction</span>
-                <span class="theme-tag">Canonical Type Authority</span>
-                <span class="theme-tag">Contract-Driven Development</span>
-                <span class="theme-tag">Audit Trails</span>
-                <span class="theme-tag">Record/Replay Testing</span>
-                <span class="theme-tag">Event Sourcing</span>
-                <span class="theme-tag">Governed Learning</span>
-                <span class="theme-tag">Build in Public</span>
-                <span class="theme-tag">Knowledge Graphs</span>
-                <span class="theme-tag">Simplest Approach Wins</span>
-            </div>
-        </div>
+<h4>2. GitHub star movement only (no new pushes after Aug 3 02:21 UTC)</h4>
+<ul><li><code>graphcon-deck</code>: 204 → <strong>211</strong> (+7)</li><li><code>activegraph</code>: 522 → <strong>523</strong> (+1)</li><li>No new repos; no push_at changes vs Aug 3 snapshot after treasurebench branch freeze.</li></ul>
 
-        <!-- Legacy Projects -->
-        <div class="section">
-            <h2 class="section-title">Notable <span class="highlight">Legacy Projects</span></h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <div class="project-status status-active">FOUNDATION</div>
-                    <div class="project-name">BabyAGI</div>
-                    <div class="project-description">The original autonomous agent that started it all. First popular open-source autonomous agent with task planning.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 22,333</span>
-                        <span class="project-date">March 2023</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-status status-active">VISUALIZATION</div>
-                    <div class="project-name">InstaGraph</div>
-                    <div class="project-description">Text/URL to knowledge graph visualization. Popular and stable.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 3,549</span>
-                        <span class="project-date">Stable</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-status status-active">KNOWLEDGE GRAPH</div>
-                    <div class="project-name">MindGraph</div>
-                    <div class="project-description">Ever-expanding knowledge graph with AI. Prototype for generating and querying against dynamic knowledge systems.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 941</span>
-                        <span class="project-date">Stable</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-status status-active">CODING AGENT</div>
-                    <div class="project-name">BabyAGI-2o</div>
-                    <div class="project-description">Simplest self-building general autonomous agent.</div>
-                    <div class="project-stats">
-                        <span class="project-stars">⭐ 339</span>
-                        <span class="project-date">Stable</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<h4>3. Catch-up context (present in raw GitHub, underrepresented in local KB last updated Jul 23)</h4>
+<p>Not “new since yesterday,” but material for knowledge/artifact refresh:</p>
 
-        <div class="last-updated">
-            <p><strong>Intelligence Tracker</strong> — Live Artifact | Last Updated: July 16, 2026 10:00 UTC</p>
-            <p>Monitoring: GitHub ✅ · X/Twitter ⚠️ · YouTube ✅ · Web Mentions ⚠️ | Status: Active</p>
-        </div>
-    </div>
+<ul><li><strong><code>synthetic-players</code> (Aug 1–2):</strong> arXiv-oriented paper release (<code>arxiv-v1</code>), public project site as interlinked research ledger, Q&amp;A/signal cards, Technical/Plain English toggle. Paper: *Passing Coarse Marginal Checks Can Be Cheap* (LLM persona panel / treatment-response). Capsule claims zero-credential replay of 4,919 archived runs.</li><li><strong><code>ouroboros</code> (Aug 2):</strong> “Add audited self-improvement paper release”; README reframes status as <strong>governed capability acquisition</strong>, not yet demonstrated recursive self-improvement. Minimal v2 + ActiveGraph event history.</li><li><strong><code>distributed-discovery</code> / TreasureBench (Jul 28–Aug 3):</strong> mainline AO-0006→AO-0011 TreasureBench pilot quarantine/policy gates; branch <code>agent/treasurebench-open-weight-cloud-runtime</code> AO-0012 R2–R4 (RunPod API contract, encrypted pod preflight, owner gates/handoff). Latest branch tip still <code>32e25db</code> (same as Aug 3).</li></ul>
+
+<h3>GitHub deltas (2026-08-03 → 2026-08-04)</h3>
+<p>| Repo | Stars prev → now | Δ | Last push |</p>
+<p>|------|------------------|---|-----------|</p>
+<p>| graphcon-deck | 204 → 211 | +7 | 2026-07-27 |</p>
+<p>| activegraph | 522 → 523 | +1 | 2026-07-21 |</p>
+<p>| babyagi | — | 22342 | 2026-01-31 |</p>
+<p>| instagraph | — | 3551 | 2023-12-24 |</p>
+<p>| mindgraph | — | 948 | 2024-04-08 |</p>
+<p>| distributed-discovery | — | 8 | <strong>2026-08-03 02:21Z</strong> |</p>
+<p>| synthetic-players | — | 0 | 2026-08-02 |</p>
+<p>| ouroboros | — | 1 | 2026-08-02 |</p>
+<p>| babyagi-2o | — | 342 | — |</p>
+<p>| ditto | — | 1065 | — |</p>
+
+<h3>X/Twitter</h3>
+<ul><li><code>profile=user</code> existing-session attach failed (<code>DevToolsActivePort</code> missing).</li><li>Managed <code>openclaw</code> browser scrape <strong>succeeded</strong> and returned chronological posts (not just highlights).</li><li>Profile: <strong>125.4K</strong> followers (+0.2K vs Jul 21/23 125.2K note), 12K following, <strong>28.1K</strong> posts, Seattle, links yohei.me / activegraphai / untappedvc.</li><li>Pinned remains Untapped Fund II (Sep 22, 2025).</li><li>Raw: <code>x-profile.json</code>, <code>x-posts.json</code>.</li></ul>
+
+<h3>YouTube</h3>
+<ul><li>Search captured; ranking churn only vs Aug 3 (new IDs in expanded query are older catalog: Carta Automated VC, PIPPIN interview, dbt Labs, etc.).</li><li>No clear brand-new upload ID unique to this window.</li><li>Top evergreen: Active Graph Agent Runtime (BabyAGI 4) — https://www.youtube.com/watch?v=khVX_BUnEwU</li></ul>
+
+<h3>Mentions</h3>
+<ul><li><code>web_search</code> disabled; Tavily key missing; DDG HTML parse unreliable.</li><li>No new notable third-party mention confirmed.</li><li><code>mentions.json</code> empty results with method notes.</li></ul>
+
+<h3>Website</h3>
+<ul><li><code>yoheinakajima.com</code> still classic bio; extract still shows stale “68k X followers.” No new homepage essay detected in fetch.</li></ul>
+
+<h3>Processed interpretation</h3>
+<ul><li><strong>Today’s net-new signal is X, not GitHub code.</strong> Yohei is publicly prototyping the *operator UI* for AI-native VC work (Stream Deck → agents) while continuing to ask multi-agent coordination questions that rhyme with Distributed Discovery (“fewer agents?”).</li><li>Research stack remains: <strong>Distributed Discovery / TreasureBench</strong> (benchmark + open-weight runtime ops), <strong>Synthetic Players</strong> (persona-panel scientific productization), <strong>Ouroboros</strong> (governed self-improvement paper), <strong>ActiveGraph</strong> (runtime substrate, star creep to 523).</li><li>Belief updates:</li></ul>
+<p>  1. Physical control surfaces are a legitimate agent invocation UX for high-frequency VC workflows.</p>
+<p>  2. “Fewer people ⇒ more leverage” may transfer to agent fleets; coordination tax is first-class.</p>
+<p>  3. Reproducibility theater is product: sealed capsules, owner gates, arXiv packages, research ledgers.</p>
+
+<h3>Notion</h3>
+<ul><li>Intel Feed write <strong>not performed</strong> — no <code>NOTION_API_KEY</code> / token in cron env (consistent with prior runs).</li><li>Pending entries appended to <code>tracker/notion-pending.md</code> for DB <code>35d00037-cbe1-8111-b0b1-f8fdb043d460</code>.</li></ul>
+
+<h3>Knowledge / artifact / deploy</h3>
+<ul><li>Updated local knowledge: <code>profile.json</code>, <code>TIMELINE.md</code>, <code>PROJECTS.md</code>, <code>BELIEFS.md</code>, <code>THEMES.md</code>.</li><li>Rebuilt <code>tracker/artifacts/yohei-nakajima.html</code>.</li><li>Deploy target: <code>/tmp/philipbankier.github.io/client/public/pages/tracker/yohei-nakajima.html</code> (clone + commit + push).</li></ul></section>
+    <section class="card"><h2>Profile</h2>
+    <p>VC by day, builder by night. GP at Untapped Capital. Creator of BabyAGI — the first popular open-source autonomous agent. Known for build-in-public approach to learning, meeting founders, and contributing to the ecosystem. 15 years in early-stage venture (Techstars, Scrum Ventures, Untapped).
+
+💡 Known for: ActiveGraph (event-sourced graph runtime for agents), TreasureBench / Distributed Discovery, Synthetic Players persona-panel research, Ouroboros governed self-improvement, and AI-native VC ops experiments.
+
+🔥 Recent focus (Aug 2026): TreasureBench open-weight cloud runtime (AO-0012), Synthetic Players arXiv package + research ledger site, Ouroboros audited self-improvement paper, and public agentic-VC Stream Deck / portfolio-tooling posts.
+
+🧭 Research lane: Distributed Discovery / Shared Discovery Paradox — share the evidence, diversify the actions; collective search under shared and private evidence.</p>
+    <div class="badges"><span>agents</span><span>autonomous-ai</span><span>knowledge-graphs</span><span>vc</span><span>build-in-public</span><span>babyagi</span><span>self-improving-agents</span><span>distributed-discovery</span><span>collective-search</span><span>portfolio-allocation</span><span>activegraph-control-plane</span><span>agent-readable-web</span><span>boplog</span><span>ai-native-optionality</span><span>agentic-vc-ops</span><span>treasurebench</span></div>
+    <ul>
+      <li><strong>Role:</strong> General Partner, Untapped Capital</li>
+      <li><strong>Based:</strong> Seattle, WA, United States</li>
+      <li><strong>X:</strong> <a href="https://x.com/yoheinakajima">@yoheinakajima</a> · 125400 followers</li>
+      <li><strong>GitHub:</strong> <a href="https://github.com/yoheinakajima">github.com/yoheinakajima</a></li>
+      <li><strong>Website:</strong> <a href="https://yoheinakajima.com">yoheinakajima.com</a></li>
+      <li><strong>ActiveGraph:</strong> <a href="https://activegraph.ai">activegraph.ai</a></li>
+    </ul>
+    </section>
+  </div>
+  <div class="grid">
+    <section class="card"><h2>Active projects</h2><h2>Yohei Nakajima - Active Projects</h2>
+
+<h3>Core Focus Areas (August 2026 refresh)</h3>
+<h4>0. Agentic VC operator surface (NEW public signal — Aug 3)</h4>
+<ul><li><strong>Status:</strong> Public X prototyping, not a single GitHub repo</li><li><strong>Signal:</strong> Stream Deck as VC control surface; desire to bind buttons to talkable agents; portfolio monitoring via cura.inc</li><li><strong>Why it matters:</strong> Connects Untapped GP workflow to his agent-runtime thesis — agents as operable infrastructure, not demos</li></ul>
+
+<h4>1. Distributed Discovery + TreasureBench (hottest research program)</h4>
+<ul><li><strong>Status:</strong> Very active through Aug 3 — main + <code>agent/treasurebench-open-weight-cloud-runtime</code></li><li><strong>Stars:</strong> 8</li><li><strong>Site:</strong> https://yoheinakajima.github.io/distributed-discovery/</li><li><strong>Focus:</strong> Collective search under shared/private evidence; “Share the evidence. Diversify the actions.”</li><li><strong>Recent:</strong> AO-0012 open-weight cloud runtime (RunPod), encrypted pod preflight, owner-gated agent-ops R2–R4; prior AO-0006–0011 TreasureBench pilot quarantine/provider-outcome policy</li><li><strong>Related:</strong> <code>shared-discovery-paradox</code> (atomic paper), <code>distributed-discovery-activegraph</code> (ActiveGraph control-plane pilot)</li></ul>
+
+<h4>2. Synthetic Players (scientific productization — Aug 1–2)</h4>
+<ul><li><strong>Status:</strong> arXiv package + public research ledger published</li><li><strong>Stars:</strong> 0</li><li><strong>URL:</strong> https://github.com/yoheinakajima/synthetic-players · site https://yoheinakajima.github.io/synthetic-players/</li><li><strong>Paper:</strong> *Passing Coarse Marginal Checks Can Be Cheap: Persona Mixtures and Imprecise Treatment-Response Estimates in an LLM Persona Panel*</li><li><strong>Integrity move:</strong> zero-credential capsule verifying 4,919 archived runs; release tag <code>arxiv-v1</code></li></ul>
+
+<h4>3. Ouroboros (governed self-improvement)</h4>
+<ul><li><strong>Status:</strong> Audited self-improvement paper release Aug 2; honest status = governed capability acquisition</li><li><strong>Stars:</strong> 1</li><li><strong>Focus:</strong> Minimal recursively self-improving agent organism on ActiveGraph event history; workspace / minimal / hybrid-pack architectures retained for comparison</li></ul>
+
+<h4>4. ActiveGraph ecosystem</h4>
+<ul><li><strong>Status:</strong> Runtime quieter on commits (last push Jul 21) but stars still climbing</li><li><strong>Stars:</strong> 523 (+1 day-over-day Aug 3→4); packs 9</li><li><strong>Homepage:</strong> https://activegraph.ai</li><li><strong>Role:</strong> Substrate under Ouroboros, DD-ActiveGraph pilot, memory/packs ecosystem</li></ul>
+
+<h4>5. graphcon-deck</h4>
+<ul><li><strong>Status:</strong> Star spike without new push</li><li><strong>Stars:</strong> 211 (+7 vs Aug 3)</li><li><strong>Last push:</strong> 2026-07-27</li></ul>
+
+<h4>6. Legacy / stable</h4>
+<ul><li>BabyAGI 22342⭐ · InstaGraph 3551⭐ · MindGraph 948⭐ · Ditto 1065⭐ · BabyAGI-2o 342⭐ · boplog 1⭐ · prezograph 3⭐ · hookatlas 3⭐</li></ul>
+
+<p>---</p>
+<h3>Core Focus Areas (July 2026)</h3>
+<h4>1. ActiveGraph v1.10.0 (CONTRACT v1.10)</h4>
+<ul><li><strong>Status:</strong> Active development / public narrative refresh — v1.10.0 tagged July 13; README refreshed Jul 21 with AI Engineer talk, papers, ecosystem map; ActiveGraph at 428⭐ on Jul 23</li><li><strong>Stars:</strong> 428 (+20 vs Jul 22 raw snapshot, +50 since Jul 8)</li><li><strong>Focus:</strong> Cooperative scheduling, connector ecosystem, production hardening, agent guides</li><li><strong>Key Features (July 10-14):</strong></li></ul>
+<p>  - <strong>AGENTS.md added</strong> (Jul 14, commit 07b3b45) — working guide for coding agents on the repo</p>
+<p>  - <strong>comprehension-dividend branch created</strong> (Jul 14) — comprehension architecture cross-repo</p>
+<p>  - <strong>v1.10.0 tagged</strong> (Jul 13, commit 148e12c) — Runtime.run_quantum cooperative scheduling (PR #65) + release prep (PR #66)</p>
+<p>  - CONTRACT v1.10: context-read tracing + reserved-field collisions fail loud (PR #63, Jul 11)</p>
+<p>  - CONTRACT v1.9: canonical action_class authority (ADR 0016)</p>
+<p>  - Runtime hardening R3/R4/R5: record/replay, TrialExecutor, dev override receipts</p>
+<p>  - Isolated EventSink runtime observation seam</p>
+<ul><li><strong>Timeline:</strong> Rapid iteration, multiple PRs per day</li></ul>
+
+<h4>2. ActiveGraph Packs — Comprehension-Dividend Sprint</h4>
+<ul><li><strong>Status:</strong> Extremely active — comprehension-dividend / ADR 0051 work continued Jul 16</li><li><strong>Stars:</strong> 4</li><li><strong>Key Features (July 13-14 — Comprehension-Dividend Sprint):</strong></li></ul>
+<p>  - <strong>Three-phase extraction seam</strong> (ADR 0041, Jul 13): prepare/perform/commit with deferred host execution</p>
+<p>  - <strong>web_research pack</strong> (ADR 0040, Jul 13): owner-consented web research, queries from confirmed facts only</p>
+<p>  - <strong>projects pack</strong> (ADR 0040, Jul 13): deterministic explainable candidates, verdict-gated promotion</p>
+<p>  - <strong>subject_profile 0.3.0-0.5.0</strong> (ADR 0042, Jul 13-14): idempotent multi-valued promotion, attribute classes + classifier</p>
+<p>  - <strong>subject_synthesis 0.1.0-0.2.0</strong> (ADR 0043, Jul 13-14): bounded comprehension pass — synthesis proposes, verdicts promote; evidence-cited candidates</p>
+<p>  - <strong>Comprehension campaigns</strong> (ADR 0044-0046, Jul 14): adaptive multi-round research with query lineage, scope gates, hard budgets</p>
+<p>  - <strong>Sent-mail comprehension</strong> (Jul 14): staged reduction (fast-model leaf rows → aggregation), gmail sent recipe with consent plan</p>
+<p>  - <strong>Deterministic setup draft</strong> (Jul 14): packed strong pass over all evidence, six routed sections, review grammar (accept/reject/edit/merge/reclassify/defer)</p>
+<p>  - <strong>Durable external work ledger</strong> (Jul 14): crash-safe commit without re-calling provider, idempotency keys</p>
+<p>  - <strong>Gate E: canonical project owner</strong> (Jul 14): team_ops 0.2.0 composes with projects pack, per-pack READMEs/CHANGELOGs, cross-pack import audit</p>
+<p>  - <strong>AGENTS.md</strong> (Jul 14): positions as capability library, working guide for coding agents</p>
+<p>  - <strong>Jul 16 / ADR 0051:</strong> subject_synthesis 0.4.0 accepted horizons, successor review batches, explicit superseded state, project evidence gate; Composio 0.1.1 peek_redirect for read-only Connect Link status</p>
+<p>  - <strong>Previous (Jul 13):</strong> Gmail/Composio connector sprint (#26-35), learning/proceduralization (#31-33, ADR 0029)</p>
+<p>  - <strong>Previous (Jul 10-11):</strong> Semantic attention substrate (#23), LLM-backed extraction (D025, #22), L2 Habit skill</p>
+<ul><li><strong>Test growth:</strong> 507 → 541 → 543 passed in 24h</li></ul>
+
+<h4>3. ActiveGraph Memory</h4>
+<ul><li><strong>Status:</strong> Active development — PR #1 merged July 13</li><li><strong>Stars:</strong> 0 (ecosystem infrastructure)</li><li><strong>Focus:</strong> Evidence-authoritative memory for ActiveGraph agents</li><li><strong>Key Innovations:</strong></li></ul>
+<p>  - <strong>PR #1 (Jul 13):</strong> Compiled memory evidence-authoritative — raw sources get full budget, compiled can&#x27;t self-boost, fixes LongMemEval regressions</p>
+<p>  - Evidence coverage and calibration v4 (Jul 10)</p>
+<p>  - Restartable adaptive memory runtime</p>
+<p>  - Source-grounded proof retrieval</p>
+<p>  - Compiled proof reader contract</p>
+<p>  - Temporal-aware role hardening</p>
+<p>  - Batched persistent embedding writes</p>
+
+<h4>3b. ActiveGraph Bridge ⭐ NEW (Jul 15)</h4>
+<ul><li><strong>Status:</strong> Just launched — initial commit + PR #1 merged July 15</li><li><strong>Stars:</strong> 0 (brand new)</li><li><strong>Focus:</strong> Execution membrane for existing agents — wraps any agent (function, invoke-style) into ActiveGraph&#x27;s event-sourced graph runtime</li><li><strong>Significance:</strong> Adapter layer for ecosystem expansion. Lets external/legacy agents plug into ActiveGraph without rewrite.</li></ul>
+
+<h4>4. ActiveGraph LongMemEval</h4>
+<ul><li><strong>Status:</strong> Active development — V4 full evaluation documented</li><li><strong>Stars:</strong> 2</li><li><strong>Focus:</strong> Memory evaluation benchmark for ActiveGraph</li><li><strong>Key Innovations:</strong></li></ul>
+<p>  - Memory v4 full evaluation documented (Jul 10 19:03)</p>
+<p>  - Memory v4 smoke gate recorded (Jul 10 14:46)</p>
+<p>  - Memory v4 experiment prepared (Jul 10 14:32)</p>
+<p>  - V3 benchmark documentation</p>
+<p>  - Proof packet consumption</p>
+
+<h4>5. ActiveGraph Blog</h4>
+<ul><li><strong>Status:</strong> Created July 10 — initial commit only</li><li><strong>Stars:</strong> 1 (+1 today)</li><li><strong>Focus:</strong> Likely documentation/publishing for ActiveGraph ecosystem</li><li><strong>Significance:</strong> Signals Yohei preparing to write publicly about the ecosystem</li></ul>
+
+<h4>6. Hook Atlas</h4>
+<ul><li><strong>Status:</strong> Launched July 8</li><li><strong>Stars:</strong> 1</li><li><strong>Focus:</strong> Game design framework with 94 specimens, mobile-first</li></ul>
+
+<h4>4. Terminal Bench</h4>
+<ul><li><strong>Status:</strong> Active Testing Cycle</li><li><strong>Focus:</strong> Engineering validation and benchmarking</li><li><strong>Current:</strong> Multiple evaluation cycles with instrumentation</li><li><strong>Signal:</strong> Quality assurance focus, systematic testing</li></ul>
+
+<h4>5. BabyAGI-2o</h4>
+<ul><li><strong>Status:</strong> Stable mature project</li><li><strong>Stars:</strong> 339</li><li><strong>Focus:</strong> Simplest self-building general autonomous agent</li></ul>
+
+<h4>6. MindGraph</h4>
+<ul><li><strong>Status:</strong> Development active</li><li><strong>Stars:</strong> 941</li><li><strong>Focus:</strong> Ever-expanding knowledge graph with AI</li></ul>
+
+<h4>7. InstaGraph</h4>
+<ul><li><strong>Status:</strong> Popular established project</li><li><strong>Stars:</strong> 3,548</li><li><strong>Focus:</strong> Text/URL → knowledge graph visualization</li></ul>
+
+<h4>8. Ditto</h4>
+<ul><li><strong>Status:</strong> Stable</li><li><strong>Stars:</strong> 1,057</li><li><strong>Focus:</strong> Simplest self-building coding agent</li></ul>
+
+<h3>Legacy Projects (Maintained)</h3>
+<ul><li><strong>BabyAGI:</strong> 22,333 stars (+2 today) - Autonomous agent foundation</li><li><strong>PrettyGraph:</strong> 778 stars - UI for text-to-knowledge-graph</li><li><strong>AG-Coder:</strong> 11 stars (+1 today) - Coding agent demo</li></ul>
+
+<h3>Emerging Patterns</h3>
+<ul><li><strong>New Architecture:</strong> Threaded server with memory curation</li><li><strong>New Framework:</strong> Hook Atlas game design system</li><li><strong>New Focus:</strong> Multi-protocol unification via graph-native approach</li><li><strong>Quality Focus:</strong> Terminal Bench testing infrastructure</li></ul>
+
+<h3>Community Signals</h3>
+<ul><li><strong>Strong Growth:</strong> ActiveGraph +2 stars daily</li><li><strong>Engagement:</strong> BabyAGI maintains 22K+ stable base</li><li><strong>New Interest:</strong> AG-Coder gaining traction (+1 star)</li><li><strong>Technical Rigor:</strong> Systematic testing and documentation</li></ul>
+
+<h3>Communi</h3></section>
+    <section class="card"><h2>Repo snapshot</h2>
+      <table><thead><tr><th>Repo</th><th>★</th><th>Pushed</th><th>Description</th></tr></thead><tbody>
+      <tr><td><a href='https://github.com/yoheinakajima/activegraph'>activegraph</a></td><td>523</td><td>2026-07-21</td><td>Event-sourced graph runtime for durable and stateful agents</td></tr><tr><td><a href='https://github.com/yoheinakajima/graphcon-deck'>graphcon-deck</a></td><td>211</td><td>2026-07-27</td><td></td></tr><tr><td><a href='https://github.com/yoheinakajima/distributed-discovery'>distributed-discovery</a></td><td>8</td><td>2026-08-03</td><td></td></tr><tr><td><a href='https://github.com/yoheinakajima/synthetic-players'>synthetic-players</a></td><td>0</td><td>2026-08-02</td><td>Experimental games with language-model agents.</td></tr><tr><td><a href='https://github.com/yoheinakajima/ouroboros'>ouroboros</a></td><td>1</td><td>2026-08-02</td><td></td></tr><tr><td><a href='https://github.com/yoheinakajima/babyagi'>babyagi</a></td><td>22342</td><td>2026-01-31</td><td></td></tr><tr><td><a href='https://github.com/yoheinakajima/instagraph'>instagraph</a></td><td>3551</td><td>2023-12-24</td><td>Converts text input or URL into knowledge graph and displays</td></tr><tr><td><a href='https://github.com/yoheinakajima/mindgraph'>mindgraph</a></td><td>948</td><td>2024-04-08</td><td>proof of concept prototype for generating and querying against an ever-expanding knowledge</td></tr><tr><td><a href='https://github.com/yoheinakajima/babyagi-2o'>babyagi-2o</a></td><td>342</td><td>2024-10-19</td><td>the simplest self-building general autonomous agent</td></tr><tr><td><a href='https://github.com/yoheinakajima/ditto'>ditto</a></td><td>1065</td><td>2024-10-19</td><td>the simplest self-building coding agent</td></tr><tr><td><a href='https://github.com/yoheinakajima/activegraph-packs'>activegraph-packs</a></td><td>9</td><td>2026-07-18</td><td>first iteration of a core pack schema for activegraph and a UI to explore capabilities</td></tr><tr><td><a href='https://github.com/yoheinakajima/boplog'>boplog</a></td><td>1</td><td>2026-07-22</td><td>build-in-public log</td></tr>
+      </tbody></table>
+      <h3>Key links</h3>
+      <ul>
+        <li><a href="https://github.com/yoheinakajima/distributed-discovery">distributed-discovery</a> · <a href="https://yoheinakajima.github.io/distributed-discovery/">companion site</a></li>
+        <li><a href="https://github.com/yoheinakajima/synthetic-players">synthetic-players</a> · <a href="https://yoheinakajima.github.io/synthetic-players/">project site</a> · <a href="https://github.com/yoheinakajima/synthetic-players/releases/tag/arxiv-v1">arxiv-v1</a></li>
+        <li><a href="https://github.com/yoheinakajima/ouroboros">ouroboros</a></li>
+        <li><a href="https://github.com/yoheinakajima/activegraph">activegraph</a></li>
+        <li>X posts: <a href="https://x.com/yoheinakajima/status/2084291585567793429">Stream Deck</a> · <a href="https://x.com/yoheinakajima/status/2084307631733383399">talkable agents</a> · <a href="https://x.com/yoheinakajima/status/2084303214917374263">cura.inc</a> · <a href="https://x.com/yoheinakajima/status/2084339281645244516">fewer agents?</a></li>
+      </ul>
+    </section>
+  </div>
+  <div class="grid">
+    <section class="card"><h2>Belief updates</h2><h3>August 4, 2026 belief updates</h3>
+
+<h4>Agentic VC operations</h4>
+<ul><li><strong>Control surfaces are agent UIs:</strong> A Stream Deck (or similar) is a legitimate high-frequency invocation layer for VC workflows; buttons should eventually bind to talkable agents, not just macros.</li><li><strong>Portfolio monitoring is infrastructure:</strong> AI-native VCs need continuous public+private portfolio telemetry (news, updates, cash, runway) as an operating system, not a spreadsheet ritual.</li><li><strong>Fewer agents may beat more agents:</strong> The human coordination insight (“more with less when fewer people”) is being stress-tested as a multi-agent design question — swarm size is a first-class tradeoff, not an unalloyed good.</li></ul>
+
+<h4>Research integrity / self-improvement</h4>
+<ul><li><strong>Governed capability acquisition ≠ recursive self-improvement:</strong> Ouroboros explicitly separates evaluated retained improvements from claims of open-ended RSI.</li><li><strong>Replay capsules are part of the scientific product:</strong> Synthetic Players treats zero-credential, byte-exact replay and sealed releases as core deliverables alongside the paper.</li><li><strong>Owner-gated cloud agent ops:</strong> TreasureBench AO-0012 continues the pattern that expensive/open-weight cloud runtime steps require explicit owner gates, preflight, and frozen handoff records.</li></ul></section>
+    <section class="card"><h2>Timeline</h2><h2>Yohei Nakajima - Activity Timeline</h2>
+
+<h3>Recent Activity (Last 72 Hours)</h3>
+
+<h4>August 3–4, 2026 (NEW — Tuesday retrieval)</h4>
+<p><strong>🎛️ AGENTIC VC OPS ON X (NET-NEW)</strong></p>
+<ul><li><strong>Stream Deck setup</strong> framed as “a basic stream deck set up of a modern day VC” with photo (status/2084291585567793429; ~34 likes / 8.1K views).</li><li><strong>Follow-up intent:</strong> hook Stream Deck buttons to agents he can “just press and talk to” (status/2084307631733383399).</li><li><strong>Portfolio OS rec:</strong> pointed VCs/angels to <a href="https://cura.inc">cura.inc</a> for public news + private update monitoring and aggregated cash/runway stats; founder in SF (status/2084303214917374263).</li><li><strong>Multi-agent question:</strong> quote-replied Hiten Shah on “more with less / fewer people” — “does the same hold true for having fewer agents?” (status/2084339281645244516; ~33 likes / 9.1K views).</li><li>Profile: <strong>125.4K</strong> followers, 28.1K posts (managed scrape).</li></ul>
+
+<p><strong>⭐ STAR / METADATA MOVEMENT (vs Aug 3)</strong></p>
+<ul><li>graphcon-deck: 204 → 211 (+7)</li><li>activegraph: 522 → 523 (+1)</li><li>No new repos; no code pushes after Aug 3 02:21 UTC.</li></ul>
+
+<p><strong>📚 CATCH-UP (Jul 28–Aug 2; present on GitHub, KB lag since Jul 23)</strong></p>
+<ul><li><strong>synthetic-players:</strong> <code>arxiv-v1</code> release; public research-ledger site; Q&amp;A/signal cards; paper on LLM persona-panel treatment-response / coarse marginal checks; zero-credential replay capsule.</li><li><strong>ouroboros:</strong> audited self-improvement paper release; README status = governed capability acquisition (not proven recursive SI); Minimal v2 on ActiveGraph.</li><li><strong>distributed-discovery / TreasureBench:</strong> AO-0006→AO-0011 mainline pilot policy/quarantine work; branch <code>agent/treasurebench-open-weight-cloud-runtime</code> AO-0012 R2–R4 (RunPod contract, encrypted pod preflight, owner gates/handoff). Tip still <code>32e25db</code> docs freeze AO-0012 R4 owner handoff.</li></ul>
+
+<p><strong>X / YOUTUBE / MENTIONS</strong></p>
+<ul><li>X managed scrape succeeded with chronological posts (profile=user attach still blocked).</li><li>YouTube: evergreen Active Graph / BabyAGI catalog; no confirmed brand-new upload.</li><li>Mentions: search providers unavailable; no new third-party mention confirmed.</li></ul>
+
+
+<h3>Recent Activity (Last 72 Hours)</h3>
+
+<h4>August 3–4, 2026 (NEW — Tuesday retrieval)</h4>
+<p><strong>🎛️ AGENTIC VC OPS ON X (NET-NEW)</strong></p>
+<ul><li><strong>Stream Deck setup</strong> framed as “a basic stream deck set up of a modern day VC” with photo (status/2084291585567793429; ~34 likes / 8.1K views).</li><li><strong>Follow-up intent:</strong> hook Stream Deck buttons to agents he can “just press and talk to” (status/2084307631733383399).</li><li><strong>Portfolio OS rec:</strong> pointed VCs/angels to <a href="https://cura.inc">cura.inc</a> for public news + private update monitoring and aggregated cash/runway stats; founder in SF (status/2084303214917374263).</li><li><strong>Multi-agent question:</strong> quote-replied Hiten Shah on “more with less / fewer people” — “does the same hold true for having fewer agents?” (status/2084339281645244516; ~33 likes / 9.1K views).</li><li>Profile: <strong>125.4K</strong> followers, 28.1K posts (managed scrape).</li></ul>
+
+<p><strong>⭐ STAR / METADATA MOVEMENT (vs Aug 3)</strong></p>
+<ul><li>graphcon-deck: 204 → 211 (+7)</li><li>activegraph: 522 → 523 (+1)</li><li>No new repos; no code pushes after Aug 3 02:21 UTC.</li></ul>
+
+<p><strong>📚 CATCH-UP (Jul 28–Aug 2; present on GitHub, KB lag since Jul 23)</strong></p>
+<ul><li><strong>synthetic-players:</strong> <code>arxiv-v1</code> release; public research-ledger site; Q&amp;A/signal cards; paper on LLM persona-panel treatment-response / coarse marginal checks; zero-credential replay capsule.</li><li><strong>ouroboros:</strong> audited self-improvement paper release; README status = governed capability acquisition (not proven recursive SI); Minimal v2 on ActiveGraph.</li><li><strong>distributed-discovery / TreasureBench:</strong> AO-0006→AO-0011 mainline pilot policy/quarantine work; branch <code>agent/treasurebench-open-weight-cloud-runtime</code> AO-0012 R2–R4 (RunPod contract, encrypted pod preflight, owner gates/handoff). Tip still <code>32e25db</code> docs freeze AO-0012 R4 owner handoff.</li></ul>
+
+<p><strong>X / YOUTUBE / MENTIONS</strong></p>
+<ul><li>X managed scrape succeeded with chronological posts (profile=user attach still blocked).</li><li>YouTube: evergreen Active Graph / BabyAGI catalog; no confirmed brand-new upload.</li><li>Mentions: search providers unavailable; no new third-party mention confirmed.</li></ul>
+
+
+<h3>Recent Activity (Last 72 Hours)</h3>
+
+<h4>July 22–23, 2026 (NEW — Thursday retrieval)</h4>
+<p><strong>🆕 ACTIVEGRAPH CONTROL PLANE FOR DISTRIBUTED DISCOVERY</strong></p>
+<ul><li><strong>Jul 22 18:44–22:59 UTC:</strong> New public repo <code>distributed-discovery-activegraph</code> created and built through pilot execution, multi-snapshot drift/audit stability, and DD-022 unseen holdout evaluation.</li><li><strong>Core significance:</strong> ActiveGraph is now being tested as an operational control plane for Yohei&#x27;s Distributed Discovery research program. The repo explicitly keeps GitHub files as the canonical scientific/public record while ActiveGraph stores disposable workflow state and audit history.</li><li><strong>Belief update:</strong> auditable agent runtimes can coordinate research workflows without becoming the source of scientific truth; records of claim/research state and records of workflow execution should be separate but linked.</li></ul>
+
+<p><strong>📚 DISTRIBUTED DISCOVERY PHASE 2 / AI-NATIVE OPTIONALITY</strong></p>
+<ul><li><strong>Jul 22–23 UTC:</strong> <code>distributed-discovery</code> continued with information-sharing frontier / paper lifecycle work, decentralized recovery and equilibrium robustness, Phase 2 external-legibility consolidation, and AI-native optionality framing.</li><li>Latest commits include PR #155 (paper: When Does Information Sharing Improve Decentralized Discovery?), #157 (paper acceptance record), #163/#164 (decentralized recovery closeout), #166 (Phase 2 external legibility), and #168 (AI-native optionality and paper lifecycle).</li></ul>
+
+<p><strong>🌐 PUBLIC SURFACE / AGENT ACCESS EXPANSION</strong></p>
+<ul><li>New public repo <code>yoheinakajima-dot-com</code> launched for a personal website redesign with template-faithful styling and build-log interaction.</li><li><code>boplog</code> added developer/agent resources: free API, CLI, MCP access, sitemap resources, and agent metadata validation.</li><li>Signal: Yohei is turning build-in-public/web presence into an agent-readable surface, not just a human blog/profile.</li></ul>
+
+<p><strong>⭐ STAR / METADATA MOVEMENT</strong></p>
+<ul><li>ActiveGraph: 408 → 428 (+20) — large one-day visibility jump.</li><li>activegraph-packs: 5 → 6 (+1); shared-discovery-paradox: 1 → 2 (+1); distributed-discovery: 5 → 6 (+1); mindgraph: 944 → 945 (+1); babyagi_archive: 108 → 109 (+1); BabyAGI: 22,336 → 22,335 (-1).</li></ul>
+
+<p><strong>X / YOUTUBE / MENTIONS</strong></p>
+<ul><li>X managed scrape captured profile highlights only; profile=user attach still blocked. Followers remain 125.2K; posts 27.9K.</li><li>YouTube search unchanged vs Jul 22; “Active Graph Agent Runtime (BabyAGI 4)” remains the top result.</li><li>Mentions search surfaced owned GitHub/docs results, including <code>distributed-discovery-activegraph</code>; no new notable third-party mention.</li></ul>
+
+<h4>July 20–21, 2026 (NEW — Tuesday retrieval)</h4>
+<p><strong>🆕 DISTRIBUTED DISCOVERY / SHARED DISCOVERY PARADOX — new research-program cluster</strong></p>
+<ul><li><strong>Jul 20 14:17–18:08 UTC:</strong> New public repo <code>shared-discovery-paradox</code> created and rapidly built into a working paper, exact verification script, data/figures, and interactive guide.</li><li><strong>Core result:</strong> better pooled information can make a group worse at discovery </li></ul></section>
+  </div>
+  <div class="grid">
+    <section class="card full"><h2>Themes</h2><p>s execution-grounded proof.</p>
+<ul><li>The design explicitly separates immutable engine kernels from proposed successor kernels, mirroring the broader ActiveGraph pattern of auditable state transitions rather than silent self-modification.</li><li>Pattern: Yohei is moving from durable agent runtime primitives toward closed-loop, evidence-gated self-improving software systems.</li><li>Evidence: <code>ouroboros</code> repo creation, Claude branches, README, and RC hardening commits captured 2026-07-17.</li></ul>
+
+<h4>20. Review Horizons and Exactly-Once Side Effects (2026-07-17 - NEW)</h4>
+<ul><li>ActiveGraph Packs ADR 0051 introduces accepted horizons, successor review batches, project evidence gates, and exactly-once Composio redirect claim semantics.</li><li>Pattern: Mature agent systems need explicit temporal boundaries for review and explicit mutation boundaries for connector side effects.</li><li>Evidence: <code>activegraph-packs</code> commits <code>afe774e</code> and <code>01748a8</code> captured 2026-07-17.</li></ul>
+
+<h4>21. Distributed Discovery / Collective Search Theory (2026-07-21 - NEW)</h4>
+<ul><li><code>shared-discovery-paradox</code> and <code>distributed-discovery</code> introduce a new research lane: how groups, organizations, and multi-agent systems should convert dispersed evidence into finite action/search portfolios.</li><li>The recurring ActiveGraph-era preference for evidence, gates, and claim status now appears in a more theoretical domain: exact verification scripts, claim ledgers, status taxonomies, registered studies, and companion sites.</li><li>Pattern: Yohei is generalizing from single-agent/agent-runtime governability to group-level discovery mechanics. Better shared state is not enough; systems need allocation mechanisms that preserve useful diversity.</li><li>Evidence: new GitHub repos and commits captured 2026-07-21.</li></ul>
+
+
+<h4>22. ActiveGraph as Research Operations Control Plane (2026-07-23 - NEW)</h4>
+<ul><li><code>distributed-discovery-activegraph</code> evaluates ActiveGraph as a deterministic control plane and auditable workflow runtime for the Distributed Discovery research program.</li><li>Pattern: Yohei is reusing ActiveGraph&#x27;s event-sourced audit model as operational research infrastructure while keeping GitHub/papers as the canonical public record.</li><li>Evidence: new repo creation and commits on 2026-07-22; pilot execution, multi-snapshot drift/audit stability, and DD-022 unseen holdout evaluation.</li></ul>
+
+<h4>23. Agent-Readable Build-in-Public Surfaces (2026-07-23 - NEW)</h4>
+<ul><li><code>boplog</code> adds a developer portal, free API/CLI/MCP access, agent resources in sitemap, and metadata validation; <code>yoheinakajima-dot-com</code> refreshes the personal website surface.</li><li>Pattern: Build-in-public is evolving from human-readable posting toward machine/agent-readable public interfaces.</li><li>Evidence: <code>boplog</code> and <code>yoheinakajima-dot-com</code> commits captured 2026-07-23.</li></ul>
+
+<h3>August 2026 theme refresh</h3>
+<ul><li><strong>Agentic VC operator UX</strong> — Stream Deck, talkable agents, portfolio OS recommendations (cura.inc)</li><li><strong>Collective search benchmarks</strong> — TreasureBench / Treasure Hunt as public face of Distributed Discovery</li><li><strong>Open-weight cloud agent ops</strong> — RunPod/encrypted pod preflight, AO-0012 owner gates</li><li><strong>Persona-panel science</strong> — Synthetic Players LLM behavioral experiments + arXiv packaging</li><li><strong>Governed self-improvement</strong> — Ouroboros audited paper; evaluation boundaries over hype RSI claims</li><li><strong>Share evidence / diversify actions</strong> — still the spine connecting DD theory to multi-agent practice</li><li><strong>Star gravity without commit noise</strong> — ActiveGraph + graphcon-deck still accumulating attention while code focus shifted to DD/SP/Ouroboros</li></ul></section>
+  </div>
+  <div class="footer">Built by Vic Intelligence Tracker · source raw in tracker/raw/yohei-nakajima/2026-08-04 · not affiliated with Yohei Nakajima</div>
+</div>
 </body>
 </html>
