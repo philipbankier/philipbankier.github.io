@@ -7,9 +7,8 @@
 import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  // { label: "About", href: "#about" },
-  // { label: "Ventures", href: "#ventures" },
   { label: "Writing", href: "#writing" },
+  { label: "Library", href: "#library" },
   { label: "Tools", href: "#tools" },
   { label: "Contact", href: "#contact" },
 ];
@@ -63,12 +62,12 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="https://autopilotai.live"
+            href="https://actrun.ai"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-2 px-4 py-1.5 rounded-full text-[12px] font-semibold font-display bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:opacity-90 transition-opacity shadow-sm"
           >
-            Try Autopilot
+            Try ActRun
           </a>
         </nav>
 
@@ -97,12 +96,12 @@ export default function Navbar() {
             </button>
           ))}
           <a
-            href="https://autopilotai.live"
+            href="https://actrun.ai"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-fit px-4 py-2 rounded-full text-[12px] font-semibold font-display bg-gradient-to-r from-blue-600 to-blue-500 text-white"
           >
-            Try Autopilot
+            Try ActRun
           </a>
         </div>
       )}

@@ -1,6 +1,6 @@
 /* ==========================================================
    DESIGN: Quiet Luxury Futurism
-   Writing: tabbed section — Personal Substack + Autopilot Substack
+   Writing: tabbed section — Personal Substack + ActRun Substack
    Cards: minimal editorial style with date, title, excerpt
    ========================================================== */
 
@@ -51,7 +51,7 @@ const PERSONAL_POSTS = [
   },
 ];
 
-const AUTOPILOT_POSTS = [
+const ACTRUN_POSTS = [
   {
     title: "Last Week In Agentic AI #6: Platforms, Pentagon, and Parallel Plays",
     excerpt: "Major tech giants simultaneously transition to autonomous agent platforms. A week of record-breaking funding and policy shifts.",
@@ -120,7 +120,7 @@ function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: numb
 }
 
 export default function WritingSection() {
-  const [activeTab, setActiveTab] = useState<"personal" | "autopilot">("personal");
+  const [activeTab, setActiveTab] = useState<"personal" | "actrun">("personal");
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ export default function WritingSection() {
     return () => obs.disconnect();
   }, []);
 
-  const posts = activeTab === "personal" ? PERSONAL_POSTS : AUTOPILOT_POSTS;
+  const posts = activeTab === "personal" ? PERSONAL_POSTS : ACTRUN_POSTS;
   const subUrl = activeTab === "personal"
     ? "https://thelivingedge.substack.com/"
     : "https://substack.com/@autopiloteverything";
@@ -172,11 +172,11 @@ export default function WritingSection() {
           <div className="flex gap-1 bg-[#F8FAFC] rounded-lg p-1 w-fit mb-8 border border-[#E8ECF0]">
             {[
               { id: "personal", label: "The Living Edge", sub: "Personal" },
-              { id: "autopilot", label: "The Agentic Edge", sub: "Autopilot" },
+              { id: "actrun", label: "The Agentic Edge", sub: "ActRun" },
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as "personal" | "autopilot")}
+                onClick={() => setActiveTab(tab.id as "personal" | "actrun")}
                 className={`px-4 py-2 rounded-md text-[13px] font-medium transition-all duration-200 ${
                   activeTab === tab.id
                     ? "bg-white text-[#0F1923] shadow-sm border border-[#E8ECF0]"

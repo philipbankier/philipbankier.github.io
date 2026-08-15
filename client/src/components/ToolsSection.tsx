@@ -135,7 +135,7 @@ export default function ToolsSection() {
   }, []);
 
   return (
-    <section id="tools" className="py-24 bg-white">
+    <section id="tools" className="py-24 bg-[#FAFBFC]">
       <div className="container">
         <div
           ref={headerRef}

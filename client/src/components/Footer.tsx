@@ -17,8 +17,8 @@ export default function Footer() {
           {/* Center: Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {[
-              { label: "KairoxAI", url: "https://kairoxai.live" },
-              { label: "Autopilot", url: "https://autopilotai.live" },
+              { label: "Kairox AI", url: "https://kairoxai.live" },
+              { label: "ActRun", url: "https://actrun.ai" },
               { label: "The Living Edge", url: "https://thelivingedge.substack.com/" },
               { label: "The Agentic Edge", url: "https://substack.com/@autopiloteverything" },
             ].map((link) => (

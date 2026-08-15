@@ -6,9 +6,9 @@
 
 import { useEffect, useRef } from "react";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310419663028996532/UU4EAPRpsj4UbnDgByzebM/hero-bg-4udNRZm7M8aJEkd2KNSdH7.webp";
-const HEADSHOT = "https://philipbankier.com/assets/img/profile.jpg";
-// Fallback: if the above 404s, swap to a placeholder or hosted CDN URL
+const HERO_BG = "/assets/img/hero-bg.webp";
+// Headshot pending: drop a real photo at client/public/assets/img/profile.jpg
+// and swap the monogram block below for an <img>.
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,12 +71,12 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://autopilotai.live"
+                href="https://actrun.ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white text-[13px] font-semibold font-display hover:opacity-90 transition-opacity shadow-md shadow-blue-500/20"
               >
-                Try Autopilot
+                Try ActRun
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -87,7 +87,7 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#E8ECF0] bg-white/80 text-[#0F1923] text-[13px] font-semibold font-display hover:border-blue-300 hover:bg-white transition-all"
               >
-                KairoxAI
+                Kairox AI
               </a>
               <button
                 onClick={() => {
@@ -145,16 +145,16 @@ export default function HeroSection() {
               {/* Decorative ring */}
               <div className="absolute -inset-3 rounded-2xl border border-blue-200/50 opacity-60" />
               <div className="absolute -inset-6 rounded-2xl border border-blue-100/30 opacity-40" />
-              <img
-                src={HEADSHOT}
-                alt="Philip Bankier"
-                className="relative w-56 h-56 object-cover rounded-2xl shadow-xl shadow-slate-200/60 grayscale-[15%]"
-                style={{ filter: "grayscale(10%) contrast(1.02)" }}
-              />
+              <div
+                aria-hidden="true"
+                className="relative w-56 h-56 rounded-2xl shadow-xl shadow-slate-200/60 bg-gradient-to-br from-[#0F1923] to-[#1E3A5F] flex items-center justify-center"
+              >
+                <span className="font-display font-bold text-5xl text-white/90 tracking-tight">PB</span>
+              </div>
               {/* Floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-3 py-2 shadow-lg border border-[#E8ECF0]">
                 <p className="font-mono text-[10px] text-[#64748B] uppercase tracking-wider">Co-Founder</p>
-                <p className="font-display font-semibold text-[13px] text-[#0F1923]">KairoxAI</p>
+                <p className="font-display font-semibold text-[13px] text-[#0F1923]">Kairox AI</p>
               </div>
             </div>
           </div>

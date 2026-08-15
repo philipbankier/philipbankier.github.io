@@ -130,7 +130,7 @@ export default function GoodReadsSection() {
   }, []);
 
   return (
-    <section id="reads" className="py-24 bg-[#FAFBFC]">
+    <section id="reads" className="py-24 bg-white">
       <div className="container">
         <div
           ref={headerRef}

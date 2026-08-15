@@ -73,7 +73,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#FAFBFC]">
+    <section id="contact" className="py-24 bg-white">
       <div className="container">
         <div
           ref={headerRef}
