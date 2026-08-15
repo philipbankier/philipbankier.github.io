@@ -73,14 +73,14 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white">
+    <section id="contact" className="py-24 bg-[#0B0D11]">
       <div className="container">
         <div
           ref={headerRef}
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">Contact</span>
+            <span className="section-label"><span className="num">05</span>Contact</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
         </div>
@@ -88,11 +88,11 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20">
           {/* Left */}
           <div>
-            <h2 className="font-display font-bold text-[#0F1923] text-3xl md:text-4xl leading-tight mb-4">
+            <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl leading-tight mb-4">
               Let's build<br />
-              <span className="gradient-text">something great.</span>
+              <em className="editorial-accent">something great.</em>
             </h2>
-            <p className="text-[15px] text-[#64748B] leading-relaxed mb-8">
+            <p className="text-[15px] text-[#98A1B3] leading-relaxed mb-8">
               Whether you're exploring a collaboration, have a question about AI agents, or just want to connect —
               I'm always happy to hear from builders and founders.
             </p>
@@ -107,11 +107,11 @@ export default function ContactSection() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white border border-[#E8ECF0] flex items-center justify-center text-[#64748B] group-hover:text-blue-600 group-hover:border-blue-200 transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-[#10131A] border border-[#1E242E] flex items-center justify-center text-[#98A1B3] group-hover:text-blue-300 group-hover:border-blue-400/40 transition-all">
                     {link.icon}
                   </div>
                   <div>
-                    <p className="text-[13px] font-medium text-[#0F1923] group-hover:text-blue-600 transition-colors">{link.name}</p>
+                    <p className="text-[13px] font-medium text-[#EDEBE4] group-hover:text-blue-300 transition-colors">{link.name}</p>
                     <p className="text-[11px] text-[#94A3B8] font-mono">{link.handle}</p>
                   </div>
                 </a>
@@ -123,42 +123,42 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-[12px] font-medium text-[#64748B] mb-1.5 font-mono uppercase tracking-wider">Name</label>
+                <label className="block text-[12px] font-medium text-[#98A1B3] mb-1.5 font-mono uppercase tracking-wider">Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
                   placeholder="Your name"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E8ECF0] bg-white text-[14px] text-[#0F1923] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all"
+                  className="w-full px-4 py-2.5 rounded-lg border border-[#1E242E] bg-[#10131A] text-[14px] text-[#EDEBE4] placeholder:text-[#4A5361] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all"
                 />
               </div>
               <div>
-                <label className="block text-[12px] font-medium text-[#64748B] mb-1.5 font-mono uppercase tracking-wider">Email</label>
+                <label className="block text-[12px] font-medium text-[#98A1B3] mb-1.5 font-mono uppercase tracking-wider">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="your@email.com"
-                  className="w-full px-4 py-2.5 rounded-lg border border-[#E8ECF0] bg-white text-[14px] text-[#0F1923] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all"
+                  className="w-full px-4 py-2.5 rounded-lg border border-[#1E242E] bg-[#10131A] text-[14px] text-[#EDEBE4] placeholder:text-[#4A5361] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-[12px] font-medium text-[#64748B] mb-1.5 font-mono uppercase tracking-wider">Message</label>
+              <label className="block text-[12px] font-medium text-[#98A1B3] mb-1.5 font-mono uppercase tracking-wider">Message</label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
                 rows={5}
                 placeholder="What's on your mind?"
-                className="w-full px-4 py-2.5 rounded-lg border border-[#E8ECF0] bg-white text-[14px] text-[#0F1923] placeholder:text-[#CBD5E1] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all resize-none"
+                className="w-full px-4 py-2.5 rounded-lg border border-[#1E242E] bg-[#10131A] text-[14px] text-[#EDEBE4] placeholder:text-[#4A5361] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-all resize-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white text-[13px] font-semibold font-display hover:opacity-90 transition-opacity shadow-md shadow-blue-500/20"
+              className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white text-[13px] font-semibold hover:opacity-90 transition-opacity shadow-md shadow-blue-500/20"
             >
               Send Message
             </button>

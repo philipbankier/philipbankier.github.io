@@ -14,7 +14,7 @@ import WritingSection from "@/components/WritingSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAFBFC]">
+    <div className="min-h-screen bg-[#0B0D11]">
       <Navbar />
       <HeroSection />
       <WritingSection />

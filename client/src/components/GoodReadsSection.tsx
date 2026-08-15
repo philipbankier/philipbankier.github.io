@@ -88,7 +88,7 @@ function ReadCard({ read, delay }: { read: typeof GOOD_READS[0]; delay: number }
       target="_blank"
       rel="noopener noreferrer"
       style={{ opacity: 0, transform: "translateY(16px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
-      className="group flex gap-4 p-4 rounded-xl border border-[#E8ECF0] bg-white hover:border-blue-200 hover:shadow-sm transition-all duration-200"
+      className="group flex gap-4 p-4 rounded-xl border border-[#1E242E] bg-[#10131A] hover:border-blue-400/40 hover:shadow-sm transition-all duration-200"
     >
       {/* Left: year */}
       <div className="flex-shrink-0 w-10 pt-0.5">
@@ -101,7 +101,7 @@ function ReadCard({ read, delay }: { read: typeof GOOD_READS[0]; delay: number }
           <span className={`pill ${TYPE_COLORS[read.type] || "pill-blue"}`}>{read.type}</span>
           <span className="text-[11px] text-[#94A3B8] font-mono truncate">{read.source}</span>
         </div>
-        <h3 className="font-display font-semibold text-[13.5px] text-[#0F1923] leading-snug mb-1 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-[13.5px] text-[#EDEBE4] leading-snug mb-1 group-hover:text-blue-300 transition-colors">
           {read.title}
         </h3>
         <p className="text-[12px] text-[#94A3B8] leading-relaxed line-clamp-2">{read.description}</p>
@@ -130,7 +130,7 @@ export default function GoodReadsSection() {
   }, []);
 
   return (
-    <section id="reads" className="py-24 bg-white">
+    <section id="reads" className="py-24 bg-[#0B0D11]">
       <div className="container">
         <div
           ref={headerRef}
@@ -138,13 +138,13 @@ export default function GoodReadsSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">Good Reads</span>
+            <span className="section-label"><span className="num">03</span>Good Reads</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
-          <h2 className="font-display font-bold text-[#0F1923] text-3xl md:text-4xl">
-            Worth your time
+          <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">
+            Worth your <em>time</em>
           </h2>
-          <p className="text-[15px] text-[#64748B] mt-2 max-w-lg">
+          <p className="text-[15px] text-[#98A1B3] mt-2 max-w-lg">
             Papers, essays, and articles I keep coming back to. Curated, not comprehensive.
           </p>
         </div>

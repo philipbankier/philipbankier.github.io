@@ -99,13 +99,13 @@ function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: numb
       target="_blank"
       rel="noopener noreferrer"
       style={{ opacity: 0, transform: "translateY(16px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
-      className="group block bg-white rounded-xl border border-[#E8ECF0] p-5 hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-250"
+      className="group block bg-[#10131A] rounded-xl border border-[#1E242E] p-5 hover:border-blue-400/40 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-250"
     >
       <div className="flex items-start justify-between gap-3 mb-2">
         <span className={`pill ${TAG_COLORS[post.tag] || "pill-blue"} flex-shrink-0`}>{post.tag}</span>
         <span className="mono-meta text-[11px] flex-shrink-0">{post.date}</span>
       </div>
-      <h3 className="font-display font-semibold text-[14px] text-[#0F1923] leading-snug mb-1.5 group-hover:text-blue-600 transition-colors">
+      <h3 className="font-semibold text-[14px] text-[#EDEBE4] leading-snug mb-1.5 group-hover:text-blue-300 transition-colors">
         {post.title}
       </h3>
       <p className="text-[12.5px] text-[#94A3B8] leading-relaxed line-clamp-2">{post.excerpt}</p>
@@ -139,7 +139,7 @@ export default function WritingSection() {
     : "https://substack.com/@autopiloteverything";
 
   return (
-    <section id="writing" className="py-24 bg-white">
+    <section id="writing" className="py-24 bg-[#0B0D11]">
       <div className="container">
         {/* Header */}
         <div
@@ -147,19 +147,19 @@ export default function WritingSection() {
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">Writing</span>
+            <span className="section-label"><span className="num">01</span>Writing</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <h2 className="font-display font-bold text-[#0F1923] text-3xl md:text-4xl">From the lab</h2>
-              <p className="text-[15px] text-[#64748B] mt-1">Weekly dispatches on AI, agents, and what's coming next.</p>
+              <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">From the <em>lab</em></h2>
+              <p className="text-[15px] text-[#98A1B3] mt-2">Weekly dispatches on AI, agents, and what's coming next.</p>
             </div>
             <a
               href={subUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[13px] font-semibold font-display text-blue-600 hover:text-blue-700 transition-colors flex-shrink-0"
+              className="inline-flex items-center gap-2 text-[13px] font-semibold text-blue-400 hover:text-blue-300 transition-colors flex-shrink-0"
             >
               Subscribe on Substack
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -169,7 +169,7 @@ export default function WritingSection() {
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-1 bg-[#F8FAFC] rounded-lg p-1 w-fit mb-8 border border-[#E8ECF0]">
+          <div className="flex gap-1 bg-[#10131A] rounded-lg p-1 w-fit mb-8 border border-[#1E242E]">
             {[
               { id: "personal", label: "The Living Edge", sub: "Personal" },
               { id: "actrun", label: "The Agentic Edge", sub: "ActRun" },
@@ -179,8 +179,8 @@ export default function WritingSection() {
                 onClick={() => setActiveTab(tab.id as "personal" | "actrun")}
                 className={`px-4 py-2 rounded-md text-[13px] font-medium transition-all duration-200 ${
                   activeTab === tab.id
-                    ? "bg-white text-[#0F1923] shadow-sm border border-[#E8ECF0]"
-                    : "text-[#64748B] hover:text-[#0F1923]"
+                    ? "bg-[#1E2530] text-[#EDEBE4] border border-[#2A3240]"
+                    : "text-[#98A1B3] hover:text-[#EDEBE4]"
                 }`}
               >
                 <span className="font-display font-semibold">{tab.label}</span>

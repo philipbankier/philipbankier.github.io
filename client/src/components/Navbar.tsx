@@ -37,7 +37,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-[#E8ECF0] shadow-sm"
+          ? "bg-[#0B0D11]/85 backdrop-blur-md border-b border-[#1E242E]"
           : "bg-transparent"
       }`}
     >
@@ -45,7 +45,7 @@ export default function Navbar() {
         {/* Logo / Name */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="font-display font-semibold text-[15px] tracking-tight text-[#0F1923] hover:opacity-70 transition-opacity"
+          className="font-editorial italic text-[19px] text-[#EDEBE4] hover:opacity-70 transition-opacity"
         >
           Philip Bankier
         </button>
@@ -56,7 +56,7 @@ export default function Navbar() {
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-[13px] font-medium text-[#64748B] hover:text-[#0F1923] transition-colors duration-200 tracking-wide"
+              className="text-[13px] font-medium text-[#98A1B3] hover:text-[#EDEBE4] transition-colors duration-200 tracking-wide"
             >
               {link.label}
             </button>
@@ -65,7 +65,7 @@ export default function Navbar() {
             href="https://actrun.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 px-4 py-1.5 rounded-full text-[12px] font-semibold font-display bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:opacity-90 transition-opacity shadow-sm"
+            className="ml-2 px-4 py-1.5 rounded-lg text-[12px] font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:opacity-90 transition-opacity shadow-sm"
           >
             Try ActRun
           </a>
@@ -77,20 +77,20 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-5 h-0.5 bg-[#0F1923] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-[#0F1923] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-[#0F1923] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-[#EDEBE4] transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-[#EDEBE4] transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-[#EDEBE4] transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-[#E8ECF0] px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#0B0D11] border-t border-[#1E242E] px-6 py-4 flex flex-col gap-4">
           {NAV_LINKS.map((link) => (
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-left text-[14px] font-medium text-[#64748B] hover:text-[#0F1923] transition-colors"
+              className="text-left text-[14px] font-medium text-[#98A1B3] hover:text-[#EDEBE4] transition-colors"
             >
               {link.label}
             </button>
@@ -99,7 +99,7 @@ export default function Navbar() {
             href="https://actrun.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-fit px-4 py-2 rounded-full text-[12px] font-semibold font-display bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+            className="inline-flex w-fit px-4 py-2 rounded-lg text-[12px] font-semibold bg-gradient-to-r from-blue-600 to-blue-500 text-white"
           >
             Try ActRun
           </a>

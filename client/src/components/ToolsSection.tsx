@@ -85,16 +85,16 @@ function ToolCard({ tool, delay }: { tool: typeof TOOLS[0]; delay: number }) {
     <div
       ref={ref}
       style={{ opacity: 0, transform: "translateY(16px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
-      className="group bg-white rounded-xl border border-[#E8ECF0] p-5 card-lift flex flex-col"
+      className="group bg-[#10131A] rounded-xl border border-[#1E242E] p-5 card-lift flex flex-col"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[#F8FAFC] border border-[#E8ECF0] flex items-center justify-center text-lg flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-[#1A202B] border border-[#2A3240] flex items-center justify-center text-lg flex-shrink-0">
             {tool.emoji}
           </div>
           <div>
-            <h3 className="font-display font-semibold text-[14px] text-[#0F1923]">{tool.name}</h3>
+            <h3 className="font-semibold text-[14px] text-[#EDEBE4]">{tool.name}</h3>
             <p className="text-[11px] text-[#94A3B8] font-mono">{tool.category}</p>
           </div>
         </div>
@@ -104,14 +104,14 @@ function ToolCard({ tool, delay }: { tool: typeof TOOLS[0]; delay: number }) {
       </div>
 
       {/* Description */}
-      <p className="text-[13px] text-[#64748B] leading-relaxed flex-1 mb-4">{tool.description}</p>
+      <p className="text-[13px] text-[#98A1B3] leading-relaxed flex-1 mb-4">{tool.description}</p>
 
       {/* CTA */}
       <a
         href={tool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold font-display text-blue-600 hover:text-blue-700 transition-colors group/link"
+        className="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-blue-400 hover:text-blue-300 transition-colors group/link"
       >
         {tool.cta}
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover/link:translate-x-0.5">
@@ -135,7 +135,7 @@ export default function ToolsSection() {
   }, []);
 
   return (
-    <section id="tools" className="py-24 bg-[#FAFBFC]">
+    <section id="tools" className="py-24 bg-[#0D1119]">
       <div className="container">
         <div
           ref={headerRef}
@@ -143,13 +143,13 @@ export default function ToolsSection() {
           className="mb-12"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">Tools I Like</span>
+            <span className="section-label"><span className="num">04</span>Tools I Like</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
-          <h2 className="font-display font-bold text-[#0F1923] text-3xl md:text-4xl">
-            My stack
+          <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">
+            My <em>stack</em>
           </h2>
-          <p className="text-[15px] text-[#64748B] mt-2 max-w-lg">
+          <p className="text-[15px] text-[#98A1B3] mt-2 max-w-lg">
             Tools I actually use and recommend. Some links are affiliate — marked clearly.
           </p>
         </div>

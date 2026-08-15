@@ -5,12 +5,12 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F1923] text-white py-12">
+    <footer className="bg-[#07090C] border-t border-[#1E242E] text-white py-12">
       <div className="container">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Left */}
           <div>
-            <p className="font-display font-semibold text-[15px] mb-1">Philip Bankier</p>
+            <p className="font-editorial italic text-[18px] mb-1 text-[#EDEBE4]">Philip Bankier</p>
             <p className="text-[12px] text-white/40 font-mono">AI Founder · Builder · Writer</p>
           </div>
 
