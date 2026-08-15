@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
@@ -36,15 +36,6 @@ jobs:
 
       - name: Build
         run: pnpm run build:gh
-        env:
-          VITE_ANALYTICS_ENDPOINT: ''
-          VITE_ANALYTICS_WEBSITE_ID: ''
-          VITE_APP_ID: ''
-          VITE_APP_LOGO: ''
-          VITE_APP_TITLE: 'Philip Bankier'
-          VITE_FRONTEND_FORGE_API_KEY: ''
-          VITE_FRONTEND_FORGE_API_URL: ''
-          VITE_OAUTH_PORTAL_URL: ''
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
