@@ -54,7 +54,28 @@ const PROJECTS = [
     description:
       "Your personal AI computer. One command to deploy. An open-source Zo Computer alternative.",
   },
+  {
+    repo: "technical-visualizer",
+    title: "Technical Visualizer",
+    language: "Go",
+    description:
+      "Go CLI that builds source-backed technical visualization bundles.",
+  },
+  {
+    repo: "riskradar",
+    title: "RiskRadar",
+    language: "Python",
+    description:
+      "Portfolio-level latent factor risk engine: composite heat score, position attribution, HMM regime detection, causal DAG, and a live dashboard.",
+  },
 ];
+
+const LANGUAGE_COLORS: Record<string, string> = {
+  TypeScript: "pill-blue",
+  Shell: "pill-green",
+  Python: "pill-amber",
+  Go: "pill-blue",
+};
 
 function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: number }) {
   const ref = useRef<HTMLAnchorElement>(null);
@@ -83,7 +104,9 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
       className="group flex flex-col bg-[#10131A] rounded-xl border border-[#1E242E] p-5 hover:border-blue-400/40 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-250"
     >
       <div className="flex items-start justify-between gap-3 mb-2">
-        <span className="pill pill-blue flex-shrink-0">{project.language}</span>
+        <span className={`pill ${LANGUAGE_COLORS[project.language] || "pill-blue"} flex-shrink-0`}>
+          {project.language}
+        </span>
         <svg
           className="text-[#3A4453] group-hover:text-blue-300 transition-colors flex-shrink-0 mt-0.5"
           width="15" height="15" viewBox="0 0 24 24" fill="currentColor"
