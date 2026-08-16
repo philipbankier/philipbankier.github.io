@@ -49,12 +49,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="mt-8 pt-6 border-t border-white/10">
           <p className="text-[11px] text-white/30 font-mono">
             © {new Date().getFullYear()} Philip Bankier. All rights reserved.
-          </p>
-          <p className="text-[11px] text-white/20 font-mono">
-            Some links are affiliate links, clearly marked.
           </p>
         </div>
       </div>

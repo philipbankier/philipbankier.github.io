@@ -1,7 +1,6 @@
 /* ==========================================================
-   DESIGN: Quiet Luxury Futurism
+   DESIGN: Editorial Ledger
    Tools: grid of tool cards with logo, description, CTA
-   Affiliate links clearly labeled
    ========================================================== */
 
 import { useEffect, useRef } from "react";
@@ -12,8 +11,7 @@ const TOOLS = [
     name: "ElevenLabs",
     category: "Voice AI",
     description: "The best AI voice generation I've used. Incredibly realistic voices for agents, products, and content.",
-    url: "https://try.elevenlabs.io/i0307e6mykcz",
-    affiliate: true,
+    url: "https://elevenlabs.io",
     emoji: "🎙️",
     cta: "Try ElevenLabs",
   },
@@ -22,7 +20,6 @@ const TOOLS = [
     category: "AI Code Editor",
     description: "My daily driver for coding. The AI pair programmer that actually understands your codebase.",
     url: "https://cursor.sh",
-    affiliate: false,
     emoji: "⌨️",
     cta: "Get Cursor",
   },
@@ -31,7 +28,6 @@ const TOOLS = [
     category: "Project Management",
     description: "The cleanest issue tracker for product teams. Fast, opinionated, and built for builders.",
     url: "https://linear.app",
-    affiliate: false,
     emoji: "📐",
     cta: "Try Linear",
   },
@@ -40,7 +36,6 @@ const TOOLS = [
     category: "AI Research",
     description: "My go-to for quick research. Replaces most Google searches with cited, conversational answers.",
     url: "https://perplexity.ai",
-    affiliate: false,
     emoji: "🔍",
     cta: "Try Perplexity",
   },
@@ -49,7 +44,6 @@ const TOOLS = [
     category: "Deployment",
     description: "Zero-config deployment for frontend projects. Ships in seconds, scales automatically.",
     url: "https://vercel.com",
-    affiliate: false,
     emoji: "▲",
     cta: "Deploy on Vercel",
   },
@@ -58,7 +52,6 @@ const TOOLS = [
     category: "Knowledge Base",
     description: "Where all my thinking, docs, and company knowledge lives. Flexible enough for anything.",
     url: "https://notion.so",
-    affiliate: false,
     emoji: "📓",
     cta: "Try Notion",
   },
@@ -98,9 +91,6 @@ function ToolCard({ tool, delay }: { tool: typeof TOOLS[0]; delay: number }) {
             <p className="text-[11px] text-[#94A3B8] font-mono">{tool.category}</p>
           </div>
         </div>
-        {tool.affiliate && (
-          <span className="pill pill-amber text-[9px]">Affiliate</span>
-        )}
       </div>
 
       {/* Description */}
@@ -150,7 +140,7 @@ export default function ToolsSection() {
             My <em>stack</em>
           </h2>
           <p className="text-[15px] text-[#98A1B3] mt-2 max-w-lg">
-            Tools I actually use and recommend. Some links are affiliate, marked clearly.
+            Tools I actually use and recommend.
           </p>
         </div>
 

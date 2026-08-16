@@ -1,14 +1,15 @@
 /* ==========================================================
-   DESIGN: Quiet Luxury Futurism
+   DESIGN: Editorial Ledger
    Home: assembles all sections in order
    ========================================================== */
 
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import GoodReadsSection from "@/components/GoodReadsSection";
+// import GoodReadsSection from "@/components/GoodReadsSection";
 import HeroSection from "@/components/HeroSection";
 import LibrarySection from "@/components/LibrarySection";
 import Navbar from "@/components/Navbar";
+import OpenSourceSection from "@/components/OpenSourceSection";
 // import ToolsSection from "@/components/ToolsSection";
 import WritingSection from "@/components/WritingSection";
 
@@ -19,7 +20,8 @@ export default function Home() {
       <HeroSection />
       <WritingSection />
       <LibrarySection />
-      <GoodReadsSection />
+      <OpenSourceSection />
+      {/* <GoodReadsSection /> */}
       {/* <ToolsSection /> */}
       <ContactSection />
       <Footer />
