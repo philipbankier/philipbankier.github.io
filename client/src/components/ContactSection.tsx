@@ -1,6 +1,6 @@
 /* ==========================================================
    DESIGN: Quiet Luxury Futurism
-   Contact: split layout — left copy, right form
+   Contact: split layout, left copy and right form
    Form uses mailto fallback (static site compatible)
    ========================================================== */
 
@@ -80,7 +80,7 @@ export default function ContactSection() {
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label"><span className="num">05</span>Contact</span>
+            <span className="section-label"><span className="num">04</span>Contact</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function ContactSection() {
               <em className="editorial-accent">something great.</em>
             </h2>
             <p className="text-[15px] text-[#98A1B3] leading-relaxed mb-8">
-              Whether you're exploring a collaboration, have a question about AI agents, or just want to connect —
+              Whether you're exploring a collaboration, have a question about AI agents, or just want to connect,
               I'm always happy to hear from builders and founders.
             </p>
 

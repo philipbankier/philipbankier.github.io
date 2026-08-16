@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Left */}
           <div>
             <p className="font-editorial italic text-[18px] mb-1 text-[#EDEBE4]">Philip Bankier</p>
-            <p className="text-[12px] text-white/40 font-mono">AI Founder · Builder · Writer</p>
+            <p className="text-[12px] text-white/40 font-mono">AI Founder · Builder · Analyst</p>
           </div>
 
           {/* Center: Links */}
@@ -20,7 +20,6 @@ export default function Footer() {
               { label: "Kairox AI", url: "https://kairoxai.live" },
               { label: "ActRun", url: "https://actrun.ai" },
               { label: "The Living Edge", url: "https://thelivingedge.substack.com/" },
-              { label: "The Agentic Edge", url: "https://substack.com/@autopiloteverything" },
             ].map((link) => (
               <a
                 key={link.label}

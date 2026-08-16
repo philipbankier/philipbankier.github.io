@@ -9,7 +9,7 @@ import GoodReadsSection from "@/components/GoodReadsSection";
 import HeroSection from "@/components/HeroSection";
 import LibrarySection from "@/components/LibrarySection";
 import Navbar from "@/components/Navbar";
-import ToolsSection from "@/components/ToolsSection";
+// import ToolsSection from "@/components/ToolsSection";
 import WritingSection from "@/components/WritingSection";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       <WritingSection />
       <LibrarySection />
       <GoodReadsSection />
-      <ToolsSection />
+      {/* <ToolsSection /> */}
       <ContactSection />
       <Footer />
     </div>

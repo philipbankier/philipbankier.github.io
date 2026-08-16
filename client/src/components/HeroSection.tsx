@@ -1,7 +1,7 @@
 /* ==========================================================
    DESIGN: Editorial Ledger
    Hero: left-anchored oversized serif, mono kicker,
-   blueprint-grid backdrop — no image dependency
+   blueprint-grid backdrop, no image dependency
    ========================================================== */
 
 import { useEffect, useRef } from "react";
@@ -39,7 +39,7 @@ export default function HeroSection() {
           <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[#6E7787] mb-6">
             <span className="text-[#5B9DFF]">Co-Founder</span> / Kairox AI
             <span className="mx-3 text-[#2A3240]">·</span>
-            AI Founder &amp; Builder
+            AI Founder &amp; Tinkerer
           </p>
 
           {/* Name */}
@@ -60,7 +60,7 @@ export default function HeroSection() {
 
           {/* Bio summary */}
           <p className="text-[15px] text-[#98A1B3] leading-relaxed max-w-xl mb-10 font-[350]">
-            Nearly a decade founding, building, and scaling startups — from first commit through acquisition.
+            Nearly a decade founding, building, and scaling startups, from first commit through acquisition.
             Now focused on the meta-layer: autonomous AI systems that orchestrate your tools, workflows, and agents
             so you can operate at the speed of thought.
           </p>

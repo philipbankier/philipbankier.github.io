@@ -1,7 +1,7 @@
 /* ==========================================================
    DESIGN: Quiet Luxury Futurism
    Library: long-form artifacts published under /pages/
-   Editable data array — add new artifacts here
+   Editable data array: add new artifacts here
    ========================================================== */
 
 import { useEffect, useRef } from "react";
@@ -21,7 +21,7 @@ const ARTIFACTS = [
     type: "Roundup",
     date: "Apr 2026",
     description:
-      "A month in review across the AI agent ecosystem — model releases, terminal agents, platform launches, and security incidents.",
+      "A month in review across the AI agent ecosystem: model releases, terminal agents, platform launches, and security incidents.",
     url: "/pages/april-2026-ai-agent-roundup.html",
   },
   {
@@ -29,7 +29,7 @@ const ARTIFACTS = [
     type: "Synthesis",
     date: "Apr 2026",
     description:
-      "Mapping every technique for transferring a person's creative voice into an LLM — from prompting to activation steering.",
+      "Mapping every technique for transferring a person's creative voice into an LLM, from prompting to activation steering.",
     url: "/pages/taste-landscape.html",
   },
   {
@@ -37,7 +37,7 @@ const ARTIFACTS = [
     type: "Field Guide",
     date: "May 2026",
     description:
-      "Using spare phones as automation nodes for agent fleets — tooling comparison, decision tree, and quick-start checklist.",
+      "Using spare phones as automation nodes for agent fleets: tooling comparison, decision tree, and quick-start checklist.",
     url: "/pages/mobile-agent-nodes.html",
   },
 ];
@@ -117,7 +117,7 @@ export default function LibrarySection() {
           <div className="mb-8">
             <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">The <em>artifacts</em></h2>
             <p className="text-[15px] text-[#98A1B3] mt-2">
-              Long-form research artifacts — briefs, syntheses, and field guides across domains.
+              Long-form research artifacts: briefs, syntheses, and field guides across domains.
             </p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 /* ==========================================================
    DESIGN: Quiet Luxury Futurism
    Good Reads: curated papers, articles, and links
-   Editable data array — Philip can add/remove items
+   Editable data array: Philip can add/remove items
    ========================================================== */
 
 import { useEffect, useRef } from "react";
@@ -28,7 +28,7 @@ const GOOD_READS = [
     title: "The Bitter Lesson",
     source: "Rich Sutton",
     type: "Essay",
-    description: "Why general methods that leverage computation always win in the long run — a must-read for anyone building AI.",
+    description: "Why general methods that scale with computation always win in the long run. A must-read for anyone building AI.",
     url: "http://www.incompleteideas.net/IncIdeas/BitterLesson.html",
     year: "2019",
   },

@@ -1,10 +1,10 @@
 /* ==========================================================
-   DESIGN: Quiet Luxury Futurism
-   Writing: tabbed section — Personal Substack + ActRun Substack
+   DESIGN: Editorial Ledger
+   Writing: posts from The Living Edge
    Cards: minimal editorial style with date, title, excerpt
    ========================================================== */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const PERSONAL_POSTS = [
   {
@@ -30,7 +30,7 @@ const PERSONAL_POSTS = [
   },
   {
     title: "Last Week In AI Agents #3: From Mars to Moltbook",
-    excerpt: "Quick Hits (TL;DR) — your weekly agentic intelligence digest",
+    excerpt: "Quick Hits (TL;DR): your weekly agentic intelligence digest",
     date: "Feb 6, 2026",
     url: "https://thelivingedge.substack.com/",
     tag: "AI Agents",
@@ -51,28 +51,10 @@ const PERSONAL_POSTS = [
   },
 ];
 
-const ACTRUN_POSTS = [
-  {
-    title: "Last Week In Agentic AI #6: Platforms, Pentagon, and Parallel Plays",
-    excerpt: "Major tech giants simultaneously transition to autonomous agent platforms. A week of record-breaking funding and policy shifts.",
-    date: "Mar 1, 2026",
-    url: "https://substack.com/@autopiloteverything",
-    tag: "Agentic AI",
-  },
-  {
-    title: "Last Week In Agentic AI #5: Speed, Skills, and Silicon Sociology",
-    excerpt: "The agentic AI landscape accelerates — new capabilities, new players, new implications.",
-    date: "Feb 21, 2026",
-    url: "https://substack.com/@autopiloteverything",
-    tag: "Agentic AI",
-  },
-];
-
 const TAG_COLORS: Record<string, string> = {
   "Multimodal AI": "pill-blue",
   "AI Agents": "pill-green",
   "Deep Dive": "pill-amber",
-  "Agentic AI": "pill-blue",
 };
 
 function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: number }) {
@@ -120,7 +102,6 @@ function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: numb
 }
 
 export default function WritingSection() {
-  const [activeTab, setActiveTab] = useState<"personal" | "actrun">("personal");
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -133,10 +114,8 @@ export default function WritingSection() {
     return () => obs.disconnect();
   }, []);
 
-  const posts = activeTab === "personal" ? PERSONAL_POSTS : ACTRUN_POSTS;
-  const subUrl = activeTab === "personal"
-    ? "https://thelivingedge.substack.com/"
-    : "https://substack.com/@autopiloteverything";
+  const posts = PERSONAL_POSTS;
+  const subUrl = "https://thelivingedge.substack.com/";
 
   return (
     <section id="writing" className="py-24 bg-[#0B0D11]">
@@ -150,10 +129,13 @@ export default function WritingSection() {
             <span className="section-label"><span className="num">01</span>Writing</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">From the <em>lab</em></h2>
-              <p className="text-[15px] text-[#98A1B3] mt-2">Weekly dispatches on AI, agents, and what's coming next.</p>
+              <p className="text-[15px] text-[#98A1B3] mt-2">
+                Weekly dispatches on AI, agents, and what's coming next.
+              </p>
+              <p className="mono-meta mt-3">The Living Edge</p>
             </div>
             <a
               href={subUrl}
@@ -168,26 +150,6 @@ export default function WritingSection() {
             </a>
           </div>
 
-          {/* Tabs */}
-          <div className="flex gap-1 bg-[#10131A] rounded-lg p-1 w-fit mb-8 border border-[#1E242E]">
-            {[
-              { id: "personal", label: "The Living Edge", sub: "Personal" },
-              { id: "actrun", label: "The Agentic Edge", sub: "ActRun" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as "personal" | "actrun")}
-                className={`px-4 py-2 rounded-md text-[13px] font-medium transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? "bg-[#1E2530] text-[#EDEBE4] border border-[#2A3240]"
-                    : "text-[#98A1B3] hover:text-[#EDEBE4]"
-                }`}
-              >
-                <span className="font-display font-semibold">{tab.label}</span>
-                <span className="ml-1.5 mono-meta text-[10px]">{tab.sub}</span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Posts grid */}

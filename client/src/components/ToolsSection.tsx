@@ -150,7 +150,7 @@ export default function ToolsSection() {
             My <em>stack</em>
           </h2>
           <p className="text-[15px] text-[#98A1B3] mt-2 max-w-lg">
-            Tools I actually use and recommend. Some links are affiliate — marked clearly.
+            Tools I actually use and recommend. Some links are affiliate, marked clearly.
           </p>
         </div>
 
