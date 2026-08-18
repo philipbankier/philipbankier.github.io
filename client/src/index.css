@@ -178,6 +178,44 @@
     background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
   }
 
+  /* Portrait: desaturated and cooled so a casual photo sits inside the
+     dark palette. Tune brightness/contrast here, not in the component. */
+  .portrait-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid #2A3240;
+    background: #10131A;
+    box-shadow: 0 18px 50px oklch(0 0 0 / 0.5);
+  }
+  .portrait-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.26) brightness(0.74);
+  }
+  /* Vignette pulls the bright park background down toward the page black,
+     so the lit face stays the only high value in the frame. */
+  .portrait-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 55% at 52% 34%, transparent 25%, oklch(0.15 0.012 255 / 0.88) 100%),
+      linear-gradient(180deg, transparent 55%, oklch(0.15 0.012 255 / 0.85) 100%);
+  }
+  /* Separate layer for the cool cast, so it is not eaten by the vignette */
+  .portrait-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, oklch(0.62 0.19 255 / 0.30), oklch(0.62 0.19 255 / 0.10));
+    mix-blend-mode: soft-light;
+  }
+
   /* Card hover lift */
   .card-lift {
     transition: transform 0.25s ease, box-shadow 0.25s ease;

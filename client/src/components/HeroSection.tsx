@@ -6,8 +6,9 @@
 
 import { useEffect, useRef } from "react";
 
-// Headshot pending: when a real photo lands at client/public/assets/img/profile.jpg,
-// consider a small framed portrait beside the metadata block below.
+// Portrait is 449x561; displayed at 220px so it stays crisp on 2x screens.
+// Colour treatment lives in .portrait-frame in index.css.
+const PORTRAIT = "/assets/img/profile.webp";
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,9 +32,24 @@ export default function HeroSection() {
   return (
     <section className="hero-backdrop relative min-h-screen flex items-center overflow-hidden">
       <div className="container relative z-10 pt-24 pb-20">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
+          {/* Portrait: above the text on mobile, right-hand column on desktop */}
+          <div className="order-first lg:order-last w-[128px] sm:w-[150px] lg:w-[220px] flex-shrink-0">
+            <div className="portrait-frame">
+              <img
+                src={PORTRAIT}
+                alt="Philip Bankier"
+                width={449}
+                height={561}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+
         <div
           ref={containerRef}
-          className="max-w-4xl opacity-0 translate-y-4 transition-all duration-700 ease-out"
+          className="flex-1 max-w-3xl opacity-0 translate-y-4 transition-all duration-700 ease-out"
         >
           {/* Mono kicker */}
           <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-[#6E7787] mb-6">
@@ -134,6 +150,7 @@ export default function HeroSection() {
               </svg>
             </a>
           </div>
+        </div>
         </div>
 
         {/* Scroll indicator */}
