@@ -32,9 +32,10 @@ export default function HeroSection() {
   return (
     <section className="hero-backdrop relative min-h-screen flex items-center overflow-hidden">
       <div className="container relative z-10 pt-24 pb-20">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
-          {/* Portrait: above the text on mobile, right-hand column on desktop */}
-          <div className="order-first lg:order-last w-[128px] sm:w-[150px] lg:w-[220px] flex-shrink-0">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
+          {/* Portrait: above the text on mobile, right-hand column on desktop.
+              Right edge lines up with the navbar CTA above it. */}
+          <div className="order-first lg:order-last w-[128px] sm:w-[150px] lg:w-[224px] xl:w-[248px] flex-shrink-0">
             <div className="portrait-frame">
               <img
                 src={PORTRAIT}
