@@ -1,10 +1,10 @@
 /* ==========================================================
-   DESIGN: Quiet Luxury Futurism
-   Writing: tabbed section — Personal Substack + Autopilot Substack
+   DESIGN: Editorial Ledger
+   Writing: posts from The Living Edge
    Cards: minimal editorial style with date, title, excerpt
    ========================================================== */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const PERSONAL_POSTS = [
   {
@@ -30,7 +30,7 @@ const PERSONAL_POSTS = [
   },
   {
     title: "Last Week In AI Agents #3: From Mars to Moltbook",
-    excerpt: "Quick Hits (TL;DR) — your weekly agentic intelligence digest",
+    excerpt: "Quick Hits (TL;DR): your weekly agentic intelligence digest",
     date: "Feb 6, 2026",
     url: "https://thelivingedge.substack.com/",
     tag: "AI Agents",
@@ -51,28 +51,10 @@ const PERSONAL_POSTS = [
   },
 ];
 
-const AUTOPILOT_POSTS = [
-  {
-    title: "Last Week In Agentic AI #6: Platforms, Pentagon, and Parallel Plays",
-    excerpt: "Major tech giants simultaneously transition to autonomous agent platforms. A week of record-breaking funding and policy shifts.",
-    date: "Mar 1, 2026",
-    url: "https://substack.com/@autopiloteverything",
-    tag: "Agentic AI",
-  },
-  {
-    title: "Last Week In Agentic AI #5: Speed, Skills, and Silicon Sociology",
-    excerpt: "The agentic AI landscape accelerates — new capabilities, new players, new implications.",
-    date: "Feb 21, 2026",
-    url: "https://substack.com/@autopiloteverything",
-    tag: "Agentic AI",
-  },
-];
-
 const TAG_COLORS: Record<string, string> = {
   "Multimodal AI": "pill-blue",
   "AI Agents": "pill-green",
   "Deep Dive": "pill-amber",
-  "Agentic AI": "pill-blue",
 };
 
 function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: number }) {
@@ -99,13 +81,13 @@ function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: numb
       target="_blank"
       rel="noopener noreferrer"
       style={{ opacity: 0, transform: "translateY(16px)", transition: "opacity 0.5s ease, transform 0.5s ease" }}
-      className="group block bg-white rounded-xl border border-[#E8ECF0] p-5 hover:border-blue-200 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-250"
+      className="group block bg-[#10131A] rounded-xl border border-[#1E242E] p-5 hover:border-blue-400/40 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-250"
     >
       <div className="flex items-start justify-between gap-3 mb-2">
         <span className={`pill ${TAG_COLORS[post.tag] || "pill-blue"} flex-shrink-0`}>{post.tag}</span>
         <span className="mono-meta text-[11px] flex-shrink-0">{post.date}</span>
       </div>
-      <h3 className="font-display font-semibold text-[14px] text-[#0F1923] leading-snug mb-1.5 group-hover:text-blue-600 transition-colors">
+      <h3 className="font-semibold text-[14px] text-[#EDEBE4] leading-snug mb-1.5 group-hover:text-blue-300 transition-colors">
         {post.title}
       </h3>
       <p className="text-[12.5px] text-[#94A3B8] leading-relaxed line-clamp-2">{post.excerpt}</p>
@@ -120,7 +102,6 @@ function PostCard({ post, delay }: { post: typeof PERSONAL_POSTS[0]; delay: numb
 }
 
 export default function WritingSection() {
-  const [activeTab, setActiveTab] = useState<"personal" | "autopilot">("personal");
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -133,13 +114,11 @@ export default function WritingSection() {
     return () => obs.disconnect();
   }, []);
 
-  const posts = activeTab === "personal" ? PERSONAL_POSTS : AUTOPILOT_POSTS;
-  const subUrl = activeTab === "personal"
-    ? "https://thelivingedge.substack.com/"
-    : "https://substack.com/@autopiloteverything";
+  const posts = PERSONAL_POSTS;
+  const subUrl = "https://thelivingedge.substack.com/";
 
   return (
-    <section id="writing" className="py-24 bg-white">
+    <section id="writing" className="py-24 bg-[#0B0D11]">
       <div className="container">
         {/* Header */}
         <div
@@ -147,19 +126,22 @@ export default function WritingSection() {
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label">Writing</span>
+            <span className="section-label"><span className="num">02</span>Writing</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <h2 className="font-display font-bold text-[#0F1923] text-3xl md:text-4xl">From the lab</h2>
-              <p className="text-[15px] text-[#64748B] mt-1">Weekly dispatches on AI, agents, and what's coming next.</p>
+              <h2 className="font-editorial text-[#EDEBE4] text-4xl md:text-5xl">From the <em>lab</em></h2>
+              <p className="text-[15px] text-[#98A1B3] mt-2">
+                Weekly dispatches on AI, agents, and what's coming next.
+              </p>
+              <p className="mono-meta mt-3">The Living Edge</p>
             </div>
             <a
               href={subUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[13px] font-semibold font-display text-blue-600 hover:text-blue-700 transition-colors flex-shrink-0"
+              className="inline-flex items-center gap-2 text-[13px] font-semibold text-blue-400 hover:text-blue-300 transition-colors flex-shrink-0"
             >
               Subscribe on Substack
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -168,26 +150,6 @@ export default function WritingSection() {
             </a>
           </div>
 
-          {/* Tabs */}
-          <div className="flex gap-1 bg-[#F8FAFC] rounded-lg p-1 w-fit mb-8 border border-[#E8ECF0]">
-            {[
-              { id: "personal", label: "The Living Edge", sub: "Personal" },
-              { id: "autopilot", label: "The Agentic Edge", sub: "Autopilot" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as "personal" | "autopilot")}
-                className={`px-4 py-2 rounded-md text-[13px] font-medium transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? "bg-white text-[#0F1923] shadow-sm border border-[#E8ECF0]"
-                    : "text-[#64748B] hover:text-[#0F1923]"
-                }`}
-              >
-                <span className="font-display font-semibold">{tab.label}</span>
-                <span className="ml-1.5 mono-meta text-[10px]">{tab.sub}</span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Posts grid */}

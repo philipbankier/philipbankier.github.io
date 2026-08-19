@@ -5,22 +5,21 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F1923] text-white py-12">
+    <footer className="bg-[#07090C] border-t border-[#1E242E] text-white py-12">
       <div className="container">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Left */}
           <div>
-            <p className="font-display font-semibold text-[15px] mb-1">Philip Bankier</p>
-            <p className="text-[12px] text-white/40 font-mono">AI Founder · Builder · Writer</p>
+            <p className="font-editorial italic text-[18px] mb-1 text-[#EDEBE4]">Philip Bankier</p>
+            <p className="text-[12px] text-white/40 font-mono">AI Founder · Builder · Analyst</p>
           </div>
 
           {/* Center: Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {[
-              { label: "KairoxAI", url: "https://kairoxai.live" },
-              { label: "Autopilot", url: "https://autopilotai.live" },
+              { label: "Kairox AI", url: "https://kairoxai.live" },
+              { label: "ActRun", url: "https://actrun.ai" },
               { label: "The Living Edge", url: "https://thelivingedge.substack.com/" },
-              { label: "The Agentic Edge", url: "https://substack.com/@autopiloteverything" },
             ].map((link) => (
               <a
                 key={link.label}
@@ -50,12 +49,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="mt-8 pt-6 border-t border-white/10">
           <p className="text-[11px] text-white/30 font-mono">
             © {new Date().getFullYear()} Philip Bankier. All rights reserved.
-          </p>
-          <p className="text-[11px] text-white/20 font-mono">
-            Some links are affiliate links, clearly marked.
           </p>
         </div>
       </div>
