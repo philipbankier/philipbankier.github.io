@@ -5,6 +5,7 @@
    ========================================================== */
 
 import { useEffect, useRef } from "react";
+import HeroConstellation from "./HeroConstellation";
 
 // Portrait is 449x561; displayed at 220px so it stays crisp on 2x screens.
 // Colour treatment lives in .portrait-frame in index.css.
@@ -31,7 +32,8 @@ export default function HeroSection() {
 
   return (
     <section className="hero-backdrop relative min-h-screen flex items-center overflow-hidden">
-      <div className="container relative z-10 pt-24 pb-20">
+      <HeroConstellation />
+      <div className="container relative z-10 pt-24 pb-20 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_img]:pointer-events-auto">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
           {/* Portrait: above the text on mobile, right-hand column on desktop.
               Right edge lines up with the navbar CTA above it. */}

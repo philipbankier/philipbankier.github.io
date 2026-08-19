@@ -145,7 +145,7 @@ export default function OpenSourceSection() {
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label"><span className="num">03</span>Open Source</span>
+            <span className="section-label"><span className="num">04</span>Open Source</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">

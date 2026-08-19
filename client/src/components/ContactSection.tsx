@@ -80,7 +80,7 @@ export default function ContactSection() {
           style={{ opacity: 0, transform: "translateY(20px)", transition: "opacity 0.6s ease, transform 0.6s ease" }}
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="section-label"><span className="num">04</span>Contact</span>
+            <span className="section-label"><span className="num">05</span>Contact</span>
             <div className="accent-line flex-1 max-w-[60px]" />
           </div>
         </div>
