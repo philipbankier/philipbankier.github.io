@@ -162,14 +162,22 @@
     background-clip: text;
   }
 
-  /* Hero backdrop: faint blueprint grid + glow, no image dependency */
+  /* Hero backdrop: glow only; the constellation canvas provides structure.
+     The grid returns on small screens where the canvas is hidden. */
   .hero-backdrop {
     background-image:
       radial-gradient(ellipse 60% 45% at 75% 20%, oklch(0.35 0.09 255 / 0.22), transparent 70%),
-      radial-gradient(ellipse 45% 40% at 15% 85%, oklch(0.3 0.07 255 / 0.14), transparent 70%),
-      linear-gradient(to right, oklch(1 0 0 / 0.025) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(1 0 0 / 0.025) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+      radial-gradient(ellipse 45% 40% at 15% 85%, oklch(0.3 0.07 255 / 0.14), transparent 70%);
+  }
+  @media (max-width: 1023px) {
+    .hero-backdrop {
+      background-image:
+        radial-gradient(ellipse 60% 45% at 75% 20%, oklch(0.35 0.09 255 / 0.22), transparent 70%),
+        radial-gradient(ellipse 45% 40% at 15% 85%, oklch(0.3 0.07 255 / 0.14), transparent 70%),
+        linear-gradient(to right, oklch(1 0 0 / 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, oklch(1 0 0 / 0.025) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+    }
   }
 
   /* Portrait: desaturated and cooled so a casual photo sits inside the
