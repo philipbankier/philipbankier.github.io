@@ -19,6 +19,7 @@ export default function Footer() {
             {[
               { label: "Kairox AI", url: "https://kairoxai.live" },
               { label: "ActRun", url: "https://actrun.ai" },
+              { label: "PromptCache", url: "https://promptcache.live" },
               { label: "The Living Edge", url: "https://thelivingedge.substack.com/" },
             ].map((link) => (
               <a
