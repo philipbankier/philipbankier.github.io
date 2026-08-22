@@ -21,6 +21,7 @@ type Node = {
 const NODES: Node[] = [
   { label: "ActRun", url: "https://actrun.ai", kind: "product", x: 0.80, y: 0.14, showLabel: true },
   { label: "Kairox AI", url: "https://kairoxai.live", kind: "product", x: 0.68, y: 0.34, showLabel: true },
+  { label: "PromptCache", url: "https://promptcache.live", kind: "product", x: 0.84, y: 0.28, showLabel: true },
   { label: "awesome-agent-skills", url: "https://github.com/philipbankier/awesome-agent-skills", kind: "repo", x: 0.60, y: 0.20, showLabel: true },
   { label: "riskradar", url: "https://github.com/philipbankier/riskradar", kind: "repo", x: 0.90, y: 0.08 },
   { label: "tastekit", url: "https://github.com/philipbankier/tastekit", kind: "repo", x: 0.94, y: 0.86 },

@@ -1,8 +1,8 @@
 /* ==========================================================
    DESIGN: Editorial Ledger
    Ledger: a running record of what actually shipped.
-   PROTOTYPE: rows below are a real snapshot (fetched
-   2026-08-18 from GitHub, /pages/ git history, Substack).
+   PROTOTYPE: rows below are a real snapshot (updated
+   2026-08-22 from GitHub, /pages/ git history, Substack).
    The production version generates this array at build time
    and a scheduled rebuild keeps it current.
    ========================================================== */
@@ -12,12 +12,13 @@ import { useEffect, useRef } from "react";
 type Entry = {
   date: string; // ISO, for sorting and the datetime attr
   shown: string; // what renders
-  kind: "commit" | "artifact" | "post" | "site";
+  kind: "app" | "commit" | "artifact" | "post" | "site";
   text: string;
   url: string;
 };
 
 const ENTRIES: Entry[] = [
+  { date: "2026-08-22", shown: "Aug 22", kind: "app", text: "PromptCache: free community library to discover, save, remix, and share AI prompts", url: "https://promptcache.live" },
   { date: "2026-08-18", shown: "Aug 18", kind: "commit", text: "awesome-agent-skills: daily data sync (automated)", url: "https://github.com/philipbankier/awesome-agent-skills" },
   { date: "2026-08-18", shown: "Aug 18", kind: "site", text: "This site: foundation refresh, Library and Open Source sections", url: "https://github.com/philipbankier/philipbankier.github.io/pull/1" },
   { date: "2026-06-29", shown: "Jun 29", kind: "commit", text: "tastekit: release packages moved to the Kairox scope", url: "https://github.com/philipbankier/tastekit" },
@@ -33,6 +34,7 @@ const ENTRIES: Entry[] = [
 ];
 
 const KIND_STYLE: Record<Entry["kind"], { pill: string; label: string }> = {
+  app: { pill: "pill-green", label: "Free app" },
   commit: { pill: "pill-blue", label: "Commit" },
   site: { pill: "pill-blue", label: "Site" },
   artifact: { pill: "pill-amber", label: "Artifact" },
@@ -77,7 +79,7 @@ export default function LedgerSection() {
                 A running record, rebuilt from the sources: commits, published artifacts, and posts.
               </p>
             </div>
-            <p className="mono-meta flex-shrink-0">Snapshot · 2026-08-18</p>
+            <p className="mono-meta flex-shrink-0">Snapshot · 2026-08-22</p>
           </div>
         </div>
 
