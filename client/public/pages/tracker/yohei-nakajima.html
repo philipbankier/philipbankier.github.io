@@ -3,105 +3,83 @@
 <title>Yohei Nakajima — Intelligence Tracker</title><style>
 :root{--bg:#08090b;--panel:#111318;--panel2:#171a21;--fg:#f4f0e8;--muted:#a9a29a;--line:#2b303a;--accent:#91f2c4;--accent2:#9bbcff;--warn:#ffd479}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1b2440 0,#08090b 35%,#050607 100%);color:var(--fg);font:16px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-.wrap{max-width:1100px;margin:0 auto;padding:32px 20px 80px}header{display:flex;flex-wrap:wrap;gap:18px 28px;justify-content:space-between;align-items:flex-end;margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:22px}
-.kicker{font:12px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-h1{font:600 42px/1.05 "Iowan Old Style","Palatino Linotype",Palatino,serif;margin:8px 0 6px;letter-spacing:-.02em}
-.sub{color:var(--muted);max-width:70ch}.meta{color:var(--muted);font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-align:right}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}section{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
-section.wide{grid-column:span 12}.half{grid-column:span 6}
-@media(max-width:860px){.half{grid-column:span 12}h1{font-size:34px}}
-h2{margin:0 0 12px;font:600 13px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2)}
-p,li{color:var(--fg)}ul{margin:0;padding-left:18px}li{margin:0 0 8px}.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.tag{border:1px solid var(--line);background:#0d1017;color:var(--muted);border-radius:999px;padding:4px 10px;font:11px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-.statrow{display:flex;flex-wrap:wrap;gap:10px}.stat{min-width:120px;flex:1;background:#0c0f15;border:1px solid var(--line);border-radius:14px;padding:12px}
-.stat b{display:block;font:600 22px/1.1 "Iowan Old Style",Palatino,serif}.stat span{color:var(--muted);font:11px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase}
-.item{border-top:1px solid var(--line);padding:10px 0}.item:first-child{border-top:0;padding-top:0}.item strong{display:block;margin-bottom:4px}.small{font-size:14px;color:var(--muted)}
-.pill{display:inline-block;border-radius:999px;padding:2px 8px;font:11px ui-monospace,Menlo,Consolas,monospace;border:1px solid var(--line);color:var(--warn);margin-right:6px}
-.launch{display:inline-block;border-radius:999px;padding:2px 10px;font:11px ui-monospace,Menlo,Consolas,monospace;border:1px solid #3d5a4a;background:#12271c;color:var(--accent);margin-right:6px;letter-spacing:.08em}
+.wrap{max-width:980px;margin:0 auto;padding:28px 18px 64px}
+header{display:flex;gap:18px;align-items:flex-start;margin-bottom:22px}
+.avatar{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,#91f2c4,#9bbcff);flex:none}
+h1{margin:0 0 6px;font:700 28px/1.15 ui-serif,Georgia,serif}
+.sub{color:var(--muted);font-size:14px}
+.sub b{color:var(--accent)}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.card h2{margin:0 0 10px;font:600 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2)}
+.meta{color:var(--muted);font-size:13px}
+ul{margin:8px 0 0;padding-left:18px} li{margin:6px 0}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px 4px 2px 0;font-size:12px;color:var(--muted)}
+.k{color:var(--warn)}
+.verdict{font-size:15px;margin:0 0 10px}
 </style></head><body><div class="wrap">
 <header>
+  <div class="avatar" aria-hidden="true"></div>
   <div>
-    <div class="kicker">Intelligence Tracker · Person Artifact</div>
     <h1>Yohei Nakajima</h1>
-    <div class="sub">GP at Untapped Capital · creator of BabyAGI · <b>jev day-2 productization</b> (beepjev + jev light + cheap tokens) · “jev devs” <b>288❤</b> · EB <b>2⭐</b> frozen · ActiveGraph <b>649⭐</b> · Epistemedia pin lag day 17 · live-keystroke Replit toys.</div>
-    <div class="tagrow">
-      <span class="tag">@yoheinakajima</span><span class="tag">jev</span><span class="tag">beepjev</span><span class="tag">jev light</span><span class="tag">cheap tokens</span><span class="tag">evaluatorbench.com</span><span class="tag">Epistemedia</span><span class="tag">ActiveGraph 649</span><span class="tag">EB 2⭐</span><span class="tag">pin lag day 17</span>
-    </div>
-  </div>
-  <div class="meta">Updated 2026-09-19 06:20 America/New_York<br/>Sources: X · GitHub · arXiv · epistemedia.org · evaluatorbench.com · HN · Replit<br/>
-  <a href="https://x.com/yoheinakajima">X</a> · <a href="https://github.com/yoheinakajima">GitHub</a> · <a href="https://beepjev.replit.app/">beepjev</a> · <a href="https://evaluatorbench.com/">evaluatorbench.com</a> · <a href="https://arxiv.org/abs/2609.01814">arXiv</a> · <a href="https://epistemedia.org">epistemedia.org</a>
+    <div class="sub">GP at Untapped Capital · creator of BabyAGI · <b>light X day</b> — MCP Muse joke + cheap-token viral lag · jev cluster still compounding · EB <b>2⭐</b> frozen · ActiveGraph <b>650⭐</b> · Epistemedia pin lag day 18.</div>
   </div>
 </header>
-<div class="grid">
-  <section class="wide">
-    <h2>Today’s delta (vs 2026-09-18)</h2>
-    <div class="statrow">
-      <div class="stat"><b>5</b><span>new X posts</span></div>
-      <div class="stat"><b>245❤</b><span>beep emotion video</span></div>
-      <div class="stat"><b>288❤</b><span>jev devs compound</span></div>
-      <div class="stat"><b>40K</b><span>cheap-token views</span></div>
-      <div class="stat"><b>c76cf74</b><span>EB HEAD frozen</span></div>
-      <div class="stat"><b>f928465</b><span>pin lag day 17</span></div>
-    </div>
-  </section>
-  <section class="half">
-    <h2>Profile</h2>
-    <p>Seattle-based GP at Untapped Capital. Ships agent infrastructure and research in public while investing pre-seed. Sep 19: day after the kitchen burst, <b>jev productizes</b> — affective beep video, public <b>beepjev.replit.app</b>, “jev light” cheap-token culture frame, and a live-keystroke Disney-princess toy. Prior “jev devs” meme compounds to <b>288❤</b>. Evaluator Bench stays quiet post-Transluce reply; Epistemedia pin freeze continues.</p>
-    <p class="small">X ~126.3K followers (+56) · ~28.6K posts · bio still babyagi/@activegraphai · jev on X+Replit · EB on X · EM in backlog + lineage · following ~12.3K</p>
-  </section>
-  <section class="half">
-    <h2>Active projects</h2>
-    <div class="item"><strong>jev <span class="launch">DAY-2 PRODUCT</span></strong><span class="small">Kitchen sim → beep affect → public toys · beep video <b>245❤ / 32K / 105 bm</b> · <a href="https://beepjev.replit.app/">beepjev.replit.app</a> · jev light 123❤ · cheap tokens 40K views · disneyprincesslive · meme <b>288❤</b> · no GH repo yet · <a href="https://x.com/yoheinakajima/status/2100945960671326482">beep</a> · <a href="https://x.com/yoheinakajima/status/2100794109112029639">meme</a></span></div>
-    <div class="item"><strong>evaluator-bench / evaluatorbench.com <span class="launch">X LIVE · 2⭐</span></strong><span class="small">Research preview · HEAD <b>c76cf74</b> frozen · Transluce HQ SF on file · correction window → <b>15 Oct</b> · launch ~62❤ / 9.2K · outreach 1 replied / 23 awaiting · <a href="https://evaluatorbench.com/">site</a> · <a href="https://github.com/yoheinakajima/evaluator-bench">repo</a></span></div>
-    <div class="item"><strong>Epistemedia <span class="launch">FLAGSHIP · PIN f928465</span></strong><span class="small">231 objects / 11 topics / 4 dossiers / 1 open docket · Mission v0.3 · Main <b>4e86baf</b> · pin lag day 17 · factory silent day 16 · writeup still owed · <a href="https://epistemedia.org">site</a></span></div>
-    <div class="item"><strong>ActiveGraph <span class="launch">649⭐</span></strong><span class="small">flat · runtime under evaluator-bench · journey/substrate parent · <a href="https://github.com/yoheinakajima/activegraph">repo</a></span></div>
-    <div class="item"><strong>Information Sharing Frontier <span class="launch">arXiv LIVE</span></strong><span class="small">When Does Information Sharing Improve Decentralized Discovery? · <a href="https://arxiv.org/abs/2609.01814">2609.01814</a> · v1 hold · paper #2 on public backlog</span></div>
-    <div class="item"><strong>Replit live toys <span class="launch">NEW</span></strong><span class="small"><a href="https://beepjev.replit.app/">beepjev</a> · <a href="https://disneyprincesslive.replit.app/">disneyprincesslive</a> · live keystroke → agent response pattern</span></div>
-  </section>
-  <section class="wide">
-    <h2>Timeline — Sep 18 → Sep 19</h2>
-    <div class="item"><strong>Sep 19 02:29Z — NEW original Disney princess live</strong><span class="small">“which disney princess are you?”, on every keystroke · 33s video · <b>17❤ / 3.7K</b> · <a href="https://disneyprincesslive.replit.app/">app</a> · <a href="https://x.com/yoheinakajima/status/2101136566764880195">status</a></span></div>
-    <div class="item"><strong>Sep 18 21:15Z — NEW self-reply chugging cheap tokens</strong><span class="small">image reply to jev light · <b>82❤ / 40.1K / 12 rt / 10 bm</b> · highest views of day · <a href="https://x.com/yoheinakajima/status/2101057528629207473">status</a></span></div>
-    <div class="item"><strong>Sep 18 20:31Z — NEW original jev light</strong><span class="small">“party running out of nice scotch… keg of jev light” · <b>123❤ / 6.0K</b> · <a href="https://x.com/yoheinakajima/status/2101046349978587563">status</a></span></div>
-    <div class="item"><strong>Sep 18 17:59Z — NEW self-QT beepjev.replit.app</strong><span class="small">first public jev product URL · live keystroke chat/beep · <b>31❤ / 5.7K / 9 bm</b> · <a href="https://beepjev.replit.app/">app</a> · <a href="https://x.com/yoheinakajima/status/2101008182521037242">status</a></span></div>
-    <div class="item"><strong>Sep 18 13:52Z — NEW original beep emotion video</strong><span class="small">~41s · “gave jev a way to express some emotion and chat with beeps” · <b>245❤ / 32.1K / 105 bm / 31 rt</b> · <a href="https://x.com/yoheinakajima/status/2100945960671326482">status</a></span></div>
-    <div class="item"><strong>Compound — jev kitchen wave</strong><span class="small">“we’re all jev devs now” <b>79→288❤</b> · kitchen 61→91 / 16.9K · attention frame 33→78 / 43 bm · followers +56</span></div>
-    <div class="item"><strong>GitHub / factory / mentions</strong><span class="small">No new pushes · EB HEAD c76cf74 / 2⭐ flat · pin lag day 17 · EM/DD silent day 16 · HN still no EB hits · arXiv v1 hold</span></div>
-  </section>
-  <section class="half">
-    <h2>Beliefs & positions (extracted)</h2>
-    <ul>
-      <li><b>Affective / sonic channels matter</b> — beeps as emotion + chat, not text-only agents.</li>
-      <li><b>Live keystroke streams are first-class agent input</b> — beepjev + disneyprincesslive both react on every keystroke.</li>
-      <li><b>Cheap tokens as culture (“jev light”)</b> — abundant inference replaces scarce premium compute; people binge all night.</li>
-      <li><b>Public Replit toys are a same-day ship surface</b> — product URL within hours of the demo video; no GH repo required.</li>
-      <li><b>High-attention multi-station jobs remain the origin stress-test</b> — kitchen/jev still the founding metaphor.</li>
-      <li>Reinforced: jev identity meme compounds hard; EB quiet post-reply; pin lag day 17; bio lag vs X brand.</li>
-    </ul>
-  </section>
-  <section class="half">
-    <h2>Patterns & themes</h2>
-    <ul>
-      <li><b>Demo → product → culture meme in &lt;12h</b> — beep video, live app, jev-light framing, binge image.</li>
-      <li><b>Live-keystroke agent UX</b> — typing as continuous signal; enter mostly convenience clear.</li>
-      <li><b>Cheap-token party economics</b> — scotch→keg metaphor; 40K-view binge compound.</li>
-      <li><b>Builder attention sink shifts</b> — jev soaks cycles; EB HEAD frozen; Epistemedia pin freeze day 17.</li>
-      <li><b>Cross-surface brand split</b> — X+Replit have jev; bio/yohei.me still babyagi/ActiveGraph era.</li>
-    </ul>
-  </section>
-  <section class="wide">
-    <h2>Quote highlights</h2>
-    <div class="item"><strong>it’s like the party was running out of nice scotch and someone just dropped off a keg of jev light</strong><span class="small"><a href="https://x.com/yoheinakajima/status/2101046349978587563">2101046349978587563</a></span></div>
-    <div class="item"><strong>we’re chugging cheap tokens all night</strong><span class="small"><a href="https://x.com/yoheinakajima/status/2101057528629207473">2101057528629207473</a></span></div>
-    <div class="item"><strong>gave jev a way to express some emotion and chat with beeps (sound on 🔊)</strong><span class="small"><a href="https://x.com/yoheinakajima/status/2100945960671326482">2100945960671326482</a></span></div>
-    <div class="item"><strong>i guess we’re all jev devs now</strong><span class="small"><a href="https://x.com/yoheinakajima/status/2100794109112029639">2100794109112029639</a> · now 288❤</span></div>
-    <div class="item"><strong>chat (or beep) with jev here: beepjev.replit.app</strong><span class="small">live typing · <a href="https://x.com/yoheinakajima/status/2101008182521037242">2101008182521037242</a></span></div>
-  </section>
-  <section class="wide">
-    <h2>Connections / mentions</h2>
-    <p class="small">No new HN stories for Evaluator Bench, Who Pays the Referee, or Epistemedia. Transluce right-of-reply remains the only logged EB subject reply (1/28). Organic X gravity now centered on jev toys + cheap-token meme rather than the independence ledger. YouTube results remain evergreen BabyAGI/ActiveGraph explainers. New public surfaces: <a href="https://beepjev.replit.app/">beepjev.replit.app</a>, <a href="https://disneyprincesslive.replit.app/">disneyprincesslive.replit.app</a>.</p>
-  </section>
+<div class="card" style="margin-bottom:14px">
+  <h2>Today · 2026-09-20</h2>
+  <p class="verdict"><span class="k">LIGHT X DAY.</span> One new QT: <b>(M)ark’s (C)connector (P)latform</b> on Zuckerberg Muse connectors (MCP name-play) — 47❤ / 8.2K. “Chugging cheap tokens” doubles to <b>87K views</b> / 155❤. No GitHub ships; EM pin lag day 18; factory silent day 17.</p>
+  <div class="meta">Updated 2026-09-20 06:20 America/New_York<br/>Sources: X · GitHub · arXiv · epistemedia.org · evaluatorbench.com · HN · Replit<br/>
+  Followers 126,293 (+15) · tweets 28,624 · likes 39,158</div>
 </div>
-<footer class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:16px">Intelligence Tracker · Yohei Nakajima · raw 2026-09-19 · not investment advice</footer>
+<div class="grid">
+  <div class="card">
+    <h2>New &amp; compounding</h2>
+    <ul>
+      <li><b>NEW QT</b> <a href="https://x.com/yoheinakajima/status/2101381625900900757">(M)ark’s (C)connector (P)latform</a> · QT @finkd Muse connectors · 47❤ / 8.2K / 8 replies</li>
+      <li><b>COMPOUND</b> <a href="https://x.com/yoheinakajima/status/2101057528629207473">cheap tokens</a> · 82→155❤ · <b>40K→87K</b> views · bm 10→18</li>
+      <li><b>COMPOUND</b> <a href="https://x.com/yoheinakajima/status/2100945960671326482">beep emotion</a> · 245→266❤ · 32K→43.6K · bm 105→117</li>
+      <li>jev light 123→143 · disney live 17→36 · beepjev 31→37 · jev devs 288→292</li>
+      <li>Live toys: <a href="https://beepjev.replit.app/">beepjev.replit.app</a> · <a href="https://disneyprincesslive.replit.app/">disneyprincesslive</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Factory / stars</h2>
+    <ul>
+      <li><b>evaluator-bench</b> HEAD <code>c76cf74</code> frozen · <b>2⭐</b> · outreach 1 replied / 23 awaiting · correction → 15 Oct</li>
+      <li><b>ActiveGraph</b> <b>650⭐ (+1)</b> · BabyAGI 22,351 flat</li>
+      <li><b>Epistemedia</b> pin <code>f928465</code> lag day <b>18</b> vs main <code>4e86baf</code> · 231/11/4/1</li>
+      <li>EM/DD factory silent day <b>17</b> · arXiv 2609.01814 still v1</li>
+      <li>HN: 0 for EB / Epistemedia / jev</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Beliefs extracted</h2>
+    <ul>
+      <li><b>NEW:</b> MCP name-play — Meta Muse connectors as “Mark’s Connector Platform.”</li>
+      <li><b>Reinforced:</b> witty one-liner compression remains a parallel public mode to demo shipping.</li>
+      <li><b>Reinforced:</b> cheap-token culture compounds on lag (views 2× overnight).</li>
+      <li>Pin lag / factory silence while X soaks attention; bio still omits EM/EB/jev.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Active surfaces</h2>
+    <div>
+      <span class="pill">jev / beepjev</span>
+      <span class="pill">evaluator-bench</span>
+      <span class="pill">epistemedia</span>
+      <span class="pill">activegraph 650⭐</span>
+      <span class="pill">arxiv 2609.01814</span>
+      <span class="pill">MCP joke</span>
+    </div>
+    <ul>
+      <li><a href="https://evaluatorbench.com/">evaluatorbench.com</a></li>
+      <li><a href="https://epistemedia.org/">epistemedia.org</a></li>
+      <li><a href="https://github.com/yoheinakajima/evaluator-bench">evaluator-bench</a></li>
+      <li><a href="https://x.com/yoheinakajima">@yoheinakajima</a></li>
+    </ul>
+  </div>
+</div>
+<footer class="meta" style="margin-top:28px;border-top:1px solid var(--line);padding-top:16px">Intelligence Tracker · Yohei Nakajima · raw 2026-09-20 · not investment advice</footer>
 </div></body></html>
