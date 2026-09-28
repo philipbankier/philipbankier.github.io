@@ -19,74 +19,116 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px 4px 2px 0;font-size:12px;color:var(--muted)}
 .k{color:var(--warn)}
 .verdict{font-size:15px;margin:0 0 10px}
+.statrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.stat{background:#0c0e13;border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:110px}
+.stat b{display:block;font:700 18px/1.1 ui-serif,Georgia,serif;color:var(--accent)}
+.stat span{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+footer{margin-top:18px;color:var(--muted);font-size:12px}
 </style></head><body><div class="wrap">
 <header>
   <div class="avatar" aria-hidden="true"></div>
   <div>
     <h1>Yohei Nakajima</h1>
-    <div class="sub">GP at Untapped Capital · creator of BabyAGI · <b>ActiveGraph v1.12.0 LIVE</b> · speedlab <b>48⭐</b> · Glance <b>25⭐</b> · ActiveGraph <b>657⭐</b> · boplog <b>130</b> · EM pin lag day 25.</div>
+    <div class="sub">GP at Untapped Capital · creator of BabyAGI · <b>Glance PR #7 Image JevBench #6/49</b> · glance <b>28⭐</b> · speedlab <b>49⭐</b> · ActiveGraph <b>658⭐</b> · boplog <b>130</b> · EM pin lag day 26 · third low-X day.</div>
   </div>
 </header>
+
 <div class="card" style="margin-bottom:14px">
-  <h2>Today · 2026-09-27</h2>
-  <p class="verdict"><span class="k">RELEASE CLOSED. ECOSYSTEM WRITES THE SPEC.</span> Session #2's open loop resolves: <a href="https://github.com/yoheinakajima/activegraph/releases/tag/v1.12.0"><b>ActiveGraph v1.12.0</b></a> is tagged and on <b>PyPI</b> (cursor[bot] GH release + wheel; 1.11.0 ships inside; ObjectQuery plan boundary). External pressure continues: <a href="https://github.com/yoheinakajima/activegraph/issues/87"><b>RFC #87</b></a> (neurons-me) asks what the log should keep when private A feeds public B=f(A) — and overnight turns the secret-derivation replay test into a <b>live browser security test</b> on published <code>.me</code>. <a href="https://github.com/yoheinakajima/activegraph/pull/86">PR #86</a> still open (fail-closed). X: <b>0 new originals</b>; reading-list QT compounds <b>19→38❤ / 30 bm</b>. Speedlab day-4 <b>44→48⭐</b>.</p>
-  <div class="meta">Updated 2026-09-27 06:15 America/New_York<br/>Sources: X (fxtwitter/jina) · GitHub · PyPI · glance.yohei.me · untapped.vc · yohei.me · arXiv · epistemedia.org · HN<br/>Followers ~126.4K · bio still babyagi/@activegraphai</div>
+  <h2>Today — 2026-09-28</h2>
+  <p class="verdict"><span class="k">EXTERNAL BENCHMARK ENTERS THE LEDGER.</span> Glance opens <a href="https://github.com/yoheinakajima/glance/pull/7">PR #7</a> (branch <code>codex/image-jevbench-results</code>) to publish <b>Image JevBench v0.1.2</b> as a source-linked site panel + claims-ledger row. Frozen Glance+Qwen3-VL-4B ranks <b>#6 of 49</b> on Benchmark Heaven’s four-axis composite <b>66.86</b> — not merged yet. Third consecutive quiet-X day; star soak continues.</p>
+  <div class="statrow">
+    <div class="stat"><b>#6/49</b><span>JevBench rank</span></div>
+    <div class="stat"><b>66.86</b><span>composite</span></div>
+    <div class="stat"><b>0.089s</b><span>p50 latency</span></div>
+    <div class="stat"><b>28⭐</b><span>glance (+3)</span></div>
+    <div class="stat"><b>126.4K</b><span>X followers (−3)</span></div>
+  </div>
 </div>
+
 <div class="grid">
   <div class="card">
-    <h2>New &amp; compounding</h2>
+    <h2>Active projects</h2>
     <ul>
-      <li><b>RELEASE</b> <a href="https://github.com/yoheinakajima/activegraph/releases/tag/v1.12.0">ActiveGraph v1.12.0</a> · tag + GH release by <b>cursor[bot]</b> 00:05Z · <b>PyPI 1.12.0</b> 00:04Z · ObjectQuery plan boundary · 1.11.0 never separate · agent-draft → human-merge → bot-publish</li>
-      <li><b>RFC #87</b> <a href="https://github.com/yoheinakajima/activegraph/issues/87">replay contract private→public</a> · neurons-me · 4 options (output / formula / neither / sealed+clear) · runtime-law · live <code>.me</code> browser security test (@suiGn)</li>
-      <li><b>OPEN</b> <a href="https://github.com/yoheinakajima/activegraph/pull/86">PR #86</a> fail-closed load/fork still open · version drift 1.13.0 vs 1.12.1 · #81/#82 still integrity/ready-for-pr</li>
-      <li><b>READING LIST COMPOUND</b> <a href="https://x.com/yoheinakajima/status/2103639356070371753">Bad theory labs QT</a> 19→<b>38❤ / 30 bm / 12K</b> · zero new posts</li>
-      <li><b>QUIET #2</b> second consecutive low-X day after first fully quiet calendar day (Sep 25 UTC)</li>
-      <li><b>SOAK</b> <a href="https://github.com/yoheinakajima/glance-speedlab">speedlab 44→48⭐</a> day 4 · glance 24→25⭐ · pin 274❤ / 37.4K</li>
+      <li><b>Glance / glance-vlm</b> — read typed judgements from frozen open VLM logits. <a href="https://glance.yohei.me">site</a> · <a href="https://github.com/yoheinakajima/glance">GH 28⭐</a> · pip glance-vlm 0.3.1 · <b>PR #7 open:</b> Image JevBench panel (unmerged)</li>
+      <li><b>Glance Speedlab</b> — measurement-first local VLM latency lab. <a href="https://glance.yohei.me/speed/">/speed/</a> · <a href="https://github.com/yoheinakajima/glance-speedlab">49⭐</a> day-5 soak</li>
+      <li><b>ActiveGraph</b> — event-sourced graph runtime. <a href="https://github.com/yoheinakajima/activegraph">658⭐</a> · PyPI <b>1.12.0</b> · PR #86 fail-closed still open · RFC #87 replay-privacy</li>
+      <li><b>Untapped Capital</b> — research-led inception investing. <a href="https://untapped.vc">untapped.vc</a> · pin 275❤ / 37.9K</li>
+      <li><b>Evaluator Bench</b> — who pays the referee. <a href="https://evaluatorbench.com">evaluatorbench.com</a> · correction window → 15 Oct</li>
+      <li><b>Epistemedia</b> — open federated knowledge. live pin <code>f928465</code> lag day 26 · factory silent day 25</li>
+      <li><b>BabyAGI</b> — 22,364⭐ evergreen</li>
     </ul>
   </div>
   <div class="card">
-    <h2>Status board</h2>
-    <ul>
-      <li><span class="pill">activegraph</span> 657⭐ · <b>v1.12.0 LIVE</b> · HEAD 50d8405</li>
-      <li><span class="pill">speedlab</span> 48⭐ (+4) · HEAD 20af87b</li>
-      <li><span class="pill">glance</span> 25⭐ · HEAD d458a27 · /vslaya/</li>
-      <li><span class="pill">untapped</span> pin 274❤ / 37.4K / 77 bm</li>
-      <li><span class="pill">evaluator-bench</span> ad9686b · METR=3 · 2⭐ · window→Oct 15</li>
-      <li><span class="pill">boplog</span> 130 public</li>
-      <li><span class="pill">epistemedia</span> pin f928465 · lag day 25</li>
-      <li><span class="pill">factory</span> EM/DD silent day 24</li>
-    </ul>
+    <h2>Profile</h2>
+    <p class="meta">VC by day, builder by night. GP at Untapped Capital. Creator of BabyAGI — the first popular open-source autonomous agent. Known for build-in-public approach to learning, meeting founders, and contributing to the ecosystem. 15 years in early-stage venture (Techstars, Scrum Ventures, Untapped).</p>
+    <p class="meta">Based Seattle, WA, United States · X @yoheinakajima · 126,436 followers</p>
+    <div>
+      <span class="pill">agents</span><span class="pill">knowledge graphs</span><span class="pill">build-in-public</span>
+      <span class="pill">measurement-first</span><span class="pill">fail-closed</span><span class="pill">multi-harness</span>
+      <span class="pill">image-jevbench</span><span class="pill">activegraph</span>
+    </div>
+    <p class="meta" style="margin-top:10px">Links:
+      <a href="https://x.com/yoheinakajima">X</a> ·
+      <a href="https://github.com/yoheinakajima">GitHub</a> ·
+      <a href="https://yoheinakajima.com">site</a> ·
+      <a href="https://yohei.me">boplog</a> ·
+      <a href="https://untapped.vc">Untapped</a>
+    </p>
   </div>
 </div>
+
+<div class="card" style="margin-top:14px">
+  <h2>Image JevBench v0.1.2 (PR #7)</h2>
+  <ul>
+    <li>System: frozen Glance + Qwen3-VL-4B @ <code>d458a276</code> · scored 2026-09-27 · source <a href="https://www.benchmarkheaven.com/image-jev-bench">Benchmark Heaven</a></li>
+    <li>Overall: rank <b>6 / 49</b> · composite <b>66.86</b> (equal-weight harmonic mean of Intelligence / Calibration / Speed / Cost)</li>
+    <li>Axes: intelligence 59.37 · calibration 72.97 · speed 88.73 (#11) · cost 55.54 (#11)</li>
+    <li>Accuracy: public 77.6% (177/228) · sealed 70.6% (322/456) · matched gap −2.8pp</li>
+    <li>Tracks: core 500 items #9 · everyday-photo 184 items #9 (public 87.6% / sealed 87.4%)</li>
+    <li>Ops: p50 <b>0.089s</b> / p95 0.129s · $0.0303 per 1k · population 70.6% synthetic</li>
+    <li class="meta">Caveats (his): not an accuracy-only or general VLM ranking; calibration = clearest improvement area; computer/browser preview tracks unscored; live site panel pending merge.</li>
+  </ul>
+</div>
+
 <div class="grid" style="margin-top:14px">
   <div class="card">
-    <h2>Beliefs extracted</h2>
+    <h2>Beliefs &amp; positions (recent)</h2>
     <ul>
-      <li><b>Agent → human → bot</b> — Cursor drafts, maintainer merges/authorizes, cursor[bot] publishes tag + PyPI.</li>
-      <li><b>Externals write the replay spec</b> — RFC #87 + live <code>.me</code> security test make ActiveGraph the standards venue.</li>
-      <li><b>Fail closed still pending</b> — PR #86 open; integrity bugs remain ready-for-pr after "top priority."</li>
-      <li><b>Public not-knowing compounds</b> — reading-list QT doubles likes/bookmarks with no new content.</li>
-      <li><i>Held:</i> agents draft human owns · externals set roadmap · no composite scores · delegate-to-learn · measurement-first.</li>
+      <li><b>Third-party aggregates enter the claims ledger</b> only with full scope pins (composite definition, synthetic share, frozen revision, weakest axis).</li>
+      <li><b>Multi-harness default:</b> Codex drafts Glance site PRs; Cursor drafts ActiveGraph release PRs; human still owns merge/tag.</li>
+      <li><b>Anti-composite survives external composites</b> — publish the benchmark’s score, refuse a single-winner VLM ranking (same instinct as deleting /vslaya/ composite in 12 min).</li>
+      <li><b>Agent → human → bot release loop</b> confirmed on ActiveGraph 1.12.0 (Cursor draft → Yohei merge → cursor[bot] PyPI).</li>
+      <li><b>Fail closed over lenient</b> on load/fork integrity (PR #86 still open).</li>
+      <li><b>Public not-knowing</b> as reading ritual still compounds on quiet-X days.</li>
     </ul>
   </div>
   <div class="card">
-    <h2>Links</h2>
+    <h2>Timeline (7 days)</h2>
     <ul>
-      <li><a href="https://x.com/yoheinakajima">X @yoheinakajima</a></li>
-      <li><a href="https://github.com/yoheinakajima/activegraph">ActiveGraph</a> · <a href="https://github.com/yoheinakajima/activegraph/releases/tag/v1.12.0">v1.12.0</a> · <a href="https://github.com/yoheinakajima/activegraph/issues/87">RFC #87</a></li>
-      <li><a href="https://pypi.org/project/activegraph/1.12.0/">PyPI activegraph 1.12.0</a></li>
-      <li><a href="https://glance.yohei.me/vslaya/">Glance vs Laya</a> · <a href="https://glance.yohei.me/speed/">Speedlab</a></li>
-      <li><a href="https://glance.yohei.me">Glance</a> · <a href="https://github.com/yoheinakajima/glance">repo</a></li>
-      <li><a href="https://untapped.vc">Untapped Capital</a></li>
-      <li><a href="https://evaluatorbench.com">Evaluator Bench</a></li>
-      <li><a href="https://epistemedia.org">Epistemedia</a></li>
-      <li><a href="https://yohei.me">yohei.me / boplog</a></li>
+      <li><b>Sep 28</b> — Glance PR #7 JevBench; 3rd low-X day; glance +3⭐</li>
+      <li><b>Sep 27</b> — ActiveGraph v1.12.0 live on PyPI; RFC #87; 2nd low-X day</li>
+      <li><b>Sep 26</b> — ActiveGraph Session #2 (PR #85 merge, #86 open); first fully quiet X day + reading-list QTs</li>
+      <li><b>Sep 25</b> — ActiveGraph revival; /vslaya/ anti-composite; Aladdin amplify</li>
+      <li><b>Sep 24</b> — Speedlab ship; MLX path; community measurement PRs</li>
+      <li><b>Sep 23</b> — Untapped.vc relaunch pin + music video</li>
+      <li><b>Sep 22</b> — Glance VLM public ship</li>
     </ul>
-    <div class="meta" style="margin-top:10px">arXiv:2609.01814 still v1 · HN quiet · bio still babyagi/@activegraphai</div>
   </div>
 </div>
+
 <div class="card" style="margin-top:14px">
-  <h2>What moved</h2>
-  <p class="meta">The release path that Session #2 only queued is now closed: v1.12.0 exists as a GitHub Release authored by cursor[bot] and as a PyPI package, with 1.11.0's trust-boundary work folded in and never published on its own. That completes the three-step loop — coding agent drafts the prep PR, human merges and (implicitly) authorizes the tag, bot executes publish. Meanwhile the graph's hardest open questions are being written by people who are not Yohei: neurons-me's RFC #87 turns yesterday's "exactly what the RFC should settle" reply into a concrete four-option replay contract, and the same group ships a live browser security test against published <code>.me</code>. PR #86's fail-closed load/fork fix stays open under a 1.13.0 title while the maintainer said 1.12.1 — version drift unresolved. On X, silence is the strategy again; the reading-list QT does the distribution work (38❤ / 30 bookmarks) and Speedlab keeps soaking stars on day four.</p>
+  <h2>Watch items</h2>
+  <ul>
+    <li>Glance <a href="https://github.com/yoheinakajima/glance/pull/7">PR #7</a> merge → live JevBench panel on glance.yohei.me</li>
+    <li>ActiveGraph <a href="https://github.com/yoheinakajima/activegraph/pull/86">PR #86</a> version drift (title 1.13.0 vs said 1.12.1) + integrity bugs #81/#82</li>
+    <li>RFC <a href="https://github.com/yoheinakajima/activegraph/issues/87">#87</a> replay contract private→public (neurons-me / .me live security test)</li>
+    <li>EM pin lag day 26 / factory silent day 25 / bio still babyagi/@activegraphai</li>
+    <li>Evaluator Bench correction window closes 15 Oct 2026</li>
+  </ul>
 </div>
+
+<footer>
+  Intelligence Tracker · Yohei Nakajima · updated 2026-09-28 06:00 America/New_York · raw <code>tracker/raw/yohei-nakajima/2026-09-28/</code>
+  · sources: GitHub API, fxtwitter, PyPI, arXiv, Benchmark Heaven, live surfaces
+</footer>
 </div></body></html>
