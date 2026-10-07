@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philip Bankier · Operations</title>
+<!-- OPTION 4 · "PHOSPHOR" · instrument-panel dark: meters, tape log, matte Rams discipline (not hacker-terminal) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070A08;
+    --panel: #0B0F0C;
+    --line: #1B2620;
+    --line-2: #141C17;
+    --green: #3BFF9E;
+    --green-dim: #9FB8AA;
+    --green-faint: #5D7467;
+    --amber: #FFB454;
+    --glow: 0 0 14px rgba(59,255,158,.28);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--green-dim);
+    font-family: "IBM Plex Mono", monospace; font-size: 14px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* faint scanline + vignette, matte not CRT */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 30; pointer-events: none; opacity: .5;
+    background:
+      repeating-linear-gradient(to bottom, rgba(255,255,255,.012) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse 120% 90% at 50% 10%, transparent 55%, rgba(0,0,0,.45) 100%);
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+  /* status bar */
+  .status {
+    position: sticky; top: 0; z-index: 40; background: rgba(7,10,8,.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .status .wrap { display: flex; gap: 26px; align-items: center; padding: 12px 28px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+  .lamp { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: var(--glow); display: inline-block; margin-right: 8px; }
+  .status nav { margin-left: auto; display: flex; gap: 22px; }
+  .status nav a { color: var(--green-faint); }
+  .status nav a:hover { color: var(--green); }
+  .amber { color: var(--amber); }
+  .grn { color: var(--green); }
+
+  /* hero nameplate */
+  .hero { padding: 76px 0 0; }
+  .plate-row { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: stretch; }
+  .nameplate { border: 1px solid var(--line); background: var(--panel); padding: 42px 40px 38px; position: relative; }
+  .nameplate .tag { font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--green-faint); }
+  h1 {
+    margin: 18px 0 10px; font-weight: 600; text-transform: uppercase;
+    font-size: clamp(42px, 5.6vw, 84px); line-height: .98; letter-spacing: .015em;
+    color: #E9F5EC; text-shadow: var(--glow);
+  }
+  h1 .thin { font-weight: 300; color: var(--green); }
+  .mission { max-width: 52ch; color: var(--green-dim); font-size: 15px; }
+  .mission b { color: #E9F5EC; font-weight: 600; }
+  .hero-ctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .key {
+    border: 1px solid var(--line); padding: 13px 18px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--green-dim); background: #0D120E; transition: all .15s ease;
+  }
+  .key:hover { border-color: var(--green); color: var(--green); box-shadow: var(--glow); }
+  .key.primary { border-color: var(--green); color: var(--bg); background: var(--green); font-weight: 600; }
+  .key.primary:hover { box-shadow: 0 0 22px rgba(59,255,158,.45); color: var(--bg); }
+
+  /* operator card */
+  .operator { border: 1px solid var(--line); background: var(--panel); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .operator .ph { position: relative; overflow: hidden; border: 1px solid var(--line-2); }
+  .operator img { width: 100%; display: block; filter: grayscale(1) contrast(1.2) brightness(.86); }
+  .operator .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(59,255,158,.14), rgba(59,255,158,.03)); mix-blend-mode: screen; }
+  .operator dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 11px; letter-spacing: .06em; }
+  .operator dt { color: var(--green-faint); text-transform: uppercase; }
+  .operator dd { color: var(--green-dim); text-align: right; }
+
+  /* instrument cluster */
+  .cluster { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px; }
+  .meter { border: 1px solid var(--line); background: var(--panel); padding: 22px 22px 18px; position: relative; }
+  .meter .lbl { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--green-faint); }
+  .meter .val { font-size: clamp(40px, 4vw, 60px); font-weight: 300; color: var(--green); text-shadow: var(--glow); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .meter .sub { font-size: 10.5px; color: var(--green-faint); }
+  .meter svg { position: absolute; top: 16px; right: 16px; }
+  .meter .arc-bg { stroke: var(--line); } .meter .arc-fg { stroke: var(--green); filter: drop-shadow(0 0 4px rgba(59,255,158,.5)); }
+
+  /* sections */
+  section { padding: 78px 0 0; }
+  .sec-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .sec-bar h2 { font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: #E9F5EC; }
+  .sec-bar .fill { flex: 1; height: 1px; background: var(--line); }
+  .sec-bar .n { font-size: 11px; color: var(--green-faint); }
+
+  /* tape log */
+  .tape { border: 1px solid var(--line); background: var(--panel); }
+  .tape-head { display: flex; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid var(--line); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--green-faint); }
+  .cursor { display: inline-block; width: 9px; height: 15px; background: var(--green); vertical-align: -2px; box-shadow: var(--glow); }
+  @media (prefers-reduced-motion: no-preference) { .cursor { animation: blink 1.1s steps(1) infinite; } @keyframes blink { 50% { opacity: 0; } } }
+  .row { display: grid; grid-template-columns: 120px 90px 1fr 30px; gap: 16px; padding: 15px 18px; border-bottom: 1px solid var(--line-2); align-items: baseline; transition: background .12s ease; }
+  .row:last-child { border-bottom: 0; }
+  .row:hover { background: #0E1410; }
+  .row .ts { color: var(--green-faint); font-size: 12px; }
+  .row .kind { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); }
+  .row .msg { color: var(--green-dim); font-size: 13.5px; }
+  .row:hover .msg { color: #E9F5EC; }
+  .row .go { text-align: right; color: var(--green); }
+
+  /* channels (products) */
+  .channels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .chan { border: 1px solid var(--line); background: var(--panel); padding: 24px; position: relative; transition: border-color .15s ease; }
+  .chan:hover { border-color: var(--green); box-shadow: var(--glow); }
+  .chan .ch { font-size: 10px; letter-spacing: .2em; color: var(--green-faint); text-transform: uppercase; }
+  .chan h3 { font-size: 24px; font-weight: 600; color: #E9F5EC; margin: 10px 0 8px; letter-spacing: .01em; }
+  .chan p { font-size: 13px; color: var(--green-dim); min-height: 62px; }
+  .chan .st { margin-top: 14px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
+  .chan a { position: absolute; inset: 0; }
+
+  /* papers as microfiche list */
+  .fiche { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .doc { border: 1px solid var(--line); background: var(--panel); padding: 20px 22px; display: flex; justify-content: space-between; gap: 14px; transition: border-color .15s ease; }
+  .doc:hover { border-color: var(--green); }
+  .doc .no { font-size: 10px; letter-spacing: .18em; color: var(--green-faint); text-transform: uppercase; }
+  .doc h3 { font-size: 16.5px; font-weight: 600; color: #E9F5EC; margin-top: 6px; }
+  .doc p { font-size: 12px; color: var(--green-faint); margin-top: 4px; }
+  .doc .k { align-self: flex-start; white-space: nowrap; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(255,180,84,.35); padding: 5px 8px; }
+
+  /* footer */
+  footer { margin-top: 90px; border-top: 1px solid var(--line); background: var(--panel); }
+  .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 26px 28px; max-width: 1240px; margin: 0 auto; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--green-faint); flex-wrap: wrap; }
+  .foot .links { display: flex; gap: 20px; }
+  .foot a:hover { color: var(--green); }
+
+  @media (max-width: 980px) {
+    .plate-row { grid-template-columns: 1fr; }
+    .cluster { grid-template-columns: repeat(2, 1fr); }
+    .channels { grid-template-columns: 1fr; }
+    .fiche { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 90px 1fr 24px; } .row .kind { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="status">
+  <div class="wrap">
+    <span><span class="lamp"></span>All systems in service</span>
+    <span>UTC <span id="utc" class="grn">00:00:00</span></span>
+    <span class="amber">Snapshot 2026-10-07</span>
+    <nav>
+      <a href="#log">Log</a><a href="#channels">Channels</a><a href="#papers">Papers</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="plate-row">
+      <div class="nameplate">
+        <div class="tag">Operator · Co-founder, Kairox AI</div>
+        <h1><span class="thin">Philip</span><br>Bankier</h1>
+        <p class="mission">Mission: <b>build the machinery that runs the work, in the open.</b> ActRun carries jobs from asked to done. PromptCache stocks the prompts that work.</p>
+        <div class="hero-ctas">
+          <a class="key primary" href="https://actrun.ai">Try ActRun</a>
+          <a class="key" href="https://kairoxai.live">Kairox AI</a>
+          <a class="key" href="#contact">Hail on any channel</a>
+        </div>
+      </div>
+      <aside class="operator">
+        <div class="ph"><img src="assets/profile.webp" alt="Philip Bankier" width="449" height="561"></div>
+        <dl>
+          <dt>Operator</dt><dd>P. Bankier</dd>
+          <dt>Station</dt><dd>philipbankier.com</dd>
+          <dt>Newsletter</dt><dd>The Living Edge</dd>
+          <dt>Issue</dt><dd>Nº 69</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <!-- INSTRUMENT CLUSTER -->
+    <div class="cluster">
+      <div class="meter"><div class="lbl">Public repos</div><div class="val" data-n="79">0</div><div class="sub">github.com/philipbankier</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke-width="3"><circle class="arc-bg" cx="20" cy="20" r="16"/><circle class="arc-fg" cx="20" cy="20" r="16" stroke-dasharray="78 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg></div>
+      <div class="meter"><div class="lbl">Products in service</div><div class="val" data-n="3">0</div><div class="sub">ActRun · PromptCache · site</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke-width="3"><circle class="arc-bg" cx="20" cy="20" r="16"/><circle class="arc-fg" cx="20" cy="20" r="16" stroke-dasharray="60 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg></div>
+      <div class="meter"><div class="lbl">Papers on file</div><div class="val" data-n="4">0</div><div class="sub">long-form, on this station</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke-width="3"><circle class="arc-bg" cx="20" cy="20" r="16"/><circle class="arc-fg" cx="20" cy="20" r="16" stroke-dasharray="45 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg></div>
+      <div class="meter"><div class="lbl">Newsletter issues</div><div class="val" data-n="69">0</div><div class="sub">The Living Edge, weekly</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke-width="3"><circle class="arc-bg" cx="20" cy="20" r="16"/><circle class="arc-fg" cx="20" cy="20" r="16" stroke-dasharray="88 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg></div>
+    </div>
+  </section>
+
+  <!-- TAPE LOG -->
+  <section id="log">
+    <div class="sec-bar"><h2>Tape log</h2><div class="fill"></div><span class="n">REBUILT DAILY FROM SOURCES</span></div>
+    <div class="tape">
+      <div class="tape-head"><span>Feed · live<span class="cursor" style="margin-left:10px"></span></span><span>6 most recent</span></div>
+      <a class="row" href="https://github.com/philipbankier/awesome-agent-skills"><span class="ts">2026-10-07</span><span class="kind">Commit</span><span class="msg">awesome-agent-skills ran its own daily data sync</span><span class="go">→</span></a>
+      <a class="row" href="https://github.com/philipbankier/awesome-image-prompts"><span class="ts">2026-08-31</span><span class="kind">Repo</span><span class="msg">awesome-image-prompts went public</span><span class="go">→</span></a>
+      <a class="row" href="https://github.com/philipbankier/slop-engine"><span class="ts">2026-08-26</span><span class="kind">Repo</span><span class="msg">slop-engine went public</span><span class="go">→</span></a>
+      <a class="row" href="https://promptcache.live"><span class="ts">2026-08-22</span><span class="kind">Launch</span><span class="msg">PromptCache shipped: save and share the prompts that work</span><span class="go">→</span></a>
+      <a class="row" href="https://philipbankier.com"><span class="ts">2026-08-19</span><span class="kind">Site</span><span class="msg">This station redesigned and relaunched</span><span class="go">→</span></a>
+      <a class="row" href="https://github.com/philipbankier/tastekit"><span class="ts">2026-06-29</span><span class="kind">Commit</span><span class="msg">tastekit releases moved to the Kairox scope</span><span class="go">→</span></a>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section id="channels">
+    <div class="sec-bar"><h2>Channels</h2><div class="fill"></div><span class="n">CH 01–03</span></div>
+    <div class="channels">
+      <div class="chan"><div class="ch">CH-01 · In service</div><h3>ActRun</h3><p>AI that runs your work. Agents that carry a job from asked to done.</p><div class="st">actrun.ai →</div><a href="https://actrun.ai" aria-label="ActRun"></a></div>
+      <div class="chan"><div class="ch">CH-02 · In service</div><h3>PromptCache</h3><p>A free library to save and share the prompts that work.</p><div class="st">promptcache.live →</div><a href="https://promptcache.live" aria-label="PromptCache"></a></div>
+      <div class="chan"><div class="ch">CH-00 · Parent</div><h3>Kairox AI</h3><p>The company behind both, built in the open.</p><div class="st">kairoxai.live →</div><a href="https://kairoxai.live" aria-label="Kairox AI"></a></div>
+    </div>
+  </section>
+
+  <!-- PAPERS -->
+  <section id="papers">
+    <div class="sec-bar"><h2>Papers on file</h2><div class="fill"></div><span class="n">DOC 01–04</span></div>
+    <div class="fiche">
+      <a class="doc" href="https://philipbankier.com/pages/agent-playbook.html"><div><div class="no">DOC-04 · Apr 2026</div><h3>The 2026 AI Agent Playbook</h3><p>Deployment paradigms, context engineering, a scoring matrix.</p></div><span class="k">Field brief</span></a>
+      <a class="doc" href="https://philipbankier.com/pages/april-2026-ai-agent-roundup.html"><div><div class="no">DOC-03 · Apr 2026</div><h3>April 2026 Agent Roundup</h3><p>A month in review across the agent ecosystem.</p></div><span class="k">Roundup</span></a>
+      <a class="doc" href="https://philipbankier.com/pages/taste-landscape.html"><div><div class="no">DOC-02 · Apr 2026</div><h3>The Landscape of Taste Transfer</h3><p>Moving a person's creative voice into an LLM, mapped.</p></div><span class="k">Synthesis</span></a>
+      <a class="doc" href="https://philipbankier.com/pages/mobile-agent-nodes.html"><div><div class="no">DOC-01 · May 2026</div><h3>Mobile Devices as Agent Nodes</h3><p>Spare phones as nodes for agent fleets.</p></div><span class="k">Field guide</span></a>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="foot">
+    <span><span class="lamp"></span>philip@kairoxai.live</span>
+    <div class="links">
+      <a href="https://twitter.com/philipbankier">X</a>
+      <a href="https://github.com/philipbankier">GitHub</a>
+      <a href="https://www.linkedin.com/in/philip-bankier/">LinkedIn</a>
+      <a href="https://thelivingedge.substack.com/">The Living Edge</a>
+    </div>
+    <span>Local <span id="loc" class="grn">00:00</span> · © 2026 Philip Bankier</span>
+  </div>
+</footer>
+
+<script>
+  const utc = document.getElementById('utc'), loc = document.getElementById('loc');
+  const tick = () => { const d = new Date();
+    utc.textContent = d.toISOString().slice(11,19);
+    loc.textContent = d.toTimeString().slice(0,5); };
+  tick(); setInterval(tick, 1000);
+
+  // count-up meters, reduced-motion aware
+  const vals = document.querySelectorAll('.val');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    vals.forEach(v => v.textContent = v.dataset.n);
+  } else {
+    vals.forEach(v => {
+      const n = +v.dataset.n, t0 = performance.now(), dur = 900;
+      const step = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        v.textContent = Math.round(n * e);
+        if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    });
+  }
+</script>
+</body>
+</html>

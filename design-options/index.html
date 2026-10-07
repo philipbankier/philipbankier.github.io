@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>philipbankier.com · design options</title>
+<style>
+  :root { --bg:#111317; --panel:#1a1d23; --ink:#e8e6df; --mut:#8a93a3; --acc:#5b9dff; }
+  * { box-sizing:border-box; margin:0 }
+  body { background:var(--bg); color:var(--ink); font:14px/1.5 -apple-system,'Helvetica Neue',sans-serif; height:100vh; display:flex; flex-direction:column; overflow:hidden }
+  header { display:flex; align-items:center; gap:10px; padding:10px 16px; background:var(--panel); border-bottom:1px solid #262b33; flex-wrap:wrap }
+  header h1 { font-size:13px; font-weight:600; letter-spacing:.02em; margin-right:8px }
+  header h1 span { color:var(--mut); font-weight:400 }
+  .tabs { display:flex; gap:6px; flex-wrap:wrap }
+  .tabs button { background:#22262e; color:var(--mut); border:1px solid #2c323c; border-radius:7px; padding:7px 13px; font:12.5px/1 inherit; cursor:pointer }
+  .tabs button:hover { color:var(--ink) }
+  .tabs button.on { background:var(--acc); border-color:var(--acc); color:#fff; font-weight:600 }
+  .meta { margin-left:auto; display:flex; gap:12px; align-items:center }
+  .meta a { color:var(--acc); text-decoration:none; font-size:12.5px }
+  .meta span { color:var(--mut); font-size:12px }
+  .stage { flex:1; position:relative; background:#000 }
+  iframe { position:absolute; inset:0; width:100%; height:100%; border:0; background:#000 }
+</style>
+</head>
+<body>
+<header>
+  <h1>philipbankier.com <span>· design options · 2026-10-07</span></h1>
+  <nav class="tabs" id="tabs"></nav>
+  <div class="meta"><span id="note"></span><a id="open" href="#" target="_blank" rel="noopener">open full ↗</a></div>
+</header>
+<div class="stage"><iframe id="frame" src="" title="option preview"></iframe></div>
+<script>
+const OPTIONS = [
+  { id:1, label:"1 · Current", src:"https://philipbankier.com/", note:"live site (Editorial Ledger)" },
+  { id:2, label:"2 · Plumber", src:"option-2-plumber.html", note:"schematic manila, industrial" },
+  { id:3, label:"3 · Swiss", src:"option-3-swiss.html", note:"light international grid" },
+  { id:4, label:"4 · Phosphor", src:"option-4-phosphor.html", note:"instrument-panel dark" },
+  { id:5, label:"5 · Plates", src:"option-5-plates.html", note:"warm art-book serif" },
+];
+const tabs = document.getElementById('tabs'), frame = document.getElementById('frame'),
+      open = document.getElementById('open'), note = document.getElementById('note');
+OPTIONS.forEach((o,i) => {
+  const b = document.createElement('button');
+  b.textContent = o.label;
+  b.onclick = () => { document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); frame.src = o.src; open.href = o.src; note.textContent = o.note; };
+  tabs.appendChild(b);
+  if (i===0) b.onclick();
+});
+</script>
+</body>
+</html>

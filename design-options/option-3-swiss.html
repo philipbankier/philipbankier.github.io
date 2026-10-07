@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philip Bankier · Index</title>
+<!-- OPTION 3 · "SWISS INDEX" · international-style grid, signal red, the changelog as identity -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F6F1;
+    --ink: #111110;
+    --mut: #6E6C64;
+    --hair: #D9D6CB;
+    --red: #E2231A;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: "Inter Tight", sans-serif; font-size: 16px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; overflow-x: clip;
+  }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+
+  /* exposed column rules */
+  .rules { position: fixed; inset: 0; pointer-events: none; z-index: 0; display: grid;
+    grid-template-columns: repeat(4, 1fr); max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+  .rules div { border-left: 1px solid var(--hair); }
+  .rules div:first-child { border-left: 0; }
+
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* masthead */
+  .mast { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 2px solid var(--ink);
+    padding: 18px 0 14px; gap: 0; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+  .mast .cell { padding-right: 16px; }
+  .mast b { font-weight: 650; }
+  .mast .red { color: var(--red); }
+  .mast a { color: inherit; text-decoration: none; }
+  .mast a:hover { color: var(--red); }
+
+  /* hero */
+  .hero { padding: 54px 0 0; }
+  .kicker { display: flex; gap: 24px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--mut); }
+  .kicker .dot { color: var(--red); }
+  h1.giant {
+    font-weight: 840; letter-spacing: -.045em; line-height: .82; text-transform: uppercase;
+    font-size: clamp(90px, 15.8vw, 250px);
+    margin: 18px 0 0 -8px; /* intentionally crops against column edge */
+    font-stretch: 95%;
+  }
+  h1.giant .ln { display: block; overflow: hidden; }
+  h1.giant .ln > span { display: inline-block; }
+  h1 .thin { font-weight: 200; letter-spacing: -.03em; }
+  h1 .period { color: var(--red); }
+  .hero-sub { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 44px; border-top: 1px solid var(--ink); }
+  .hero-sub > div { padding: 18px 16px 0 0; }
+  .lede { grid-column: span 2; font-size: clamp(20px, 2.3vw, 30px); font-weight: 420; line-height: 1.28; letter-spacing: -.015em; }
+  .lede em { font-style: normal; border-bottom: 3px solid var(--red); }
+  .hero-meta { font-size: 12px; color: var(--mut); line-height: 1.7; }
+  .hero-meta b { color: var(--ink); font-weight: 600; display: block; text-transform: uppercase; letter-spacing: .08em; font-size: 10.5px; }
+  .cta { display: inline-block; margin-top: 14px; font-weight: 650; font-size: 13.5px; letter-spacing: .02em;
+    color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  .cta:hover { color: var(--red); }
+
+  /* index table (ledger as identity) */
+  section { padding: 84px 0 0; }
+  .sec-mast { display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+  .sec-mast h2 { font-size: clamp(34px, 4.6vw, 64px); font-weight: 800; letter-spacing: -.035em; text-transform: uppercase; line-height: .95; }
+  .sec-mast .no { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--red); }
+  .idx { list-style: none; }
+  .idx li { border-bottom: 1px solid var(--hair); }
+  .idx a {
+    display: grid; grid-template-columns: 90px 140px 1fr 140px 40px; align-items: baseline;
+    padding: 20px 8px; text-decoration: none; color: var(--ink); gap: 12px;
+    transition: background .12s ease, color .12s ease;
+  }
+  .idx .n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--mut); }
+  .idx .d { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--mut); }
+  .idx .t { font-size: clamp(17px, 1.8vw, 24px); font-weight: 560; letter-spacing: -.015em; }
+  .idx .k { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--mut); text-align: right; }
+  .idx .a { text-align: right; color: var(--red); font-weight: 700; }
+  .idx a:hover { background: var(--ink); color: var(--paper); }
+  .idx a:hover .n, .idx a:hover .d, .idx a:hover .k { color: var(--paper); opacity: .7; }
+  .idx a:hover .a { color: var(--red); }
+
+  /* works */
+  .works { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--hair); }
+  .work { padding: 26px 20px 30px 0; border-left: 1px solid var(--hair); padding-left: 20px; position: relative; }
+  .work:first-child { border-left: 0; padding-left: 0; }
+  .work .mono-no { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--red); }
+  .work h3 { font-size: clamp(26px, 3vw, 40px); font-weight: 780; letter-spacing: -.03em; margin: 8px 0 8px; text-transform: uppercase; }
+  .work p { font-size: 14px; color: var(--mut); max-width: 34ch; }
+  .work .lnk { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 650; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--red); }
+  .work .lnk:hover { color: var(--red); }
+
+  /* papers */
+  .papers { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .paper { border-bottom: 1px solid var(--hair); padding: 22px 20px 22px 0; display: flex; gap: 16px; align-items: baseline; text-decoration: none; color: var(--ink); }
+  .paper:nth-child(odd) { padding-right: 32px; }
+  .paper:nth-child(even) { border-left: 1px solid var(--hair); padding-left: 32px; }
+  .paper .pn { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--red); white-space: nowrap; }
+  .paper h3 { font-size: 19px; font-weight: 640; letter-spacing: -.015em; }
+  .paper span { display: block; font-size: 12.5px; color: var(--mut); margin-top: 4px; font-weight: 400; }
+  .paper:hover h3 { color: var(--red); }
+
+  /* portrait strip */
+  .strip { display: grid; grid-template-columns: 1fr 3fr; gap: 32px; align-items: center; margin-top: 64px; border-top: 2px solid var(--ink); padding-top: 32px; }
+  .strip img { width: 100%; display: block; filter: grayscale(1) contrast(1.15); }
+  .strip .img-frame { position: relative; max-width: 260px; }
+  .strip .img-frame::after { content: "FIG. A"; position: absolute; left: 0; bottom: -22px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .14em; color: var(--mut); }
+  .strip blockquote { font-size: clamp(22px, 2.6vw, 34px); font-weight: 420; letter-spacing: -.02em; line-height: 1.25; max-width: 24ch; }
+  .strip blockquote b { font-weight: 740; }
+
+  /* footer */
+  footer { margin-top: 100px; background: var(--ink); color: var(--paper); position: relative; z-index: 2; }
+  .foot-wrap { max-width: 1400px; margin: 0 auto; padding: 48px 32px 0; }
+  .foot-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 13px; padding-bottom: 42px; }
+  .foot-cols b { display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #8d8b84; margin-bottom: 10px; }
+  .foot-cols a { display: block; color: var(--paper); text-decoration: none; padding: 3px 0; }
+  .foot-cols a:hover { color: var(--red); }
+  .foot-cols .mono { font-size: 12px; color: #8d8b84; }
+  h2.end {
+    font-weight: 850; text-transform: uppercase; letter-spacing: -.04em; line-height: .76;
+    font-size: clamp(100px, 17vw, 270px); color: var(--paper);
+    margin: 0 -8px -22px; /* clipped by page bottom */
+    user-select: none;
+  }
+  h2.end .period { color: var(--red); }
+
+  /* motion: line-mask reveals, progressive */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      h1.giant .ln > span { animation: maskup 1s both; }
+      h1.giant .ln:nth-child(2) > span { animation-delay: .07s; }
+      @keyframes maskup { from { transform: translateY(110%); } to { transform: none; } }
+      .reveal { animation: fade both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+      @keyframes fade { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .rules { grid-template-columns: repeat(2, 1fr); }
+    .mast { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+    .hero-sub { grid-template-columns: 1fr; }
+    .lede { grid-column: span 1; }
+    .idx a { grid-template-columns: 70px 1fr 36px; }
+    .idx .d, .idx .k { display: none; }
+    .works { grid-template-columns: 1fr; }
+    .work { border-left: 0; padding-left: 0; }
+    .papers { grid-template-columns: 1fr; }
+    .paper:nth-child(even) { border-left: 0; padding-left: 0; }
+    .strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="rules" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+
+<div class="wrap">
+  <header class="mast mono">
+    <div class="cell"><b>Philip Bankier</b></div>
+    <div class="cell">Co-founder, Kairox AI</div>
+    <div class="cell"><span id="clock">00:00:00</span> <span class="red">·</span> Index Nº 01</div>
+    <div class="cell" style="text-align:right"><a href="#contact">Contact ↓</a></div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:54px">
+    <div class="kicker mono"><span>The work, indexed<span class="dot">.</span></span><span>2026 edition</span></div>
+    <h1 class="giant" aria-label="Philip Bankier">
+      <span class="ln"><span class="thin">Philip</span></span>
+      <span class="ln"><span>Bankier<span class="period">.</span></span></span>
+    </h1>
+    <div class="hero-sub">
+      <div class="lede reveal">I build <em>the machinery that runs the work</em>, in the open. ActRun runs the jobs. PromptCache stocks the prompts.</div>
+      <div class="hero-meta reveal"><b>Currently</b> Kairox AI, co-founder. The Living Edge, weekly.<br><a class="cta" href="https://actrun.ai">Try ActRun</a></div>
+      <div class="hero-meta reveal"><b>Elsewhere</b> <a href="https://github.com/philipbankier" style="color:inherit">GitHub</a> · <a href="https://twitter.com/philipbankier" style="color:inherit">X</a> · <a href="https://www.linkedin.com/in/philip-bankier/" style="color:inherit">LinkedIn</a><br>79 public repositories</div>
+    </div>
+  </section>
+
+  <!-- INDEX (ledger) -->
+  <section id="index">
+    <div class="sec-mast reveal"><h2>The index</h2><span class="no">001—006 · REBUILT DAILY</span></div>
+    <ul class="idx">
+      <li class="reveal"><a href="https://github.com/philipbankier/awesome-agent-skills">
+        <span class="n">006</span><span class="d">2026-10-07</span><span class="t">awesome-agent-skills syncs its own data, daily</span><span class="k">Commit</span><span class="a">→</span></a></li>
+      <li class="reveal"><a href="https://github.com/philipbankier/awesome-image-prompts">
+        <span class="n">005</span><span class="d">2026-08-31</span><span class="t">awesome-image-prompts, a new public repo</span><span class="k">Repo</span><span class="a">→</span></a></li>
+      <li class="reveal"><a href="https://github.com/philipbankier/slop-engine">
+        <span class="n">004</span><span class="d">2026-08-26</span><span class="t">slop-engine, a new public repo</span><span class="k">Repo</span><span class="a">→</span></a></li>
+      <li class="reveal"><a href="https://promptcache.live">
+        <span class="n">003</span><span class="d">2026-08-22</span><span class="t">PromptCache ships: save and share the prompts that work</span><span class="k">Launch</span><span class="a">→</span></a></li>
+      <li class="reveal"><a href="https://philipbankier.com">
+        <span class="n">002</span><span class="d">2026-08-19</span><span class="t">philipbankier.com, redesigned and relaunched</span><span class="k">Site</span><span class="a">→</span></a></li>
+      <li class="reveal"><a href="https://github.com/philipbankier/tastekit">
+        <span class="n">001</span><span class="d">2026-06-29</span><span class="t">tastekit moves its releases to the Kairox scope</span><span class="k">Commit</span><span class="a">→</span></a></li>
+    </ul>
+  </section>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="sec-mast reveal"><h2>Works</h2><span class="no">W.01—03</span></div>
+    <div class="works">
+      <div class="work reveal">
+        <span class="mono-no">W.01</span>
+        <h3>ActRun</h3>
+        <p>AI that runs your work. Agents that carry a job from asked to done.</p>
+        <a class="lnk" href="https://actrun.ai">actrun.ai</a>
+      </div>
+      <div class="work reveal">
+        <span class="mono-no">W.02</span>
+        <h3>PromptCache</h3>
+        <p>A free library to save and share the prompts that work.</p>
+        <a class="lnk" href="https://promptcache.live">promptcache.live</a>
+      </div>
+      <div class="work reveal">
+        <span class="mono-no">W.03</span>
+        <h3>Kairox AI</h3>
+        <p>The company behind both, built in the open.</p>
+        <a class="lnk" href="https://kairoxai.live">kairoxai.live</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAPERS -->
+  <section id="papers">
+    <div class="sec-mast reveal"><h2>Papers</h2><span class="no">P.01—04</span></div>
+    <div class="papers">
+      <a class="paper reveal" href="https://philipbankier.com/pages/agent-playbook.html">
+        <span class="pn">P.04</span><h3>The 2026 AI Agent Playbook<span>Field brief · April 2026</span></h3></a>
+      <a class="paper reveal" href="https://philipbankier.com/pages/april-2026-ai-agent-roundup.html">
+        <span class="pn">P.03</span><h3>April 2026 Agent Roundup<span>Roundup · April 2026</span></h3></a>
+      <a class="paper reveal" href="https://philipbankier.com/pages/taste-landscape.html">
+        <span class="pn">P.02</span><h3>The Landscape of Taste Transfer<span>Synthesis · April 2026</span></h3></a>
+      <a class="paper reveal" href="https://philipbankier.com/pages/mobile-agent-nodes.html">
+        <span class="pn">P.01</span><h3>Mobile Devices as Agent Nodes<span>Field guide · May 2026</span></h3></a>
+    </div>
+
+    <div class="strip reveal">
+      <div class="img-frame"><img src="assets/profile.webp" alt="Philip Bankier" width="449" height="561"></div>
+      <blockquote>The site is an index<span style="color:var(--red)">.</span> The work lives in <b>the repos, the products and the writing</b> it points to.</blockquote>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="foot-wrap">
+    <div class="foot-cols">
+      <div><b>Write</b><a href="mailto:philip@kairoxai.live">philip@kairoxai.live</a><a href="https://thelivingedge.substack.com/">The Living Edge</a></div>
+      <div><b>Elsewhere</b><a href="https://twitter.com/philipbankier">X · @philipbankier</a><a href="https://github.com/philipbankier">GitHub</a><a href="https://www.linkedin.com/in/philip-bankier/">LinkedIn</a></div>
+      <div><b>Company</b><a href="https://kairoxai.live">Kairox AI</a><a href="https://actrun.ai">ActRun</a><a href="https://promptcache.live">PromptCache</a></div>
+      <div><b>Colophon</b><span class="mono">Inter Tight · Plex Mono<br>© 2026 Philip Bankier</span></div>
+    </div>
+    <h2 class="end" aria-hidden="true">Index<span class="period">.</span></h2>
+  </div>
+</footer>
+
+<script>
+  const clock = document.getElementById('clock');
+  const tick = () => { clock.textContent = new Date().toTimeString().slice(0,8); };
+  tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

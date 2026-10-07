@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philip Bankier · AI Agent Plumber</title>
+<!-- OPTION 2 · "THE PLUMBER" · engineering-drawing manila, ink, stamps, schematic line work -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #E9DFC6;
+    --paper-2: #E2D6B8;
+    --ink: #241D12;
+    --ink-soft: #4A4232;
+    --faint: #857B61;
+    --red: #B5351B;
+    --blue: #35618E;
+    --rule: #B9AC8C;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 16px/1.55 "IBM Plex Mono", monospace;
+    -webkit-font-smoothing: antialiased;
+    /* drafting-paper grid */
+    background-image:
+      linear-gradient(to right, rgba(84,72,48,.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(84,72,48,.055) 1px, transparent 1px),
+      linear-gradient(to right, rgba(84,72,48,.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(84,72,48,.09) 1px, transparent 1px);
+    background-size: 16px 16px, 16px 16px, 128px 128px, 128px 128px;
+  }
+  /* paper grain */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .arch { font-family: "Archivo", sans-serif; }
+
+  /* ---------- frame ---------- */
+  .sheet { max-width: 1360px; margin: 0 auto; padding: 0 28px; }
+  .border-frame {
+    position: fixed; inset: 14px; border: 2px solid var(--ink); pointer-events: none; z-index: 50;
+  }
+  .border-frame::after {
+    content: ""; position: absolute; inset: 4px; border: 1px solid var(--ink);
+  }
+
+  /* ---------- top strip ---------- */
+  header.strip {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 34px 28px 10px; max-width: 1360px; margin: 0 auto;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  header.strip nav { display: flex; gap: 26px; }
+  header.strip a { color: var(--ink-soft); text-decoration: none; }
+  header.strip a:hover { color: var(--red); }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: 60px 0 80px; }
+  .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: end; }
+  .stamp-line { display: flex; gap: 14px; align-items: center; margin-bottom: 26px; }
+  .stamp {
+    display: inline-block; border: 2.5px solid var(--red); color: var(--red);
+    font: 700 13px/1 "IBM Plex Mono", monospace; letter-spacing: .22em; text-transform: uppercase;
+    padding: 9px 14px 8px; transform: rotate(-2deg);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.12' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23r)'/%3E%3C/svg%3E");
+    mask-size: 80px 80px;
+  }
+  .ref { font-size: 11px; letter-spacing: .18em; color: var(--faint); text-transform: uppercase; }
+  h1.title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 860; font-stretch: 72%;
+    font-size: clamp(64px, 9.2vw, 136px);
+    line-height: .88; letter-spacing: -.015em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  h1 .outline {
+    color: transparent; -webkit-text-stroke: 2.5px var(--ink);
+  }
+  .role-row { display: flex; align-items: baseline; gap: 18px; margin-top: 18px; flex-wrap: wrap; }
+  .role {
+    font-family: "Archivo", sans-serif; font-weight: 700; font-stretch: 80%;
+    text-transform: uppercase; letter-spacing: .08em; font-size: clamp(18px, 2vw, 26px); color: var(--red);
+  }
+  .role-dim { color: var(--ink-soft); font-size: 13px; letter-spacing: .1em; }
+  .bio {
+    margin-top: 26px; max-width: 520px; font-size: 15.5px; color: var(--ink-soft);
+  }
+  .bio b { color: var(--ink); font-weight: 600; }
+  .cta-row { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+  .btn {
+    font: 600 13px/1 "IBM Plex Mono", monospace; letter-spacing: .12em; text-transform: uppercase;
+    padding: 14px 20px; border: 2px solid var(--ink); color: var(--ink); text-decoration: none;
+    background: transparent; position: relative;
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--red); border-color: var(--red); }
+  .btn:not(.primary):hover { border-color: var(--red); color: var(--red); }
+
+  /* portrait: halftone ink print */
+  .plate {
+    position: relative; border: 2px solid var(--ink); background: var(--paper-2); padding: 14px;
+  }
+  .plate .img-wrap { position: relative; overflow: hidden; }
+  .plate img {
+    display: block; width: 100%; filter: grayscale(1) contrast(1.35) brightness(1.02);
+    mix-blend-mode: multiply;
+  }
+  /* CSS halftone: dot screen over the image */
+  .plate .img-wrap::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(circle at center, rgba(36,29,18,.55) 1px, transparent 1.6px);
+    background-size: 4px 4px; mix-blend-mode: overlay;
+  }
+  .plate figcaption {
+    display: flex; justify-content: space-between; padding-top: 10px;
+    font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* title block (engineering drawing corner box) */
+  .title-block {
+    margin-top: 16px; border: 2px solid var(--ink); display: grid;
+    grid-template-columns: 1fr 1fr; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .title-block div { padding: 8px 10px; border-top: 1px solid var(--ink); }
+  .title-block div:nth-child(-n+2) { border-top: 0; }
+  .title-block div:nth-child(odd) { border-right: 1px solid var(--ink); }
+  .title-block b { display: block; color: var(--faint); font-weight: 500; font-size: 9px; }
+
+  /* ---------- schematic spine ---------- */
+  .spine { position: absolute; left: 50%; width: 2px; background: none; }
+
+  /* ---------- sections ---------- */
+  section { padding: 72px 0; position: relative; }
+  .sec-head { display: flex; align-items: center; gap: 18px; margin-bottom: 42px; }
+  .sec-no {
+    font: 700 12px/1 "IBM Plex Mono", monospace; border: 2px solid var(--ink);
+    padding: 8px 10px; letter-spacing: .1em;
+  }
+  h2.sec-title {
+    font-family: "Archivo", sans-serif; font-weight: 820; font-stretch: 75%;
+    text-transform: uppercase; font-size: clamp(30px, 4vw, 52px); letter-spacing: -.01em; line-height: 1;
+  }
+  .sec-rule { flex: 1; height: 2px; background: var(--ink); position: relative; }
+  .sec-rule::after {
+    content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 9px solid var(--ink);
+  }
+
+  /* ledger = schedule of work */
+  table.schedule { width: 100%; border-collapse: collapse; border: 2px solid var(--ink); background: rgba(255,252,240,.35); }
+  table.schedule th {
+    font: 600 10.5px/1 "IBM Plex Mono", monospace; letter-spacing: .18em; text-transform: uppercase;
+    text-align: left; padding: 12px 14px; border-bottom: 2px solid var(--ink); color: var(--ink-soft);
+    background: var(--paper-2);
+  }
+  table.schedule td { padding: 13px 14px; border-bottom: 1px solid var(--rule); font-size: 13.5px; }
+  table.schedule tr:last-child td { border-bottom: 0; }
+  table.schedule tbody tr { transition: background .15s ease; }
+  table.schedule tbody tr:hover { background: rgba(181,53,27,.07); }
+  td.rev { font-weight: 600; color: var(--red); white-space: nowrap; }
+  td.date { color: var(--faint); white-space: nowrap; font-size: 12px; }
+  td.arrow-cell { text-align: right; color: var(--red); font-weight: 600; }
+  table.schedule a { color: inherit; text-decoration: none; display: contents; }
+
+  /* assemblies = products */
+  .assemblies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--ink); }
+  .asm { padding: 28px 26px 24px; border-right: 2px solid var(--ink); position: relative; background: rgba(255,252,240,.3); }
+  .asm:last-child { border-right: 0; }
+  .asm:hover { background: rgba(53,97,142,.08); }
+  .asm .part-no { font-size: 10px; letter-spacing: .2em; color: var(--faint); text-transform: uppercase; }
+  .asm h3 {
+    font-family: "Archivo", sans-serif; font-weight: 800; font-stretch: 78%; text-transform: uppercase;
+    font-size: 26px; margin: 10px 0 8px;
+  }
+  .asm p { font-size: 13px; color: var(--ink-soft); min-height: 60px; }
+  .asm .lead-out { margin-top: 18px; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); font-weight: 600; }
+  .asm a { position: absolute; inset: 0; }
+  /* valve icon */
+  .valve { position: absolute; top: 22px; right: 20px; width: 34px; height: 34px; }
+
+  /* drawings index = library */
+  .drawings { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .dwg {
+    border: 2px solid var(--ink); padding: 20px 22px; background: rgba(255,252,240,.3);
+    display: flex; justify-content: space-between; gap: 14px; text-decoration: none; color: var(--ink);
+    position: relative;
+  }
+  .dwg:hover { outline: 2px solid var(--red); outline-offset: -2px; }
+  .dwg .no { font-size: 10px; letter-spacing: .18em; color: var(--faint); text-transform: uppercase; }
+  .dwg h3 { font-family: "Archivo", sans-serif; font-weight: 750; font-stretch: 80%; font-size: 19px; text-transform: uppercase; margin: 6px 0 6px; }
+  .dwg p { font-size: 12.5px; color: var(--ink-soft); }
+  .dwg .tag { align-self: flex-start; font-size: 10px; letter-spacing: .14em; border: 1.5px solid var(--blue); color: var(--blue); padding: 5px 8px; text-transform: uppercase; white-space: nowrap; }
+
+  /* footer */
+  footer { padding: 60px 0 90px; }
+  .foot-block { border: 2px solid var(--ink); display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; background: var(--paper-2); }
+  .foot-block > div { padding: 18px 20px; border-right: 2px solid var(--ink); font-size: 12px; }
+  .foot-block > div:last-child { border-right: 0; }
+  .foot-block b { display: block; font-size: 9.5px; letter-spacing: .18em; color: var(--faint); text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+  .foot-block a { color: var(--ink); text-decoration: none; display: block; padding: 2px 0; }
+  .foot-block a:hover { color: var(--red); }
+  .foot-name { font-family: "Archivo", sans-serif; font-weight: 850; font-stretch: 72%; text-transform: uppercase; font-size: 30px; line-height: 1; }
+
+  /* dimension line decoration */
+  .dim { display: flex; align-items: center; gap: 8px; color: var(--faint); font-size: 10px; letter-spacing: .12em; margin-top: 14px; }
+  .dim .line { flex: 1; height: 1px; background: var(--faint); position: relative; }
+  .dim .line::before, .dim .line::after {
+    content: ""; position: absolute; top: -4px; width: 1px; height: 9px; background: var(--faint);
+  }
+  .dim .line::after { right: 0; }
+
+  /* scroll-driven reveals (progressive enhancement) */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: rise both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+      @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+      .stamp { animation: thunk both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+      @keyframes thunk { from { opacity: 0; transform: rotate(-2deg) scale(1.6); } 60% { opacity: 1; } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+    }
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .assemblies { grid-template-columns: 1fr; }
+    .asm { border-right: 0; border-bottom: 2px solid var(--ink); }
+    .drawings { grid-template-columns: 1fr; }
+    .foot-block { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="border-frame" aria-hidden="true"></div>
+
+<header class="strip">
+  <span>DWG · PB-2026 · SHEET 1 OF 1</span>
+  <nav>
+    <a href="#work">Schedule</a>
+    <a href="#assemblies">Assemblies</a>
+    <a href="#drawings">Drawings</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <span>SCALE · NTS</span>
+</header>
+
+<main class="sheet">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="stamp-line">
+          <span class="stamp">AI Agent Plumber</span>
+          <span class="ref">Rev P · Issued for construction</span>
+        </div>
+        <h1 class="title">Philip<br><span class="outline">Bankier</span></h1>
+        <div class="role-row">
+          <span class="role">Co-founder · Kairox AI</span>
+        </div>
+        <p class="bio">I build <b>the machinery that runs the work</b>, in the open. Pipes and pressure gauges for AI agents: <b>ActRun</b> runs the jobs, <b>PromptCache</b> stocks the parts.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="https://actrun.ai">Try ActRun</a>
+          <a class="btn" href="https://kairoxai.live">Kairox AI</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+        <div class="dim"><span>EST. FLOW</span><span class="line"></span><span>CONTINUOUS</span></div>
+      </div>
+      <div>
+        <figure class="plate reveal">
+          <div class="img-wrap"><img src="assets/profile.webp" alt="Philip Bankier" width="449" height="561"></div>
+          <figcaption><span>FIG. 1 · THE PLUMBER</span><span>HALFTONE · 65 LPI</span></figcaption>
+        </figure>
+        <div class="title-block" aria-label="drawing title block">
+          <div><b>Drawn by</b> P. Bankier</div>
+          <div><b>Checked by</b> The agents</div>
+          <div><b>Date</b> 2026-10-07</div>
+          <div><b>Rev</b> P</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE OF WORK (ledger) -->
+  <section id="work">
+    <div class="sec-head reveal">
+      <span class="sec-no">01</span>
+      <h2 class="sec-title">Schedule of work</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <table class="schedule reveal">
+      <thead>
+        <tr><th>Rev</th><th>Date</th><th style="width:58%">Description</th><th>Kind</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rev">R12</td><td class="date">2026-10-07</td><td><a href="https://github.com/philipbankier/awesome-agent-skills">awesome-agent-skills: daily data sync, run by its own automation</a></td><td>Commit</td><td class="arrow-cell">→</td></tr>
+        <tr><td class="rev">R11</td><td class="date">2026-08-31</td><td><a href="https://github.com/philipbankier/awesome-image-prompts">awesome-image-prompts: new public repo</a></td><td>Repo</td><td class="arrow-cell">→</td></tr>
+        <tr><td class="rev">R10</td><td class="date">2026-08-26</td><td><a href="https://github.com/philipbankier/slop-engine">slop-engine: new public repo</a></td><td>Repo</td><td class="arrow-cell">→</td></tr>
+        <tr><td class="rev">R09</td><td class="date">2026-08-22</td><td><a href="https://promptcache.live">PromptCache: free library to save and share the prompts that work</a></td><td>Launch</td><td class="arrow-cell">→</td></tr>
+        <tr><td class="rev">R08</td><td class="date">2026-08-19</td><td><a href="https://philipbankier.com">This site: foundation redesign shipped</a></td><td>Site</td><td class="arrow-cell">→</td></tr>
+        <tr><td class="rev">R07</td><td class="date">2026-06-29</td><td><a href="https://github.com/philipbankier/tastekit">tastekit: release packages moved to the Kairox scope</a></td><td>Commit</td><td class="arrow-cell">→</td></tr>
+      </tbody>
+    </table>
+    <div class="dim"><span>LOG CONTINUES</span><span class="line"></span><span>REBUILT DAILY FROM SOURCES</span></div>
+  </section>
+
+  <!-- ASSEMBLIES (products) -->
+  <section id="assemblies">
+    <div class="sec-head reveal">
+      <span class="sec-no">02</span>
+      <h2 class="sec-title">Assemblies</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="assemblies reveal">
+      <div class="asm">
+        <svg class="valve" viewBox="0 0 34 34" fill="none" stroke="#B5351B" stroke-width="2"><circle cx="17" cy="19" r="9"/><path d="M17 10V3M9 3h16"/></svg>
+        <div class="part-no">ASM-001 · In service</div>
+        <h3>ActRun</h3>
+        <p>AI that runs your work. The main line: agents that carry a job from asked to done.</p>
+        <div class="lead-out">actrun.ai →</div>
+        <a href="https://actrun.ai" aria-label="ActRun"></a>
+      </div>
+      <div class="asm">
+        <svg class="valve" viewBox="0 0 34 34" fill="none" stroke="#B5351B" stroke-width="2"><rect x="6" y="10" width="22" height="18"/><path d="M11 10V5h12v5M11 19h12M11 23h8"/></svg>
+        <div class="part-no">ASM-002 · In service</div>
+        <h3>PromptCache</h3>
+        <p>The parts bin. A free library to save and share the prompts that work.</p>
+        <div class="lead-out">promptcache.live →</div>
+        <a href="https://promptcache.live" aria-label="PromptCache"></a>
+      </div>
+      <div class="asm">
+        <svg class="valve" viewBox="0 0 34 34" fill="none" stroke="#B5351B" stroke-width="2"><circle cx="17" cy="17" r="12"/><path d="M17 9v8l6 4"/></svg>
+        <div class="part-no">ASM-000 · Parent</div>
+        <h3>Kairox AI</h3>
+        <p>The shop itself. Products and research under one roof, built in the open.</p>
+        <div class="lead-out">kairoxai.live →</div>
+        <a href="https://kairoxai.live" aria-label="Kairox AI"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRAWINGS (library) -->
+  <section id="drawings">
+    <div class="sec-head reveal">
+      <span class="sec-no">03</span>
+      <h2 class="sec-title">Drawings on file</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="drawings">
+      <a class="dwg reveal" href="https://philipbankier.com/pages/agent-playbook.html">
+        <div><div class="no">DWG-04 · APR 2026</div><h3>The 2026 AI Agent Playbook</h3><p>Deployment paradigms, context engineering and a scoring matrix across the ecosystem.</p></div>
+        <span class="tag">Field brief</span>
+      </a>
+      <a class="dwg reveal" href="https://philipbankier.com/pages/april-2026-ai-agent-roundup.html">
+        <div><div class="no">DWG-03 · APR 2026</div><h3>April 2026 Agent Roundup</h3><p>A month in review across the agent ecosystem, from model releases to security incidents.</p></div>
+        <span class="tag">Roundup</span>
+      </a>
+      <a class="dwg reveal" href="https://philipbankier.com/pages/taste-landscape.html">
+        <div><div class="no">DWG-02 · APR 2026</div><h3>The Landscape of Taste Transfer</h3><p>Every technique for moving a person's creative voice into an LLM, mapped.</p></div>
+        <span class="tag">Synthesis</span>
+      </a>
+      <a class="dwg reveal" href="https://philipbankier.com/pages/mobile-agent-nodes.html">
+        <div><div class="no">DWG-01 · MAY 2026</div><h3>Mobile Devices as Agent Nodes</h3><p>Spare phones as automation nodes for agent fleets, with a decision tree.</p></div>
+        <span class="tag">Field guide</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="sec-head reveal">
+      <span class="sec-no">04</span>
+      <h2 class="sec-title">Call the plumber</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="foot-block reveal">
+      <div>
+        <div class="foot-name">Philip<br>Bankier</div>
+        <div style="margin-top:10px; color:var(--ink-soft)">Co-founder of Kairox AI. The Living Edge is the newsletter.</div>
+      </div>
+      <div>
+        <b>Write</b>
+        <a href="mailto:philip@kairoxai.live">philip@kairoxai.live</a>
+        <a href="https://thelivingedge.substack.com/">The Living Edge</a>
+      </div>
+      <div>
+        <b>Elsewhere</b>
+        <a href="https://twitter.com/philipbankier">X · @philipbankier</a>
+        <a href="https://github.com/philipbankier">GitHub</a>
+        <a href="https://www.linkedin.com/in/philip-bankier/">LinkedIn</a>
+      </div>
+      <div>
+        <b>Shop</b>
+        <a href="https://kairoxai.live">Kairox AI</a>
+        <a href="https://actrun.ai">ActRun</a>
+        <a href="https://promptcache.live">PromptCache</a>
+      </div>
+    </div>
+    <div class="dim"><span>© 2026 PHILIP BANKIER</span><span class="line"></span><span>DRAWN BY HAND AND BY AGENT</span></div>
+  </footer>
+</main>
+</body>
+</html>
