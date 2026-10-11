@@ -29,7 +29,7 @@ The existing GitHub Actions workflow publishes `dist/public` when a change lands
 
 ## Writing updates
 
-The build fetches The Living Edge's public RSS feed once. On ordinary network or parsing failures it uses `client/src/content/writing-reviewed.json` and shows that snapshot's original checked date. Authentication and rate-limit failures stop the build. Article URLs, dates and uniqueness are validated before rendering.
+The build fetches The Living Edge's public RSS feed once. On ordinary network or parsing failures it uses `client/src/content/writing-reviewed.json` and shows that snapshot's original checked date. An HTTP 403 from this fixed, anonymous public feed also uses the dated snapshot without retrying or reading the rejected response. HTTP 401 and 429 still stop the build. Article URLs, dates and uniqueness are validated before rendering.
 
 To prepare a replacement fallback:
 

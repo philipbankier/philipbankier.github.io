@@ -120,7 +120,7 @@ export async function fetchWriting(
     redirect: "error",
     headers: { Accept: "application/rss+xml, application/xml, text/xml" },
   });
-  if ([401, 403, 429].includes(response.status))
+  if ([401, 429].includes(response.status))
     throw new FeedAccessError(`Feed HTTP ${response.status}`);
   if (!response.ok) throw new Error(`Feed HTTP ${response.status}`);
   return parseFeed(await readBounded(response), now.toISOString());

@@ -59,3 +59,11 @@ A fresh whole-branch reviewer reproduced the typechecks, tests and output verifi
 A clean release branch is prepared from main so the new PR does not publish the inherited intermediate revisions containing private contribution data. The original implementation branch is retained locally. This does not erase any older public branch history. No human authorship, unverified timestamp or publication permission was inferred to satisfy a validator.
 
 The review report and execution rulings are retained locally in `build/release-evidence`. No deferred code findings remain. No linter is configured.
+
+## Proposed release follow-up, October 11, 2026
+
+PR #4 merged approved candidate `86dfa3f1607f21999f26a2e8d003e01a88655853` as `bfacb8e6ef19bd1422bab74dab0d50e0275aec17`. Pages run [38159353287](https://github.com/philipbankier/philipbankier.github.io/actions/runs/38159353287) passed typechecks and all 29 tests, then failed because the anonymous Substack feed returned HTTP 403. The deploy job did not run.
+
+The follow-up changes only the treatment of 403 from the fixed public feed: the release build may use the validated reviewed snapshot, retain its original checked date and record the rejection in the receipt. HTTP 401/429 remain fatal, and fresh-only snapshot refresh still rejects 403. No retry, credential change, workflow edit or feed request is used to prepare the proposal. Persistent refusal can leave the writing list stale; the visible date states its age.
+
+This is a proposed amendment to the original 401/403/429 rule, not deployment of unchanged candidate `86dfa3f`. Separate approval is required before publishing and merging the follow-up. Offline regression tests and a simulated-403 build verify the behavior without contacting the refused endpoint.
