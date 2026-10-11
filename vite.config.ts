@@ -4,7 +4,24 @@ import path from "node:path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: "static-production-entry",
+      apply: "build",
+      transformIndexHtml: {
+        order: "pre",
+        handler(html) {
+          const block = /<!--dev-entry:start-->[\s\S]*?<!--dev-entry:end-->/g;
+          if ([...html.matchAll(block)].length !== 1)
+            throw new Error("Expected one dev-entry block");
+          return html.replace(block, "");
+        },
+      },
+    },
+  ],
+  appType: "mpa",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -15,6 +32,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    copyPublicDir: false,
   },
   server: {
     port: 3000,

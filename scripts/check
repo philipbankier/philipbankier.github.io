@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+pnpm exec tsc --noEmit
+pnpm exec tsc --noEmit -p tsconfig.scripts.json
