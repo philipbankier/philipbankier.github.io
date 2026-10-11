@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["scripts/**/*.ts", "client/src/**/*"],
+  "exclude": [],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "incremental": false,
+    "target": "ES2022"
+  }
+}

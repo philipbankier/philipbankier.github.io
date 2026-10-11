@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+pnpm exec tsx --tsconfig tsconfig.scripts.json scripts/build-site.ts "$@"

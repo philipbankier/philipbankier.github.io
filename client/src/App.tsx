@@ -6,10 +6,18 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
+import { reports } from "./content/site";
+import { reviewedWriting } from "./content/writing";
+
 function Router() {
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
+      <Route path="/">
+        <Home
+          writing={{ source: "fresh", snapshot: reviewedWriting }}
+          reports={reports}
+        />
+      </Route>
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

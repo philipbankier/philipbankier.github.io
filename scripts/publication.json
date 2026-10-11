@@ -1,0 +1,142 @@
+[
+  {
+    "path": ".gitkeep",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "CNAME",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/css/reports.css",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/hero-bg.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/portrait-1122.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/portrait-320.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/portrait-640.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/portrait-960.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/profile.webp",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "assets/img/social-card.jpg",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "favicon-32.png",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "favicon.svg",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  },
+  {
+    "path": "pages/agent-playbook.html",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/april-2026-ai-agent-roundup.html",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/content-topic-synthesis.html",
+    "decision": "exclude",
+    "reviewAction": "exclude",
+    "reason": "User-approved withdrawal from deployed site; preserve source and return 404.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/mobile-agent-nodes.html",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/taste-landscape.html",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/tracker/yohei-nakajima.html",
+    "decision": "exclude",
+    "reviewAction": "exclude",
+    "reason": "User-approved withdrawal from deployed site; preserve source and return 404.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "pages/untweeted/agent-self-improve.jpg",
+    "decision": "exclude",
+    "reviewAction": "exclude",
+    "reason": "User-approved withdrawal from deployed site; preserve source and return 404.",
+    "evidence": "docs/content-review.md#publication-decisions"
+  },
+  {
+    "path": "robots.txt",
+    "decision": "include",
+    "reviewAction": "include",
+    "reason": "Approved public report or asset; retain existing asset URLs.",
+    "evidence": "docs/superpowers/specs/2026-10-10-plumber-refinement-design.md"
+  }
+]

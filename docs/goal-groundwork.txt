@@ -1,0 +1,24 @@
+Build the shared groundwork and the four-way likeness panel for the philipbankier.com redesign, exactly as specified in docs/goal-groundwork-brief.md, on branch design/option-mockups. Read AGENTS.md, docs/HANDOFF.md and the brief before starting.
+
+OUTCOME. Done only when all are true:
+1. `node scripts/data/build-ledger.mjs` writes data/ledger.json, days.json, contributions.json, repos.json, newsletter.json and products.json (data/ is gitignored), and `node scripts/data/verify-ledger.mjs` exits 0 with every brief check printed as PASS.
+2. `python scripts/portrait/make_maps.py` writes the five maps to design-options/portrait-maps/ from the 449x561 source, and `python scripts/portrait/verify_maps.py` exits 0.
+3. design-options/panel/ holds the four portrait renders (plates, plumber, phosphor, swiss) at 200px, 375px and full size under blind labels A-D, plus index.html (a blind contact sheet with no direction names), KEY.md, and the public-only Swiss comparison print.
+4. design-options/panel/CHECKLIST.md maps every brief requirement to evidence (a command and an output excerpt, or a file path) or to [blocked] with the real error.
+5. All work is committed in small commits and pushed to origin/design/option-mockups.
+
+CONSTRAINTS. Write only in scripts/data/, scripts/portrait/, design-options/portrait-maps/, design-options/panel/, .gitignore (add data/ and .venv/), and package.json devDependencies. Never touch client/, .github/workflows/, client/public/pages/tracker/ or main. Get GITHUB_TOKEN from `gh auth token` at runtime only, and never commit tokens, data/, private-repo names or private contribution data. Exclude tracker commits by path, never by message. Never list fork repos. Use Depth Anything V2 Small only. The raw photo must never appear in a render. Renders are static (Python or Node canvas), with no WebGL.
+
+ITERATION. Keep design-options/panel/PROGRESS.md as working memory, and update it after each part. Run each part's verify command before moving on. Fix failures for real, and never fake, stub or retry a check into a pass. Self-check every render at 375px and record honestly whether a face reads. A portrait that fails your own check still goes to the panel, with the failure noted.
+
+PAUSE AND ASK: GitHub auth, rate-limit or quota errors (never retry-hammer), a model or package download that fails twice, or a genuinely ambiguous spec. Report what you tried, the exact error, and the input you need.
+
+PAUSE AND ESCALATE: any brief premise that proves false. Examples: the contribution calendar is unavailable, the maps can't be produced, or the real counts deviate from the brief's assumed numbers by more than 20%. Stop and report. Don't work around it.
+
+RECORD AND CONTINUE: a single render, check or optional input (for example the RSS feed) failing. Mark it [blocked] with the real error, then keep going.
+
+CHECKPOINT: STOP when outcome items 1 to 5 are met. Report the real numbers (hand, automation and quiet days, contribution totals, latest hand commit), the self-check results, and the path to panel/index.html, then wait. The human likeness panel and the choice of direction belong to the operator. Do not start any signature-moment spike, WebGL build or site change.
+
+Set the token budget to 1,500,000 tokens.
+
+RECOVERY. After compaction or confusion, re-read PROGRESS.md and CHECKLIST.md before acting.

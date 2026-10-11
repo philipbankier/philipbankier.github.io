@@ -1,0 +1,57 @@
+[
+  {
+    "path": "/pages/mobile-agent-nodes.html",
+    "title": "Mobile Devices as Agent Nodes",
+    "summary": "A field guide to Android and iOS automation tools and their documented setup requirements.",
+    "originalDateLabel": "May 2026",
+    "citations": [
+      "https://github.com/rounak/PhoneAgent",
+      "https://oss.callstack.com/agent-device/docs/installation",
+      "https://github.com/callstack/agent-device/blob/main/website/docs/docs/commands.md",
+      "https://docs.mobilerun.ai/framework/guides/device-setup",
+      "https://docs.mobilerun.ai/quickstart"
+    ],
+    "revisedOn": "2026-10-11"
+  },
+  {
+    "path": "/pages/april-2026-ai-agent-roundup.html",
+    "title": "The April 2026 AI Agent Roundup",
+    "summary": "Selected agent-tool and model announcements from April 2026, with links to the original announcements.",
+    "originalDateLabel": "April 25, 2026",
+    "citations": [
+      "https://forum.cursor.com/t/cursor-3-new-cursor-interface/156506",
+      "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-version-1-0/",
+      "https://www.anthropic.com/news/claude-opus-4-7",
+      "https://openai.com/index/introducing-gpt-5-5/"
+    ],
+    "revisedOn": "2026-10-11"
+  },
+  {
+    "path": "/pages/agent-playbook.html",
+    "title": "The 2026 AI Agent Playbook",
+    "summary": "A field brief comparing agent architectures and deployment tradeoffs, with sections on context and memory.",
+    "originalDateLabel": "April 24, 2026",
+    "citations": [
+      "https://github.com/openclaw/openclaw",
+      "https://github.com/NousResearch/hermes-agent",
+      "https://mastra.ai/docs",
+      "https://mastra.ai/docs/deployment/overview",
+      "https://github.com/mastra-ai/mastra/blob/main/docs/src/content/en/docs/memory/observational-memory.mdx",
+      "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50"
+    ],
+    "revisedOn": "2026-10-11"
+  },
+  {
+    "path": "/pages/taste-landscape.html",
+    "title": "The Landscape of Taste Transfer",
+    "summary": "Selected approaches to personalizing AI writing, with evaluation questions and primary sources.",
+    "originalDateLabel": "April 2026",
+    "citations": [
+      "https://github.com/stanfordnlp/dspy/blob/main/docs/docs/api/optimizers/GEPA/overview.md",
+      "https://arxiv.org/abs/2510.04618",
+      "https://www.anthropic.com/research/persona-vectors"
+    ],
+    "revisedOn": "2026-10-11"
+  }
+]
