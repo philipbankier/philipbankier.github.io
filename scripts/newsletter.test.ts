@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { parseFeed, resolveWriting } from "./newsletter";
+import { fetchWriting, parseFeed, resolveWriting } from "./newsletter";
 const at = "2026-10-04T12:00:00.000Z";
 const xml = await readFile(
   new URL("./fixtures/writing.xml", import.meta.url),
@@ -30,11 +30,11 @@ test("ordinary fetch failure keeps the original fallback timestamp", async () =>
   await assert.rejects(() => resolveWriting({}, failed));
 });
 test("auth and rate-limit errors do not disappear into fallback", async () => {
-  for (const status of [401, 403, 429]) {
+  for (const status of [401, 429]) {
     const denied: typeof fetch = async () => new Response("", { status });
     await assert.rejects(
       () => resolveWriting(fallback(), denied),
-      /HTTP (401|403|429)/
+      /HTTP (401|429)/
     );
   }
 });
@@ -137,5 +137,36 @@ test("impossible RSS calendar dates reject the response and preserve fallback ag
   assert.equal(
     parseFeed(leapDay, at).posts[0].publishedAt,
     "2024-03-01T01:30:00.000Z"
+  );
+});
+
+test("a public feed 403 uses the reviewed snapshot once without reading the response body", async () => {
+  const reviewed = fallback();
+  const before = structuredClone(reviewed);
+  let calls = 0;
+  const response = new Response("Access denied", { status: 403 });
+  const forbidden: typeof fetch = async () => {
+    calls++;
+    return response;
+  };
+  const result = await resolveWriting(
+    reviewed,
+    forbidden,
+    new Date("2026-10-11T12:00:00.000Z")
+  );
+  assert.equal(result.source, "fallback");
+  assert.equal(calls, 1);
+  assert.equal(response.bodyUsed, false);
+  assert.deepEqual(result.snapshot, before);
+  assert.deepEqual(reviewed, before);
+  if (result.source === "fallback")
+    assert.equal(result.reason, "Feed HTTP 403");
+});
+
+test("fresh-only writing refresh still rejects a 403 response", async () => {
+  await assert.rejects(
+    () =>
+      fetchWriting(async () => new Response("Access denied", { status: 403 })),
+    /Feed HTTP 403/
   );
 });
