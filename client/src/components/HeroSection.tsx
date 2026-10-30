@@ -1,32 +1,31 @@
-import { site, projects } from "../content/site";
+import { site } from "../content/site";
 export default function HeroSection() {
   return (
     <section className="hero" aria-labelledby="name">
       <div className="hero-copy">
         <h1 id="name">
-          <span>Philip</span>{" "}
-          <span>Bankier</span>
+          <span>Philip</span> <span>Bankier</span>
         </h1>
-        <p className="bio">
-          Co-founder of{" "}
-          <a href={site.company.url} target="_blank" rel="noopener noreferrer">
-            {site.company.name}
-          </a>
-          .<br />
-          Building{" "}
-          <a href={projects[0].url} target="_blank" rel="noopener noreferrer">
-            ActRun
-          </a>{" "}
-          and writing{" "}
-          <a
-            href={site.newsletter.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {site.newsletter.name}
-          </a>
-          .
-        </p>
+        <div className="bio">
+          {site.introduction.map((paragraph, index) => (
+            <p key={index}>
+              {paragraph.map(part =>
+                typeof part === "string" ? (
+                  part
+                ) : (
+                  <a
+                    key={part.href}
+                    href={part.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {part.text}
+                  </a>
+                )
+              )}
+            </p>
+          ))}
+        </div>
         <div className="hero-actions">
           <a className="view-work" href="#work">
             <svg className="wheel" viewBox="0 0 80 80" aria-hidden="true">
