@@ -115,6 +115,29 @@ export async function verifyArtifact(
     );
     if (kind === "home") {
       assert.deepEqual(graph, homeGraph());
+      const bio = nodes.find(n => attribute(n, "class") === "bio")!;
+      const visibleBio = bio
+        .childNodes!.filter(n => n.tagName === "p")
+        .map(n => textContent(n))
+        .join(" ");
+      const person = graph["@graph"].find(
+        (node: { "@type": string }) => node["@type"] === "Person"
+      );
+      assert.ok(person, "Homepage schema must identify a person");
+      assert.equal(
+        person.description,
+        visibleBio,
+        "Schema must match the visible bio"
+      );
+      for (const [key, value] of [
+        ["name", "description"],
+        ["property", "og:description"],
+      ]) {
+        const description = nodes.find(
+          n => n.tagName === "meta" && attribute(n, key) === value
+        )!;
+        assert.equal(attribute(description, "content"), site.description);
+      }
       assert.equal(textContent(title), site.name);
       assert.equal(
         textContent(heading).replace(/\s/g, ""),
