@@ -96,6 +96,10 @@ export function homeHead(): string {
   return [
     `<title>${escapeHtml(site.name)}</title>`,
     meta("description", site.description),
+    meta(
+      "google-site-verification",
+      "PH9zdRh-yeRpi21zVmiOO13jL9k4pW2fJ-N2RXpBpxQ"
+    ),
     `<link rel="canonical" href="${root}">`,
     '<link rel="icon" type="image/svg+xml" href="/favicon.svg">',
     '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">',
